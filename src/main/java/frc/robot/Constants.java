@@ -16,6 +16,5 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
-    /* What does a pirate say?  RRRR!!!!*/
-    /* yes*/
+
 }
