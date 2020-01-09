@@ -96,6 +96,7 @@ speedoButton.whileHeld(new ManualDrive());
         SmartDashboard.putData("AutoDriveForward", new AutoDriveForward());
         SmartDashboard.putData("AutoDriveTurnLeft", new AutoDriveTurn(90));
         SmartDashboard.putData("AutoDriveTurnRight", new AutoDriveTurn(-90));
+
         SmartDashboard.putData("ManualClimbDown", new ManualClimbDown());
         SmartDashboard.putData("ManualClimbUp", new ManualClimbUp());
         SmartDashboard.putData("ControlPanelSetColor", new ControlPanelSetColor());
