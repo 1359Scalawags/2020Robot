@@ -121,4 +121,22 @@ public class Robot extends TimedRobot {
     public void teleopPeriodic() {
         CommandScheduler.getInstance().run();
     }
+
+    @Override
+    public void testInit() {
+        // This makes sure that the autonomous stops running when
+        // teleop starts running. If you want the autonomous to
+        // continue until interrupted by another command, remove
+        // this line or comment it out.
+        CommandBase testShooter = new TestShooterSpeeds();
+        testShooter.schedule();
+    }
+
+    /**
+     * This function is called periodically during operator control
+     */
+    @Override
+    public void testPeriodic() {
+        CommandScheduler.getInstance().run();
+    }
 }

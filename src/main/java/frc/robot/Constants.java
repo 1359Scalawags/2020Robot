@@ -16,8 +16,25 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
-    public static Double ballPIDTolerance = 0d;
+    public static Double BallPIDTolerance = 0d;
+    
+    /*----------BallSystem----------*/
+    public static int TopBallMotorID = 5;
+    public static int BottomBallMotorID = 6;
+    public static int QueBallMotorID = 9;
+    public static int TrackMotorAID = 7;
+	public static int TrackMotorBID = 7;
+    public static int IntakeMotorAID = 0;
+	public static int IntakeMotorBID = 0;
 
+<<<<<<< HEAD
+=======
+    //Sensors
+    public static int BallLimitID = 10;
+    public static int BallSpeedEncoderAID = 0;
+    public static int BallSpeedEncoderBID = 0;
+	
+>>>>>>> 2facfcc1438b65146b2713e44322fba38a1339da
     /*----------ClimbSystem----------*/
 
     //Motors
@@ -26,11 +43,28 @@ public final class Constants {
     //Sensors
     public static int MaxHeightLimitID = 8;
     public static int MinHeightLimitID = 9;
+<<<<<<< HEAD
 
     //Booleans
     public static boolean LIMIT_PRESSED = true;
     public static boolean LIMIT_NOTPRESSED = false;
     
+=======
+ 
+    /*----------ControlPanelSystem----------*/
+    
+    //Motors
+    public static int RotatoPotatoID = 11;
+    public static int RotateEncoderAID = 12;
+    public static int RotateEncoderBID = 13;
+
+    //Sensors
+    public static int ColorSensorID = 2;
+
+    public static boolean LIMIT_PRESSED = true;
+    public static boolean LIMIT_NOTPRESSED = false;
+	
+>>>>>>> 2facfcc1438b65146b2713e44322fba38a1339da
     /*----------DriveSystem----------*/
 
     //Motors
@@ -49,6 +83,7 @@ public final class Constants {
     public static int DriveDistanceUltrasonicA = 6;
     public static int DriveDistanceUltrasonicB = 7;
 
+<<<<<<< HEAD
     /*----------BallSystem----------*/
     public static int TopBallMotorID = 5;
     public static int BottomBallMotorID = 6;
@@ -78,5 +113,7 @@ public final class Constants {
     public static int ColorSensorID = 2;
 
     /*----------ADD SYSTEM HERE----------*/
+=======
+>>>>>>> 2facfcc1438b65146b2713e44322fba38a1339da
 
 }
