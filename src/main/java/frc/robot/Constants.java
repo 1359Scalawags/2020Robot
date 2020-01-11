@@ -21,7 +21,16 @@ public final class Constants {
     public static int FrontLeftMotorID = 1;
     public static int BackLeftMotorID = 2;
     public static int FrontRightMotorID = 3;
-    public static int
+    public static int BackRightMotorID = 4;
+    public static int DriveLeftEncoderA = 2;
+    public static int DriveLeftEncoderB = 3;
+    public static int DriveRightEncoderA = 4;
+    public static int DriveRightEncoderB = 5;
+    public static int DriveAnalogAccelerometer = 0;
+    public static int DriveAnalogGyro = 1;
+    public static int DriveDistanceUltrasonicA = 6;
+    public static int DriveDistanceUltrasonicB = 7;
+
     //BallSystem Constant IDs
     public static int TopBallMotorID = 5;
     public static int BottomBallMotorID = 6;
