@@ -59,7 +59,7 @@ public class ClimbSystem extends SubsystemBase {
     }
 
     /**
-     * Allows drivers to use the climber.
+     * Allows drivers to use and lock the Climber
      */
     public void unlockClimber() {
 		climberLocked = false;
