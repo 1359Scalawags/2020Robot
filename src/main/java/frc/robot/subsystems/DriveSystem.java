@@ -16,6 +16,7 @@ package frc.robot.subsystems;
 //import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.Utilities;
 //import jdk.vm.ci.meta.Constant;
 //import edu.wpi.first.wpilibj.PIDOutput;
 //import edu.wpi.first.wpilibj.PIDSource;
@@ -187,12 +188,12 @@ public class DriveSystem extends SubsystemBase {
     
     public void tankDrive(double leftSpeed, double rightSpeed) {
 		if(reverse) {
-		m_drive.tankDrive(-rightSpeed, -leftSpeed);
+            robotDrive.tankDrive(-rightSpeed, -leftSpeed);
 	//	m_drive2.tankDrive(-rightSpeed, -leftSpeed); //new
         }
         
 		else {
-			m_drive.tankDrive(leftSpeed, rightSpeed);
+			robotDrive.tankDrive(leftSpeed, rightSpeed);
 		//	m_drive2.tankDrive(rightSpeed, leftSpeed); //new
         }
         
@@ -201,18 +202,18 @@ public class DriveSystem extends SubsystemBase {
         }
 
         public void arcadeDrive(double moveSpeed, double turnSpeed) {
-            m_drive.arcadeDrive(moveSpeed, turnSpeed);
+            robotDrive.arcadeDrive(moveSpeed, turnSpeed);
         }
 
         public void arcadeDrive(double moveSpeed, double maxTurnSpeed, double targetAngle) {
 
-            double angleInput = m_Gyro.getAngle();
+            double angleInput = driveGyro.getAngle();
     
             gyroControl.SetPoint(targetAngle);
     
             double angleOutput = Utilities.Clamp(gyroControl.Compute(angleInput), -maxTurnSpeed, maxTurnSpeed);
     
-            m_drive.arcadeDrive(moveSpeed, angleOutput);
+            robotDrive.arcadeDrive(moveSpeed, angleOutput);
     
         }
 
