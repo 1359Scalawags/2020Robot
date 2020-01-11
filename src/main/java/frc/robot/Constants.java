@@ -49,4 +49,8 @@ public final class Constants {
     public static int RotateEncoderBID = 13;
     public static int ColorSensorID = 2;
 
+    public static boolean LIMIT_PRESSED = true;
+    public static boolean LIMIT_NOTPRESSED = false;
+
+
 }
