@@ -82,13 +82,9 @@ private DigitalInput ballLimit;
         ballSpeedEncoder.setDistancePerPulse(1.0);
         //ballSpeedEncoder.setPIDSourceType(PIDSourceType.kRate);
                 
-<<<<<<< HEAD
-        ballMotorA = new Spark(Constants.BallShooterTopMotorID);
-=======
         /*--Shooter Management--*/
 
         ballMotorA = new Spark(Constants.TopBallMotorID);
->>>>>>> 8b8384abfcd117ac60fc891b69b03d9311746ac8
         addChild("BallMotorA",ballMotorA);
         ballMotorA.setInverted(false);
                 
