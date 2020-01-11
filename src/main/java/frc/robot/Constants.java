@@ -18,16 +18,20 @@ package frc.robot;
 public final class Constants {
     public static Double ballPIDTolerance = 0d;
 
-    /*--ClimbSystem--*/
+    /*----------ClimbSystem----------*/
 
     //Motors
-    public static int climbMotorID = 8;
+    public static int ClimbMotorID = 8;
 
     //Sensors
-    public static int maxHeightLimitID = 8;
-    public static int minHeightLimitID = 9;
+    public static int MaxHeightLimitID = 8;
+    public static int MinHeightLimitID = 9;
+
+    //Booleans
+    public static boolean LIMIT_PRESSED = true;
+    public static boolean LIMIT_NOTPRESSED = false;
     
-    /*--DriveSystem--*/
+    /*----------DriveSystem----------*/
 
     //Motors
     public static int FrontLeftMotorID = 1;
@@ -45,7 +49,7 @@ public final class Constants {
     public static int DriveDistanceUltrasonicA = 6;
     public static int DriveDistanceUltrasonicB = 7;
 
-    /*--BallSystem--*/
+    /*----------BallSystem----------*/
     public static int TopBallMotorID = 5;
     public static int BottomBallMotorID = 6;
     public static int QueBallMotorID = 9;
@@ -57,7 +61,7 @@ public final class Constants {
     public static int BallSpeedEncoderAID = 0;
     public static int BallSpeedEncoderBID = 0;
  
-    /*--ControlPanelSystem--*/
+    /*----------ControlPanelSystem----------*/
     
     //Motors
     public static int RotatoPotatoID = 11;
@@ -66,9 +70,5 @@ public final class Constants {
 
     //Sensors
     public static int ColorSensorID = 2;
-
-    public static boolean LIMIT_PRESSED = true;
-    public static boolean LIMIT_NOTPRESSED = false;
-
 
 }
