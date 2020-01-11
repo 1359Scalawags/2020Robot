@@ -59,7 +59,7 @@ private DigitalInput ballLimit;
 
         super(new PIDController(1.0, 0.0, 0.0));
 
-        getController().setTolerance(Constants.ballPIDTolerance);
+        getController().setTolerance(Constants.BallPIDTolerance);
         SendableRegistry.setName(getController(), "BallSystem", "Name");//change name
 
         //SendableRegistry.add(getController());//what is a parent? Do i need to add a child?
