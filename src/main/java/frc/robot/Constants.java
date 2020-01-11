@@ -17,4 +17,9 @@ package frc.robot;
  */
 public final class Constants {
     public static Double ballPIDTolerance = 0d;
+
+    public static int FrontLeftMotorID = 1;
+    public static int BackLeftMotorID = 2;
+    public static int FrontRightMotorID = 3;
+    public static int
 }
