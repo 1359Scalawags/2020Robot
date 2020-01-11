@@ -16,7 +16,7 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
-    public static Double ballPIDTolerance = 0d;
+    public static Double BallPIDTolerance = 0d;
     
     /*----------BallSystem----------*/
     public static int TopBallMotorID = 5;
@@ -24,7 +24,7 @@ public final class Constants {
     public static int QueBallMotorID = 9;
     public static int TrackMotorAID = 7;
 	public static int TrackMotorBID = 7;
-    public static int IntakeMotorBID = 0;
+    public static int IntakeMotorAID = 0;
 	public static int IntakeMotorBID = 0;
 
     //Sensors
@@ -35,11 +35,11 @@ public final class Constants {
     /*----------ClimbSystem----------*/
 
     //Motors
-    public static int climbMotorID = 8;
+    public static int ClimbMotorID = 8;
 
     //Sensors
-    public static int maxHeightLimitID = 8;
-    public static int minHeightLimitID = 9;
+    public static int MaxHeightLimitID = 8;
+    public static int MinHeightLimitID = 9;
  
     /*----------ControlPanelSystem----------*/
     
