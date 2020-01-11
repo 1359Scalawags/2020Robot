@@ -40,6 +40,11 @@ public final class Constants {
     //Sensors
     public static int MaxHeightLimitID = 8;
     public static int MinHeightLimitID = 9;
+
+    //Booleans
+    public static boolean LIMIT_PRESSED = true;
+    public static boolean LIMIT_NOTPRESSED = false;
+    
  
     /*----------ControlPanelSystem----------*/
     
@@ -50,9 +55,6 @@ public final class Constants {
 
     //Sensors
     public static int ColorSensorID = 2;
-
-    public static boolean LIMIT_PRESSED = true;
-    public static boolean LIMIT_NOTPRESSED = false;
 	
     /*----------DriveSystem----------*/
 
