@@ -80,15 +80,15 @@ private DigitalInput ballLimit;
         ballSpeedEncoder.setDistancePerPulse(1.0);
         ballSpeedEncoder.setPIDSourceType(PIDSourceType.kRate);
                 
-        ballMotorA = new Spark(5);
+        ballMotorA = new Spark(Constants.TopBallMotorID);
         addChild("BallMotorA",ballMotorA);
         ballMotorA.setInverted(false);
                 
-        ballMotorB = new Spark(6);
+        ballMotorB = new Spark(Constants.BottomBallMotorID);
         addChild("BallMotorB",ballMotorB);
         ballMotorB.setInverted(true);
                 
-        queMotor = new Spark(9);
+        queMotor = new Spark(Constants.QueBallMotorID);
         addChild("QueMotor",queMotor);
         queMotor.setInverted(false);
                 
@@ -96,15 +96,15 @@ private DigitalInput ballLimit;
         addChild("BallShootMotors",ballShootMotors);
 
                 
-        trackMotor = new Spark(7);
+        trackMotor = new Spark(Constants.TrackMotorID);
         addChild("TrackMotor",trackMotor);
         trackMotor.setInverted(false);
                 
-        intakeMotor = new Spark(0);
+        intakeMotor = new Spark(Constants.IntakeMotorID);
         addChild("IntakeMotor",intakeMotor);
         intakeMotor.setInverted(false);
                 
-        ballLimit = new DigitalInput(10);
+        ballLimit = new DigitalInput(Constants.BallLimitID);
         addChild("BallLimit",ballLimit);
 
         
