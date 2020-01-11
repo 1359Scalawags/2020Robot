@@ -17,4 +17,60 @@ package frc.robot;
  */
 public final class Constants {
     public static Double ballPIDTolerance = 0d;
+    
+    /*----------BallSystem----------*/
+    public static int TopBallMotorID = 5;
+    public static int BottomBallMotorID = 6;
+    public static int QueBallMotorID = 9;
+    public static int TrackMotorAID = 7;
+	public static int TrackMotorBID = 7;
+    public static int IntakeMotorBID = 0;
+	public static int IntakeMotorBID = 0;
+
+    //Sensors
+    public static int BallLimitID = 10;
+    public static int BallSpeedEncoderAID = 0;
+    public static int BallSpeedEncoderBID = 0;
+	
+    /*----------ClimbSystem----------*/
+
+    //Motors
+    public static int climbMotorID = 8;
+
+    //Sensors
+    public static int maxHeightLimitID = 8;
+    public static int minHeightLimitID = 9;
+ 
+    /*----------ControlPanelSystem----------*/
+    
+    //Motors
+    public static int RotatoPotatoID = 11;
+    public static int RotateEncoderAID = 12;
+    public static int RotateEncoderBID = 13;
+
+    //Sensors
+    public static int ColorSensorID = 2;
+
+    public static boolean LIMIT_PRESSED = true;
+    public static boolean LIMIT_NOTPRESSED = false;
+	
+    /*----------DriveSystem----------*/
+
+    //Motors
+    public static int FrontLeftMotorID = 1;
+    public static int BackLeftMotorID = 2;
+    public static int FrontRightMotorID = 3;
+    public static int BackRightMotorID = 4;
+
+    //Sensors
+    public static int DriveLeftEncoderA = 2;
+    public static int DriveLeftEncoderB = 3;
+    public static int DriveRightEncoderA = 4;
+    public static int DriveRightEncoderB = 5;
+    public static int DriveAnalogAccelerometer = 0;
+    public static int DriveAnalogGyro = 1;
+    public static int DriveDistanceUltrasonicA = 6;
+    public static int DriveDistanceUltrasonicB = 7;
+
+
 }
