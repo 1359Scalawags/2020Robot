@@ -17,4 +17,8 @@ package frc.robot;
  */
 public final class Constants {
     public static Double ballPIDTolerance = 0d;
+
+    public static int maxHeightLimitID = 8;
+    public static int minHeightLimitID = 9;
+    public static int climbMotorID = 8;
 }
