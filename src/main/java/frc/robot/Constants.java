@@ -72,5 +72,13 @@ public final class Constants {
     public static int DriveDistanceUltrasonicA = 6;
     public static int DriveDistanceUltrasonicB = 7;
 
+    //PID
+
+    public static int drivePID_P;
+    public static int drivePID_I;
+    public static int drivePID_D;
+    public static int gyroPID_P;
+    public static int gyroPID_I;
+    public static int gyroPID_D;
 
 }
