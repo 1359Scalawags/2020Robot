@@ -96,20 +96,28 @@ private DigitalInput ballLimit;
         addChild("QueMotor",queMotor);
         queMotor.setInverted(false);
                                
-        trackMotor = new Spark(Constants.TrackMotorID);
-        addChild("TrackMotor",trackMotor);
-        trackMotor.setInverted(false);
+        trackMotorA = new Spark(Constants.TrackMotorAID);
+        addChild("TrackMotorA",trackMotorA);
+        trackMotorA.setInverted(false);
+        
+        /* v Maybe add Motor here v */
+    
+        /*
+        trackMotorB = new Spark(Constants.TrackMotorBID);
+        addChild("TrackMotorB",trackMotorB);
+        trackMotorB.setInverted(false);
+        */
                 
-        intakeMotor = new Spark(Constants.IntakeMotorID);
-        addChild("IntakeMotor",intakeMotor);
-        intakeMotor.setInverted(false);
+        intakeMotorA = new Spark(Constants.IntakeMotorAID);
+        addChild("IntakeMotorA",intakeMotorA);
+        intakeMotorA.setInverted(false);
     
         /* v ADD MOTOR HERE v */
     
         /*
-        intakeMotor = new Spark(Constants.IntakeMotorID);
-        addChild("IntakeMotor",intakeMotor);
-        intakeMotor.setInverted(false);
+        intakeMotorB = new Spark(Constants.IntakeMotorBID);
+        addChild("IntakeMotorB",intakeMotorB);
+        intakeMotorB.setInverted(false);
         */
                 
         ballLimit = new DigitalInput(Constants.BallLimitID);

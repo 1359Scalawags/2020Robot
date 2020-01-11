@@ -53,8 +53,14 @@ public final class Constants {
     public static int TopBallMotorID = 5;
     public static int BottomBallMotorID = 6;
     public static int QueBallMotorID = 9;
-    public static int TrackMotorID = 7;
-    public static int IntakeMotorID = 0;
+    public static int TrackMotorAID = 7;
+    public static int IntakeMotorAID = 0;
+    
+    /* v Maybe add Motor IDs here v */
+    /*
+    public static int TrackMotorBID = 7;
+    public static int IntakeMotorBID = 0;
+    */
 
     //Sensors
     public static int BallLimitID = 10;
