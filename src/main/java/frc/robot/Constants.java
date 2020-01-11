@@ -17,10 +17,11 @@ package frc.robot;
  */
 public final class Constants {
     public static Double ballPIDTolerance = 0d;
-
+    //ClimbSystem Constants
     public static int maxHeightLimitID = 8;
     public static int minHeightLimitID = 9;
     public static int climbMotorID = 8;
+    //
     public static int FrontLeftMotorID = 1;
     public static int BackLeftMotorID = 2;
     public static int FrontRightMotorID = 3;
