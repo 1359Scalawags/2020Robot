@@ -23,6 +23,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
 
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardLayout;
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
+
     /**
      * The VM is configured to automatically run this class, and to call the
      * functions corresponding to each mode, as described in the TimedRobot
@@ -131,6 +135,9 @@ public class Robot extends TimedRobot {
         CommandBase testShooter = new TestShooterSpeeds();
         CommandBase testCPSpin = new TestControlPanelSpinMotor();
         testShooter.schedule();
+        SmartDashboard.putData("Test_Control_Panel_Spin", testCPSpin);
+        
+
     }
 
     /**
