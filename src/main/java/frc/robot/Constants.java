@@ -19,27 +19,35 @@ public final class Constants {
     public static Double BallPIDTolerance = 0d;
     
     /*----------BallSystem----------*/
-    public static int TopBallMotorID = 5;
-    public static int BottomBallMotorID = 6;
-    public static int QueBallMotorID = 9;
-    public static int TrackMotorAID = 7;
-	public static int TrackMotorBID = 7;
-    public static int IntakeMotorAID = 0;
-	public static int IntakeMotorBID = 0;
 
-    //Sensors
-    public static int BallLimitID = 10;
-    public static int BallSpeedEncoderAID = 0;
-    public static int BallSpeedEncoderBID = 0;
+    //Booleans, Integers, and Values
+
+    
+    //Motors                                        Motor #s 0, 1, 2, 3, 4, 5, 6, 7,
+    public static int TopBallMotorID = 1;
+    public static int BottomBallMotorID = 2;
+    public static int QueBallMotorID = 3;
+    public static int TrackMotorAID = 4;
+	public static int TrackMotorBID = 5;
+    public static int IntakeMotorAID = 6;
+	public static int IntakeMotorBID = 7;
+
+    //Sensors                                       Sensor #s 0, 1, 2
+    public static int BallLimitID = 0;
+    public static int BallSpeedEncoderAID = 1;
+    public static int BallSpeedEncoderBID = 2;
 	
     /*----------ClimbSystem----------*/
 
-    //Motors
+    //Booleans, Integers, and Values
+
+
+    //Motors                                        Motor #s 8
     public static int ClimbMotorID = 8;
 
-    //Sensors
-    public static int MaxHeightLimitID = 8;
-    public static int MinHeightLimitID = 9;
+    //Sensors                                       Sensor #s 3, 4
+    public static int MaxHeightLimitID = 3;
+    public static int MinHeightLimitID = 4;
 
     //Booleans
     public static boolean LIMIT_PRESSED = true;
@@ -48,36 +56,40 @@ public final class Constants {
  
     /*----------ControlPanelSystem----------*/
     
-    //Motors
-    public static int RotatoPotatoID = 11;
-    public static int RotateEncoderAID = 12;
-    public static int RotateEncoderBID = 13;
+    //Booleans, Integers, and Values
 
-    //Sensors
+
+    //Motors                                        Motor #s 9, 10, 11
+    public static int RotatoPotatoID = 9;
+    public static int RotateEncoderAID = 10;
+    public static int RotateEncoderBID = 11;
+
+    //Sensors                                       Sensor #s 5
     public static int ColorSensorID = 2;
 	
     /*----------DriveSystem----------*/
 
-    //Motors
+    //Booleans, Integers, and Values
+    public static final double maxMotorSpeed = 0.95;
+    public static final double fullDriveSpeed = 8;
+
+    //Motors                                        Motor #s 12, 13, 14, 15
     public static int FrontLeftMotorID = 1;
     public static int BackLeftMotorID = 2;
     public static int FrontRightMotorID = 3;
     public static int BackRightMotorID = 4;
-    public static final double maxMotorSpeed = 0.95;
-    public static final double fullDriveSpeed = 8;
 
-    //Sensors
-    public static int DriveLeftEncoderA = 2;
-    public static int DriveLeftEncoderB = 3;
-    public static int DriveRightEncoderA = 4;
-    public static int DriveRightEncoderB = 5;
-    public static int DriveAnalogAccelerometer = 0;
-    public static int DriveAnalogGyro = 1;
-    public static int DriveDistanceUltrasonicA = 6;
-    public static int DriveDistanceUltrasonicB = 7;
+    //Sensors                                       Sensor #s 6, 7, 8, 9, 10, 11, 12, 13
+    public static int DriveLeftEncoderA = 6;
+    public static int DriveLeftEncoderB = 7;
+    public static int DriveRightEncoderA = 8;
+    public static int DriveRightEncoderB = 9;
+    public static int DriveAnalogAccelerometer = 10;
+    public static int DriveAnalogGyro = 11;
+    public static int DriveDistanceUltrasonicA = 12;
+    public static int DriveDistanceUltrasonicB = 13;
 
     //PID
-
     public static int drivePID_P;
     public static int drivePID_I;
     public static int drivePID_D;
