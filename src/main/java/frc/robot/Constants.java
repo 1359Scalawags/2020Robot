@@ -63,6 +63,8 @@ public final class Constants {
     public static int BackLeftMotorID = 2;
     public static int FrontRightMotorID = 3;
     public static int BackRightMotorID = 4;
+    public static final double maxMotorSpeed = 0.95;
+    public static final double fullDriveSpeed = 8;
 
     //Sensors
     public static int DriveLeftEncoderA = 2;
