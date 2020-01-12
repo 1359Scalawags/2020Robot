@@ -34,7 +34,7 @@ public class ClimbSystem extends SubsystemBase {
     private DigitalInput maxHeightLimit;
     private DigitalInput minHeightLimit;
     private Spark climbMotor;
-    boolean climberLocked;
+    private boolean climberLocked;
 
     public ClimbSystem() {
 
@@ -67,6 +67,14 @@ public class ClimbSystem extends SubsystemBase {
 	
 	public boolean getClimberLock() {
 		return climberLocked;
+    }
+    
+    public boolean isAtTop() {
+        return (maxHeightLimit.get() == Constants.LIMIT_PRESSED);
+    }
+
+    public boolean isAtTBottom() {
+        return (minHeightLimit.get() == Constants.LIMIT_PRESSED);
     }
     
     public void move(double speed) {
