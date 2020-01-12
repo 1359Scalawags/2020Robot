@@ -71,9 +71,9 @@ public class OI {
         assistJoystick = new Joystick(1);
 
         climbDownButton = new JoystickButton(assistJoystick, 7);
-        climbDownButton.whileHeld(new ManualClimbDown());
+        climbDownButton.whileHeld(new ManualClimb());
         climbUpButton = new JoystickButton(assistJoystick, 6);
-        climbUpButton.whileHeld(new ManualClimbUp());
+        climbUpButton.whileHeld(new ManualClimb());
         controlPanelSpinButton = new JoystickButton(assistJoystick, 5);
         controlPanelSpinButton.whenPressed(new ControlPanelSpin());
         controlPanelSetColorButton = new JoystickButton(assistJoystick, 4);
@@ -98,8 +98,8 @@ public class OI {
         SmartDashboard.putData("AutoDriveTurnLeft", new AutoDriveTurn(90));
         SmartDashboard.putData("AutoDriveTurnRight", new AutoDriveTurn(-90));
 
-        SmartDashboard.putData("ManualClimbDown", new ManualClimbDown());
-        SmartDashboard.putData("ManualClimbUp", new ManualClimbUp());
+        SmartDashboard.putData("ManualClimbDown", new ManualClimb());
+        SmartDashboard.putData("ManualClimbUp", new ManualClimb());
         SmartDashboard.putData("ControlPanelSetColor", new ControlPanelSetColor());
         SmartDashboard.putData("ControlPanelSpin", new ControlPanelSpin());
         SmartDashboard.putData("IntakeRollerSpin", new IntakeRollerSpin());
