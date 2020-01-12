@@ -20,6 +20,9 @@ public final class Constants {
     
     /*----------BallSystem----------*/
 
+    //Booleans, Integers, and Values
+
+    
     //Motors                                        Motor #s 0, 1, 2, 3, 4, 5, 6, 7,
     public static int TopBallMotorID = 1;
     public static int BottomBallMotorID = 2;
@@ -36,6 +39,9 @@ public final class Constants {
 	
     /*----------ClimbSystem----------*/
 
+    //Booleans, Integers, and Values
+
+
     //Motors                                        Motor #s 8
     public static int ClimbMotorID = 8;
 
@@ -50,6 +56,9 @@ public final class Constants {
  
     /*----------ControlPanelSystem----------*/
     
+    //Booleans, Integers, and Values
+
+
     //Motors                                        Motor #s 9, 10, 11
     public static int RotatoPotatoID = 9;
     public static int RotateEncoderAID = 10;
@@ -60,13 +69,15 @@ public final class Constants {
 	
     /*----------DriveSystem----------*/
 
+    //Booleans, Integers, and Values
+    public static final double maxMotorSpeed = 0.95;
+    public static final double fullDriveSpeed = 8;
+
     //Motors                                        Motor #s 12, 13, 14, 15
     public static int FrontLeftMotorID = 1;
     public static int BackLeftMotorID = 2;
     public static int FrontRightMotorID = 3;
     public static int BackRightMotorID = 4;
-    public static final double maxMotorSpeed = 0.95;
-    public static final double fullDriveSpeed = 8;
 
     //Sensors                                       Sensor #s 6, 7, 8, 9, 10, 11, 12, 13
     public static int DriveLeftEncoderA = 6;
@@ -79,7 +90,6 @@ public final class Constants {
     public static int DriveDistanceUltrasonicB = 13;
 
     //PID
-
     public static int drivePID_P;
     public static int drivePID_I;
     public static int drivePID_D;
