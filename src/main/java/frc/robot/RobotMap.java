@@ -7,7 +7,7 @@ public class RobotMap {
     public static final int DriverController = 0;
     public static final int AssistController = 1;
     /**
-     * Buttons/other things that do Assist Controller stuff
+     * Buttons/other things (that are like buttons) that do Assist Controller stuff
      */
     public static final int xboxA = 1; // ?
 	public static final int xboxB = 2; // ?
