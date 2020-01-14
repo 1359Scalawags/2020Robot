@@ -137,6 +137,8 @@ public class Robot extends TimedRobot {
         testShooter.schedule();
         SmartDashboard.putData("Test_Control_Panel_Spin", testCPSpin);
         SmartDashboard.putData("Test_Shooter_Speeds", testShooter);
+        ShuffleboardTab testtab = Shuffleboard.getTab("Test2020");
+        testtab.add(testShooter);
         
 
     }

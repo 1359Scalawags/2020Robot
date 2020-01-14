@@ -61,12 +61,12 @@ public final class Constants {
 
     //Motors                                        Motor #s 9, 10, 11
     public static int RotatoPotatoID = 9;
-    public static int RotateEncoderAID = 10;
-    public static int RotateEncoderBID = 11;
 
     //Sensors                                       Sensor #s 5
     public static int ColorSensorID = 2;
-	
+    public static int RotateEncoderAID = 20;
+    public static int RotateEncoderBID = 21;
+
     /*----------DriveSystem----------*/
 
     //Booleans, Integers, and Values
@@ -74,10 +74,10 @@ public final class Constants {
     public static final double fullDriveSpeed = 8;
 
     //Motors                                        Motor #s 12, 13, 14, 15
-    public static int FrontLeftMotorID = 1;
-    public static int BackLeftMotorID = 2;
-    public static int FrontRightMotorID = 3;
-    public static int BackRightMotorID = 4;
+    public static int FrontLeftMotorID = 12;
+    public static int BackLeftMotorID = 13;
+    public static int FrontRightMotorID = 14;
+    public static int BackRightMotorID = 15;
 
     //Sensors                                       Sensor #s 6, 7, 8, 9, 10, 11, 12, 13
     public static int DriveLeftEncoderA = 6;
