@@ -136,6 +136,7 @@ public class Robot extends TimedRobot {
         CommandBase testCPSpin = new TestControlPanelSpinMotor();
         testShooter.schedule();
         SmartDashboard.putData("Test_Control_Panel_Spin", testCPSpin);
+        SmartDashboard.putData("Test_Shooter_Speeds", testShooter);
         
 
     }
