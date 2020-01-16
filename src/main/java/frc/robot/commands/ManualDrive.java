@@ -11,7 +11,9 @@
 
 package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Robot;
 //import frc.robot.Robot;
+import frc.robot.subsystems.DriveSystem;
 
 /**
  *
@@ -37,11 +39,17 @@ public class ManualDrive extends CommandBase {
     // Called just before this Command runs the first time
     @Override
     public void initialize() {
+        Robot.driveSystem.ResetGyro();
     }
 
     // Called repeatedly when this Command is scheduled to run
     @Override
     public void execute() {
+
+        Robot.oi.getDriverJoystick();
+        
+        
+
     }
 
     // Make this return true when this Command no longer needs to run execute()
