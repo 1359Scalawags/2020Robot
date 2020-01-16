@@ -97,4 +97,6 @@ public final class Constants {
     public static int gyroPID_I;
     public static int gyroPID_D;
 
+    public static final double controllerDeadZone = .1;
+
 }
