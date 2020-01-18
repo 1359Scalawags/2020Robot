@@ -85,9 +85,9 @@ public final class Constants {
     public static int DriveRightEncoderA = 8;
     public static int DriveRightEncoderB = 9;
     //public static int DriveBuiltInAccelerometer = 10;
-    public static int DriveAnalogGyro = 11;
-    public static int DriveDistanceUltrasonicA = 12;
-    public static int DriveDistanceUltrasonicB = 13;
+    // public static int DriveAnalogGyro = 11;
+    public static int DriveDistanceUltrasonicA = 10;
+    public static int DriveDistanceUltrasonicB = 11;
 
     //PID
     public static int drivePID_P;
