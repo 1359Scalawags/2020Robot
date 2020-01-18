@@ -50,7 +50,7 @@ public class ManualDrive extends CommandBase {
         Robot.oi.getDriverJoystick();
        
         // need help with this
-		Robot.driveSystem.tankDrive(Robot.oi.getLStickY()*(-.0064*Robot.climbSystem.getclimbSystemHeight()+1.064), Robot.oi.getRStickY()*(-.0064*Robot.climbSystem.getClimbSystemHeight()+1.064));
+		//Robot.driveSystem.tankDrive(Robot.oi.getLStickY()*(-.0064*Robot.climbSystem.getclimbSystemHeight()+1.064), Robot.oi.getRStickY()*(-.0064*Robot.climbSystem.getClimbSystemHeight()+1.064));
 		
         
         //SmartDashboard.putNumber("Elevator Height",Robot.climbSystem.getclimbSystemHeight());
