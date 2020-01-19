@@ -58,6 +58,8 @@ public class AutoDriveForward extends CommandBase {
     // Called once after isFinished returns true
     @Override
     public void end(boolean interrupted) {
+
+        Robot.driveSystem.arcadeDrive(0, 0, 0);
     }
 
 }

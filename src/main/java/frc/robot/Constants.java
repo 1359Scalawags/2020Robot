@@ -100,5 +100,7 @@ public final class Constants {
     public static final double controllerDeadZone = .1;
     public static final double driveStraightSpeed = -.7;
     public static final double maxTurnRate = 0.75;
+    public static final double maxRightTurnRate = 0.75;
+    public static final double maxLeftTurnRate = 0.75;
 
 }
