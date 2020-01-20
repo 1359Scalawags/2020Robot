@@ -23,12 +23,12 @@ public class ManualClimb extends CommandBase {
      * 
      * @param up Move in the up direction.
      */
-    //private boolean directionUp;           //Remove later
+    private boolean directionUp;           //Remove later
 
-    //public AutoClimb(boolean up) {       //Remove later
-        //directionUp = up;
+    public ManualClimb(boolean up) {       //Remove later
+        directionUp = up;
 
-    //}
+    }
 
     // Called just before this Command runs the first time
     @Override
