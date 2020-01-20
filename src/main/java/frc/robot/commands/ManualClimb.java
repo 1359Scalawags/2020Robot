@@ -11,7 +11,6 @@
 
 package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-//import frc.robot.Robot;
 import frc.robot.Robot;
 
 /**
@@ -19,13 +18,14 @@ import frc.robot.Robot;
  */
 public class ManualClimb extends CommandBase {
 
+    private boolean climberLocked;
     /**
      * 
      * @param up Move in the up direction.
      */
-    private boolean directionUp;
+    private boolean directionUp;           //Remove later
 
-    public ManualClimb(boolean up) {
+    public ManualClimb(boolean up) {       //Remove later
         directionUp = up;
 
     }
@@ -38,16 +38,17 @@ public class ManualClimb extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     @Override
     public void execute() {
-        if(directionUp) {
-            Robot.climbSystem.move(1);
-        } else {
-            Robot.climbSystem.move(0);
-        }
+        double speed = Robot.oi.getClimbSpeed();
+
+
     }
 
     // Make this return true when this Command no longer needs to run execute()
     @Override
     public boolean isFinished() {
+        if (climberLocked) {
+            return isFinished();
+        }
         return false;
     }
 
