@@ -25,7 +25,7 @@ public class ManualClimb extends CommandBase {
      */
     //private boolean directionUp;           //Remove later
 
-    //public ManualClimb(boolean up) {       //Remove later
+    //public AutoClimb(boolean up) {       //Remove later
         //directionUp = up;
 
     //}
