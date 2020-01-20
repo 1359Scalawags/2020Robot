@@ -17,6 +17,7 @@ package frc.robot;
  */
 public final class Constants {
     public static Double BallPIDTolerance = 0d;
+
     
     /*----------BallSystem----------*/
 
@@ -102,5 +103,8 @@ public final class Constants {
     public static final double maxTurnRate = 0.75;
     public static final double maxRightTurnRate = 0.75;
     public static final double maxLeftTurnRate = 0.75;
+
+    public static final double mindistance = 0.5;
+
 
 }
