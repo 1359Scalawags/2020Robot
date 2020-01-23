@@ -67,6 +67,10 @@ import frc.robot.Constants;
     public boolean isAtBottom() {
         return (minHeightLimit.get() == Constants.LIMIT_PRESSED);
     }
+
+    public void stop() {
+        climbMotor.set(0);
+    }
     
     public void move(double speed) {
 
