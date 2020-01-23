@@ -76,9 +76,9 @@ public class OI {
         assistController = new XboxController(RobotMap.AssistController);
 
         climbDownButton = new JoystickButton(assistController, 7);
-        climbDownButton.whileHeld(new ManualClimb(false));
+        climbDownButton.whileHeld(new ManualClimb());
         climbUpButton = new JoystickButton(assistController, 6);
-        climbUpButton.whileHeld(new ManualClimb(true));
+        climbUpButton.whileHeld(new ManualClimb());
         controlPanelSpinButton = new JoystickButton(assistController, 5);
         controlPanelSpinButton.whenPressed(new ControlPanelSpin());
         controlPanelSetColorButton = new JoystickButton(assistController, 4);
@@ -107,8 +107,8 @@ public class OI {
         SmartDashboard.putData("AutoDriveTurnLeft", new AutoDriveTurn(90));
         SmartDashboard.putData("AutoDriveTurnRight", new AutoDriveTurn(-90));
 
-        SmartDashboard.putData("ManualClimbDown", new ManualClimb(false));
-        SmartDashboard.putData("ManualClimbUp", new ManualClimb(true));
+        SmartDashboard.putData("ManualClimbDown", new ManualClimb());
+        SmartDashboard.putData("ManualClimbUp", new ManualClimb());
         SmartDashboard.putData("ControlPanelSetColor", new ControlPanelSetColor());
         SmartDashboard.putData("ControlPanelSpin", new ControlPanelSpin());
         SmartDashboard.putData("IntakeRollerSpin", new IntakeRollerSpin());

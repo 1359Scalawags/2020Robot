@@ -68,6 +68,10 @@ public class ClimbSystem extends SubsystemBase {
     public boolean isAtBottom() {
         return (minHeightLimit.get() == Constants.LIMIT_PRESSED);
     }
+
+    public void stop() {
+        climbMotor.set(0);
+    }
     
     public void move(double speed) {
         if(climberLocked) {

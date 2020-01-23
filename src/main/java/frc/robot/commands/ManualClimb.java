@@ -23,10 +23,8 @@ public class ManualClimb extends CommandBase {
      * 
      * @param up Move in the up direction.
      */
-    private boolean directionUp;           //Remove later
 
-    public ManualClimb(boolean up) {       //Remove later
-        directionUp = up;
+    public ManualClimb() {       //Remove later
 
     }
 
@@ -39,22 +37,24 @@ public class ManualClimb extends CommandBase {
     @Override
     public void execute() {
         double speed = Robot.oi.getClimbSpeed();
-
+            if (climberLocked) {
+                return true;   //fix next robotics meeting!
+            }
+        Robot.climbSystem.move(speed);
 
     }
 
     // Make this return true when this Command no longer needs to run execute()
     @Override
     public boolean isFinished() {
-        if (climberLocked) {
-            return isFinished();
-        }
+        
         return false;
     }
 
     // Called once after isFinished returns true
     @Override
     public void end(boolean interrupted) {
+        Robot.climbSystem.stop();
     }
 
 
