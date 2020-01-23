@@ -88,8 +88,8 @@ public class OI {
         lineupButton = new JoystickButton(assistController, 2);
         lineupButton.whenPressed(new LineupToShoot());
         shootButton = new JoystickButton(assistController, 1);
-        //shootButton.whileHeld(new ShootBall());
-        shootButton.whileHeld(new TestShooterSpeeds());
+        shootButton.whileHeld(new ShootBall());
+        //shootButton.whileHeld(new TestShooterSpeeds());
         driverContoller = new XboxController(0);
         autoDriveForwardButton = new JoystickButton(driverContoller, 2);
         autoDriveForwardButton.whileHeld(new AutoDriveForward());
@@ -114,8 +114,8 @@ public class OI {
         SmartDashboard.putData("IntakeRollerSpin", new IntakeRollerSpin());
         SmartDashboard.putData("IntakeTrackUp", new IntakeTrackUp());
         SmartDashboard.putData("LineupToShoot", new LineupToShoot());
-        //SmartDashboard.putData("ShootBall", new ShootBall());
-        SmartDashboard.putData("TestShooterSpeeds", new TestShooterSpeeds());
+        SmartDashboard.putData("ShootBall", new ShootBall());
+        //SmartDashboard.putData("TestShooterSpeeds", new TestShooterSpeeds());
         //Button autoDriveForward = new JoystickButton(driverContoller, RobotMap.driverxboxX);
         
 

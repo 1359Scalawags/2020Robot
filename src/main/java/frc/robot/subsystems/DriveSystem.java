@@ -74,6 +74,7 @@ public class DriveSystem extends SubsystemBase {
     leftMotors = new SpeedControllerGroup(leftMotorA, leftMotorB  );
     addChild("LeftMotors",leftMotors);
                 
+
     rightMotorA = new PWMSparkMax(Constants.FrontRightMotorID);
     addChild("RightMotorA",rightMotorA);
     rightMotorA.setInverted(false);
@@ -84,7 +85,8 @@ public class DriveSystem extends SubsystemBase {
                 
     rightMotors = new SpeedControllerGroup(rightMotorA, rightMotorB  );
     addChild("RightMotors",rightMotors);
-
+    
+    
     leftEncoder = new Encoder(Constants.DriveLeftEncoderA, Constants.DriveLeftEncoderB, false, EncodingType.k4X);
     addChild("LeftEncoder",leftEncoder);
     leftEncoder.setDistancePerPulse(1.0);

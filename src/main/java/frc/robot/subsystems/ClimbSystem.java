@@ -23,7 +23,7 @@ import frc.robot.Constants;
 /**
  *  TODO: If motor logic is reversed then uncomment motor.setInverted()
  */
-public class ClimbSystem extends SubsystemBase {
+    public class ClimbSystem extends SubsystemBase {
     private DigitalInput maxHeightLimit;
     private DigitalInput minHeightLimit;
     private Spark climbMotor;
