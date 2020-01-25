@@ -37,17 +37,18 @@ public class ManualClimb extends CommandBase {
     @Override
     public void execute() {
         double speed = Robot.oi.getClimbSpeed();
-            if (climberLocked) {
-                return true;   //fix next robotics meeting!
+            if (!climberLocked) {
+                Robot.climbSystem.move(speed);
             }
-        Robot.climbSystem.move(speed);
+            else {    //Don't know how to fix!!! This is being a pain!!!!!
+                Robot.climbSystem.stop();
+            }
 
     }
 
     // Make this return true when this Command no longer needs to run execute()
     @Override
     public boolean isFinished() {
-        
         return false;
     }
 
