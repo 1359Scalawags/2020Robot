@@ -58,8 +58,9 @@ public final class Constants {
     public static  int CLIMBERPOTID = 8;  //Change if needed... just let me know if you did.  ~Allan
 
     //Defined
-    public static double PotToInches;  //Pot = POTENTIOMETER
- 
+    public static double PotToInches = 35;  //Change If NEEDED...  //Pot = POTENTIOMETER
+                                            //IF it was changed then let me (Allan) Know ASAP!
+
     /*----------ControlPanelSystem----------*/
     
     //Booleans, Integers, and Values
