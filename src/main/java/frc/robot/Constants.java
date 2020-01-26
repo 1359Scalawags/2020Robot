@@ -54,6 +54,11 @@ public final class Constants {
     public static boolean LIMIT_PRESSED = true;
     public static boolean LIMIT_NOTPRESSED = false;
     
+    //Potentiometers
+    public static  int CLIMBERPOTID = 8;  //Change if needed... just let me know if you did.  ~Allan
+
+    //Defined
+    public static double PotToInches;  //Pot = POTENTIOMETER
  
     /*----------ControlPanelSystem----------*/
     
