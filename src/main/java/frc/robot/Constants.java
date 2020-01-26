@@ -58,7 +58,7 @@ public final class Constants {
     public static  int CLIMBERPOTID = 8;  //Change if needed... just let me know if you did.  ~Allan
 
     //Defined
-    public static double PotToInches = 35;  //Change If NEEDED...  //Pot = POTENTIOMETER
+    public static double PotToInches = 35.0;  //Change If NEEDED...  //Pot = POTENTIOMETER
                                             //IF it was changed then let me (Allan) Know ASAP!
 
     /*----------ControlPanelSystem----------*/
@@ -104,8 +104,8 @@ public final class Constants {
     public static int gyroPID_I;
     public static int gyroPID_D;
 
-    public static final double controllerDeadZone = .1;
-    public static final double driveStraightSpeed = -.7;
+    public static final double controllerDeadZone = 0.1;
+    public static final double driveStraightSpeed = -0.7;
     public static final double maxTurnRate = 0.75;
     public static final double maxRightTurnRate = 0.75;
     public static final double maxLeftTurnRate = 0.75;
