@@ -111,5 +111,8 @@ public final class Constants {
     public static final double maxLeftTurnRate = 0.75;
     public static final double mindistance = 0.5;
 
+    public static double drivePID_Iz = 0;
+    public static double MOTORS_Ff = 0;
+
 
 }
