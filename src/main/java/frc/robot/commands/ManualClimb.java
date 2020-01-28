@@ -24,7 +24,7 @@ public class ManualClimb extends CommandBase {
      * @param up Move in the up direction.
      */
 
-    public ManualClimb() {       //Remove later
+    public ManualClimb() {
 
     }
 
