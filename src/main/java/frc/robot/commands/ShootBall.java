@@ -12,16 +12,16 @@
 package frc.robot.commands;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-//import frc.robot.Robot;
+import frc.robot.Robot;
 
 /**
  *
  */
 public class ShootBall extends CommandBase {
     
-    private boolean shooterActive;
-    private double topShooterSpeed;
-    private double bottomShooterSpeed;
+    private boolean shtrActive;
+    private double topShtrSpd;
+    private double btmShtrSpd;
 
     public ShootBall() {
         
@@ -30,17 +30,18 @@ public class ShootBall extends CommandBase {
     // Called just before this Command runs the first time
     @Override
     public void initialize() {
-        SmartDashboard.putBoolean("Is_Shooter_Active", shooterActive);
-        SmartDashboard.putNumber("Top_Shooter_Speed", topShooterSpeed);
-        SmartDashboard.putNumber("Bottom_Shooter_Speed", bottomShooterSpeed);
+        SmartDashboard.putBoolean("Is Shooter Active", shtrActive);
+        SmartDashboard.putNumber("Top Shooter Speed", topShtrSpd);
+        SmartDashboard.putNumber("Bottom Shooter Speed", btmShtrSpd);
     }
 
     // Called repeatedly when this Command is scheduled to run
     @Override
     public void execute() {
-        SmartDashboard.getBoolean("Is_Shooter_Active", shooterActive);
-        SmartDashboard.getNumber("Top_Shooter_Speed", topShooterSpeed);
-        SmartDashboard.getNumber("Bottom_Shooter_Speed", bottomShooterSpeed);
+        SmartDashboard.getBoolean("Is Shooter Active", shtrActive);
+        SmartDashboard.getNumber("Top Shooter Speed", topShtrSpd);
+        SmartDashboard.getNumber("Bottom Shooter Speed", btmShtrSpd);
+        Robot.ballSystem.setShooterSpeed(topShtrSpd, btmShtrSpd);
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -52,6 +53,7 @@ public class ShootBall extends CommandBase {
     // Called once after isFinished returns true
     @Override
     public void end(boolean interrupted) {
+        Robot.ballSystem.setShooterSpeed(0, 0);
     }
 
 

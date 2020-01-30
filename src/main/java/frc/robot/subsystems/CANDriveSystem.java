@@ -148,7 +148,7 @@ public double getDistanceRight() {
   	double rightSpeed;
   	double headingError = getAngle();
 		
-  	leftSpeed =Utilities.Clamp(Math.abs(speed) - headingError * scale, -Constants.maxMotorSpeed, Constants.maxMotorSpeed);
+  	leftSpeed = Utilities.Clamp(Math.abs(speed) - headingError * scale, -Constants.maxMotorSpeed, Constants.maxMotorSpeed);
   	rightSpeed = Utilities.Clamp(Math.abs(speed) + headingError * scale, -Constants.maxMotorSpeed, Constants.maxMotorSpeed);
   	tankDrive(leftSpeed, rightSpeed);		
   }
@@ -159,7 +159,7 @@ public double getDistanceRight() {
 	  double rightSpeed;
 	  double headingError = getAngle() - targetHeading;
 		
-	  leftSpeed =Utilities.Clamp(Math.abs(speed) - headingError * scale, -Constants.maxMotorSpeed, Constants.maxMotorSpeed);
+	  leftSpeed = Utilities.Clamp(Math.abs(speed) - headingError * scale, -Constants.maxMotorSpeed, Constants.maxMotorSpeed);
 	  rightSpeed = Utilities.Clamp(Math.abs(speed) + headingError * scale, -Constants.maxMotorSpeed, Constants.maxMotorSpeed);
 	  tankDrive(leftSpeed, rightSpeed);		
   }

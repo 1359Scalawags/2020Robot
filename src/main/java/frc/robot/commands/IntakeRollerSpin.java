@@ -32,17 +32,17 @@ public class IntakeRollerSpin extends CommandBase {
     // Called just before this Command runs the first time
     @Override
     public void initialize() {
-        SmartDashboard.putBoolean("Is_Intake_In", intakeIn);
-        SmartDashboard.putBoolean("Is_Intake_Out", intakeOut);
-        SmartDashboard.putNumber("Intake_Speed", intakeSpeed);
+        SmartDashboard.putBoolean("Is Intake In", intakeIn);
+        SmartDashboard.putBoolean("Is Intake Out", intakeOut);
+        SmartDashboard.putNumber("Intake Speed", intakeSpeed);
     }
 
     // Called repeatedly when this Command is scheduled to run
     @Override
     public void execute() {
-        SmartDashboard.getBoolean("Is_Intake_In", intakeIn);
-        SmartDashboard.getBoolean("Is_Intake_Out", intakeOut);
-        SmartDashboard.getNumber("Intake_Speed", intakeSpeed);
+        SmartDashboard.getBoolean("Is Intake In", intakeIn);
+        SmartDashboard.getBoolean("Is Intake Out", intakeOut);
+        SmartDashboard.getNumber("Intake Speed", intakeSpeed);
     }
 
     // Make this return true when this Command no longer needs to run execute()
