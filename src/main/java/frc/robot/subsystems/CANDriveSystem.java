@@ -7,7 +7,7 @@ import frc.robot.Utilities;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.controller.PIDController;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import edu.wpi.first.wpilibj.Encoder;
+// import edu.wpi.first.wpilibj.Encoder;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.ControlType;
@@ -30,8 +30,8 @@ public class CANDriveSystem extends SubsystemBase {
     private ADXRS450_Gyro driveGyro;
     private PIDController gyroControl;
     private DifferentialDrive robotDrive;
-    private Encoder leftEncoder;
-    private Encoder rightEncoder;
+    // private Encoder leftEncoder;
+    // private Encoder rightEncoder;
 
     private CANPIDController controllerA;
     private CANPIDController controllerB;
@@ -133,7 +133,7 @@ public class CANDriveSystem extends SubsystemBase {
     return driveGyro.getRate();
   }
 
-  public double getDistanceLeft() {
+/*  public double getDistanceLeft() {
     return leftEncoder.getDistance();
 }
 
@@ -144,7 +144,7 @@ public double getDistanceRight() {
   public double getAverageDistance() {
 	  return (getDistanceRight() + getDistanceLeft()) / 2;
   }
-    
+*/    
   public void driveForwardVision(double speed){
     final double scale = .01;
     double leftSpeed;
