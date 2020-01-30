@@ -106,7 +106,6 @@ public class OI {
         SmartDashboard.putData("AutoDriveForward", new AutoDriveForward());
         SmartDashboard.putData("AutoDriveTurnLeft", new AutoDriveTurn(90));
         SmartDashboard.putData("AutoDriveTurnRight", new AutoDriveTurn(-90));
-
         SmartDashboard.putData("ManualClimbDown", new ManualClimb());
         SmartDashboard.putData("ManualClimbUp", new ManualClimb());
         SmartDashboard.putData("ControlPanelSetColor", new ControlPanelSetColor());

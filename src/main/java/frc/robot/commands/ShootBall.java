@@ -10,6 +10,7 @@
 
 
 package frc.robot.commands;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 //import frc.robot.Robot;
 
@@ -17,6 +18,10 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
  *
  */
 public class ShootBall extends CommandBase {
+    
+    private boolean shooterActive;
+    private double topShooterSpeed;
+    private double bottomShooterSpeed;
 
     public ShootBall() {
         
@@ -25,11 +30,17 @@ public class ShootBall extends CommandBase {
     // Called just before this Command runs the first time
     @Override
     public void initialize() {
+        SmartDashboard.putBoolean("Is_Shooter_Active", shooterActive);
+        SmartDashboard.putNumber("Top_Shooter_Speed", topShooterSpeed);
+        SmartDashboard.putNumber("Bottom_Shooter_Speed", bottomShooterSpeed);
     }
 
     // Called repeatedly when this Command is scheduled to run
     @Override
     public void execute() {
+        SmartDashboard.getBoolean("Is_Shooter_Active", shooterActive);
+        SmartDashboard.getNumber("Top_Shooter_Speed", topShooterSpeed);
+        SmartDashboard.getNumber("Bottom_Shooter_Speed", bottomShooterSpeed);
     }
 
     // Make this return true when this Command no longer needs to run execute()
