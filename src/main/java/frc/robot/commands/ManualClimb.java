@@ -40,7 +40,7 @@ public class ManualClimb extends CommandBase {
             if (!climberLocked) {
                 Robot.climbSystem.move(speed);
             }
-            else {    //Don't know how to fix!!! This is being a pain!!!!!
+            else {    
                 Robot.climbSystem.stop();
             }
 
