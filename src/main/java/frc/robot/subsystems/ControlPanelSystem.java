@@ -36,9 +36,15 @@ public class ControlPanelSystem extends SubsystemBase {
 
     private Spark rotateMotor;
     private Encoder rotateEncoder;
-    private AnalogInput colorSensor;
-    private double th;
     //private double testRotations;
+    private final ColorSensorV3 colorSensor = new ColorSensorV3(Constants.COLORSENSOR_I2C);
+    private Color prevColor;
+    private String prevColorName;
+    private Color currentColor;
+    private String currentColorName;
+    private int consistentCount;
+    private int inconsistentCount;
+    private double th =0.1;
 
     public ControlPanelSystem() {
         rotateMotor = new Spark(Constants.RotatoPotatoID);
@@ -50,25 +56,9 @@ public class ControlPanelSystem extends SubsystemBase {
         rotateEncoder.setDistancePerPulse(1.0);
         //rotateEncoder.setPIDSourceType(PIDSourceType.kRate);
                 
-        colorSensor = new AnalogInput(Constants.ColorSensorID);
-        addChild("ColorSensor",colorSensor);
+        SmartDashboard.putString("Color Result", getColorName());
     }
 
-    public class ColorSystem extends SubsystemBase {
-
-        private final ColorSensorV3 colorSensor = new ColorSensorV3(Constants.COLORSENSOR_I2C);
-    
-        private Color prevColor;
-        private String prevColorName;
-        private Color currentColor;
-        private String currentColorName;
-        private int consistentCount;
-        private int inconsistentCount;
-        private double th =0.1;
-    
-        public ColorSystem() {      
-            // SmartDashboard.putNumber("Color thresh hold", th);
-        }
 
         public String getColorName(){
             // th = SmartDashboard.getNumber("Color thresh hold", th);
@@ -96,7 +86,6 @@ public class ControlPanelSystem extends SubsystemBase {
         public Color getColor() {
             prevColor = currentColor;
             currentColor = colorSensor.getColor();
-
             return currentColor;
         }
 
@@ -123,5 +112,5 @@ public class ControlPanelSystem extends SubsystemBase {
         }
 
     }
-}
+
 
