@@ -69,7 +69,7 @@ public class CANDriveSystem extends SubsystemBase {
         leftControllerA.setOutputRange(-1, 1);
 
         //initialize Motor B and all settings
-        leftMotorB = new CANSparkMax(Constants.FrontRightMotorID, MotorType.kBrushless);
+        leftMotorB = new CANSparkMax(Constants.BackLeftMotorID, MotorType.kBrushless);
         leftMotorB.restoreFactoryDefaults();
         leftMotorB.setInverted(false);
         leftControllerB = leftMotorB.getPIDController();
@@ -80,7 +80,7 @@ public class CANDriveSystem extends SubsystemBase {
         leftControllerB.setFF(kFf_B);
         leftControllerB.setOutputRange(-1, 1);
 
-        rightMotorA = new CANSparkMax(Constants.FrontLeftMotorID, MotorType.kBrushless);
+        rightMotorA = new CANSparkMax(Constants.FrontRightMotorID, MotorType.kBrushless);
         rightMotorA.restoreFactoryDefaults();
         rightMotorA.setInverted(false);
         rightControllerA = rightMotorA.getPIDController();
@@ -92,7 +92,7 @@ public class CANDriveSystem extends SubsystemBase {
         rightControllerA.setOutputRange(-1, 1);
 
         //initialize Motor B and all settings
-        rightMotorB = new CANSparkMax(Constants.FrontRightMotorID, MotorType.kBrushless);
+        rightMotorB = new CANSparkMax(Constants.BackRightMotorID, MotorType.kBrushless);
         rightMotorB.restoreFactoryDefaults();
         rightMotorB.setInverted(false);
         rightControllerB = rightMotorB.getPIDController();
