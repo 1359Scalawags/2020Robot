@@ -8,9 +8,7 @@
 // update. Deleting the comments indicating the section will prevent
 // it from being updated in the future.
 
-
 package frc.robot.subsystems;
-
 
 //import frc.robot.commands.*;
 //import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -20,10 +18,15 @@ import frc.robot.Constants;
 //import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.CounterBase.EncodingType;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj.Encoder;
 //import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.Spark;
 //import edu.wpi.first.wpilibj.SpeedController;
+// why is this not working?
+import com.revrobotics.ColorSensorV3;
+import com.revrobotics.ColorSensorV3.RawColor;
 
 
 /**
@@ -34,10 +37,21 @@ public class ControlPanelSystem extends SubsystemBase {
     // TODO: Is this a NEO or brushed motor? Probably brushed.
     private Spark rotateMotor;
     private Encoder rotateEncoder;
+<<<<<<< HEAD
 
     // TODO: Needs to be converted to REV sensor (look at the Pirate Dartboard)
     private AnalogInput colorSensor;
+=======
+>>>>>>> d1765a7cc46a66d6c7b67d3c59884b59f55898a5
     //private double testRotations;
+    private final ColorSensorV3 colorSensor = new ColorSensorV3(Constants.COLORSENSOR_I2C);
+    private Color prevColor;
+    private String prevColorName;
+    private Color currentColor;
+    private String currentColorName;
+    private int consistentCount;
+    private int inconsistentCount;
+    private double th =0.1;
 
     public ControlPanelSystem() {
         rotateMotor = new Spark(Constants.RotatoPotatoID);
@@ -49,34 +63,57 @@ public class ControlPanelSystem extends SubsystemBase {
         rotateEncoder.setDistancePerPulse(1.0);
         //rotateEncoder.setPIDSourceType(PIDSourceType.kRate);
                 
-        colorSensor = new AnalogInput(Constants.ColorSensorID);
-        addChild("ColorSensor",colorSensor);
+        SmartDashboard.putString("Color Result", getColorName());
     }
 
-    @Override
-    public void periodic() {
-        //Put code here to be run every loop
-    }
 
+<<<<<<< HEAD
 
     // TODO: Test methods can go bye bye
     
     public void testSpin(double speed) {
         rotateMotor.set(speed);
     }
+=======
+        public String getColorName(){
+            // th = SmartDashboard.getNumber("Color thresh hold", th);
+>>>>>>> d1765a7cc46a66d6c7b67d3c59884b59f55898a5
 
-    public void stopTest() {
-        rotateMotor.set(0);
+            prevColorName = currentColorName;
+            getColor();
+
+            double r = currentColor.red;
+            double g = currentColor.green;
+            double b = currentColor.blue;
+
+            if(Math.abs(0.13489306 - r) <=th && Math.abs(0.43538037- g) <=th && Math.abs(0.42972437 -b) <=th)
+                currentColorName = "Blue";
+            else if(Math.abs(0.17530347 - r) <=th && Math.abs(0.5667771 - g) <=th && Math.abs(0.25793532 -b) <=th)
+                currentColorName = "Green";
+            else if(Math.abs(0.48934227 - r) <=th && Math.abs(0.36309862 - g) <=th && Math.abs(0.14753516 -b) <=th)
+                currentColorName = "Red";
+            else if(Math.abs(0.31467456 - r) <=th && Math.abs(0.5550923 - g) <=th && Math.abs(0.13020141 -b) <=th)
+                currentColorName = "Yellow";
+            else
+                currentColorName = "not found";
+            return currentColorName;
+        }
+
+        public Color getColor() {
+            prevColor = currentColor;
+            currentColor = colorSensor.getColor();
+            return currentColor;
+        }
+
+        @Override
+        public void periodic() {
+            //Put code here to be run every loop
+            getColorName();
+        }
+
     }
 
-    public void resetTestRotations() {
-        rotateEncoder.reset();
-    }
-
-    public double getTestRotations() {
-        return rotateEncoder.get();
-    }
-
+<<<<<<< HEAD
     // TODO: Get the current color
 
     // TODO: Spin
@@ -84,4 +121,6 @@ public class ControlPanelSystem extends SubsystemBase {
     // TODO: Stop
 
 }
+=======
+>>>>>>> d1765a7cc46a66d6c7b67d3c59884b59f55898a5
 
