@@ -95,22 +95,6 @@ public class ControlPanelSystem extends SubsystemBase {
             getColorName();
         }
 
-        public void testSpin(double speed) {
-            rotateMotor.set(speed);
-        }
-
-        public void stopTest() {
-            rotateMotor.set(0);
-        }
-
-        public void resetTestRotations() {
-            rotateEncoder.reset();
-        }
-
-        public double getTestRotations() {
-            return rotateEncoder.get();
-        }
-
     }
 
 
