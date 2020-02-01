@@ -73,22 +73,22 @@ public class CANDriveSystem extends SubsystemBase {
         leftMotorB.restoreFactoryDefaults();
         leftMotorB.setInverted(false);
         leftControllerB = leftMotorB.getPIDController();
-        leftControllerB.setP(kP_B);
-        leftControllerB.setI(kI_B);
-        leftControllerB.setD(kD_B);
-        leftControllerB.setIZone(kIz_B);
-        leftControllerB.setFF(kFf_B);
+        leftControllerB.setP(kP_A);
+        leftControllerB.setI(kI_A);
+        leftControllerB.setD(kD_A);
+        leftControllerB.setIZone(kIz_A);
+        leftControllerB.setFF(kFf_A);
         leftControllerB.setOutputRange(-1, 1);
 
         rightMotorA = new CANSparkMax(Constants.FrontRightMotorID, MotorType.kBrushless);
         rightMotorA.restoreFactoryDefaults();
         rightMotorA.setInverted(false);
         rightControllerA = rightMotorA.getPIDController();
-        rightControllerA.setP(kP_A);
-        rightControllerA.setI(kI_A);
-        rightControllerA.setD(kD_A);
-        rightControllerA.setIZone(kIz_A);
-        rightControllerA.setFF(kFf_A);
+        rightControllerA.setP(kP_B);
+        rightControllerA.setI(kI_B);
+        rightControllerA.setD(kD_B);
+        rightControllerA.setIZone(kIz_B);
+        rightControllerA.setFF(kFf_B);
         rightControllerA.setOutputRange(-1, 1);
 
         //initialize Motor B and all settings

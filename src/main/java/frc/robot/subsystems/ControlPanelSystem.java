@@ -37,12 +37,6 @@ public class ControlPanelSystem extends SubsystemBase {
     // TODO: Is this a NEO or brushed motor? Probably brushed.
     private Spark rotateMotor;
     private Encoder rotateEncoder;
-<<<<<<< HEAD
-
-    // TODO: Needs to be converted to REV sensor (look at the Pirate Dartboard)
-    private AnalogInput colorSensor;
-=======
->>>>>>> d1765a7cc46a66d6c7b67d3c59884b59f55898a5
     //private double testRotations;
     private final ColorSensorV3 colorSensor = new ColorSensorV3(Constants.COLORSENSOR_I2C);
     private Color prevColor;
@@ -66,61 +60,46 @@ public class ControlPanelSystem extends SubsystemBase {
         SmartDashboard.putString("Color Result", getColorName());
     }
 
-
-<<<<<<< HEAD
-
     // TODO: Test methods can go bye bye
     
     public void testSpin(double speed) {
         rotateMotor.set(speed);
     }
-=======
-        public String getColorName(){
-            // th = SmartDashboard.getNumber("Color thresh hold", th);
->>>>>>> d1765a7cc46a66d6c7b67d3c59884b59f55898a5
+    public String getColorName(){
+        // th = SmartDashboard.getNumber("Color thresh hold", th);
 
-            prevColorName = currentColorName;
-            getColor();
+        prevColorName = currentColorName;
+        getColor();
 
-            double r = currentColor.red;
-            double g = currentColor.green;
-            double b = currentColor.blue;
+        double r = currentColor.red;
+        double g = currentColor.green;
+        double b = currentColor.blue;
 
-            if(Math.abs(0.13489306 - r) <=th && Math.abs(0.43538037- g) <=th && Math.abs(0.42972437 -b) <=th)
-                currentColorName = "Blue";
-            else if(Math.abs(0.17530347 - r) <=th && Math.abs(0.5667771 - g) <=th && Math.abs(0.25793532 -b) <=th)
-                currentColorName = "Green";
-            else if(Math.abs(0.48934227 - r) <=th && Math.abs(0.36309862 - g) <=th && Math.abs(0.14753516 -b) <=th)
-                currentColorName = "Red";
-            else if(Math.abs(0.31467456 - r) <=th && Math.abs(0.5550923 - g) <=th && Math.abs(0.13020141 -b) <=th)
-                currentColorName = "Yellow";
-            else
-                currentColorName = "not found";
-            return currentColorName;
-        }
-
-        public Color getColor() {
-            prevColor = currentColor;
-            currentColor = colorSensor.getColor();
-            return currentColor;
-        }
-
-        @Override
-        public void periodic() {
-            //Put code here to be run every loop
-            getColorName();
-        }
-
+        if(Math.abs(0.13489306 - r) <=th && Math.abs(0.43538037- g) <=th && Math.abs(0.42972437 -b) <=th)
+            currentColorName = "Blue";
+        else if(Math.abs(0.17530347 - r) <=th && Math.abs(0.5667771 - g) <=th && Math.abs(0.25793532 -b) <=th)
+            currentColorName = "Green";
+        else if(Math.abs(0.48934227 - r) <=th && Math.abs(0.36309862 - g) <=th && Math.abs(0.14753516 -b) <=th)
+            currentColorName = "Red";
+        else if(Math.abs(0.31467456 - r) <=th && Math.abs(0.5550923 - g) <=th && Math.abs(0.13020141 -b) <=th)
+            currentColorName = "Yellow";
+        else
+            currentColorName = "not found";
+        return currentColorName;
     }
 
-<<<<<<< HEAD
-    // TODO: Get the current color
+    public Color getColor() {
+        prevColor = currentColor;
+        currentColor = colorSensor.getColor();
+        return currentColor;
+    }
 
-    // TODO: Spin
-
-    // TODO: Stop
+    @Override
+    public void periodic() {
+        //Put code here to be run every loop
+        getColorName();
+    }
 
 }
-=======
->>>>>>> d1765a7cc46a66d6c7b67d3c59884b59f55898a5
+
 
