@@ -31,8 +31,11 @@ import edu.wpi.first.wpilibj.Spark;
  */
 public class ControlPanelSystem extends SubsystemBase {
 
+    // TODO: Is this a NEO or brushed motor? Probably brushed.
     private Spark rotateMotor;
     private Encoder rotateEncoder;
+
+    // TODO: Needs to be converted to REV sensor (look at the Pirate Dartboard)
     private AnalogInput colorSensor;
     //private double testRotations;
 
@@ -55,6 +58,9 @@ public class ControlPanelSystem extends SubsystemBase {
         //Put code here to be run every loop
     }
 
+
+    // TODO: Test methods can go bye bye
+    
     public void testSpin(double speed) {
         rotateMotor.set(speed);
     }
@@ -70,6 +76,12 @@ public class ControlPanelSystem extends SubsystemBase {
     public double getTestRotations() {
         return rotateEncoder.get();
     }
+
+    // TODO: Get the current color
+
+    // TODO: Spin
+
+    // TODO: Stop
 
 }
 

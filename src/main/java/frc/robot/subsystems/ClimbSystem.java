@@ -23,11 +23,14 @@ import edu.wpi.first.wpilibj.AnalogPotentiometer;
 
 /**
  *  TODO: If motor logic is reversed then uncomment motor.setInverted()
+ *  TODO: Find out the exact mechanics of the lift mechanism
  */
     public class ClimbSystem extends SubsystemBase {
     private DigitalInput maxHeightLimit;
     private DigitalInput minHeightLimit;
     public AnalogPotentiometer pot;
+
+    // TODO: Find out if this motor is a NEO on CAN network
     private Spark climbMotor;
     private boolean climberLocked;
 
@@ -38,6 +41,7 @@ import edu.wpi.first.wpilibj.AnalogPotentiometer;
         minHeightLimit = new DigitalInput(Constants.MinHeightLimitID);
         addChild("MinHeightLimit",minHeightLimit);
        
+        // TODO: change if a NEO
         climbMotor = new Spark(Constants.ClimbMotorID);
         addChild("ClimbMotor",climbMotor);
         
@@ -98,9 +102,6 @@ import edu.wpi.first.wpilibj.AnalogPotentiometer;
                 }
 
             }
-
         }
-
     }
-
 }
