@@ -5,6 +5,7 @@ import frc.robot.Constants;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Utilities;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.controller.PIDController;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 // import edu.wpi.first.wpilibj.Encoder;
@@ -20,18 +21,27 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
  */
 public class CANDriveSystem extends SubsystemBase {
 
-    private CANEncoder speedEncoderA;
-    private CANEncoder speedEncoderB;
-    private CANSparkMax motorA;
-    private CANSparkMax motorB;
+    private CANEncoder leftEncoderA;
+    private CANEncoder leftEncoderB;
+    private CANEncoder rightEncoderA;
+    private CANEncoder rightEncoderB;
+    private CANSparkMax leftMotorA;
+    private CANSparkMax rightMotorA;
+    private CANSparkMax leftMotorB;
+    private CANSparkMax rightMotorB;
     private ADXRS450_Gyro driveGyro;
     private PIDController gyroControl;
     private DifferentialDrive robotDrive;
+    private SpeedControllerGroup leftMotors;
+    private SpeedControllerGroup rightMotors;
+
     // private Encoder leftEncoder;
     // private Encoder rightEncoder;
 
-    private CANPIDController controllerA;
-    private CANPIDController controllerB;
+    private CANPIDController leftControllerA;
+    private CANPIDController leftControllerB;
+    private CANPIDController rightControllerA;
+    private CANPIDController rightControllerB;
     private double kP_A, kP_B, kI_A, kI_B, kD_A, kD_B, kIz_A, kIz_B, kFf_A, kFf_B;
     private double speedA, speedB;
 
@@ -47,34 +57,63 @@ public class CANDriveSystem extends SubsystemBase {
         kFf_A = kFf_B = Constants.MOTORS_Ff;
 
         //initialize Motor A and all settings
-        motorA = new CANSparkMax(Constants.FrontLeftMotorID, MotorType.kBrushless);
-        motorA.restoreFactoryDefaults();
-        motorA.setInverted(false);
-        controllerA = motorA.getPIDController();
-        controllerA.setP(kP_A);
-        controllerA.setI(kI_A);
-        controllerA.setD(kD_A);
-        controllerA.setIZone(kIz_A);
-        controllerA.setFF(kFf_A);
-        controllerA.setOutputRange(-1, 1);
+        leftMotorA = new CANSparkMax(Constants.FrontLeftMotorID, MotorType.kBrushless);
+        leftMotorA.restoreFactoryDefaults();
+        leftMotorA.setInverted(false);
+        leftControllerA = leftMotorA.getPIDController();
+        leftControllerA.setP(kP_A);
+        leftControllerA.setI(kI_A);
+        leftControllerA.setD(kD_A);
+        leftControllerA.setIZone(kIz_A);
+        leftControllerA.setFF(kFf_A);
+        leftControllerA.setOutputRange(-1, 1);
 
         //initialize Motor B and all settings
-        motorB = new CANSparkMax(Constants.FrontRightMotorID, MotorType.kBrushless);
-        motorB.restoreFactoryDefaults();
-        motorB.setInverted(false);
-        controllerB = motorB.getPIDController();
-        controllerB.setP(kP_B);
-        controllerB.setI(kI_B);
-        controllerB.setD(kD_B);
-        controllerB.setIZone(kIz_B);
-        controllerB.setFF(kFf_B);
-        controllerB.setOutputRange(-1, 1);
+        leftMotorB = new CANSparkMax(Constants.FrontRightMotorID, MotorType.kBrushless);
+        leftMotorB.restoreFactoryDefaults();
+        leftMotorB.setInverted(false);
+        leftControllerB = leftMotorB.getPIDController();
+        leftControllerB.setP(kP_B);
+        leftControllerB.setI(kI_B);
+        leftControllerB.setD(kD_B);
+        leftControllerB.setIZone(kIz_B);
+        leftControllerB.setFF(kFf_B);
+        leftControllerB.setOutputRange(-1, 1);
+
+        rightMotorA = new CANSparkMax(Constants.FrontLeftMotorID, MotorType.kBrushless);
+        rightMotorA.restoreFactoryDefaults();
+        rightMotorA.setInverted(false);
+        rightControllerA = rightMotorA.getPIDController();
+        rightControllerA.setP(kP_A);
+        rightControllerA.setI(kI_A);
+        rightControllerA.setD(kD_A);
+        rightControllerA.setIZone(kIz_A);
+        rightControllerA.setFF(kFf_A);
+        rightControllerA.setOutputRange(-1, 1);
+
+        //initialize Motor B and all settings
+        rightMotorB = new CANSparkMax(Constants.FrontRightMotorID, MotorType.kBrushless);
+        rightMotorB.restoreFactoryDefaults();
+        rightMotorB.setInverted(false);
+        rightControllerB = rightMotorB.getPIDController();
+        rightControllerB.setP(kP_B);
+        rightControllerB.setI(kI_B);
+        rightControllerB.setD(kD_B);
+        rightControllerB.setIZone(kIz_B);
+        rightControllerB.setFF(kFf_B);
+        rightControllerB.setOutputRange(-1, 1);
 
         //obtain encoders from motor controllers
-        speedEncoderA = motorA.getEncoder();       
-        speedEncoderB = motorB.getEncoder();
+        leftEncoderA = leftMotorA.getEncoder();       
+        leftEncoderB = leftMotorB.getEncoder();
+        rightEncoderA = rightMotorA.getEncoder();
+        rightEncoderB = rightMotorB.getEncoder();
 
-        //intialize values on the SmartDashboard
+        leftMotors = new SpeedControllerGroup(leftMotorA, leftMotorB);
+        rightMotors = new SpeedControllerGroup(rightMotorA, rightMotorB);
+        robotDrive = new DifferentialDrive(leftMotors, rightMotors);
+
+        /*//intialize values on the SmartDashboard
         SmartDashboard.putNumber("MotorA: P Gain", kP_A);
         SmartDashboard.putNumber("MotorA: I Gain", kI_A);
         SmartDashboard.putNumber("MotorA: D Gain", kD_A);
@@ -85,19 +124,8 @@ public class CANDriveSystem extends SubsystemBase {
         SmartDashboard.putNumber("MotorB: D Gain", kD_B);
         SmartDashboard.putNumber("MotorB: Speed Setting", speedB);
 
-        SmartDashboard.putNumber("MotorA: Measured Velocity", speedEncoderA.getVelocity());
-        SmartDashboard.putNumber("MotorB: Measured Velocity", speedEncoderB.getVelocity());
-      
-    }
-  
-    /***
-     * Motor speeds are set with regard to the MAXRPM constant
-     * @param speedA A value from -1 to 1
-     * @param speedB A value from -1 to 1
-     */
-    public void setMotorRPM(double speedA, double speedB) {
-        controllerA.setReference(speedA*Constants.maxTurnRate, ControlType.kVelocity);
-        controllerB.setReference(speedB*Constants.maxTurnRate, ControlType.kVelocity);
+        SmartDashboard.putNumber("MotorA: Measured Velocity", leftEncoderA.getVelocity());
+        SmartDashboard.putNumber("MotorB: Measured Velocity", leftEncoderB.getVelocity()); */
     }
 
 
@@ -105,9 +133,10 @@ public class CANDriveSystem extends SubsystemBase {
     public void periodic() {
 
     }
- public void drive() {
+
+    public void drive() {
   
-  }
+    }
    
 
   public void reverseDirection() {
