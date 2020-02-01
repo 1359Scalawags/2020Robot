@@ -8,9 +8,7 @@
 // update. Deleting the comments indicating the section will prevent
 // it from being updated in the future.
 
-
 package frc.robot.subsystems;
-
 
 //import frc.robot.commands.*;
 //import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -20,6 +18,8 @@ import frc.robot.Constants;
 //import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.CounterBase.EncodingType;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj.Encoder;
 //import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.Spark;
@@ -37,6 +37,7 @@ public class ControlPanelSystem extends SubsystemBase {
     private Spark rotateMotor;
     private Encoder rotateEncoder;
     private AnalogInput colorSensor;
+    private double th;
     //private double testRotations;
 
     public ControlPanelSystem() {
@@ -66,60 +67,61 @@ public class ControlPanelSystem extends SubsystemBase {
         private double th =0.1;
     
         public ColorSystem() {      
-            SmartDashboard.putNumber("Color thresh hold", th);
+            // SmartDashboard.putNumber("Color thresh hold", th);
         }
 
-    public String getColorName(){
-        th = SmartDashboard.getNumber("Color thresh hold", th);
+        public String getColorName(){
+            // th = SmartDashboard.getNumber("Color thresh hold", th);
 
-        prevColorName = currentColorName;
-        Color frc.robot.subsystems.ControlPanelSystem.ColorSystem.getColor();
+            prevColorName = currentColorName;
+            getColor();
 
-        double r = currentColor.red;
-        double g = currentColor.green;
-        double b = currentColor.blue;
+            double r = currentColor.red;
+            double g = currentColor.green;
+            double b = currentColor.blue;
 
-        if(Math.abs(0.13489306 - r) <=th && Math.abs(0.43538037- g) <=th && Math.abs(0.42972437 -b) <=th)
-            currentColorName = "Blue";
-        else if(Math.abs(0.17530347 - r) <=th && Math.abs(0.5667771 - g) <=th && Math.abs(0.25793532 -b) <=th)
-            currentColorName = "Green";
-        else if(Math.abs(0.48934227 - r) <=th && Math.abs(0.36309862 - g) <=th && Math.abs(0.14753516 -b) <=th)
-            currentColorName = "Red";
-        else if(Math.abs(0.31467456 - r) <=th && Math.abs(0.5550923 - g) <=th && Math.abs(0.13020141 -b) <=th)
-            currentColorName = "Yellow";
-        else
-            currentColorName = "not found";
-        return currentColorName;
+            if(Math.abs(0.13489306 - r) <=th && Math.abs(0.43538037- g) <=th && Math.abs(0.42972437 -b) <=th)
+                currentColorName = "Blue";
+            else if(Math.abs(0.17530347 - r) <=th && Math.abs(0.5667771 - g) <=th && Math.abs(0.25793532 -b) <=th)
+                currentColorName = "Green";
+            else if(Math.abs(0.48934227 - r) <=th && Math.abs(0.36309862 - g) <=th && Math.abs(0.14753516 -b) <=th)
+                currentColorName = "Red";
+            else if(Math.abs(0.31467456 - r) <=th && Math.abs(0.5550923 - g) <=th && Math.abs(0.13020141 -b) <=th)
+                currentColorName = "Yellow";
+            else
+                currentColorName = "not found";
+            return currentColorName;
+        }
+
+        public Color getColor() {
+            prevColor = currentColor;
+            currentColor = colorSensor.getColor();
+
+            return currentColor;
+        }
+
+        @Override
+        public void periodic() {
+            //Put code here to be run every loop
+            getColorName();
+        }
+
+        public void testSpin(double speed) {
+            rotateMotor.set(speed);
+        }
+
+        public void stopTest() {
+            rotateMotor.set(0);
+        }
+
+        public void resetTestRotations() {
+            rotateEncoder.reset();
+        }
+
+        public double getTestRotations() {
+            return rotateEncoder.get();
+        }
+
     }
-
-    public Color getColor() {
-        prevColor = currentColor;
-        currentColor = colorSensor.getColor();
-
-        return currentColor;
-    }
-
-    @Override
-    public void periodic() {
-        //Put code here to be run every loop
-    }
-
-    public void testSpin(double speed) {
-        rotateMotor.set(speed);
-    }
-
-    public void stopTest() {
-        rotateMotor.set(0);
-    }
-
-    public void resetTestRotations() {
-        rotateEncoder.reset();
-    }
-
-    public double getTestRotations() {
-        return rotateEncoder.get();
-    }
-
-}
 }
 
