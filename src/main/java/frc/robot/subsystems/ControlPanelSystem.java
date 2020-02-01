@@ -24,6 +24,8 @@ import edu.wpi.first.wpilibj.Encoder;
 //import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.Spark;
 //import edu.wpi.first.wpilibj.SpeedController;
+import com.revrobotics.ColorSensorV3;
+import com.revrobotics.ColorSensorV3.RawColor;
 
 
 /**
@@ -50,6 +52,52 @@ public class ControlPanelSystem extends SubsystemBase {
         addChild("ColorSensor",colorSensor);
     }
 
+    public class ColorSystem extends SubsystemBase {
+
+        private final ColorSensorV3 colorSensor = new ColorSensorV3(Constants.COLORSENSOR_I2C);
+    
+        private Color prevColor;
+        private String prevColorName;
+        private Color currentColor;
+        private String currentColorName;
+        private int consistentCount;
+        private int inconsistentCount;
+        private double th =0.1;
+    
+        public ColorSystem() {      
+            SmartDashboard.putNumber("Color thresh hold", th);
+        }
+
+    public String getColorName(){
+        th = SmartDashboard.getNumber("Color thresh hold", th);
+
+        prevColorName = currentColorName;
+        Color frc.robot.subsystems.ControlPanelSystem.ColorSystem.getColor();
+
+        double r = currentColor.red;
+        double g = currentColor.green;
+        double b = currentColor.blue;
+
+        if(Math.abs(0.13489306 - r) <=th && Math.abs(0.43538037- g) <=th && Math.abs(0.42972437 -b) <=th)
+            currentColorName = "Blue";
+        else if(Math.abs(0.17530347 - r) <=th && Math.abs(0.5667771 - g) <=th && Math.abs(0.25793532 -b) <=th)
+            currentColorName = "Green";
+        else if(Math.abs(0.48934227 - r) <=th && Math.abs(0.36309862 - g) <=th && Math.abs(0.14753516 -b) <=th)
+            currentColorName = "Red";
+        else if(Math.abs(0.31467456 - r) <=th && Math.abs(0.5550923 - g) <=th && Math.abs(0.13020141 -b) <=th)
+            currentColorName = "Yellow";
+        else
+            currentColorName = "not found";
+        return currentColorName;
+    }
+
+    public Color getColor() {
+        prevColor = currentColor;
+        currentColor = colorSensor.getColor();
+
+        return currentColor;
+    }
+
     @Override
     public void periodic() {
         //Put code here to be run every loop
@@ -71,5 +119,6 @@ public class ControlPanelSystem extends SubsystemBase {
         return rotateEncoder.get();
     }
 
+}
 }
 
