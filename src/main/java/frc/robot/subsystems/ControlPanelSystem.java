@@ -34,12 +34,9 @@ public class ControlPanelSystem extends SubsystemBase {
     private Spark rotateMotor;
     private Encoder rotateEncoder;
     private AnalogInput colorSensor;
-
     //private double testRotations;
 
-
     public ControlPanelSystem() {
-
         rotateMotor = new Spark(Constants.RotatoPotatoID);
         addChild("RotateMotor",rotateMotor);
         rotateMotor.setInverted(false);
@@ -51,13 +48,11 @@ public class ControlPanelSystem extends SubsystemBase {
                 
         colorSensor = new AnalogInput(Constants.ColorSensorID);
         addChild("ColorSensor",colorSensor);
-
     }
 
     @Override
     public void periodic() {
-        // Put code here to be run every loop
-
+        //Put code here to be run every loop
     }
 
     public void testSpin(double speed) {

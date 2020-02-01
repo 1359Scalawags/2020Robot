@@ -25,15 +25,15 @@ public class TestShooterSpeeds extends CommandBase {
     // Called just before this Command runs the first time
     @Override
     public void initialize() {
-        SmartDashboard.putNumber("Top_Motor_Speed", topSpeed);
-        SmartDashboard.putNumber("Bottom_Motor_Speed", bottomSpeed);
+        SmartDashboard.putNumber("Top Motor Speed", topSpeed);
+        SmartDashboard.putNumber("Bottom Motor Speed", bottomSpeed);
     }
 
     // Called repeatedly when this Command is scheduled to run
     @Override
     public void execute() {
-        topSpeed = SmartDashboard.getNumber("Top_Motor_Speed", 0);
-        bottomSpeed = SmartDashboard.getNumber("Bottom_Motor_Speed", 0);
+        topSpeed = SmartDashboard.getNumber("Top Motor Speed", 0);
+        bottomSpeed = SmartDashboard.getNumber("Bottom Motor Speed", 0);
         Robot.ballSystem.setShooterSpeed(topSpeed, bottomSpeed);
     }
 

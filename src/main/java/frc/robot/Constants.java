@@ -17,6 +17,7 @@ package frc.robot;
  */
 public final class Constants {
     public static Double BallPIDTolerance = 0d;
+
     
     /*----------BallSystem----------*/
 
@@ -53,7 +54,13 @@ public final class Constants {
     public static boolean LIMIT_PRESSED = true;
     public static boolean LIMIT_NOTPRESSED = false;
     
- 
+    //Potentiometers
+    public static  int CLIMBERPOTID = 8;  //Change if needed... just let me know if you did.  ~Allan
+
+    //Defined
+    public static double PotToInches = 35.0;    //Change if NEEDED...  Pot = POTENTIOMETER
+                                                //IF it was changed then let Allan know ASAP!
+
     /*----------ControlPanelSystem----------*/
     
     //Booleans, Integers, and Values
@@ -84,10 +91,10 @@ public final class Constants {
     public static int DriveLeftEncoderB = 7;
     public static int DriveRightEncoderA = 8;
     public static int DriveRightEncoderB = 9;
-    public static int DriveAnalogAccelerometer = 10;
-    public static int DriveAnalogGyro = 11;
-    public static int DriveDistanceUltrasonicA = 12;
-    public static int DriveDistanceUltrasonicB = 13;
+    //public static int DriveBuiltInAccelerometer = 10;
+    //public static int DriveAnalogGyro = 11;
+    public static int DriveDistanceUltrasonicA = 10;
+    public static int DriveDistanceUltrasonicB = 11;
 
     //PID
     public static int drivePID_P;
@@ -97,6 +104,15 @@ public final class Constants {
     public static int gyroPID_I;
     public static int gyroPID_D;
 
-    public static final double controllerDeadZone = .1;
+    public static final double controllerDeadZone = 0.1;
+    public static final double driveStraightSpeed = -0.7;
+    public static final double maxTurnRate = 0.75;
+    public static final double maxRightTurnRate = 0.75;
+    public static final double maxLeftTurnRate = 0.75;
+    public static final double mindistance = 0.5;
+
+    public static double drivePID_Iz = 0;
+    public static double MOTORS_Ff = 0;
+
 
 }
