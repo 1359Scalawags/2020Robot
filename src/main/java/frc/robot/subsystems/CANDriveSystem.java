@@ -1,26 +1,19 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants;
-import frc.robot.Global.*;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.Utilities;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.controller.PIDController;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-// import edu.wpi.first.wpilibj.Encoder;
+import frc.robot.Constants;
+import frc.robot.Global;
+import frc.robot.Utilities;
+import frc.robot.Global.*;
 
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-
-;
-/**
- *
- */
 public class CANDriveSystem extends SubsystemBase {
   private Encoders LeftEncoders = new Encoders();
   private Encoders RightEncoders = new Encoders();
+
   private Motors LeftMotors = new Motors();
   private Motors RightMotors = new Motors();
 
@@ -40,67 +33,8 @@ public class CANDriveSystem extends SubsystemBase {
   boolean reverse = false;    
 
   public CANDriveSystem() {
-
-      //initialize variables using default values
-      // PIDA.kP = PIDB.kP = Constants.drivePID_P;
-      // PIDA.kI = kI = Constants.drivePID_I;
-      // kD = kD = Constants.drivePID_D;
-      // kIz = kIz = Constants.drivePID_Iz;
-      // kFf = kFf = Constants.MOTORS_Ff;
-
-      //initialize Motor A and all settings
-      
-      LeftMotors.a = new CANSparkMax(Constants.FrontLeftMotorID, MotorType.kBrushless);
-      LeftMotors.a.restoreFactoryDefaults();
-      LeftMotors.a.setInverted(false);
-      LeftControllers.a = LeftMotors.a.getPIDController();
-      LeftControllers.a.setP(PIDA.kP);
-      LeftControllers.a.setI(PIDA.kI);
-      LeftControllers.a.setD(PIDA.kD);
-      LeftControllers.a.setIZone(PIDA.kIz);
-      LeftControllers.a.setFF(PIDA.kFf);
-      LeftControllers.a.setOutputRange(-1, 1);
-
-      //initialize Motor B and all settings
-      LeftMotors.b = new CANSparkMax(Constants.BackLeftMotorID, MotorType.kBrushless);
-      LeftMotors.b.restoreFactoryDefaults();
-      LeftMotors.b.setInverted(false);
-      LeftControllers.b = LeftMotors.b.getPIDController();
-      LeftControllers.b.setP(PIDB.kP);
-      LeftControllers.b.setI(PIDB.kI);
-      LeftControllers.b.setD(PIDB.kD);
-      LeftControllers.b.setIZone(PIDA.kIz);
-      LeftControllers.b.setFF(PIDA.kFf);
-      LeftControllers.b.setOutputRange(-1, 1);
-
-      RightMotors.a = new CANSparkMax(Constants.FrontLeftMotorID, MotorType.kBrushless);
-      RightMotors.a.restoreFactoryDefaults();
-      RightMotors.a.setInverted(false);
-      RightControllers.a = LeftMotors.a.getPIDController();
-      RightControllers.a.setP(PIDA.kP);
-      RightControllers.a.setI(PIDA.kI);
-      RightControllers.a.setD(PIDA.kD);
-      RightControllers.a.setIZone(PIDA.kIz);
-      RightControllers.a.setFF(PIDA.kFf);
-      RightControllers.a.setOutputRange(-1, 1);
-
-      //initialize Motor B and all settings
-      RightMotors.b = new CANSparkMax(Constants.BackLeftMotorID, MotorType.kBrushless);
-      RightMotors.b.restoreFactoryDefaults();
-      RightMotors.b.setInverted(false);
-      RightControllers.b = LeftMotors.b.getPIDController();
-      RightControllers.b.setP(PIDB.kP);
-      RightControllers.b.setI(PIDB.kI);
-      RightControllers.b.setD(PIDB.kD);
-      RightControllers.b.setIZone(PIDB.kIz);
-      RightControllers.b.setFF(PIDB.kFf);
-      RightControllers.b.setOutputRange(-1, 1);
-
-      //obtain encoders from motor controllers
-      LeftEncoders.a = LeftMotors.a.getEncoder();
-      LeftEncoders.b = LeftMotors.b.getEncoder();
-      RightEncoders.a = RightMotors.a.getEncoder();
-      RightEncoders.b = RightMotors.b.getEncoder();
+      Global.initialize(LeftMotors, LeftControllers, LeftEncoders, PIDA);
+      Global.initialize(RightMotors, RightControllers, RightEncoders, PIDB);
 
       leftMotors = new SpeedControllerGroup(LeftMotors.a, LeftMotors.b);
       rightMotors = new SpeedControllerGroup(RightMotors.a, RightMotors.b);
