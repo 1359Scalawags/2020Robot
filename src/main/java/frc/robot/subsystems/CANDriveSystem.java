@@ -37,33 +37,17 @@ public class CANDriveSystem extends SubsystemBase {
     
      leftControllerGroup = new SpeedControllerGroup(leftMotors[0].SpeedCont(), leftMotors[1].SpeedCont());
      rightControllerGroup = new SpeedControllerGroup(rightMotors[0].SpeedCont(), rightMotors[1].SpeedCont());
-     
+
      robotDrive = new DifferentialDrive(rightControllerGroup, rightControllerGroup);
      gyroPids = new PID_Values(Constants.gyrokP, Constants.gyrokI, Constants.gyrokD, Constants.gyrokIz, Constants.gyrokFf);
      driveGyro = new ADXRS450_Gyro();
      gyroControl = new PIDController(gyroPids.KP(), gyroPids.KI(), gyroPids.KD());
-      
-      // speedsControllers.left = new SpeedControllerGroup(LeftMotors.a, LeftMotors.b);
-      // speedsControllers.right = new SpeedControllerGroup(RightMotors.a, RightMotors.b);
-
-      /*//intialize values on the SmartDashboard
-      SmartDashboard.putNumber("MotorA: P Gain", kP_A);
-      SmartDashboard.putNumber("MotorA: I Gain", kI_A);
-      SmartDashboard.putNumber("MotorA: D Gain", kD_A);
-      SmartDashboard.putNumber("MotorA: Speed Setting", speedA);
-
-      SmartDashboard.putNumber("MotorB: P Gain", kP_B);
-      SmartDashboard.putNumber("MotorB: I Gain", kI_B);
-      SmartDashboard.putNumber("MotorB: D Gain", kD_B);
-      SmartDashboard.putNumber("MotorB: Speed Setting", speedB);
-
-      SmartDashboard.putNumber("MotorA: Measured Velocity", leftEncoderA.getVelocity());
-      SmartDashboard.putNumber("MotorB: Measured Velocity", leftEncoderB.getVelocity()); */
     }
 
 
     @Override
     public void periodic() {
+      tankDrive(Robot.oi.DriverLStickY(), Robot.oi.DriverRStickY());
     }
 
     public void drive() {
