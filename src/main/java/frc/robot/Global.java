@@ -20,34 +20,32 @@ public class Global {
   }
 
   public static class Motors{
-    public double speedA, speedB;
-    private PIDControllers Controllers;
     public CANSparkMax a, b;
-
-    public void updateMotorRPM(double speed) {
-      if(speedA != speed)
-          speedA = speed;
-      if(speedB != speed)
-          speedB = speed;
-        updateMotors();
-    }
-
-    public void updateMotorRPM(double speedA_, double speedB_) {
-      if(speedA != speedA_)
-          speedA = speedA_;
-      if(speedB != speedB_)
-          speedB = speedB_;
-        updateMotors();
-    }
-
-    public void updateMotors(){
-      Controllers.a.setReference(speedA*Constants.MAXRPM, ControlType.kVelocity);
-      Controllers.b.setReference(speedB*Constants.MAXRPM, ControlType.kVelocity);
-    }
   }
 
   public static class PIDControllers{
+    public double speedA, speedB;
     public CANPIDController a, b;
+    public void setRPM(double speed) {
+      if(speedA != speed)
+        speedA = speed;
+      if(speedB != speed)
+        speedB = speed;
+      updateRPM();
+    }
+
+    public void setRPM(double speedA_, double speedB_) {
+      if(speedA != speedA_)
+        speedA = speedA_;
+      if(speedB != speedB_)
+        speedB = speedB_;
+      updateRPM();
+    }
+
+    public void updateRPM(){
+      a.setReference(speedA*Constants.MAXRPM, ControlType.kVelocity);
+      b.setReference(speedB*Constants.MAXRPM, ControlType.kVelocity);
+    }
   }
 
   public static class PID_Values{
@@ -90,8 +88,5 @@ public class Global {
     Controllers_.b.setFF(PID_.kFf);
     Controllers_.b.setOutputRange(-1, 1);
     Encoders_.b = Motors_.b.getEncoder();
-
-    Motors_.Controllers = Controllers_;
-
   }
 }

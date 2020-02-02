@@ -59,8 +59,8 @@ public class CANDriveSystem extends SubsystemBase {
 
     @Override
     public void periodic() {
-      LeftMotors.updateMotorRPM(Robot.oi.DriverLStickY());
-      RightMotors.updateMotorRPM(Robot.oi.DriverRStickY());
+      LeftControllers.setRPM(Robot.oi.DriverLStickY());
+      RightControllers.setRPM(Robot.oi.DriverRStickY());
     }
 
     public void drive() {
