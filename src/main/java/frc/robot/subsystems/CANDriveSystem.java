@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.controller.PIDController;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.Constants;
 import frc.robot.Global;
+import frc.robot.Robot;
 import frc.robot.Utilities;
 import frc.robot.Global.*;
 
@@ -28,7 +29,7 @@ public class CANDriveSystem extends SubsystemBase {
   private PID_Values PIDA = new PID_Values();
   private PID_Values PIDB = new PID_Values();
   
-  private double speedA, speedB;
+  // private double speedA, speedB;
 
   boolean reverse = false;    
 
@@ -58,7 +59,8 @@ public class CANDriveSystem extends SubsystemBase {
 
     @Override
     public void periodic() {
-
+      
+      Global.DriverRStickY();
     }
 
     public void drive() {

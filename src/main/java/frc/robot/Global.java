@@ -3,8 +3,10 @@ package frc.robot;
 import com.revrobotics.CANEncoder;
 import com.revrobotics.CANPIDController;
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.ControlType;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.GenericHID.Hand;
 import frc.robot.Constants;
 
 public class Global {
@@ -13,7 +15,22 @@ public class Global {
     public CANEncoder a, b;
   }
   public static class Motors{
+    public double speed;
     public CANSparkMax a, b;
+
+    public void updateMotorRPM(double speed_, PIDControllers Controllers_) {
+      if(speed != speed_)
+          speed = speed_;
+      if(speed != speed_)
+          speed = speed_;
+        updateMotor(Controllers_);
+    }
+
+    public void updateMotor(PIDControllers Controllers_){
+      Controllers_.a.setReference(speed*Constants.MAXRPM, ControlType.kVelocity);
+      Controllers_.b.setReference(speed*Constants.MAXRPM, ControlType.kVelocity);
+    }
+
   }
   public static class PIDControllers{
     public CANPIDController a, b;
@@ -53,5 +70,35 @@ public class Global {
     Encoders_.b = Motors_.b.getEncoder();
   }
   
+  public static double DriverRStickY() {
+    if (Math.abs(Robot.oi.driverContoller.getY(Hand.kRight)) > Constants.controllerDeadZone) {
+      return -(Robot.oi.driverContoller.getY(Hand.kRight) * (.3 * Robot.oi.getMainTriggers() + .7))/.7;
+    } else {
+      return 0;
+    }
+  }
 
+  public static double DrivergetLStickY() {
+    if (Math.abs(Robot.oi.driverContoller.getY(Hand.kLeft)) > Constants.controllerDeadZone) {
+      return -(Robot.oi.driverContoller.getY(Hand.kLeft) * (.3 * Robot.oi.getMainTriggers() + .7))/.7;
+    } else {
+      return 0;
+    }
+  }
+
+  public static double AssistRStickY() {
+    if (Math.abs(Robot.oi.driverContoller.getY(Hand.kRight)) > Constants.controllerDeadZone) {
+      return -(Robot.oi.driverContoller.getY(Hand.kRight) * (.3 * Robot.oi.getMainTriggers() + .7))/.7;
+    } else {
+      return 0;
+    }
+  }
+
+  public static double AssistgetLStickY() {
+    if (Math.abs(Robot.oi.driverContoller.getY(Hand.kLeft)) > Constants.controllerDeadZone) {
+      return -(Robot.oi.driverContoller.getY(Hand.kLeft) * (.3 * Robot.oi.getMainTriggers() + .7))/.7;
+    } else {
+      return 0;
+    }
+  }
 }

@@ -7,6 +7,7 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.I2C.Port;
 
 /**
@@ -71,11 +72,10 @@ public final class Constants {
     //Motors                                        Motor #s 9, 10, 11
     public static int RotatoPotatoID = 9;
 
-    //Sensors                                       Sensor #s 5
-    public static int ColorSensorID = 2;
+    //Sensors                              
     public static int RotateEncoderAID = 20;
     public static int RotateEncoderBID = 21;
-	public static final Port COLORSENSOR_I2C = null;
+    public final static I2C.Port COLORSENSOR_I2C = I2C.Port.kOnboard;
 
     /*----------DriveSystem----------*/
 
@@ -113,6 +113,9 @@ public final class Constants {
     public static final double maxRightTurnRate = 0.75;
     public static final double maxLeftTurnRate = 0.75;
     public static final double mindistance = 0.5;
+
+
+	public static double MAXRPM = 5700;
 
     public static double drivePID_Iz = 0;
     public static double MOTORS_Ff = 0;

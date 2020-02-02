@@ -47,7 +47,7 @@ import edu.wpi.first.wpilibj.AnalogPotentiometer;
         
         //climbMotor.setInverted(false);  
         
-        pot = new AnalogPotentiometer(Constants.CLIMBERPOTID);
+        // pot = new AnalogPotentiometer(Constants.CLIMBERPOTID);
     }
 
     @Override
