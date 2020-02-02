@@ -34,8 +34,8 @@ public class CANDriveSystem extends SubsystemBase {
   boolean reverse = false;    
 
   public CANDriveSystem() {
-      Global.initialize(LeftMotors, LeftControllers, LeftEncoders, PIDA);
-      Global.initialize(RightMotors, RightControllers, RightEncoders, PIDB);
+      Global.initialize(LeftMotors, LeftControllers, LeftEncoders, PIDA, Constants.FrontLeftMotorID, Constants.BackLeftMotorID);
+      Global.initialize(RightMotors, RightControllers, RightEncoders, PIDB, Constants.FrontRightMotorID, Constants.BackRightMotorID);
 
       speedsControllers.left = new SpeedControllerGroup(LeftMotors.a, LeftMotors.b);
       speedsControllers.right = new SpeedControllerGroup(RightMotors.a, RightMotors.b);

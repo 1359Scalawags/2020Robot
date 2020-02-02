@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import frc.robot.Constants;
 
 public class Global {
-  
+
   public static class Encoders{
     public CANEncoder a, b;
   }
@@ -66,9 +66,8 @@ public class Global {
     }
   }
 
-  
-  public static void initialize(Motors Motors_, PIDControllers Controllers_, Encoders Encoders_, PID_Values PID_){
-    Motors_.a = new CANSparkMax(Constants.FrontLeftMotorID, MotorType.kBrushless);
+  public static void initialize(Motors Motors_, PIDControllers Controllers_, Encoders Encoders_, PID_Values PID_, int ID1, int ID2){
+    Motors_.a = new CANSparkMax(ID1, MotorType.kBrushless);
     Motors_.a.restoreFactoryDefaults();
     Motors_.a.setInverted(false);
     Controllers_.a = Motors_.a.getPIDController();
@@ -80,7 +79,7 @@ public class Global {
     Controllers_.a.setOutputRange(-1, 1);
     Encoders_.a = Motors_.a.getEncoder();
 
-    Motors_.b = new CANSparkMax(Constants.FrontLeftMotorID, MotorType.kBrushless);
+    Motors_.b = new CANSparkMax(ID2, MotorType.kBrushless);
     Motors_.b.restoreFactoryDefaults();
     Motors_.b.setInverted(false);
     Controllers_.b = Motors_.b.getPIDController();
@@ -93,5 +92,6 @@ public class Global {
     Encoders_.b = Motors_.b.getEncoder();
 
     Motors_.Controllers = Controllers_;
+
   }
 }
