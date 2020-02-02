@@ -1,4 +1,4 @@
-package frc.robot.global;
+package frc.robot;
 
 import com.revrobotics.CANEncoder;
 import com.revrobotics.CANPIDController;
@@ -6,7 +6,7 @@ import com.revrobotics.CANSparkMax;
 
 import frc.robot.Constants;
 
-public class classes {
+public class Global {
     public static class Encoders{
         public CANEncoder a, b;
       }

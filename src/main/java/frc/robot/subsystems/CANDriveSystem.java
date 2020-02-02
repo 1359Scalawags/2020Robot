@@ -2,6 +2,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.Global.*;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Utilities;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
@@ -11,23 +12,17 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 // import edu.wpi.first.wpilibj.Encoder;
 
 import com.revrobotics.CANSparkMax;
-import com.revrobotics.ControlType;
-import com.revrobotics.CANEncoder;
-import com.revrobotics.CANPIDController;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
-import frc.robot.global.classes;
+;
 /**
  *
  */
 public class CANDriveSystem extends SubsystemBase {
-
-  
-
-  private classes.Encoders LeftEncoders = new classes.Encoders();
-  private classes.Encoders RightEncoders = new classes.Encoders();
-  private classes.Motors LeftMotors = new classes.Motors();
-  private classes.Motors RightMotors = new classes.Motors();
+  private Encoders LeftEncoders = new Encoders();
+  private Encoders RightEncoders = new Encoders();
+  private Motors LeftMotors = new Motors();
+  private Motors RightMotors = new Motors();
 
   private ADXRS450_Gyro driveGyro;
   private PIDController gyroControl;
@@ -35,10 +30,10 @@ public class CANDriveSystem extends SubsystemBase {
   private SpeedControllerGroup leftMotors;
   private SpeedControllerGroup rightMotors;
 
-  private classes.PIDControllers LeftControllers = new classes.PIDControllers();
-  private classes.PIDControllers RightControllers = new classes.PIDControllers();
-  private classes.PID_Values PIDA = new classes.PID_Values();
-  private classes.PID_Values PIDB = new classes.PID_Values();
+  private PIDControllers LeftControllers = new PIDControllers();
+  private PIDControllers RightControllers = new PIDControllers();
+  private PID_Values PIDA = new PID_Values();
+  private PID_Values PIDB = new PID_Values();
   
   private double speedA, speedB;
 
