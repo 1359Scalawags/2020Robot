@@ -6,12 +6,13 @@ import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.controller.PIDController;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.Constants;
-import frc.robot.Global;
 import frc.robot.Robot;
 import frc.robot.Utilities;
+
+import frc.robot.Global;
 import frc.robot.Global.*;
 
-public class CANDriveSystem extends SubsystemBase {
+public class CANDriveSystem extends SubsystemBase {//saves 12 lines with all these custom objects.
   private Encoders LeftEncoders = new Encoders();
   private Encoders RightEncoders = new Encoders();
 
@@ -33,7 +34,7 @@ public class CANDriveSystem extends SubsystemBase {
 
   boolean reverse = false;    
 
-  public CANDriveSystem() {
+  public CANDriveSystem() {//saves 22 lines with next two lines.
       Global.initialize(LeftMotors, LeftControllers, LeftEncoders, PIDA, Constants.FrontLeftMotorID, Constants.BackLeftMotorID);
       Global.initialize(RightMotors, RightControllers, RightEncoders, PIDB, Constants.FrontRightMotorID, Constants.BackRightMotorID);
 
