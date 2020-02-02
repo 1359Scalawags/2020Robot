@@ -1,4 +1,4 @@
-package frc.robot.Utilities;
+package frc.robot.utilities;
 
 import com.revrobotics.CANEncoder;
 import com.revrobotics.CANSparkMax;
@@ -8,7 +8,7 @@ import com.revrobotics.CANPIDController;
 
 import edu.wpi.first.wpilibj.SpeedController;
 import frc.robot.Constants;
-import frc.robot.Utilities.PID_Values;
+import frc.robot.utilities.PID_Values;
 
 public class CanMotor{
     private CANEncoder encoder;
