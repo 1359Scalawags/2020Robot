@@ -27,12 +27,24 @@ import edu.wpi.first.wpilibj.Spark;
 // why is this not working?
 import com.revrobotics.ColorSensorV3;
 import com.revrobotics.ColorSensorV3.RawColor;
+import com.revrobotics.ColorMatch;
+import com.revrobotics.ColorMatchResult;
 
 
 /**
  *
  */
 public class ControlPanelSystem extends SubsystemBase {
+
+    private final ColorMatch matcher = new ColorMatch();
+
+    public static Color BLUE = ColorMatch.makeColor(0.13489306, 0.43538037, 0.42972437);
+
+    public static Color RED = ColorMatch.makeColor(0.48934227, 0.36309862, 0.14753516);
+
+    public static Color GREEN = ColorMatch.makeColor(0.17530347, 0.5667771, 0.25793532);
+
+    public static Color YELLOW = ColorMatch.makeColor(0.31467456, 0.5550923, 0.13020141);
 
     // TODO: Is this a NEO or brushed motor? Probably brushed.
     private Spark rotateMotor;
@@ -48,6 +60,15 @@ public class ControlPanelSystem extends SubsystemBase {
     private double th =0.1;
 
     public ControlPanelSystem() {
+        matcher.addColorMatch(BLUE);
+
+        matcher.addColorMatch(RED);
+
+        matcher.addColorMatch(GREEN);
+
+        matcher.addColorMatch(YELLOW);
+
+
         rotateMotor = new Spark(Constants.RotatoPotatoID);
         addChild("RotateMotor",rotateMotor);
         rotateMotor.setInverted(false);
@@ -57,47 +78,34 @@ public class ControlPanelSystem extends SubsystemBase {
         rotateEncoder.setDistancePerPulse(1.0);
         //rotateEncoder.setPIDSourceType(PIDSourceType.kRate);
                 
-        SmartDashboard.putString("Color Result", getColorName());
+        SmartDashboard.putString("Color Result", getWheelSensorColor());
     }
 
-    // TODO: Test methods can go bye bye
-    
-    public void testSpin(double speed) {
-        rotateMotor.set(speed);
-    }
-    public String getColorName(){
-        // th = SmartDashboard.getNumber("Color thresh hold", th);
+  
+    public String getWheelSensorColor() {
+        // prevColor = currentColor;
+        // currentColor = colorSensor.getColor();
+        // return currentColor;
+        Color detected = colorSensor.getColor();
+        ColorMatchResult matched = matcher.matchClosestColor(detected);
 
-        prevColorName = currentColorName;
-        getColor();
+        if(matched.color == BLUE) {
+            return "Red";
+        } else if(matched.color == RED) {
+            return "Blue";
+        } else if(matched.color == GREEN) {
+            return "Yellow";
+        } else if (matched.color == YELLOW) {
+            return "Green";
+        }
 
-        double r = currentColor.red;
-        double g = currentColor.green;
-        double b = currentColor.blue;
-
-        if(Math.abs(0.13489306 - r) <=th && Math.abs(0.43538037- g) <=th && Math.abs(0.42972437 -b) <=th)
-            currentColorName = "Blue";
-        else if(Math.abs(0.17530347 - r) <=th && Math.abs(0.5667771 - g) <=th && Math.abs(0.25793532 -b) <=th)
-            currentColorName = "Green";
-        else if(Math.abs(0.48934227 - r) <=th && Math.abs(0.36309862 - g) <=th && Math.abs(0.14753516 -b) <=th)
-            currentColorName = "Red";
-        else if(Math.abs(0.31467456 - r) <=th && Math.abs(0.5550923 - g) <=th && Math.abs(0.13020141 -b) <=th)
-            currentColorName = "Yellow";
-        else
-            currentColorName = "not found";
-        return currentColorName;
-    }
-
-    public Color getColor() {
-        prevColor = currentColor;
-        currentColor = colorSensor.getColor();
-        return currentColor;
+        return "Color Not Found";
     }
 
     @Override
     public void periodic() {
         //Put code here to be run every loop
-        getColorName();
+        
     }
 
 }

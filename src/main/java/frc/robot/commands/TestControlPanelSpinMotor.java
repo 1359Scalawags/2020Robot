@@ -30,7 +30,7 @@ public class TestControlPanelSpinMotor extends CommandBase {
     public void execute() {
         spinSpeed = SmartDashboard.getNumber("CP Spin Speed", 0);
         motorRotations = SmartDashboard.getNumber("Target CP Motor Rotations", 0);
-        Robot.controlPanelSystem.testSpin(spinSpeed);
+        // Robot.controlPanelSystem.testSpin(spinSpeed);
         //SmartDashboard.putNumber("Actual CP Motor Rotations", Robot.controlPanelSystem.getTestRotations());
     }
 
