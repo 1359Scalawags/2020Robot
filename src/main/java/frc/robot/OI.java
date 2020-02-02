@@ -140,6 +140,40 @@ public class OI {
         return assistController;
     }
 
+    
+  
+  public double DriverLStickY() {
+    if (Math.abs(Robot.oi.driverContoller.getY(Hand.kLeft)) > Constants.controllerDeadZone) {
+      return -(Robot.oi.driverContoller.getY(Hand.kLeft) * (.3 * Robot.oi.getMainTriggers() + .7))/.7;
+    } else {
+      return 0;
+    }
+  }
+
+  public double DriverRStickY() {
+    if (Math.abs(Robot.oi.driverContoller.getY(Hand.kLeft)) > Constants.controllerDeadZone) {
+      return -(Robot.oi.driverContoller.getY(Hand.kLeft) * (.3 * Robot.oi.getMainTriggers() + .7))/.7;
+    } else {
+      return 0;
+    }
+  }
+
+  public double AssistRStickY() {
+    if (Math.abs(Robot.oi.assistController.getY(Hand.kRight)) > Constants.controllerDeadZone) {
+      return -(Robot.oi.assistController.getY(Hand.kRight) * (.3 * Robot.oi.getMainTriggers() + .7))/.7;
+    } else {
+      return 0;
+    }
+  }
+
+  public double AssistLStickY() {
+    if (Math.abs(Robot.oi.assistController.getY(Hand.kRight)) > Constants.controllerDeadZone) {
+      return -(Robot.oi.assistController.getY(Hand.kRight) * (.3 * Robot.oi.getMainTriggers() + .7))/.7;
+    } else {
+      return 0;
+    }
+  }
+
     public double getMainTriggers() {
 		return Math.max(driverContoller.getTriggerAxis(Hand.kLeft), driverContoller.getTriggerAxis(Hand.kRight));
 	}

@@ -30,11 +30,12 @@ public class Global {
       Controllers_.a.setReference(speed*Constants.MAXRPM, ControlType.kVelocity);
       Controllers_.b.setReference(speed*Constants.MAXRPM, ControlType.kVelocity);
     }
-
   }
+
   public static class PIDControllers{
     public CANPIDController a, b;
   }
+
   public static class PID_Values{
     public double kP = Constants.drivePID_P;
     public double kI = Constants.drivePID_I;
@@ -68,37 +69,5 @@ public class Global {
     Controllers_.b.setFF(PID_.kFf);
     Controllers_.b.setOutputRange(-1, 1);
     Encoders_.b = Motors_.b.getEncoder();
-  }
-  
-  public static double DriverRStickY() {
-    if (Math.abs(Robot.oi.driverContoller.getY(Hand.kRight)) > Constants.controllerDeadZone) {
-      return -(Robot.oi.driverContoller.getY(Hand.kRight) * (.3 * Robot.oi.getMainTriggers() + .7))/.7;
-    } else {
-      return 0;
-    }
-  }
-
-  public static double DrivergetLStickY() {
-    if (Math.abs(Robot.oi.driverContoller.getY(Hand.kLeft)) > Constants.controllerDeadZone) {
-      return -(Robot.oi.driverContoller.getY(Hand.kLeft) * (.3 * Robot.oi.getMainTriggers() + .7))/.7;
-    } else {
-      return 0;
-    }
-  }
-
-  public static double AssistRStickY() {
-    if (Math.abs(Robot.oi.driverContoller.getY(Hand.kRight)) > Constants.controllerDeadZone) {
-      return -(Robot.oi.driverContoller.getY(Hand.kRight) * (.3 * Robot.oi.getMainTriggers() + .7))/.7;
-    } else {
-      return 0;
-    }
-  }
-
-  public static double AssistgetLStickY() {
-    if (Math.abs(Robot.oi.driverContoller.getY(Hand.kLeft)) > Constants.controllerDeadZone) {
-      return -(Robot.oi.driverContoller.getY(Hand.kLeft) * (.3 * Robot.oi.getMainTriggers() + .7))/.7;
-    } else {
-      return 0;
-    }
   }
 }
