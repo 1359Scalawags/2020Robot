@@ -16,60 +16,30 @@ import com.revrobotics.CANEncoder;
 import com.revrobotics.CANPIDController;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import frc.robot.global.classes;
 /**
  *
  */
 public class CANDriveSystem extends SubsystemBase {
 
-  private static class Encoders{
-    CANEncoder a, b;
-  }
-  private static class Motors{
-    CANSparkMax a, b;
-  }
-  private static class PIDControllers{
-    CANPIDController a, b;
-  }
-  private static class PID_Values{
-    double kP = Constants.drivePID_P;
-    double kI = Constants.drivePID_I;
-    double kD= Constants.drivePID_D;
-    double kIz= Constants.drivePID_Iz;
-    double kFf= Constants.MOTORS_Ff;
-  }
+  
 
-  Encoders LeftEncoders = new Encoders();
-  Encoders RightEncoders = new Encoders();
+  private classes.Encoders LeftEncoders = new classes.Encoders();
+  private classes.Encoders RightEncoders = new classes.Encoders();
+  private classes.Motors LeftMotors = new classes.Motors();
+  private classes.Motors RightMotors = new classes.Motors();
 
-  // private CANEncoder leftEncoderA;
-  // private CANEncoder leftEncoderB;
-  // private CANEncoder rightEncoderA;
-  // private CANEncoder rightEncoderB;
-  Motors LeftMotors = new Motors();
-  Motors RightMotors = new Motors();
-
-  // private CANSparkMax leftMotorA;
-  // private CANSparkMax rightMotorA;
-  // private CANSparkMax leftMotorB;
-  // private CANSparkMax rightMotorB;
   private ADXRS450_Gyro driveGyro;
   private PIDController gyroControl;
   private DifferentialDrive robotDrive;
   private SpeedControllerGroup leftMotors;
   private SpeedControllerGroup rightMotors;
 
-  // private Encoder leftEncoder;
-  // private Encoder rightEncoder;
-
-  private PIDControllers LeftControllers;
-  private PIDControllers RightControllers;
-  // private CANPIDController leftControllerA;
-  // private CANPIDController leftControllerB;
-  // private CANPIDController rightControllerA;
-  // private CANPIDController rightControllerB;
-  private PID_Values PIDA = new PID_Values();
-  private PID_Values PIDB = new PID_Values();
-  // private double kP_A, kP_B, kI_A, kI_B, kD_A, kD_B, kIz_A, kIz_B, kFf_A, kFf_B;
+  private classes.PIDControllers LeftControllers = new classes.PIDControllers();
+  private classes.PIDControllers RightControllers = new classes.PIDControllers();
+  private classes.PID_Values PIDA = new classes.PID_Values();
+  private classes.PID_Values PIDB = new classes.PID_Values();
+  
   private double speedA, speedB;
 
   boolean reverse = false;    
