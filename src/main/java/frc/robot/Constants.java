@@ -121,4 +121,9 @@ public final class Constants {
     public static double MOTORS_Ff = 0;
 
 
+    public static double gyrokP =0;
+    public static double gyrokI =0;
+    public static double gyrokD =0;
+    public static double gyrokIz =0;
+    public static double gyrokFf =0;
 }

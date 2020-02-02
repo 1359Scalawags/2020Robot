@@ -7,40 +7,44 @@ import edu.wpi.first.wpilibj.controller.PIDController;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.Constants;
 import frc.robot.Robot;
-import frc.robot.Utilities;
+import frc.robot.Utilities.*;
 
-import frc.robot.Global;
-import frc.robot.Global.*;
+// import frc.robot.Global;
+// import frc.robot.Global.*;
 
-public class CANDriveSystem extends SubsystemBase {//saves 12 lines with all these custom objects.
-  private Encoders LeftEncoders = new Encoders();
-  private Encoders RightEncoders = new Encoders();
+public class CANDriveSystem extends SubsystemBase {
 
-  private Motors LeftMotors = new Motors();
-  private Motors RightMotors = new Motors();
-
+  
+  private CanMotor[] leftMotors = new CanMotor[2];
+  private CanMotor[] rightMotors = new CanMotor[2];
+  
+  private SpeedControllerGroup leftControllerGroup;
+  private SpeedControllerGroup rightControllerGroup;
+  private DifferentialDrive robotDrive;
+  private PID_Values gyroPids;
   private ADXRS450_Gyro driveGyro;
   private PIDController gyroControl;
-  private DifferentialDrive robotDrive;
-
-  private SpeedControllers speedsControllers = new SpeedControllers();
-
-  private PIDControllers LeftControllers = new PIDControllers();
-  private PIDControllers RightControllers = new PIDControllers();
-  private PID_Values PIDA = new PID_Values();
-  private PID_Values PIDB = new PID_Values();
-  
-  // private double speedA, speedB;
 
   boolean reverse = false;    
 
-  public CANDriveSystem() {//saves 22 lines with next two lines.
-      Global.initialize(LeftMotors, LeftControllers, LeftEncoders, PIDA, Constants.FrontLeftMotorID, Constants.BackLeftMotorID);
-      Global.initialize(RightMotors, RightControllers, RightEncoders, PIDB, Constants.FrontRightMotorID, Constants.BackRightMotorID);
+  public CANDriveSystem() {
 
-      speedsControllers.left = new SpeedControllerGroup(LeftMotors.a, LeftMotors.b);
-      speedsControllers.right = new SpeedControllerGroup(RightMotors.a, RightMotors.b);
-      robotDrive = new DifferentialDrive(speedsControllers.left, speedsControllers.right);
+     leftMotors[0] = new CanMotor(Constants.FrontLeftMotorID);
+     leftMotors[1] = new CanMotor(Constants.BackLeftMotorID);
+
+     rightMotors[0] = new CanMotor(Constants.FrontRightMotorID);
+     rightMotors[1] = new CanMotor(Constants.BackRightMotorID);
+    
+     leftControllerGroup = new SpeedControllerGroup(leftMotors[0].SpeedCont(), leftMotors[1].SpeedCont());
+     rightControllerGroup = new SpeedControllerGroup(rightMotors[0].SpeedCont(), rightMotors[1].SpeedCont());
+     
+     robotDrive = new DifferentialDrive(rightControllerGroup, rightControllerGroup);
+     gyroPids = new PID_Values(Constants.gyrokP, Constants.gyrokI, Constants.gyrokD, Constants.gyrokIz, Constants.gyrokFf);
+     driveGyro = new ADXRS450_Gyro();
+     gyroControl = new PIDController(gyroPids.KP(), gyroPids.KI(), gyroPids.KD());
+      
+      // speedsControllers.left = new SpeedControllerGroup(LeftMotors.a, LeftMotors.b);
+      // speedsControllers.right = new SpeedControllerGroup(RightMotors.a, RightMotors.b);
 
       /*//intialize values on the SmartDashboard
       SmartDashboard.putNumber("MotorA: P Gain", kP_A);
@@ -60,8 +64,6 @@ public class CANDriveSystem extends SubsystemBase {//saves 12 lines with all the
 
     @Override
     public void periodic() {
-      LeftControllers.setRPM(Robot.oi.DriverLStickY());
-      RightControllers.setRPM(Robot.oi.DriverRStickY());
     }
 
     public void drive() {
