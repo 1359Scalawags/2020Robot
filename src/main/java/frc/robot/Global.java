@@ -6,7 +6,7 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.ControlType;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
-import edu.wpi.first.wpilibj.GenericHID.Hand;
+import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import frc.robot.Constants;
 
 public class Global {
@@ -14,21 +14,35 @@ public class Global {
   public static class Encoders{
     public CANEncoder a, b;
   }
+
+  public static class SpeedControllers{
+    public SpeedControllerGroup left, right;
+  }
+
   public static class Motors{
-    public double speed;
+    public double speedA, speedB;
+    private PIDControllers Controllers;
     public CANSparkMax a, b;
 
-    public void updateMotorRPM(double speed_, PIDControllers Controllers_) {
-      if(speed != speed_)
-          speed = speed_;
-      if(speed != speed_)
-          speed = speed_;
-        updateMotor(Controllers_);
+    public void updateMotorRPM(double speed) {
+      if(speedA != speed)
+          speedA = speed;
+      if(speedB != speed)
+          speedB = speed;
+        updateMotors();
     }
 
-    public void updateMotor(PIDControllers Controllers_){
-      Controllers_.a.setReference(speed*Constants.MAXRPM, ControlType.kVelocity);
-      Controllers_.b.setReference(speed*Constants.MAXRPM, ControlType.kVelocity);
+    public void updateMotorRPM(double speedA_, double speedB_) {
+      if(speedA != speedA_)
+          speedA = speedA_;
+      if(speedB != speedB_)
+          speedB = speedB_;
+        updateMotors();
+    }
+
+    public void updateMotors(){
+      Controllers.a.setReference(speedA*Constants.MAXRPM, ControlType.kVelocity);
+      Controllers.b.setReference(speedB*Constants.MAXRPM, ControlType.kVelocity);
     }
   }
 
@@ -42,6 +56,14 @@ public class Global {
     public double kD= Constants.drivePID_D;
     public double kIz= Constants.drivePID_Iz;
     public double kFf= Constants.MOTORS_Ff;
+
+    public void set(double kP_, double kI_, double kD_, double kIz_, double kFf_){
+      kP = kP_;
+      kI = kI_;
+      kD = kD_;
+      kIz = kIz_;
+      kFf = kFf_;
+    }
   }
 
   
@@ -69,5 +91,7 @@ public class Global {
     Controllers_.b.setFF(PID_.kFf);
     Controllers_.b.setOutputRange(-1, 1);
     Encoders_.b = Motors_.b.getEncoder();
+
+    Motors_.Controllers = Controllers_;
   }
 }

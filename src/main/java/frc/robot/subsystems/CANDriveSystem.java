@@ -21,8 +21,8 @@ public class CANDriveSystem extends SubsystemBase {
   private ADXRS450_Gyro driveGyro;
   private PIDController gyroControl;
   private DifferentialDrive robotDrive;
-  private SpeedControllerGroup leftMotors;
-  private SpeedControllerGroup rightMotors;
+
+  private SpeedControllers speedsControllers = new SpeedControllers();
 
   private PIDControllers LeftControllers = new PIDControllers();
   private PIDControllers RightControllers = new PIDControllers();
@@ -37,9 +37,9 @@ public class CANDriveSystem extends SubsystemBase {
       Global.initialize(LeftMotors, LeftControllers, LeftEncoders, PIDA);
       Global.initialize(RightMotors, RightControllers, RightEncoders, PIDB);
 
-      leftMotors = new SpeedControllerGroup(LeftMotors.a, LeftMotors.b);
-      rightMotors = new SpeedControllerGroup(RightMotors.a, RightMotors.b);
-      robotDrive = new DifferentialDrive(leftMotors, rightMotors);
+      speedsControllers.left = new SpeedControllerGroup(LeftMotors.a, LeftMotors.b);
+      speedsControllers.right = new SpeedControllerGroup(RightMotors.a, RightMotors.b);
+      robotDrive = new DifferentialDrive(speedsControllers.left, speedsControllers.right);
 
       /*//intialize values on the SmartDashboard
       SmartDashboard.putNumber("MotorA: P Gain", kP_A);
@@ -59,8 +59,8 @@ public class CANDriveSystem extends SubsystemBase {
 
     @Override
     public void periodic() {
-      LeftMotors.updateMotorRPM(Robot.oi.DriverLStickY(), LeftControllers);
-      RightMotors.updateMotorRPM(Robot.oi.DriverRStickY(), RightControllers);
+      LeftMotors.updateMotorRPM(Robot.oi.DriverLStickY());
+      RightMotors.updateMotorRPM(Robot.oi.DriverRStickY());
     }
 
     public void drive() {
