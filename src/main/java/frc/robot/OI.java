@@ -89,7 +89,6 @@ public class OI {
         lineupButton.whenPressed(new LineupToShoot());
         shootButton = new JoystickButton(assistController, 1);
         shootButton.whileHeld(new ShootBall());
-        //shootButton.whileHeld(new TestShooterSpeeds());
         driverContoller = new XboxController(0);
         autoDriveForwardButton = new JoystickButton(driverContoller, 2);
         autoDriveForwardButton.whileHeld(new AutoDriveForward());
@@ -151,8 +150,8 @@ public class OI {
   }
 
   public double DriverRStickY() {
-    if (Math.abs(Robot.oi.driverContoller.getY(Hand.kLeft)) > Constants.controllerDeadZone) {
-      return -(Robot.oi.driverContoller.getY(Hand.kLeft) * (.3 * Robot.oi.getMainTriggers() + .7))/.7;
+    if (Math.abs(Robot.oi.driverContoller.getY(Hand.kRight)) > Constants.controllerDeadZone) {
+      return -(Robot.oi.driverContoller.getY(Hand.kRight) * (.3 * Robot.oi.getMainTriggers() + .7))/.7;
     } else {
       return 0;
     }
@@ -167,8 +166,8 @@ public class OI {
   }
 
   public double AssistLStickY() {
-    if (Math.abs(Robot.oi.assistController.getY(Hand.kRight)) > Constants.controllerDeadZone) {
-      return -(Robot.oi.assistController.getY(Hand.kRight) * (.3 * Robot.oi.getMainTriggers() + .7))/.7;
+    if (Math.abs(Robot.oi.assistController.getY(Hand.kLeft)) > Constants.controllerDeadZone) {
+      return -(Robot.oi.assistController.getY(Hand.kLeft) * (.3 * Robot.oi.getMainTriggers() + .7))/.7;
     } else {
       return 0;
     }

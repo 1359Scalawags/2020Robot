@@ -136,13 +136,14 @@ public class Robot extends TimedRobot {
         // teleop starts running. If you want the autonomous to
         // continue until interrupted by another command, remove
         // this line or comment it out.
-        CommandBase testShooter = new TestShooterSpeeds();
-        CommandBase testCPSpin = new TestControlPanelSpinMotor();
-        testShooter.schedule();
-        SmartDashboard.putData("Test_Control_Panel_Spin", testCPSpin);
-        SmartDashboard.putData("Test_Shooter_Speeds", testShooter);
-        ShuffleboardTab testtab = Shuffleboard.getTab("Test2020");
-        testtab.add(testShooter);
+        
+        // CommandBase testShooter = new TestShooterSpeeds();
+        // CommandBase testCPSpin = new TestControlPanelSpinMotor();
+        // testShooter.schedule();
+        // SmartDashboard.putData("Test_Control_Panel_Spin", testCPSpin);
+        // SmartDashboard.putData("Test_Shooter_Speeds", testShooter);
+        // ShuffleboardTab testtab = Shuffleboard.getTab("Test2020");
+        // testtab.add(testShooter);
         
 
     }

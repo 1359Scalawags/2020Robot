@@ -20,7 +20,7 @@ public class CANDriveSystem extends SubsystemBase {
   
   private SpeedControllerGroup leftControllerGroup;
   private SpeedControllerGroup rightControllerGroup;
-  private DifferentialDrive robotDrive;
+  private DifferentialDrive diffDrive;
   private PID_Values gyroPids;
   private ADXRS450_Gyro driveGyro;
   private PIDController gyroControl;
@@ -38,7 +38,7 @@ public class CANDriveSystem extends SubsystemBase {
      leftControllerGroup = new SpeedControllerGroup(leftMotors[0].Motor(), leftMotors[1].Motor());
      rightControllerGroup = new SpeedControllerGroup(rightMotors[0].Motor(), rightMotors[1].Motor());
 
-     robotDrive = new DifferentialDrive(rightControllerGroup, leftControllerGroup);
+     diffDrive = new DifferentialDrive(rightControllerGroup, leftControllerGroup);
      gyroPids = new PID_Values(Constants.gyrokP, Constants.gyrokI, Constants.gyrokD, Constants.gyrokIz, Constants.gyrokFf);
      driveGyro = new ADXRS450_Gyro();
      gyroControl = new PIDController(gyroPids.KP(), gyroPids.KI(), gyroPids.KD());
@@ -110,10 +110,10 @@ public double getDistanceRight() {
 
   public void tankDrive(double leftSpeed, double rightSpeed) {
     if(reverse) {
-      robotDrive.tankDrive(-rightSpeed, -leftSpeed);
+      diffDrive.tankDrive(-rightSpeed, -leftSpeed);
       //m_drive2.tankDrive(-rightSpeed, -leftSpeed); //new
     } else {
-      robotDrive.tankDrive(leftSpeed, rightSpeed);
+      diffDrive.tankDrive(leftSpeed, rightSpeed);
       //m_drive2.tankDrive(rightSpeed, leftSpeed); //new
     }
   }
@@ -137,14 +137,14 @@ public double getDistanceRight() {
   }
 
   public void arcadeDrive(double moveSpeed, double turnSpeed) {
-    robotDrive.arcadeDrive(moveSpeed, turnSpeed);
+    diffDrive.arcadeDrive(moveSpeed, turnSpeed);
   }
 
   public void arcadeDrive(double moveSpeed, double maxTurnSpeed, double targetAngle) {
     double angleInput = driveGyro.getAngle();
     gyroControl.setSetpoint(targetAngle);
     double angleOutput = Utilities.Clamp(gyroControl.calculate(angleInput), -maxTurnSpeed, maxTurnSpeed);
-    robotDrive.arcadeDrive(moveSpeed, angleOutput);
+    diffDrive.arcadeDrive(moveSpeed, angleOutput);
    
   }
   
