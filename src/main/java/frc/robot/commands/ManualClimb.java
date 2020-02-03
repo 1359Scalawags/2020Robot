@@ -36,7 +36,7 @@ public class ManualClimb extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     @Override
     public void execute() {
-        double speed = Robot.oi.getClimbSpeed();
+        double speed = Robot.oi.AssistLStickY();
             if (!climberLocked) {
                 Robot.climbSystem.move(speed);
             }

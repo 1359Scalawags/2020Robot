@@ -24,7 +24,7 @@ public class ShootBall extends CommandBase {
     private double btmShtrSpd;
 
     public ShootBall() {
-        
+        addRequirements(Robot.ballSystem);
     }
 
     // Called just before this Command runs the first time
