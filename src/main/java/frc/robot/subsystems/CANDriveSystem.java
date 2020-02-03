@@ -35,10 +35,10 @@ public class CANDriveSystem extends SubsystemBase {
      rightMotors[0] = new CanMotor(Constants.FrontRightMotorID);
      rightMotors[1] = new CanMotor(Constants.BackRightMotorID);
     
-     leftControllerGroup = new SpeedControllerGroup(leftMotors[0].SpeedCont(), leftMotors[1].SpeedCont());
-     rightControllerGroup = new SpeedControllerGroup(rightMotors[0].SpeedCont(), rightMotors[1].SpeedCont());
+     leftControllerGroup = new SpeedControllerGroup(leftMotors[0].Motor(), leftMotors[1].Motor());
+     rightControllerGroup = new SpeedControllerGroup(rightMotors[0].Motor(), rightMotors[1].Motor());
 
-     robotDrive = new DifferentialDrive(rightControllerGroup, rightControllerGroup);
+     robotDrive = new DifferentialDrive(rightControllerGroup, leftControllerGroup);
      gyroPids = new PID_Values(Constants.gyrokP, Constants.gyrokI, Constants.gyrokD, Constants.gyrokIz, Constants.gyrokFf);
      driveGyro = new ADXRS450_Gyro();
      gyroControl = new PIDController(gyroPids.KP(), gyroPids.KI(), gyroPids.KD());

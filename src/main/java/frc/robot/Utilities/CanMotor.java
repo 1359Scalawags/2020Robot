@@ -12,7 +12,7 @@ import frc.robot.utilities.PID_Values;
 
 public class CanMotor{
     private CANEncoder encoder;
-    private SpeedController speedCont;
+    // private SpeedController speedCont;
     private CANSparkMax motor;
     private CANPIDController controller;
 
@@ -50,9 +50,9 @@ public class CanMotor{
     public CANEncoder Encoder(){
         return encoder;
     }
-    public SpeedController SpeedCont(){
-        return speedCont;
-    }
+    // public SpeedController SpeedCont(){
+    //     return speedCont;
+    // }
     public CANSparkMax Motor(){
         return motor;
     }
