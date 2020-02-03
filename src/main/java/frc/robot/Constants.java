@@ -83,11 +83,11 @@ public final class Constants {
     public static final double maxMotorSpeed = 0.95;
     public static final double fullDriveSpeed = 8;
 
-    //Motors                                        Motor #s 12, 13, 14, 15
-    public static int FrontLeftMotorID = 12;
-    public static int BackLeftMotorID = 13;
-    public static int FrontRightMotorID = 14;
-    public static int BackRightMotorID = 15;
+    //Motors                                        
+    public static int FrontLeftMotorID = 11;
+    public static int BackLeftMotorID = 12;
+    public static int FrontRightMotorID = 13;
+    public static int BackRightMotorID = 14;
 
     //Sensors                                       Sensor #s 6, 7, 8, 9, 10, 11, 12, 13
     public static int DriveLeftEncoderA = 6;
@@ -100,12 +100,11 @@ public final class Constants {
     public static int DriveDistanceUltrasonicB = 11;
 
     //PID
-    public static int drivePID_P;
-    public static int drivePID_I;
-    public static int drivePID_D;
-    public static int gyroPID_P;
-    public static int gyroPID_I;
-    public static int gyroPID_D;
+    public static double drivePID_P;
+    public static double drivePID_I;
+    public static double drivePID_D;
+    public static double drivePID_Iz = 0;
+    public static double drivePID_Ff = 0;
 
     public static final double controllerDeadZone = 0.1;
     public static final double driveStraightSpeed = -0.7;
@@ -116,9 +115,6 @@ public final class Constants {
 
 
 	public static double MAXRPM = 5700;
-
-    public static double drivePID_Iz = 0;
-    public static double MOTORS_Ff = 0;
 
 
     public static double gyrokP =0;

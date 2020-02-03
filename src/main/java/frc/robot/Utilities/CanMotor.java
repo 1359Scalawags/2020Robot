@@ -20,17 +20,7 @@ public class CanMotor{
     
 // SpeedController speedController, SpeedController[] speedControllers 
     public CanMotor(int id){
-        motor = new CANSparkMax(id, MotorType.kBrushless);
-        motor.restoreFactoryDefaults();
-        motor.setInverted(false);
-        controller = motor.getPIDController();
-        controller.setP(Constants.drivePID_P);
-        controller.setI(Constants.drivePID_I);
-        controller.setD(Constants.drivePID_D);
-        controller.setIZone(Constants.drivePID_Iz);
-        controller.setFF(Constants.MOTORS_Ff);
-        controller.setOutputRange(-1, 1);
-        encoder = motor.getEncoder();
+        this(id, new PID_Values());
     }
 
     public CanMotor(int id, PID_Values pid){

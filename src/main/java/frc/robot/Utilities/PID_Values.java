@@ -9,11 +9,7 @@ public class PID_Values {
     private double kFf;
 
     public PID_Values(){
-        kP = Constants.drivePID_P;
-        kI = Constants.drivePID_I;
-        kD= Constants.drivePID_D;
-        kIz= Constants.drivePID_Iz;
-        kFf= Constants.MOTORS_Ff;
+        this(Constants.drivePID_P,Constants.drivePID_I,Constants.drivePID_D,Constants.drivePID_Iz,Constants.drivePID_Ff);
     }
     public PID_Values(double kP_, double kI_, double kD_, double kIz_, double kFf_){
         kP = kP_;

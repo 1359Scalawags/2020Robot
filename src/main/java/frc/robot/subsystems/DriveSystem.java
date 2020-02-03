@@ -113,7 +113,7 @@ public class DriveSystem extends SubsystemBase {
     robotDrive = new DifferentialDrive(leftMotors, rightMotors);
     //leftControl = new PIDController(Constants.drivePID_P, Constants.drivePID_I, Constants.drivePID_D);
     //rightControl = new PIDController(Constants.drivePID_P, Constants.drivePID_I, Constants.drivePID_D);
-    gyroControl = new PIDController(Constants.gyroPID_P, Constants.gyroPID_I, Constants.gyroPID_D);
+    gyroControl = new PIDController(Constants.gyrokP, Constants.gyrokI, Constants.gyrokD);
   }
 
   @Override
