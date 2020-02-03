@@ -37,6 +37,7 @@ public class ManualDrive extends CommandBase {
     public void execute() {
 
         // Robot.oi.getDriverJoystick();
+        Robot.driveSystem.tankDrive(Robot.oi.DriverLStickY(), Robot.oi.DriverRStickY());
 
         
         // need help with this

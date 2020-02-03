@@ -47,7 +47,6 @@ public class CANDriveSystem extends SubsystemBase {
 
     @Override
     public void periodic() {
-      tankDrive(Robot.oi.DriverLStickY(), Robot.oi.DriverRStickY());
     }
 
     public void drive() {
