@@ -10,6 +10,7 @@
 
 
 package frc.robot.commands;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
@@ -19,6 +20,7 @@ import frc.robot.Robot;
 public class ControlPanelSpin extends CommandBase {
 
     public ControlPanelSpin() {
+        
         addRequirements(Robot.controlPanelSystem);
     }
 
@@ -30,6 +32,7 @@ public class ControlPanelSpin extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     @Override
     public void execute() {
+        SmartDashboard.putString("Value", Robot.controlPanelSystem.getSensorColor().toString());
     }
 
     // Make this return true when this Command no longer needs to run execute()

@@ -77,11 +77,26 @@ public class ControlPanelSystem extends SubsystemBase {
         addChild("RotateEncoder",rotateEncoder);
         rotateEncoder.setDistancePerPulse(1.0);
         //rotateEncoder.setPIDSourceType(PIDSourceType.kRate);
-                
-        SmartDashboard.putString("Color Result", getWheelSensorColor());
     }
+    public String getSensorColor() {
+        // prevColor = currentColor;
+        // currentColor = colorSensor.getColor();
+        // return currentColor;
+        Color detected = colorSensor.getColor();
+        ColorMatchResult matched = matcher.matchClosestColor(detected);
 
-  
+        if(matched.color == BLUE) {
+            return "Blue";
+        } else if(matched.color == RED) {
+            return "Red";
+        } else if(matched.color == GREEN) {
+            return "Green";
+        } else if (matched.color == YELLOW) {
+            return "Yellow";
+        }
+
+        return "Color Not Found";
+    }
     public String getWheelSensorColor() {
         // prevColor = currentColor;
         // currentColor = colorSensor.getColor();
