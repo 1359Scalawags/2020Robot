@@ -8,6 +8,8 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.I2C;
+import io.github.pseudoresonance.pixy2api.links.Link;
+import io.github.pseudoresonance.pixy2api.links.SPILink;
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
@@ -121,4 +123,6 @@ public final class Constants {
     public static double gyrokD =0;
     public static double gyrokIz =0;
     public static double gyrokFf =0;
+
+    static final Link PixyLink = new SPILink();
 }
