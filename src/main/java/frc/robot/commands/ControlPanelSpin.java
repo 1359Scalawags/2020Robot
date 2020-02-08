@@ -32,8 +32,8 @@ public class ControlPanelSpin extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     @Override
     public void execute() {
-        SmartDashboard.putString("value1", Robot.controlPanelSystem.getSensorColor().toString());
-        SmartDashboard.putString("value2", Robot.controlPanelSystem.getColorName());
+        // SmartDashboard.putString("value1", Robot.controlPanelSystem.getSensorColor().toString());
+        SmartDashboard.putString("value2", Robot.controlPanelSystem.getScannerColorName());
         
     }
 

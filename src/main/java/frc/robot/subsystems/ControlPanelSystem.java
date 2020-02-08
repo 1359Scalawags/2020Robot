@@ -36,16 +36,16 @@ import com.revrobotics.ColorMatchResult;
  */
 public class ControlPanelSystem extends SubsystemBase {
 
-    private final ColorMatch matcher = new ColorMatch();
+    // private final ColorMatch matcher = new ColorMatch();
 
-    public static Color BLUE = ColorMatch.makeColor(0.13489306, 0.43538037, 0.42972437);
+    // public static Color BLUE = ColorMatch.makeColor(0.13489306, 0.43538037, 0.42972437);
 
-    public static Color RED = ColorMatch.makeColor(0.48934227, 0.36309862, 0.14753516);
+    // public static Color RED = ColorMatch.makeColor(0.48934227, 0.36309862, 0.14753516);
 
-    public static Color GREEN = ColorMatch.makeColor(0.17530347, 0.5667771, 0.25793532);
+    // public static Color GREEN = ColorMatch.makeColor(0.17530347, 0.5667771, 0.25793532);
 
-    public static Color YELLOW = ColorMatch.makeColor(0.31467456, 0.5550923, 0.13020141);
-    public static Color BETWEEN = ColorMatch.makeColor(0.2308, 0.5239, 0.2452);
+    // public static Color YELLOW = ColorMatch.makeColor(0.31467456, 0.5550923, 0.13020141);
+    // public static Color BETWEEN = ColorMatch.makeColor(0.2308, 0.5239, 0.2452);
 
     // TODO: Is this a NEO or brushed motor? Probably brushed.
     private Spark rotateMotor;
@@ -61,15 +61,15 @@ public class ControlPanelSystem extends SubsystemBase {
     private double th =0.1;
 
     public ControlPanelSystem() {
-        matcher.addColorMatch(BLUE);
+        // matcher.addColorMatch(BLUE);
 
-        matcher.addColorMatch(RED);
+        // matcher.addColorMatch(RED);
 
-        matcher.addColorMatch(GREEN);
+        // matcher.addColorMatch(GREEN);
 
-        matcher.addColorMatch(YELLOW);
+        // matcher.addColorMatch(YELLOW);
 
-        matcher.addColorMatch(BETWEEN);
+        // matcher.addColorMatch(BETWEEN);
 
 
         rotateMotor = new Spark(Constants.RotatoPotatoID);
@@ -81,47 +81,47 @@ public class ControlPanelSystem extends SubsystemBase {
         rotateEncoder.setDistancePerPulse(1.0);
         //rotateEncoder.setPIDSourceType(PIDSourceType.kRate);
     }
-    public String getSensorColor() {
-        // prevColor = currentColor;
-        // currentColor = colorSensor.getColor();
-        // return currentColor;
-        Color detected = colorSensor.getColor();
-        ColorMatchResult matched = matcher.matchClosestColor(detected);
+    // public String getSensorColor() {
+    //     // prevColor = currentColor;
+    //     // currentColor = colorSensor.getColor();
+    //     // return currentColor;
+    //     Color detected = colorSensor.getColor();
+    //     ColorMatchResult matched = matcher.matchClosestColor(detected);
 
-        if(matched.color == BLUE) {
-            return "Blue";
-        } else if(matched.color == RED) {
-            return "Red";
-        } else if(matched.color == GREEN) {
-            return "Green";
-        } else if (matched.color == YELLOW) {
-            return "Yellow";
-        }
+    //     if(matched.color == BLUE) {
+    //         return "Blue";
+    //     } else if(matched.color == RED) {
+    //         return "Red";
+    //     } else if(matched.color == GREEN) {
+    //         return "Green";
+    //     } else if (matched.color == YELLOW) {
+    //         return "Yellow";
+    //     }
 
-        return "Color Not Found";
-    }
-    public String getWheelSensorColor() {
-        // prevColor = currentColor;
-        // currentColor = colorSensor.getColor();
-        // return currentColor;
-        Color detected = colorSensor.getColor();
-        ColorMatchResult matched = matcher.matchClosestColor(detected);
+    //     return "Color Not Found";
+    // }
+    // public String getWheelSensorColor() {
+    //     // prevColor = currentColor;
+    //     // currentColor = colorSensor.getColor();
+    //     // return currentColor;
+    //     Color detected = colorSensor.getColor();
+    //     ColorMatchResult matched = matcher.matchClosestColor(detected);
 
-        if(matched.color == BLUE) {
-            return "Red";
-        } else if(matched.color == RED) {
-            return "Blue";
-        } else if(matched.color == GREEN) {
-            return "Yellow";
-        } else if (matched.color == YELLOW) {
-            return "Green";
-        }
+    //     if(matched.color == BLUE) {
+    //         return "Red";
+    //     } else if(matched.color == RED) {
+    //         return "Blue";
+    //     } else if(matched.color == GREEN) {
+    //         return "Yellow";
+    //     } else if (matched.color == YELLOW) {
+    //         return "Green";
+    //     }
 
-        return "Color Not Found";
-    }
+    //     return "Color Not Found";
+    // }
 
 
-    public String getColorName(){
+    public String getScannerColorName(){
         th = SmartDashboard.getNumber("Color thresh hold", th);
 
         prevColorName = currentColorName;
@@ -139,6 +139,29 @@ public class ControlPanelSystem extends SubsystemBase {
             currentColorName = "Red";
         else if(Math.abs(0.31467456 - r) <=th && Math.abs(0.5550923 - g) <=th && Math.abs(0.13020141 -b) <=th)
             currentColorName = "Yellow";
+        else
+            currentColorName = "not found";
+        return currentColorName;
+    }
+    
+    public String getWheelColorName(){
+        th = SmartDashboard.getNumber("Color thresh hold", th);
+
+        prevColorName = currentColorName;
+        getColor();
+
+        double r = currentColor.red;
+        double g = currentColor.green;
+        double b = currentColor.blue;
+
+        if(Math.abs(0.13489306 - r) <=th && Math.abs(0.43538037- g) <=th && Math.abs(0.42972437 -b) <=th)
+            currentColorName = "Red";
+        else if(Math.abs(0.17530347 - r) <=th && Math.abs(0.5667771 - g) <=th && Math.abs(0.25793532 -b) <=th)
+            currentColorName = "Yellow";
+        else if(Math.abs(0.48934227 - r) <=th && Math.abs(0.36309862 - g) <=th && Math.abs(0.14753516 -b) <=th)
+            currentColorName = "Blue";
+        else if(Math.abs(0.31467456 - r) <=th && Math.abs(0.5550923 - g) <=th && Math.abs(0.13020141 -b) <=th)
+            currentColorName = "Green";
         else
             currentColorName = "not found";
         return currentColorName;
