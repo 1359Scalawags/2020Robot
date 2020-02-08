@@ -24,7 +24,7 @@ public class NetworkSystem extends SubsystemBase {
 
     public String getDist(){
         Distancevalue = Distance.getEntry("value");
-        String str = Distancevalue.getString("Doesn't exist");
+        String str = Distancevalue.getString("Nothing RoboRIO");
         return str;
         
         // SmartDashboard.putString("Dist", str);
