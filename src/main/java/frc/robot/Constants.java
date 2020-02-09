@@ -40,6 +40,10 @@ public final class Constants {
 	public static int LoadChamMotorID = 15;
     public static int ChamRotMotorID = 10;
 
+    //Motor Speeds
+    public static double BallLoadUpSpeed = 0.001;
+    public static double BallLoadInSpeed = 0.001;
+
     //Sensors                                       Sensor #s 0, 1, 2
     public static int BallLimitID = 0;
     public static int BallSpeedEncoderAID = 1;

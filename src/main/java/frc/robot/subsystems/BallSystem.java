@@ -173,6 +173,16 @@ public class BallSystem extends PIDSubsystem {
      * @param speed of top motor
      * @param speed of bottom motor
      */
+
+    public void generalLoading(){
+        double ballLoadInSpd;
+        double ballLoadUpSpd;
+
+        ballLoadInSpd = Constants.BallLoadInSpeed;
+        ballLoadUpSpd = Constants.BallLoadUpSpeed;
+
+    }
+
     public void setShooterSpeed(double top, double bottom) {
         ballMotorA.set(top);
         ballMotorB.set(bottom);
