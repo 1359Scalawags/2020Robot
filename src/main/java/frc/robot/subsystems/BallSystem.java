@@ -37,7 +37,7 @@ import frc.robot.utilities.*;
 public class BallSystem extends PIDSubsystem {
     private Encoder ballSpeedEncoder;
 
-    private CanMotor[] chamRotator = new CanMotor[1];
+    private CanMotor chamRotator;
     
     /*
     private Spark ballMotorA;
@@ -75,7 +75,7 @@ public class BallSystem extends PIDSubsystem {
         ballLoadInMotors = new SpeedControllerGroup(ballLoaderInA, ballLoaderInB);
         ballLoadUpMotors = new SpeedControllerGroup(ballLoaderUpA, ballLoaderUpA);
 
-        chamRotator[1] = new CanMotor(Constants.ChamRotMotorID);
+        chamRotator = new CanMotor(Constants.ChamRotMotorID);
         
         getController().setTolerance(Constants.BallPIDTolerance);
         SendableRegistry.setName(getController(), "BallSystem", "Name");//change name
