@@ -22,10 +22,20 @@ public class ShootBall extends CommandBase {
     private boolean shtrActive;
     private double topShtrSpd;
     private double btmShtrSpd;
+    
+    private double ballLoadSpdA;
+    private double ballLoadSpdB;
+    private double ballLoadSpdC;
+    private double ballLoadSpdD;
+    private double ballLoadSpdE;
+    private double AvgBallLoadSpd;
 
     public ShootBall() {
         addRequirements(Robot.ballSystem);
+
+        AvgBallLoadSpd = (ballLoadSpdA + ballLoadSpdB + ballLoadSpdC + ballLoadSpdD + ballLoadSpdE)/5;
     }
+
 
     // Called just before this Command runs the first time
     @Override
@@ -33,6 +43,8 @@ public class ShootBall extends CommandBase {
         SmartDashboard.putBoolean("Is Shooter Active", shtrActive);
         SmartDashboard.putNumber("Top Shooter Speed", topShtrSpd);
         SmartDashboard.putNumber("Bottom Shooter Speed", btmShtrSpd);
+        
+        SmartDashboard.putNumber("Ball Loader Speed", AvgBallLoadSpd);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -42,6 +54,9 @@ public class ShootBall extends CommandBase {
         SmartDashboard.getNumber("Top Shooter Speed", topShtrSpd);
         SmartDashboard.getNumber("Bottom Shooter Speed", btmShtrSpd);
         Robot.ballSystem.setShooterSpeed(topShtrSpd, btmShtrSpd);
+        
+        SmartDashboard.putNumber("Ball Loader Speed", btmShtrSpd);
+        Robot.ballSystem.setBallLoaderSpeed(ballLoadSpdA, ballLoadSpdB, ballLoadSpdC, ballLoadSpdD, ballLoadSpdE);
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -54,6 +69,7 @@ public class ShootBall extends CommandBase {
     @Override
     public void end(boolean interrupted) {
         Robot.ballSystem.setShooterSpeed(0, 0);
+        Robot.ballSystem.setBallLoaderSpeed(0, 0, 0, 0, 0);
     }
 
 

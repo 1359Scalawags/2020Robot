@@ -28,14 +28,17 @@ public final class Constants {
     //Booleans, Integers, and Values
 
     
-    //Motors                                        Motor #s 0, 1, 2, 3, 4, 5, 6, 7,
+    //Motors                                        Motor #s 0, 1, 2, 3, 4, 5, 6, 7, 10, 14, 15
     public static int TopBallMotorID = 1;
     public static int BottomBallMotorID = 2;
-    public static int QueBallMotorID = 3;
-    public static int TrackMotorAID = 4;
-	public static int TrackMotorBID = 5;
-    public static int IntakeMotorAID = 6;
-	public static int IntakeMotorBID = 7;
+    public static int LoadBallMotorAID = 3;
+    public static int LoadBallMotorBID = 4;
+	public static int LoadBallMotorCID = 5;
+    public static int LoadBallMotorDID = 6;
+	public static int LoadBallMotorEID = 7;
+	public static int LoadShotMotorID = 14;
+	public static int LoadChamMotorID = 15;
+    public static int ChamRotMotorID = 10;
 
     //Sensors                                       Sensor #s 0, 1, 2
     public static int BallLimitID = 0;
@@ -70,7 +73,7 @@ public final class Constants {
     //Booleans, Integers, and Values
 
 
-    //Motors                                        Motor #s 9, 10, 11
+    //Motors                                        Motor #s 9
     public static int RotatoPotatoID = 9;
 
     //Sensors                              
@@ -83,7 +86,7 @@ public final class Constants {
     public static final double maxMotorSpeed = 0.95;
     public static final double fullDriveSpeed = 8;
 
-    //Motors                                        
+    //Motors                                        Motor #s 11, 12, 13, 14
     public static int FrontLeftMotorID = 11;
     public static int BackLeftMotorID = 12;
     public static int FrontRightMotorID = 13;
