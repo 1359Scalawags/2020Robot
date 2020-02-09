@@ -23,22 +23,36 @@ public final class Constants {
 
     /*----------Operator Interface----------*/
     
+    /***
+     * ----------Dpad POV----------
+     * 0 is UP
+     * 45 is UP-RIGHT
+     * 90 is RIGHT
+     * 135 is DOWN-RIGHT
+     * 180 is DOWN
+     * 225 is DOWN-LEFT
+     * 270 is LEFT
+     * 315 is UP-LEFT
+     * Returns to 0 going UP again
+     * @return
+     */
+
         //TODO: ADD THIS IN
     /*
-    public static int Abtn = x;
-    public static int Bbtn = x;
-    public static int Xbtn = x;
-    public static int Ybtn = x;
-    public static int DpadUP = x;
-    public static int DpadDOWN = x;
-    public static int DpadLEFT = x;
-    public static int DpadRIGHT = x;
-    public static int RT = x;
-    public static int RB = x;
-    public static int LT = x;
-    public static int LB = x;
-    public static int Joy1btn = x;
-    public static int Joy2btn = x;
+    public static int Abtn = 1;
+    public static int Bbtn = 2;
+    public static int Xbtn = 3;
+    public static int Ybtn = 4;
+    public static int LB = 5;
+    public static int RB = 6;
+    public static int SELECT = 7;
+    public static int START = 8;
+    public static int LEFTJoyBtn = 9;
+    public static int RIGHTJoyBtn = 10;
+    public static int DpadUP = 0;
+    public static int DpadRIGHT = 90;
+    public static int DpadDOWN = 180;
+    public static int DpadLEFT = 270;
     */
     
     /*----------BallSystem----------*/

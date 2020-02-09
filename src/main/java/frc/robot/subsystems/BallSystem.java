@@ -186,12 +186,13 @@ public class BallSystem extends PIDSubsystem {
 
         ballLoadInSpd = Constants.BallLoadInSpeed;
         ballLoadUpSpd = Constants.BallLoadUpSpeed;
-
+/*
         if(){
 
         } else {
-            
+
         }
+*/
     }
 
     public void setShooterSpeed(double top, double bottom) {
