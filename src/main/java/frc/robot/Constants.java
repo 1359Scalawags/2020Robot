@@ -20,8 +20,40 @@ import io.github.pseudoresonance.pixy2api.links.Link;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
-    public static Double BallPIDTolerance = 0d;
 
+    /*----------Operator Interface----------*/
+    
+    /***
+     * ----------Dpad POV----------
+     * 0 is UP
+     * 45 is UP-RIGHT
+     * 90 is RIGHT
+     * 135 is DOWN-RIGHT
+     * 180 is DOWN
+     * 225 is DOWN-LEFT
+     * 270 is LEFT
+     * 315 is UP-LEFT
+     * Returns to 0 going UP again
+     * @return
+     */
+
+        //TODO: ADD THIS IN
+    /*
+    public static int Abtn = 1;
+    public static int Bbtn = 2;
+    public static int Xbtn = 3;
+    public static int Ybtn = 4;
+    public static int LB = 5;
+    public static int RB = 6;
+    public static int SELECT = 7;
+    public static int START = 8;
+    public static int LEFTJoyBtn = 9;
+    public static int RIGHTJoyBtn = 10;
+    public static int DpadUP = 0;
+    public static int DpadRIGHT = 90;
+    public static int DpadDOWN = 180;
+    public static int DpadLEFT = 270;
+    */
     
     /*----------BallSystem----------*/
 
@@ -31,11 +63,11 @@ public final class Constants {
     //Motors                                        Motor #s 0, 1, 2, 3, 4, 5, 6, 7, 10, 14, 15
     public static int TopBallMotorID = 1;
     public static int BottomBallMotorID = 2;
-    public static int LoadBallMotorAID = 3;
-    public static int LoadBallMotorBID = 4;
-	public static int LoadBallMotorCID = 5;
-    public static int LoadBallMotorDID = 6;
-	public static int LoadBallMotorEID = 7;
+    public static int LoadBallInMotorAID = 3;
+    public static int LoadBallInMotorBID = 4;
+	public static int LoadBallUpMotorAID = 5;
+    public static int LoadBallUpMotorBID = 6;
+	public static int LoadBallChamMotorID = 7;
 	public static int LoadShotMotorID = 14;
 	public static int LoadChamMotorID = 15;
     public static int ChamRotMotorID = 10;
@@ -48,6 +80,9 @@ public final class Constants {
     public static int BallLimitID = 0;
     public static int BallSpeedEncoderAID = 1;
     public static int BallSpeedEncoderBID = 2;
+
+    //PID
+    public static double BallPIDTolerance = 0d;
 	
     /*----------ClimbSystem----------*/
 
@@ -66,7 +101,8 @@ public final class Constants {
     public static boolean LIMIT_NOTPRESSED = false;
     
     //Potentiometers
-    public static  int CLIMBERPOTID = 8;  //Change if needed... just let me know if you did.  ~Allan
+    public static  int CLIMBERPOTID = 8;    //Change if NEEDED...
+                                            //IF it was changed then let Allan know ASAP!
 
     //Defined
     public static double PotToInches = 35.0;    //Change if NEEDED...  Pot = POTENTIOMETER
