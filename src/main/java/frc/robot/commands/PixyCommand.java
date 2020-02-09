@@ -2,6 +2,7 @@ package frc.robot.commands;
 
 import java.util.ArrayList;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 import io.github.pseudoresonance.pixy2api.Pixy2;
@@ -26,9 +27,12 @@ public class PixyCommand extends CommandBase{
         Pixy2CCC detected = Pixy.getCCC();
         ArrayList<Block> blocks = detected.getBlocks();
 
+        SmartDashboard.putNumber("BlockCount", blocks.size());
         for(int i=0; i<blocks.size(); i++){
-            blocks.get(i).getX();
-            blocks.get(i).getY();
+            double x = blocks.get(i).getX();
+            double y = blocks.get(i).getY();
+            
+            SmartDashboard.putString("Block "+i, x+","+y);
         }
     }
 
