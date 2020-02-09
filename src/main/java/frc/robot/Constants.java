@@ -8,8 +8,8 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.I2C;
+import io.github.pseudoresonance.pixy2api.links.I2CLink;
 import io.github.pseudoresonance.pixy2api.links.Link;
-import io.github.pseudoresonance.pixy2api.links.SPILink;
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
@@ -76,7 +76,6 @@ public final class Constants {
     //Sensors                              
     public static int RotateEncoderAID = 20;
     public static int RotateEncoderBID = 21;
-    public final static I2C.Port COLORSENSOR_I2C = I2C.Port.kOnboard;
 
     /*----------DriveSystem----------*/
 
@@ -124,5 +123,9 @@ public final class Constants {
     public static double gyrokIz =0;
     public static double gyrokFf =0;
 
-    static final Link PixyLink = new SPILink();
+
+    
+    public final static I2C.Port COLORSENSOR_I2C = I2C.Port.kOnboard;
+    public final static Link PixyLink = new I2CLink();
+    // public final static Link PixyLink = new SPILink();
 }
