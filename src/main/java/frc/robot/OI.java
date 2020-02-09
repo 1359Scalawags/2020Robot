@@ -58,6 +58,7 @@ public class OI {
     public JoystickButton shootButton;
     public JoystickButton lineupButton;
     public JoystickButton intakeBallButton;
+    //public JoystickButton uptakeBallButton;  //TODO: ADD THIS IN
     public JoystickButton controlPanelSetColorButton;
     public JoystickButton controlPanelSpinButton;
     public JoystickButton climbUpButton;
@@ -85,6 +86,8 @@ public class OI {
         controlPanelSetColorButton.whenPressed(new ControlPanelSetColor());
         intakeBallButton = new JoystickButton(assistController, 3);
         intakeBallButton.whenPressed(new IntakeRollerSpin());
+        //uptakeBallButton = new JoystickButton(assistController, 8);  //TODO: ADD THIS IN
+        //uptakeBallButton.whenPressed(new IntakeRollerSpin());  //TODO: ADD THIS IN
         lineupButton = new JoystickButton(assistController, 2);
         lineupButton.whenPressed(new LineupToShoot());
         shootButton = new JoystickButton(assistController, 1);
