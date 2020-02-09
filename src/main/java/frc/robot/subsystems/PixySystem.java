@@ -13,14 +13,9 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.Robot;
-import frc.robot.commands.AutoDriveTurn;
 
 import java.util.ArrayList;
 
-import edu.wpi.first.wpilibj.I2C;
-import edu.wpi.first.wpilibj.I2C.Port;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-//import frc.robot.pixy.PixyI2C;
 import io.github.pseudoresonance.pixy2api.*;
 import io.github.pseudoresonance.pixy2api.Pixy2CCC.Block;
 import io.github.pseudoresonance.pixy2api.links.*;
@@ -42,29 +37,26 @@ public class PixySystem extends SubsystemBase {
         pixy.init();
     }
 
-    public void turntoClosest(){
+    public void GotoClosest(){
         Block block = getClosest();
         double angle = block.getAngle();
-
+        
         Robot.driveSystem.arcadeDrive(0.0, Constants.maxRightTurnRate, angle);
     }
 
     public Block getClosest(){
         int bestIndex = -1;
-        double bestRadius = 10000;
-
-        double expectedRadius=0;
+        double bestRadius = -1;
 
         ArrayList<Block> blocks = pixy.getCCC().getBlocks();
 
         for(int i=0; i<blocks.size(); i++){
             Block block = blocks.get(i);
             double radius = (block.getHeight()+block.getWidth())/2;
-            double diffrence = Math.abs(expectedRadius - radius);
 
-            if(diffrence < bestDiff){
+            if(radius > bestRadius){
                 bestIndex = i;
-                bestDiff = diffrence;
+                bestRadius = radius;
             }
         }
 
