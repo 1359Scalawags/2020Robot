@@ -16,7 +16,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 //import edu.wpi.first.wpilibj.PIDOutput;
 //import edu.wpi.first.wpilibj.PIDSource;
-import edu.wpi.first.wpilibj.AnalogInput;
+//import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.util.Color;
@@ -26,9 +26,9 @@ import edu.wpi.first.wpilibj.Spark;
 //import edu.wpi.first.wpilibj.SpeedController;
 // why is this not working?
 import com.revrobotics.ColorSensorV3;
-import com.revrobotics.ColorSensorV3.RawColor;
-import com.revrobotics.ColorMatch;
-import com.revrobotics.ColorMatchResult;
+//import com.revrobotics.ColorSensorV3.RawColor;
+//import com.revrobotics.ColorMatch;
+//import com.revrobotics.ColorMatchResult;
 
 
 /**
@@ -52,8 +52,8 @@ public class ControlPanelSystem extends SubsystemBase {
     private Encoder rotateEncoder;
     //private double testRotations;
     private final ColorSensorV3 colorSensor = new ColorSensorV3(Constants.COLORSENSOR_I2C);
-    private Color prevColor;
-    private String prevColorName;
+    // private Color prevColor;
+    // private String prevColorName;
     private Color currentColor;
     private String currentColorName;
     private int consistentCount;
@@ -124,7 +124,7 @@ public class ControlPanelSystem extends SubsystemBase {
     public String getScannerColorName(){
         th = SmartDashboard.getNumber("Color thresh hold", th);
 
-        prevColorName = currentColorName;
+        //prevColorName = currentColorName;
         getColor();
 
         double r = currentColor.red;
@@ -147,7 +147,7 @@ public class ControlPanelSystem extends SubsystemBase {
     public String getWheelColorName(){
         th = SmartDashboard.getNumber("Color thresh hold", th);
 
-        prevColorName = currentColorName;
+        //prevColorName = currentColorName;
         getColor();
 
         double r = currentColor.red;
@@ -168,7 +168,7 @@ public class ControlPanelSystem extends SubsystemBase {
     }
 
     public Color getColor() {
-        prevColor = currentColor;
+        //prevColor = currentColor;
         currentColor = colorSensor.getColor();
 
         return currentColor;
