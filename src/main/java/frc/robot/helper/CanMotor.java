@@ -8,7 +8,7 @@ import com.revrobotics.CANPIDController;
 
 import edu.wpi.first.wpilibj.SpeedController;
 import frc.robot.Constants;
-import frc.robot.utilities.PID_Values;
+import frc.robot.helper.PID_Values;
 
 public class CanMotor{
     private CANEncoder encoder;
