@@ -10,45 +10,39 @@
 
 
 package frc.robot.commands;
-
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
-//import frc.robot.Robot;
-//import frc.robot.subsystems.DriveSystem;
 
 /**
  *
  */
-public class ManualDrive extends CommandBase {
+public class AutoClimb extends CommandBase {
 
-    public ManualDrive() {
-         addRequirements(Robot.driveSystem);
+    private boolean climberLocked;
+    /**
+     * 
+     * @param up Move in the up direction.
+     */
+
+    public AutoClimb() {
+
     }
 
     // Called just before this Command runs the first time
     @Override
     public void initialize() {
-        Robot.driveSystem.ResetGyro();
     }
 
     // Called repeatedly when this Command is scheduled to run
     @Override
     public void execute() {
-
-        // Robot.oi.getDriverJoystick();
-        Robot.driveSystem.tankDrive(Robot.oi.DriverLStickY(), Robot.oi.DriverRStickY());
-
-        
-        // need help with this
-		// Robot.driveSystem.tankDrive(Robot.oi.getLStickY()*(-.0064*Robot.climbSystem.getclimbSystemHeight()+1.064), Robot.oi.getRStickY()*(-.0064*Robot.climbSystem.getClimbSystemHeight()+1.064));
-		
-        
-        //SmartDashboard.putNumber("Elevator Height",Robot.climbSystem.getclimbSystemHeight());
-		// SmartDashboard.putNumber("Gyro", Robot.canDriveSystem.getAngle());
-		// SmartDashboard.putNumber("Encoder Distance", Robot.canDriveSystem.getDistanceLeft());
-        // SmartDashboard.putNumber("Encoder Distance", Robot.canDriveSystem.getDistanceRight());        
-        
+        double speed = Robot.oi.getClimbSpeed();
+            if (!climberLocked) {
+                Robot.climbSystem.move(speed);
+            }
+            else {    
+                Robot.climbSystem.stop();
+            }
 
     }
 
@@ -61,6 +55,7 @@ public class ManualDrive extends CommandBase {
     // Called once after isFinished returns true
     @Override
     public void end(boolean interrupted) {
+        Robot.climbSystem.stop();
     }
 
 

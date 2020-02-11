@@ -8,9 +8,7 @@
 // update. Deleting the comments indicating the section will prevent
 // it from being updated in the future.
 
-
 package frc.robot.subsystems;
-
 
 //import frc.robot.commands.*;
 //import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -20,10 +18,17 @@ import frc.robot.Constants;
 //import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.CounterBase.EncodingType;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj.Encoder;
 //import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.Spark;
 //import edu.wpi.first.wpilibj.SpeedController;
+// why is this not working?
+import com.revrobotics.ColorSensorV3;
+import com.revrobotics.ColorSensorV3.RawColor;
+import com.revrobotics.ColorMatch;
+import com.revrobotics.ColorMatchResult;
 
 
 /**
@@ -31,14 +36,41 @@ import edu.wpi.first.wpilibj.Spark;
  */
 public class ControlPanelSystem extends SubsystemBase {
 
+    // private final ColorMatch matcher = new ColorMatch();
+
+    // public static Color BLUE = ColorMatch.makeColor(0.13489306, 0.43538037, 0.42972437);
+
+    // public static Color RED = ColorMatch.makeColor(0.48934227, 0.36309862, 0.14753516);
+
+    // public static Color GREEN = ColorMatch.makeColor(0.17530347, 0.5667771, 0.25793532);
+
+    // public static Color YELLOW = ColorMatch.makeColor(0.31467456, 0.5550923, 0.13020141);
+    // public static Color BETWEEN = ColorMatch.makeColor(0.2308, 0.5239, 0.2452);
+
+    // TODO: Is this a NEO or brushed motor? Probably brushed.
     private Spark rotateMotor;
     private Encoder rotateEncoder;
-    private AnalogInput colorSensor;
-
     //private double testRotations;
-
+    private final ColorSensorV3 colorSensor = new ColorSensorV3(Constants.COLORSENSOR_I2C);
+    private Color prevColor;
+    private String prevColorName;
+    private Color currentColor;
+    private String currentColorName;
+    private int consistentCount;
+    private int inconsistentCount;
+    private double th =0.1;
 
     public ControlPanelSystem() {
+        // matcher.addColorMatch(BLUE);
+
+        // matcher.addColorMatch(RED);
+
+        // matcher.addColorMatch(GREEN);
+
+        // matcher.addColorMatch(YELLOW);
+
+        // matcher.addColorMatch(BETWEEN);
+
 
         rotateMotor = new Spark(Constants.RotatoPotatoID);
         addChild("RotateMotor",rotateMotor);
@@ -48,33 +80,106 @@ public class ControlPanelSystem extends SubsystemBase {
         addChild("RotateEncoder",rotateEncoder);
         rotateEncoder.setDistancePerPulse(1.0);
         //rotateEncoder.setPIDSourceType(PIDSourceType.kRate);
-                
-        colorSensor = new AnalogInput(Constants.ColorSensorID);
-        addChild("ColorSensor",colorSensor);
+    }
+    // public String getSensorColor() {
+    //     // prevColor = currentColor;
+    //     // currentColor = colorSensor.getColor();
+    //     // return currentColor;
+    //     Color detected = colorSensor.getColor();
+    //     ColorMatchResult matched = matcher.matchClosestColor(detected);
 
+    //     if(matched.color == BLUE) {
+    //         return "Blue";
+    //     } else if(matched.color == RED) {
+    //         return "Red";
+    //     } else if(matched.color == GREEN) {
+    //         return "Green";
+    //     } else if (matched.color == YELLOW) {
+    //         return "Yellow";
+    //     }
+
+    //     return "Color Not Found";
+    // }
+    // public String getWheelSensorColor() {
+    //     // prevColor = currentColor;
+    //     // currentColor = colorSensor.getColor();
+    //     // return currentColor;
+    //     Color detected = colorSensor.getColor();
+    //     ColorMatchResult matched = matcher.matchClosestColor(detected);
+
+    //     if(matched.color == BLUE) {
+    //         return "Red";
+    //     } else if(matched.color == RED) {
+    //         return "Blue";
+    //     } else if(matched.color == GREEN) {
+    //         return "Yellow";
+    //     } else if (matched.color == YELLOW) {
+    //         return "Green";
+    //     }
+
+    //     return "Color Not Found";
+    // }
+
+
+    public String getScannerColorName(){
+        th = SmartDashboard.getNumber("Color thresh hold", th);
+
+        prevColorName = currentColorName;
+        getColor();
+
+        double r = currentColor.red;
+        double g = currentColor.green;
+        double b = currentColor.blue;
+
+        if(Math.abs(0.13489306 - r) <=th && Math.abs(0.43538037- g) <=th && Math.abs(0.42972437 -b) <=th)
+            currentColorName = "Blue";
+        else if(Math.abs(0.17530347 - r) <=th && Math.abs(0.5667771 - g) <=th && Math.abs(0.25793532 -b) <=th)
+            currentColorName = "Green";
+        else if(Math.abs(0.48934227 - r) <=th && Math.abs(0.36309862 - g) <=th && Math.abs(0.14753516 -b) <=th)
+            currentColorName = "Red";
+        else if(Math.abs(0.31467456 - r) <=th && Math.abs(0.5550923 - g) <=th && Math.abs(0.13020141 -b) <=th)
+            currentColorName = "Yellow";
+        else
+            currentColorName = "not found";
+        return currentColorName;
+    }
+    
+    public String getWheelColorName(){
+        th = SmartDashboard.getNumber("Color thresh hold", th);
+
+        prevColorName = currentColorName;
+        getColor();
+
+        double r = currentColor.red;
+        double g = currentColor.green;
+        double b = currentColor.blue;
+
+        if(Math.abs(0.13489306 - r) <=th && Math.abs(0.43538037- g) <=th && Math.abs(0.42972437 -b) <=th)
+            currentColorName = "Red";
+        else if(Math.abs(0.17530347 - r) <=th && Math.abs(0.5667771 - g) <=th && Math.abs(0.25793532 -b) <=th)
+            currentColorName = "Yellow";
+        else if(Math.abs(0.48934227 - r) <=th && Math.abs(0.36309862 - g) <=th && Math.abs(0.14753516 -b) <=th)
+            currentColorName = "Blue";
+        else if(Math.abs(0.31467456 - r) <=th && Math.abs(0.5550923 - g) <=th && Math.abs(0.13020141 -b) <=th)
+            currentColorName = "Green";
+        else
+            currentColorName = "not found";
+        return currentColorName;
+    }
+
+    public Color getColor() {
+        prevColor = currentColor;
+        currentColor = colorSensor.getColor();
+
+        return currentColor;
     }
 
     @Override
     public void periodic() {
-        // Put code here to be run every loop
-
-    }
-
-    public void testSpin(double speed) {
-        rotateMotor.set(speed);
-    }
-
-    public void stopTest() {
-        rotateMotor.set(0);
-    }
-
-    public void resetTestRotations() {
-        rotateEncoder.reset();
-    }
-
-    public double getTestRotations() {
-        return rotateEncoder.get();
+        //Put code here to be run every loop
+        
     }
 
 }
+
 
