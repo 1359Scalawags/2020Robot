@@ -1,4 +1,4 @@
-package frc.robot.utilities;
+package frc.robot.helper;
 
 import com.revrobotics.CANEncoder;
 import com.revrobotics.CANSparkMax;
