@@ -9,7 +9,7 @@
 // it from being updated in the future.
 
 
-package frc.robot.subsystems;
+package frc.robot.deprecated;
 
 
 //import frc.robot.commands.*;

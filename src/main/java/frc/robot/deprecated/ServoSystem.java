@@ -1,4 +1,4 @@
-package frc.robot.subsystems;
+package frc.robot.deprecated;
 
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
