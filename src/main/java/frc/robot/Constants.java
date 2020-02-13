@@ -91,6 +91,7 @@ public final class Constants {
 
     //Motors                                        Motor #s 8
     public static int ClimbMotorID = 8;
+    public static int ClimbServoID = 9;
 
     //Sensors                                       Sensor #s 3, 4
     public static int MaxHeightLimitID = 3;
