@@ -33,7 +33,7 @@ public class PixySystem extends SubsystemBase {
     }
 
     public PixySystem(Link link) {
-        pixy = Robot.pixy.getPixy();
+        pixy = Pixy2.createInstance(link);
         pixy.init();
     }
 
@@ -59,7 +59,6 @@ public class PixySystem extends SubsystemBase {
                 bestRadius = radius;
             }
         }
-
         return blocks.get(bestIndex);
     }
 
