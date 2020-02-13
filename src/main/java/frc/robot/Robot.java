@@ -70,7 +70,6 @@ public class Robot extends TimedRobot {
             controlPanelSystem = new ControlPanelSystem();
             ballSystem = new BallSystem();
             kNetwork = new NetworkSystem();
-            servoSystem = new ServoSystem();
             // pixy = new PixySystem(Constants.PixyLink);
 
 
@@ -79,9 +78,6 @@ public class Robot extends TimedRobot {
 
             CommandScheduler.getInstance().registerSubsystem(kNetwork);
             CommandScheduler.getInstance().setDefaultCommand(kNetwork, new TestNetwork());
-
-            CommandScheduler.getInstance().registerSubsystem(servoSystem);
-            CommandScheduler.getInstance().setDefaultCommand(servoSystem, new TestServo());
 
             // CommandScheduler.getInstance().registerSubsystem(pixy);
             // CommandScheduler.getInstance().setDefaultCommand(pixy, new PixyCommand());
