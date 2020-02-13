@@ -42,17 +42,11 @@ public class CANDriveSystem extends SubsystemBase {
      gyroPids = new PID_Values(Constants.gyrokP, Constants.gyrokI, Constants.gyrokD, Constants.gyrokIz, Constants.gyrokFf);
      driveGyro = new ADXRS450_Gyro();
      gyroControl = new PIDController(gyroPids.KP(), gyroPids.KI(), gyroPids.KD());
-    }
+  }
 
-
-    @Override
-    public void periodic() {
-    }
-
-    public void drive() {
-  
-    }
-   
+  @Override
+  public void periodic() {
+  }
 
   public void reverseDirection() {
     if (reverse) {
@@ -132,9 +126,9 @@ public double getDistanceRight() {
     tankDrive(0,0);
   }
 
-  public double convertToEncoderRate(double motorSpeed) {
-    return Constants.fullDriveSpeed * motorSpeed; // feet per second
-  }
+  // public double convertToEncoderRate(double motorSpeed) {
+  //   return Constants.fullDriveSpeed * motorSpeed; // feet per second
+  // }
 
   public void arcadeDrive(double moveSpeed, double turnSpeed) {
     diffDrive.arcadeDrive(moveSpeed, turnSpeed);
