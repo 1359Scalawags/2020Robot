@@ -47,14 +47,13 @@ public final class Constants {
     public static int START = 8;
     public static int LEFTJoyBtn = 9;
     public static int RIGHTJoyBtn = 10;
-
-    //TODO: FIX IF NEEDED
     
+    /*
     public static int DpadUP = 0;
     public static int DpadRIGHT = 90;
     public static int DpadDOWN = 180;
     public static int DpadLEFT = 270;
-    
+    */
     
     /*----------BallSystem----------*/
 
