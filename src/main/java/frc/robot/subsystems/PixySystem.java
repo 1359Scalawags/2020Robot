@@ -29,19 +29,12 @@ public class PixySystem extends SubsystemBase {
     private final Pixy2 pixy;
 
     public PixySystem() {      
-        this(new SPILink());
+        this(new I2CLink());
     }
 
     public PixySystem(Link link) {
         pixy = Pixy2.createInstance(link);
         pixy.init();
-    }
-
-    public void GotoClosest(){
-        Block block = getClosest();
-        double angle = block.getAngle();
-        
-        Robot.driveSystem.arcadeDrive(0.0, Constants.maxRightTurnRate, angle);
     }
 
     public Block getClosest(){
