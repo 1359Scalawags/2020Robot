@@ -146,7 +146,7 @@ public class OI {
   
   public double DriverLStickY() {
     if (Math.abs(Robot.oi.driverContoller.getY(Hand.kLeft)) > Constants.controllerDeadZone) {
-      return -(Robot.oi.driverContoller.getY(Hand.kLeft) * (.3 * Robot.oi.getMainTriggers() + .7))/.7;
+      return -(Robot.oi.driverContoller.getY(Hand.kLeft) * (.3 * Robot.oi.getMainTriggers() + .7));
     } else {
       return 0;
     }
@@ -154,7 +154,7 @@ public class OI {
 
   public double DriverRStickY() {
     if (Math.abs(Robot.oi.driverContoller.getY(Hand.kRight)) > Constants.controllerDeadZone) {
-      return -(Robot.oi.driverContoller.getY(Hand.kRight) * (.3 * Robot.oi.getMainTriggers() + .7))/.7;
+      return -(Robot.oi.driverContoller.getY(Hand.kRight) * (.3 * Robot.oi.getMainTriggers() + .7));
     } else {
       return 0;
     }
@@ -162,7 +162,7 @@ public class OI {
 
   public double AssistRStickY() {
     if (Math.abs(Robot.oi.assistController.getY(Hand.kRight)) > Constants.controllerDeadZone) {
-      return -(Robot.oi.assistController.getY(Hand.kRight) * (.3 * Robot.oi.getMainTriggers() + .7))/.7;
+      return -(Robot.oi.assistController.getY(Hand.kRight) * (.3 * Robot.oi.getMainTriggers() + .7));
     } else {
       return 0;
     }
@@ -170,7 +170,7 @@ public class OI {
 
   public double AssistLStickY() {
     if (Math.abs(Robot.oi.assistController.getY(Hand.kLeft)) > Constants.controllerDeadZone) {
-      return -(Robot.oi.assistController.getY(Hand.kLeft) * (.3 * Robot.oi.getMainTriggers() + .7))/.7;
+      return -(Robot.oi.assistController.getY(Hand.kLeft) * (.3 * Robot.oi.getMainTriggers() + .7));
     } else {
       return 0;
     }
