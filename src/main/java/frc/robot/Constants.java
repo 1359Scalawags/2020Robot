@@ -36,9 +36,7 @@ public final class Constants {
      * Returns to 0 going UP again
      * @return
      */
-
-        //TODO: ADD THIS IN
-    /*
+    
     public static int Abtn = 1;
     public static int Bbtn = 2;
     public static int Xbtn = 3;
@@ -49,6 +47,8 @@ public final class Constants {
     public static int START = 8;
     public static int LEFTJoyBtn = 9;
     public static int RIGHTJoyBtn = 10;
+    
+    /*
     public static int DpadUP = 0;
     public static int DpadRIGHT = 90;
     public static int DpadDOWN = 180;
@@ -71,6 +71,8 @@ public final class Constants {
 	public static int LoadShotMotorID = 14;
 	public static int LoadChamMotorID = 15;
     public static int ChamRotMotorID = 10;
+    public static int ShootRotatorAID = 16;
+    public static int ShootRotatorBID = 17;
 
     //Motor Speeds
     public static double BallLoadUpSpeed = 0.001;

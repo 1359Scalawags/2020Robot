@@ -16,40 +16,29 @@ import frc.robot.Robot;
 /**
  *
  */
-public class AutoClimb extends CommandBase {
+public class UnattendedClimb extends CommandBase {
 
-    private boolean climberLocked;
-    /**
-     * 
-     * @param up Move in the up direction.
-     */
-
-    public AutoClimb() {
+    public UnattendedClimb() {
 
     }
 
     // Called just before this Command runs the first time
     @Override
     public void initialize() {
+        //Climber should already be unlocked
+        //Robot.climbSystem.unlockClimber();
     }
 
     // Called repeatedly when this Command is scheduled to run
     @Override
     public void execute() {
-        double speed = Robot.oi.getClimbSpeed();
-            if (!climberLocked) {
-                Robot.climbSystem.move(speed);
-            }
-            else {    
-                Robot.climbSystem.stop();
-            }
-
+        Robot.climbSystem.move(-0.8);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     @Override
     public boolean isFinished() {
-        return false;
+        return Robot.climbSystem.isAtTop();
     }
 
     // Called once after isFinished returns true

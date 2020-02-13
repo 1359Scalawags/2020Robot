@@ -15,6 +15,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj2.command.button.*;
+import frc.robot.Constants;
+import frc.robot.helper.AssistDPadButton;;
 //import frc.robot.subsystems.*;
 
 
@@ -57,8 +59,8 @@ public class OI {
     public JoystickButton speedoButton;
     public JoystickButton shootButton;
     public JoystickButton lineupButton;
-    public JoystickButton intakeBallButton;
-    //public JoystickButton uptakeBallButton;  //TODO: ADD THIS IN
+    public AssistDPadButton intakeBallButton;
+    public AssistDPadButton uptakeBallButton;
     public JoystickButton controlPanelSetColorButton;
     public JoystickButton controlPanelSpinButton;
     public JoystickButton climbUpButton;
@@ -76,21 +78,24 @@ public class OI {
 
         assistController = new XboxController(RobotMap.AssistController);
 
+        //DPad Buttons *DPAD IS POV
+        intakeBallButton = new AssistDPadButton(assistController, AssistDPadButton.Direction.DOWN);
+        intakeBallButton.whenPressed(new IntakeRollerSpin());
+        uptakeBallButton = new AssistDPadButton(assistController, AssistDPadButton.Direction.UP);
+        uptakeBallButton.whenPressed(new IntakeRollerSpin());
+
+        //Joystick Buttons *DPAD IS NOT A BUTTON
         climbDownButton = new JoystickButton(assistController, 7);
         climbDownButton.whileHeld(new ManualClimb());
         climbUpButton = new JoystickButton(assistController, 6);
         climbUpButton.whileHeld(new ManualClimb());
-        controlPanelSpinButton = new JoystickButton(assistController, 5);
+        controlPanelSpinButton = new JoystickButton(assistController, Constants.Xbtn);
         controlPanelSpinButton.whenPressed(new ControlPanelSpin());
-        controlPanelSetColorButton = new JoystickButton(assistController, 4);
+        controlPanelSetColorButton = new JoystickButton(assistController, Constants.Ybtn);
         controlPanelSetColorButton.whenPressed(new ControlPanelSetColor());
-        intakeBallButton = new JoystickButton(assistController, 3);
-        intakeBallButton.whenPressed(new IntakeRollerSpin());
-        //uptakeBallButton = new JoystickButton(assistController, 8);  //TODO: ADD THIS IN
-        //uptakeBallButton.whenPressed(new IntakeRollerSpin());  //TODO: ADD THIS IN
-        lineupButton = new JoystickButton(assistController, 2);
+        lineupButton = new JoystickButton(assistController, Constants.LB);
         lineupButton.whenPressed(new LineupToShoot());
-        shootButton = new JoystickButton(assistController, 1);
+        shootButton = new JoystickButton(assistController, Constants.RB);
         shootButton.whileHeld(new ShootBall());
         driverContoller = new XboxController(0);
         autoDriveForwardButton = new JoystickButton(driverContoller, 2);
@@ -142,50 +147,6 @@ public class OI {
         return assistController;
     }
 
-    
-  
-  public double DriverLStickY() {
-    if (Math.abs(Robot.oi.driverContoller.getY(Hand.kLeft)) > Constants.controllerDeadZone) {
-      return -(Robot.oi.driverContoller.getY(Hand.kLeft) * (.3 * Robot.oi.getMainTriggers() + .7))/.7;
-    } else {
-      return 0;
-    }
-  }
-
-  public double DriverRStickY() {
-    if (Math.abs(Robot.oi.driverContoller.getY(Hand.kRight)) > Constants.controllerDeadZone) {
-      return -(Robot.oi.driverContoller.getY(Hand.kRight) * (.3 * Robot.oi.getMainTriggers() + .7))/.7;
-    } else {
-      return 0;
-    }
-  }
-
-  public double AssistRStickY() {
-    if (Math.abs(Robot.oi.assistController.getY(Hand.kRight)) > Constants.controllerDeadZone) {
-      return -(Robot.oi.assistController.getY(Hand.kRight) * (.3 * Robot.oi.getMainTriggers() + .7))/.7;
-    } else {
-      return 0;
-    }
-  }
-
-  public double AssistLStickY() {
-    if (Math.abs(Robot.oi.assistController.getY(Hand.kLeft)) > Constants.controllerDeadZone) {
-      return -(Robot.oi.assistController.getY(Hand.kLeft) * (.3 * Robot.oi.getMainTriggers() + .7))/.7;
-    } else {
-      return 0;
-    }
-  }
-
-    public double getMainTriggers() {
-		return Math.max(driverContoller.getTriggerAxis(Hand.kLeft), driverContoller.getTriggerAxis(Hand.kRight));
-	}
-
-    
-    
-    public double getClimbSpeed() {
-        return assistController.getY(Hand.kLeft);
-    }
-
     /***
      * ----------Dpad POV----------
      * 0 is UP
@@ -199,8 +160,71 @@ public class OI {
      * Returns to 0 going UP again
      * @return
      */
+
     public int getAssistDPad() {
       return assistController.getPOV();
+    }
+
+    public boolean getAssistPovUp() {
+      int pov = assistController.getPOV();
+      return ( pov > 345 || pov < 15 );
+    }
+
+    public boolean getAssistPovRight() {
+      int pov = assistController.getPOV();
+      return ( pov > 75 || pov < 105 );
+    }
+
+    public boolean getAssistPovDown() {
+      int pov = assistController.getPOV();
+      return ( pov > 165 || pov < 195 );
+    }
+
+    public boolean getAssistPovLeft() {
+      int pov = assistController.getPOV();
+      return ( pov > 255 || pov < 285 );
+    }
+    
+  public double DriverLStickY() {
+    if (Math.abs(Robot.oi.driverContoller.getY(Hand.kLeft)) > Constants.controllerDeadZone) {
+      return -(Robot.oi.driverContoller.getY(Hand.kLeft) * (.3 * Robot.oi.getMainTriggers() + .7));
+    } else {
+      return 0;
+    }
+  }
+
+  public double DriverRStickY() {
+    if (Math.abs(Robot.oi.driverContoller.getY(Hand.kRight)) > Constants.controllerDeadZone) {
+      return -(Robot.oi.driverContoller.getY(Hand.kRight) * (.3 * Robot.oi.getMainTriggers() + .7));
+    } else {
+      return 0;
+    }
+  }
+
+  public double AssistRStickY() {
+    if (Math.abs(Robot.oi.assistController.getY(Hand.kRight)) > Constants.controllerDeadZone) {
+      return -(Robot.oi.assistController.getY(Hand.kRight) * (.3 * Robot.oi.getMainTriggers() + .7));
+    } else {
+      return 0;
+    }
+  }
+
+  public double AssistLStickY() {
+    if (Math.abs(Robot.oi.assistController.getY(Hand.kLeft)) > Constants.controllerDeadZone) {
+      return -(Robot.oi.assistController.getY(Hand.kLeft) * (.3 * Robot.oi.getMainTriggers() + .7));
+    } else {
+      return 0;
+    }
+  }
+
+    public double getMainTriggers() {
+		return Math.max(driverContoller.getTriggerAxis(Hand.kLeft), driverContoller.getTriggerAxis(Hand.kRight));
+	}
+
+    
+    
+    public double getClimbSpeed() {
+        return assistController.getY(Hand.kLeft);
     }
 
     // END AUTOGENERATED CODE, SOURCE=ROBOTBUILDER ID=FUNCTIONS

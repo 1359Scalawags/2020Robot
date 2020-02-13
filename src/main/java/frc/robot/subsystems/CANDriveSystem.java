@@ -102,6 +102,11 @@ public double getDistanceRight() {
 	  tankDrive(leftSpeed, rightSpeed);		
   }
 
+  /**
+   * Drive the robot using left/right joystick values
+   * @param leftSpeed -1 to 1
+   * @param rightSpeed -1 to 1
+   */
   public void tankDrive(double leftSpeed, double rightSpeed) {
     if(reverse) {
       diffDrive.tankDrive(-rightSpeed, -leftSpeed);

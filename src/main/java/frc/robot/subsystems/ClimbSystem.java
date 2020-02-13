@@ -58,11 +58,13 @@ import edu.wpi.first.wpilibj.AnalogPotentiometer;
     /**
      * Allows drivers to use, lock, and unlock the Climber.
      */
-
     public void unlockClimber() {
 		climberLocked = false;
 	}
-	
+    
+    /**
+     * @return The current lock state of the climber
+     */
 	public boolean getClimberLock() {
 		return climberLocked;
     }
@@ -83,6 +85,10 @@ import edu.wpi.first.wpilibj.AnalogPotentiometer;
         return pot.get() * Constants.PotToInches;
     }
     
+    /**
+     * 
+     * @param speed Positive numbers elevate...negative numbers climb.
+     */
     public void move(double speed) {
 
         if (climberLocked) {
