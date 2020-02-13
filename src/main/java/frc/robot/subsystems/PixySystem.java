@@ -33,7 +33,7 @@ public class PixySystem extends SubsystemBase {
     }
 
     public PixySystem(Link link) {
-        pixy = new Pixy2(link);
+        pixy = Pixy2.createInstance(link);
         pixy.init();
     }
 
