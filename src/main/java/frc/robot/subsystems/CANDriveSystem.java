@@ -80,16 +80,16 @@ public double getDistanceRight() {
 	  return (getDistanceRight() + getDistanceLeft()) / 2;
   }
 */    
-  public void driveForwardVision(double speed){
-    final double scale = .01;
-    double leftSpeed;
-  	double rightSpeed;
-  	double headingError = getAngle();
+  // public void driveForwardVision(double speed){
+  //   final double scale = .01;
+  //   double leftSpeed;
+  // 	double rightSpeed;
+  // 	double headingError = getAngle();
 		
-  	leftSpeed = Utilities.Clamp(Math.abs(speed) - headingError * scale, -Constants.maxMotorSpeed, Constants.maxMotorSpeed);
-  	rightSpeed = Utilities.Clamp(Math.abs(speed) + headingError * scale, -Constants.maxMotorSpeed, Constants.maxMotorSpeed);
-  	tankDrive(leftSpeed, rightSpeed);		
-  }
+  // 	leftSpeed = Utilities.Clamp(Math.abs(speed) - headingError * scale, -Constants.maxMotorSpeed, Constants.maxMotorSpeed);
+  // 	rightSpeed = Utilities.Clamp(Math.abs(speed) + headingError * scale, -Constants.maxMotorSpeed, Constants.maxMotorSpeed);
+  // 	tankDrive(leftSpeed, rightSpeed);		
+  // }
     
   public void driveForward(double speed, double targetHeading) {
     final double scale = .01;
