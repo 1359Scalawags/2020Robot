@@ -169,7 +169,7 @@ public final class Constants {
     public static double gyrokIz =0;
     public static double gyrokFf =0;
 
-
+    public static double driveSystemScale =.01;   // Change/Move if needed
     
     public final static I2C.Port COLORSENSOR_I2C = I2C.Port.kOnboard;
     public final static Link PixyLink = new I2CLink();

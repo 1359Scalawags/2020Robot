@@ -117,13 +117,13 @@ public double getDistanceRight() {
     }
   }
   public void driveBackward(double speed, double targetHeading) {
-    final double scale = .01;
+    //final double scale = .01;
     double leftSpeed;
     double rightSpeed;
     double headingError = getAngle() - targetHeading;
             
-    leftSpeed =Utilities.Clamp(-(speed) - headingError * scale, -Constants.maxMotorSpeed, Constants.maxMotorSpeed);
-    rightSpeed = Utilities.Clamp(-(speed) + headingError * scale, -Constants.maxMotorSpeed, Constants.maxMotorSpeed);
+    leftSpeed =Utilities.Clamp(-(speed) - headingError * Constants.driveSystemScale, -Constants.maxMotorSpeed, Constants.maxMotorSpeed);
+    rightSpeed = Utilities.Clamp(-(speed) + headingError * Constants.driveSystemScale, -Constants.maxMotorSpeed, Constants.maxMotorSpeed);
     tankDrive(leftSpeed, rightSpeed);		
   }
 
