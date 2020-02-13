@@ -42,17 +42,11 @@ public class CANDriveSystem extends SubsystemBase {
      gyroPids = new PID_Values(Constants.gyrokP, Constants.gyrokI, Constants.gyrokD, Constants.gyrokIz, Constants.gyrokFf);
      driveGyro = new ADXRS450_Gyro();
      gyroControl = new PIDController(gyroPids.KP(), gyroPids.KI(), gyroPids.KD());
-    }
+  }
 
-
-    @Override
-    public void periodic() {
-    }
-
-    public void drive() {
-  
-    }
-   
+  @Override
+  public void periodic() {
+  }
 
   public void reverseDirection() {
     if (reverse) {
@@ -86,16 +80,16 @@ public double getDistanceRight() {
 	  return (getDistanceRight() + getDistanceLeft()) / 2;
   }
 */    
-  public void driveForwardVision(double speed){
-    final double scale = .01;
-    double leftSpeed;
-  	double rightSpeed;
-  	double headingError = getAngle();
+  // public void driveForwardVision(double speed){
+  //   final double scale = .01;
+  //   double leftSpeed;
+  // 	double rightSpeed;
+  // 	double headingError = getAngle();
 		
-  	leftSpeed = Utilities.Clamp(Math.abs(speed) - headingError * scale, -Constants.maxMotorSpeed, Constants.maxMotorSpeed);
-  	rightSpeed = Utilities.Clamp(Math.abs(speed) + headingError * scale, -Constants.maxMotorSpeed, Constants.maxMotorSpeed);
-  	tankDrive(leftSpeed, rightSpeed);		
-  }
+  // 	leftSpeed = Utilities.Clamp(Math.abs(speed) - headingError * scale, -Constants.maxMotorSpeed, Constants.maxMotorSpeed);
+  // 	rightSpeed = Utilities.Clamp(Math.abs(speed) + headingError * scale, -Constants.maxMotorSpeed, Constants.maxMotorSpeed);
+  // 	tankDrive(leftSpeed, rightSpeed);		
+  // }
     
   public void driveForward(double speed, double targetHeading) {
     final double scale = .01;
@@ -132,9 +126,9 @@ public double getDistanceRight() {
     tankDrive(0,0);
   }
 
-  public double convertToEncoderRate(double motorSpeed) {
-    return Constants.fullDriveSpeed * motorSpeed; // feet per second
-  }
+  // public double convertToEncoderRate(double motorSpeed) {
+  //   return Constants.fullDriveSpeed * motorSpeed; // feet per second
+  // }
 
   public void arcadeDrive(double moveSpeed, double turnSpeed) {
     diffDrive.arcadeDrive(moveSpeed, turnSpeed);
