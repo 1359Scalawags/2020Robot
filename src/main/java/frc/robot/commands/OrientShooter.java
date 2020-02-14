@@ -43,10 +43,10 @@ class OrientShooter extends CommandBase{
      */
     public void RotateToPosition(double speed, double position){
 
-        if(Robot.shootRotatorA.getPosition() == position)
-            shootRotatorA.set(speed/Constants.maxShooterTurnRate);
-        if(shootRotatorB.getPosition() == position)
-            shootRotatorB.set(speed/Constants.maxShooterTurnRate);
+        // if(Robot.shootRotatorA.getPosition() == position)
+        //     shootRotatorA.set(speed/Constants.maxShooterTurnRate);
+        // if(shootRotatorB.getPosition() == position)
+        //     shootRotatorB.set(speed/Constants.maxShooterTurnRate);
     }
 
     // Make this return true when this Command no longer needs to run execute()
