@@ -133,8 +133,9 @@ public class BallSystem extends SubsystemBase {
         //addChild("BallLoaderInB",ballLoaderInB);
         ballLoaderInB.setInverted(false);
 
+        
         //Ball Uptake
-        ballLoadUpMotors = new SpeedControllerGroup(ballLoaderUpA, ballLoaderUpA);
+        ballLoadUpMotors = new SpeedControllerGroup(ballLoaderUpA, ballLoaderUpA); //TODO shouldn't these be diffrent?
         
         ballLoaderUpA = new Talon(Constants.LoadBallUpMotorAID);
         //addChild("BallLoaderUpA",ballLoaderUpA);
