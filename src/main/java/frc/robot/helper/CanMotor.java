@@ -37,10 +37,15 @@ public class CanMotor{
         encoder = motor.getEncoder();
     }
 
-    public void setRPM(double speed_) {
-        if(speed != speed_)
+    /**
+     * Sets a velocity of the motor
+     * @param speed_ Motor speed between -1 and 1
+     */
+    public void set(double speed_) {
+        if(speed != speed_) {
             speed = speed_;
-        updateRPM();
+            updateRPM();
+        }
     }
 
     public void updateRPM(){
