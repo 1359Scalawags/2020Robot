@@ -2,6 +2,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
+import frc.robot.Constants;
 
 class OrientShooter extends CommandBase{
 
@@ -16,6 +17,12 @@ class OrientShooter extends CommandBase{
     // Called repeatedly when this Command is scheduled to run
     @Override
     public void execute() {
+        double angle = Robot.kNetwork.getAngle();
+        double distance = Robot.kNetwork.getDist();
+        double motorState = distance/ Math.abs(distance);
+
+        Robot.driveSystem.arcadeDrive(Constants.driveStraightSpeed, Constants.maxTurnRate, angle);
+        Robot.driveSystem.arcadeDrive(Constants.driveStraightSpeed, Constants.maxTurnRate, Robot.driveSystem.getAngle());
         
     }
 
