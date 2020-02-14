@@ -18,10 +18,7 @@ class OrientShooter extends CommandBase{
     // Called repeatedly when this Command is scheduled to run
     @Override
     public void execute() {
-        double angle = Robot.kNetwork.getAngle();
-        double position = Math.abs(angle/360);
-        
-        RotateToPosition(Constants.maxShooterTurnRate, position);
+        RotateShooterPosition(Constants.maxShooterTurnRate, Robot.kNetwork.getAngle());
 
         double distance = Robot.kNetwork.getDist();
         double error = Constants.expectedDist - distance;//0, 100
@@ -39,14 +36,13 @@ class OrientShooter extends CommandBase{
     /**
      * 
      * @param speed speed of motors -1. 1
-     * @param position set expected position 0, 1
+     * @param expectedposition set expected position 0, 1
      */
-    public void RotateToPosition(double speed, double position){
-
-        // if(Robot.shootRotatorA.getPosition() == position)
-        //     shootRotatorA.set(speed/Constants.maxShooterTurnRate);
-        // if(shootRotatorB.getPosition() == position)
-        //     shootRotatorB.set(speed/Constants.maxShooterTurnRate);
+    public void RotateShooterPosition(double speed, double angle){
+        double nangle = angle/360;
+        
+        Robot.ballSystem.rotateShooter(speed*nangle);
+        
     }
 
     // Make this return true when this Command no longer needs to run execute()

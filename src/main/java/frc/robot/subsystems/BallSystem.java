@@ -114,11 +114,10 @@ public class BallSystem extends SubsystemBase {
         /*----------Shooter Management----------*/
 
         shootRotatorA = new Spark(Constants.ShootRotatorAID);
-        //addChild("ShootRotatorA",shootRotatorA);
         shootRotatorA.setInverted(false);
-                
+        
+        //TODO Does this need to be inverted?
         shootRotatorB = new Spark(Constants.ShootRotatorBID);
-        //addChild("ShootRotatorB",shootRotatorB);
         shootRotatorB.setInverted(true);
             
         /*----------Track Management----------*/ 
@@ -252,15 +251,19 @@ public class BallSystem extends SubsystemBase {
     */
 
     /**
-     * 
-     * @param top Top roller -1, 1
-     * @param bottom Bottom -1, 1
+     * @param top Top shooter roller -1, 1
+     * @param bottom Bottom shooter roller -1, 1
      */
 
     public void setShooterSpeed(double top, double bottom) {
         ballMotorA.setSpeed(top);
         ballMotorB.setSpeed(bottom);
     }
+
+   /**
+     * @param top Top laoder roller -1, 1
+     * @param bottom Bottom loader roller -1, 1
+     */
 
     public void setBallLoaderSpeed(double aMot, double bMot, double cMot, double dMot, double eMot) {
         ballLoaderUpA.set(aMot);
@@ -269,5 +272,19 @@ public class BallSystem extends SubsystemBase {
         ballLoaderInB.set(dMot);
         ballLoaderCham.set(eMot);
     }
+
+	public double getShooterPosition() {
+		return shootRotatorA.getPosition();
+	}
+
+	public void rotateShooter(double speed) {
+        if(speed > Constants.maxShooterTurnRate)
+            speed=Constants.maxShooterTurnRate;
+        else if(speed < -Constants.maxShooterTurnRate)
+            speed=-Constants.maxShooterTurnRate;
+
+        //TODO check if between limit switchs
+        shootRotatorA.set(speed);
+	}
 
 }
