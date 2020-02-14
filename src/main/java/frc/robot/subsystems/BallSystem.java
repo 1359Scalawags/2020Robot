@@ -133,9 +133,12 @@ public class BallSystem extends SubsystemBase {
         //addChild("BallLoaderInB",ballLoaderInB);
         ballLoaderInB.setInverted(false);
 
-        
+
+
+        //TODO Many problems that I see below
+
         //Ball Uptake
-        ballLoadUpMotors = new SpeedControllerGroup(ballLoaderUpA, ballLoaderUpA); //TODO shouldn't these be diffrent?
+        ballLoadUpMotors = new SpeedControllerGroup(ballLoaderUpA, ballLoaderUpA); 
         
         ballLoaderUpA = new Talon(Constants.LoadBallUpMotorAID);
         //addChild("BallLoaderUpA",ballLoaderUpA);
@@ -170,8 +173,12 @@ public class BallSystem extends SubsystemBase {
         //enable() - Enables the PID controller.
     }
 
-    void getRotateMotors(){
+    public Spark[] getRotateMotors(){
+        Spark[] Motors = new Spark[2];
+        Motors[0] = shootRotatorA;
+        Motors[1] = shootRotatorB;
         
+        return Motors;
     }
 
     /*
