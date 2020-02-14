@@ -16,7 +16,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj2.command.button.*;
 import frc.robot.Constants;
-import frc.robot.helper.AssistDPadButton;;
+import frc.robot.helper.DPadButton;;
 //import frc.robot.subsystems.*;
 
 
@@ -59,8 +59,8 @@ public class OI {
     public JoystickButton speedoButton;
     public JoystickButton shootButton;
     public JoystickButton lineupButton;
-    public AssistDPadButton intakeBallButton;
-    public AssistDPadButton uptakeBallButton;
+    public DPadButton intakeBallButton;
+    public DPadButton uptakeBallButton;
     public JoystickButton controlPanelSetColorButton;
     public JoystickButton controlPanelSpinButton;
     public JoystickButton climbUpButton;
@@ -79,9 +79,9 @@ public class OI {
         assistController = new XboxController(RobotMap.AssistController);
 
         //DPad Buttons *DPAD IS POV
-        intakeBallButton = new AssistDPadButton(assistController, AssistDPadButton.Direction.DOWN);
+        intakeBallButton = new DPadButton(assistController, DPadButton.Direction.DOWN);
         intakeBallButton.whenPressed(new IntakeRollerSpin());
-        uptakeBallButton = new AssistDPadButton(assistController, AssistDPadButton.Direction.UP);
+        uptakeBallButton = new DPadButton(assistController, DPadButton.Direction.UP);
         uptakeBallButton.whenPressed(new IntakeRollerSpin());
 
         //Joystick Buttons *DPAD IS NOT A BUTTON
