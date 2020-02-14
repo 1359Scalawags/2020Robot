@@ -152,6 +152,10 @@ public class BallSystem extends SubsystemBase {
         //enable() - Enables the PID controller.
     }
 
+    void getRotateMotors(){
+        
+    }
+
     /*
     @Override
     public double getMeasurement() {

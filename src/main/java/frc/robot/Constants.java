@@ -47,7 +47,14 @@ public final class Constants {
     public static int START = 8;
     public static int LEFTJoyBtn = 9;
     public static int RIGHTJoyBtn = 10;
-    
+
+    //TODO find our expectedDistance
+    public static double expectedDist =0;
+
+    //TODO find maxShooterTurnRate
+    public static double maxShooterTurnRate =0;
+
+
     /*
     public static int DpadUP = 0;
     public static int DpadRIGHT = 90;
@@ -170,6 +177,7 @@ public final class Constants {
     public static double gyrokFf =0;
 
     public static double driveSystemScale =.01;   // Change/Move if needed
+	public static double maxShooterTurnError =0;
     
     public final static I2C.Port COLORSENSOR_I2C = I2C.Port.kOnboard;
     public final static Link PixyLink = new I2CLink();
