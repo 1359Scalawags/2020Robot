@@ -130,7 +130,7 @@ public final class Constants {
     public static int RotateEncoderAID = 20;
     public static int RotateEncoderBID = 21;
 
-    /*----------DriveSystem----------*/
+    /*----------CANDriveSystem----------*/
 
     //Booleans, Integers, and Values
     public static final double maxMotorSpeed = 0.95;

@@ -6,8 +6,8 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj2.command.button.*;
 import frc.robot.Constants;
-import frc.robot.helper.AssistDPadButton;;
-
+import frc.robot.helper.DPadButton;;
+//import frc.robot.subsystems.*;
 
 
     /**
@@ -48,8 +48,8 @@ public class OI {
     public JoystickButton speedoButton;
     public JoystickButton shootButton;
     public JoystickButton lineupButton;
-    public AssistDPadButton intakeBallButton;
-    public AssistDPadButton uptakeBallButton;
+    public DPadButton intakeBallButton;
+    public DPadButton uptakeBallButton;
     public JoystickButton controlPanelSetColorButton;
     public JoystickButton controlPanelSpinButton;
     public JoystickButton climbUpButton;
@@ -66,27 +66,37 @@ public class OI {
         assistController = new XboxController(RobotMap.AssistController);
 
         //DPad Buttons *DPAD IS POV
-        intakeBallButton = new AssistDPadButton(assistController, AssistDPadButton.Direction.DOWN);
+        intakeBallButton = new DPadButton(assistController, DPadButton.Direction.DOWN);
         intakeBallButton.whenPressed(new IntakeRollerSpin());
-        uptakeBallButton = new AssistDPadButton(assistController, AssistDPadButton.Direction.UP);
+        uptakeBallButton = new DPadButton(assistController, DPadButton.Direction.UP);
         uptakeBallButton.whenPressed(new IntakeRollerSpin());
 
         //Joystick Buttons *DPAD IS NOT A BUTTON
         climbDownButton = new JoystickButton(assistController, 7);
         climbDownButton.whileHeld(new ManualClimb());
+
         climbUpButton = new JoystickButton(assistController, 6);
         climbUpButton.whileHeld(new ManualClimb());
+
         controlPanelSpinButton = new JoystickButton(assistController, Constants.Xbtn);
         controlPanelSpinButton.whenPressed(new ControlPanelSpin());
+
         controlPanelSetColorButton = new JoystickButton(assistController, Constants.Ybtn);
         controlPanelSetColorButton.whenPressed(new ControlPanelSetColor());
+
         lineupButton = new JoystickButton(assistController, Constants.LB);
         lineupButton.whenPressed(new LineupToShoot());
+
         shootButton = new JoystickButton(assistController, Constants.RB);
         shootButton.whileHeld(new ShootBall());
+
+        //DRIVER
+
         driverContoller = new XboxController(0);
+
         autoDriveForwardButton = new JoystickButton(driverContoller, 2);
         autoDriveForwardButton.whileHeld(new AutoDriveForward());
+
         autoDriveTurnRight90Button = new JoystickButton(driverContoller, 3);
         autoDriveTurnRight90Button.whenPressed(new AutoDriveTurn(90));
 
