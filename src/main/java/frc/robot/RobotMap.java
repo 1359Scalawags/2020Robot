@@ -1,5 +1,8 @@
 package frc.robot;
 
+/**
+ * Driver controller button mappings.
+ */
 public class RobotMap {
     /**
      * Controller's
