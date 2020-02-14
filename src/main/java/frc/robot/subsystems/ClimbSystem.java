@@ -99,7 +99,6 @@ import edu.wpi.first.wpilibj.AnalogPotentiometer;
 
     public void stop() {
         climbMotor.set(0);
-        climbMotor.setRPM()
     }
 
     public double getPosition() {
