@@ -86,7 +86,7 @@ public class BallSystem extends SubsystemBase {
     private Talon ballLoaderUpB;
     private Talon ballLoaderCham;
     private Spark shotLoader;
-    
+
     //Initialize your subsystem here
 
     public BallSystem() {
@@ -195,6 +195,8 @@ public class BallSystem extends SubsystemBase {
     }
     */
 
+    
+
     /**
      * Turns off all the loader motors
      */
@@ -205,10 +207,10 @@ public class BallSystem extends SubsystemBase {
     }
 
     /**
-     * Take in balls
+     * Takes in balls and takes them up
      * @param speed Speed between 0 and 1
      */
-    public void loaderIntake(double speed){
+    public void loaderIntakeAll(double speed){
         //Set speed of intake motor to be slower than chamber loader
         this.ballLoadInMotors.set(0.7 * speed);
         this.ballLoadUpMotors.set(0.8 * speed);
@@ -216,14 +218,14 @@ public class BallSystem extends SubsystemBase {
     }
 
     /**
-     * Take in balls
+     * Makes sure balls do not enter the bot, stops all else
      * @param speed Speed between -1 and 0
      */
-    public void loaderReverseIntake(double speed){
+    public void keepBallsOut(double speed){
         this.ballLoadInMotors.set(0.9 * speed);
         this.ballLoadUpMotors.set(0);
         this.chamLoader.set(0);
-    }
+    } 
 
     //TODO Write out code for enabling different funtions:
     //TODO loading, shooting, turning ON/OFF, or reversing
