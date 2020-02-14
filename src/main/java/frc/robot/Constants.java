@@ -164,7 +164,7 @@ public final class Constants {
     public static final double maxTurnRate = 0.75;
     public static final double maxRightTurnRate = 0.75;
     public static final double maxLeftTurnRate = 0.75;
-    public static final double mindistance = 0.5;
+    public static final double AutoTurnAngleThreshold = 0.5;
 
 
 	public static double MAXRPM = 5700;
@@ -182,4 +182,5 @@ public final class Constants {
     public final static I2C.Port COLORSENSOR_I2C = I2C.Port.kOnboard;
     public final static Link PixyLink = new I2CLink();
     // public final static Link PixyLink = new SPILink();
+	public static final double DriveTwordsBall = 0;
 }

@@ -26,9 +26,10 @@ public class AutoDriveTurn extends CommandBase {
 
 
     public AutoDriveTurn(double angle) { 
+        addRequirements(Robot.driveSystem);
     //right is positive, left is negative
         targetangle = angle;
-        currentangle = 0;
+        currentangle = Robot.driveSystem.getAngle();
     }
 
     // Called just before this Command runs the first time
@@ -43,10 +44,6 @@ public class AutoDriveTurn extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     @Override
     public void execute() {
-        //find difference between target and current angle
-        //use arcade drive to turn a portion of that angle
-        //double finalangle = targetangle - currentangle;
-
         Robot.driveSystem.arcadeDrive(0.0, Constants.maxRightTurnRate, targetangle);
     }
 
@@ -56,8 +53,9 @@ public class AutoDriveTurn extends CommandBase {
         //double distance = Math.abs(a - b);
         //if(Math.abs(a - b) < 0.5)
         //is the target angle the same as the current angle?
-        double distance = Math.abs(targetangle - currentangle);
-        if (Math.abs(targetangle - currentangle) < Constants.mindistance){
+        double diff = Math.abs(targetangle - currentangle);
+        
+        if (diff < Constants.AutoTurnAngleThreshold){
             return true;
         }
         else{
@@ -71,6 +69,4 @@ public class AutoDriveTurn extends CommandBase {
         //stop arcade drive
         Robot.driveSystem.arcadeDrive(0, 0, 0);
     }
-
-
 }

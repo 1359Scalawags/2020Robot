@@ -33,7 +33,8 @@ public class ControlPanelSpin extends CommandBase {
     @Override
     public void execute() {
         // SmartDashboard.putString("value1", Robot.controlPanelSystem.getSensorColor().toString());
-        SmartDashboard.putString("value2", Robot.controlPanelSystem.getScannerColorName());
+        // SmartDashboard.putString("value2", Robot.controlPanelSystem.getScannerColorName());
+        //TODO drive motor
         
     }
 

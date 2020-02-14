@@ -14,9 +14,6 @@ import edu.wpi.first.hal.FRCNetComm.tInstances;
 import edu.wpi.first.hal.FRCNetComm.tResourceType;
 import edu.wpi.first.hal.HAL;
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
-import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
-import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 //import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -27,9 +24,7 @@ import frc.robot.subsystems.*;
 import io.github.pseudoresonance.pixy2api.links.Link;
 import frc.robot.Constants;
 
-//import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
-//import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardLayout;
-//import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
+import frc.robot.Test.TestNetwork;;
 
 /**
  * The VM is configured to automatically run this class, and to call the
