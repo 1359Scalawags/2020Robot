@@ -87,19 +87,29 @@ public class OI {
         //Joystick Buttons *DPAD IS NOT A BUTTON
         climbDownButton = new JoystickButton(assistController, 7);
         climbDownButton.whileHeld(new ManualClimb());
+
         climbUpButton = new JoystickButton(assistController, 6);
         climbUpButton.whileHeld(new ManualClimb());
+
         controlPanelSpinButton = new JoystickButton(assistController, Constants.Xbtn);
         controlPanelSpinButton.whenPressed(new ControlPanelSpin());
+
         controlPanelSetColorButton = new JoystickButton(assistController, Constants.Ybtn);
         controlPanelSetColorButton.whenPressed(new ControlPanelSetColor());
+
         lineupButton = new JoystickButton(assistController, Constants.LB);
         lineupButton.whenPressed(new LineupToShoot());
+
         shootButton = new JoystickButton(assistController, Constants.RB);
         shootButton.whileHeld(new ShootBall());
+
+        //DRIVER
+
         driverContoller = new XboxController(0);
+
         autoDriveForwardButton = new JoystickButton(driverContoller, 2);
         autoDriveForwardButton.whileHeld(new AutoDriveForward());
+
         autoDriveTurnRight90Button = new JoystickButton(driverContoller, 3);
         autoDriveTurnRight90Button.whenPressed(new AutoDriveTurn(90));
 
