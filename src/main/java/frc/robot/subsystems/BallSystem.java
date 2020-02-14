@@ -37,19 +37,16 @@ import frc.robot.helper.*;
  */
 public class BallSystem extends SubsystemBase {
 
-    /**
-     * @param ballLoadInMotors The INTAKE at the bottom of the robot
-     * @param ballLoadUpMotors The UPTAKE into the CHAMBER LOADER
-     * @param chamLoader The CHAMBER LOADER puts balls into the 5 round chamber
-     * @param chamRotator The CHAMBER ROTATOR rotates the chamber
-     */
-    
+ 
     private Encoder ballSpeedEncoder;
 
     //**chamRotator = Chamber Rotator
 
     private CanMotor ballMotorA;
     private CanMotor ballMotorB;
+    /**
+    * **The CHAMBER ROTATOR rotates the chamber
+    */
     private CanMotor chamRotator;
     
     /*
@@ -62,22 +59,34 @@ public class BallSystem extends SubsystemBase {
     private Spark trackMotorB;
     private Spark intakeMotorB;
     */
-    
+
     private DigitalInput ballLimit;
 
     private Spark shootRotatorA;
     private Spark shootRotatorB;
+
+    /*---------------Descriptions---------------*/
+    /**
+     * **The INTAKE at the bottom of the robot
+     */
     private SpeedControllerGroup ballLoadInMotors;
+     /**
+     * **The UPTAKE into the CHAMBER LOADER
+     */
     private SpeedControllerGroup ballLoadUpMotors;
+    /**
+    * **The CHAMBER LOADER puts balls into the 5 round chamber
+    */
+    private Talon chamLoader;
+    /*------------------------------------------*/
+
     private Talon ballLoaderInA;
     private Talon ballLoaderInB;
     private Talon ballLoaderUpA;
     private Talon ballLoaderUpB;
     private Talon ballLoaderCham;
     private Spark shotLoader;
-    private Talon chamLoader;
-    //private DigitalInput ballLimit;
-
+    
     //Initialize your subsystem here
 
     public BallSystem() {
@@ -187,9 +196,7 @@ public class BallSystem extends SubsystemBase {
     */
 
     /**
-     * @param loaderOff Turns loader OFF, but not the chamber or shooter
-     * @param loaderImport Takes in balls
-     * @param loaderExport Pushes out balls
+     * Turns off all the loader motors
      */
     public void loaderOff(){
         this.ballLoadInMotors.set(0);
@@ -197,16 +204,25 @@ public class BallSystem extends SubsystemBase {
         this.chamLoader.set(0);
     }
 
-    public void loaderImport(){
-        this.ballLoadInMotors.set(0.7);
-        this.ballLoadUpMotors.set(0.9);
-        this.chamLoader.set(0.9);
+    /**
+     * Take in balls
+     * @param speed Speed between 0 and 1
+     */
+    public void loaderIntake(double speed){
+        //Set speed of intake motor to be slower than chamber loader
+        this.ballLoadInMotors.set(0.7 * speed);
+        this.ballLoadUpMotors.set(0.8 * speed);
+        this.chamLoader.set(0.9 * speed);
     }
 
-    public void loaderExport(){
-        this.ballLoadInMotors.set(-0.9);
-        this.ballLoadUpMotors.set(-0.7);
-        this.chamLoader.set(-0.7);
+    /**
+     * Take in balls
+     * @param speed Speed between -1 and 0
+     */
+    public void loaderReverseIntake(double speed){
+        this.ballLoadInMotors.set(0.9 * speed);
+        this.ballLoadUpMotors.set(0);
+        this.chamLoader.set(0);
     }
 
     //TODO Write out code for enabling different funtions:
@@ -234,7 +250,7 @@ public class BallSystem extends SubsystemBase {
      * @param top Top roller -1, 1
      * @param bottom Bottom -1, 1
      */
-    
+
     public void setShooterSpeed(double top, double bottom) {
         ballMotorA.setSpeed(top);
         ballMotorB.setSpeed(bottom);
