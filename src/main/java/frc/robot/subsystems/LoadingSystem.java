@@ -35,7 +35,7 @@ import frc.robot.helper.*;
 /**
  *
  */
-public class BallSystem extends SubsystemBase {
+public class LoadingSystem extends SubsystemBase {
 
  
     private Encoder ballSpeedEncoder;
@@ -62,8 +62,6 @@ public class BallSystem extends SubsystemBase {
 
     private DigitalInput ballLimit;
 
-    private Spark shootRotatorA;
-    private Spark shootRotatorB;
 
     /*---------------Descriptions---------------*/
     /**
@@ -88,7 +86,7 @@ public class BallSystem extends SubsystemBase {
 
     //Initialize your subsystem here
 
-    public BallSystem() {
+    public LoadingSystem() {
         chamRotator = new CanMotor(Constants.ChamRotMotorID);
 
         ballMotorA = new CanMotor(Constants.TopBallMotorID);
@@ -112,12 +110,6 @@ public class BallSystem extends SubsystemBase {
                 
         /*----------Shooter Management----------*/
 
-        shootRotatorA = new Spark(Constants.ShootRotatorAID);
-        shootRotatorA.setInverted(false);
-        
-        //TODO Does this need to be inverted?
-        shootRotatorB = new Spark(Constants.ShootRotatorBID);
-        shootRotatorB.setInverted(true);
             
         /*----------Track Management----------*/ 
 
@@ -166,14 +158,6 @@ public class BallSystem extends SubsystemBase {
         //Use these to get going:
         //setSetpoint() -  Sets where the PID controller should move the system to
         //enable() - Enables the PID controller.
-    }
-
-    public Spark[] getRotateMotors(){
-        Spark[] Motors = new Spark[2];
-        Motors[0] = shootRotatorA;
-        Motors[1] = shootRotatorB;
-        
-        return Motors;
     }
 
     /*
@@ -275,19 +259,5 @@ public class BallSystem extends SubsystemBase {
         ballLoaderInB.set(dMot);
         ballLoaderCham.set(eMot);
     }
-
-	public double getShooterPosition() {
-		return shootRotatorA.getPosition();
-	}
-
-	public void rotateShooter(double speed) {
-        if(speed > Constants.maxShooterTurnRate)
-            speed=Constants.maxShooterTurnRate;
-        else if(speed < -Constants.maxShooterTurnRate)
-            speed=-Constants.maxShooterTurnRate;
-
-        //TODO check if between limit switchs
-        shootRotatorA.set(speed);
-	}
 
 }
