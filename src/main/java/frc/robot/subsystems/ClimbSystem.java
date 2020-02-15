@@ -46,6 +46,7 @@ import edu.wpi.first.wpilibj.AnalogPotentiometer;
         addChild("MinHeightLimit",minHeightLimit);
        
         climbMotor = new CanMotor(Constants.CANClimbMotorID);
+        SmartDashboard.putNumber("ClimbMotorValue", climbMotor.Motor().get());
         
         climberLocked = true;
         ratchetLocked = true;
@@ -60,6 +61,10 @@ import edu.wpi.first.wpilibj.AnalogPotentiometer;
     @Override
     public void periodic() {
 
+        double dashMotor = SmartDashboard.getNumber("ClimbMotorValue", 0.0);
+        if(climbMotor.Motor().get() != dashMotor) {
+            climbMotor.Motor().set(dashMotor);
+        }
     }
 
     public void updateDashboard() {
