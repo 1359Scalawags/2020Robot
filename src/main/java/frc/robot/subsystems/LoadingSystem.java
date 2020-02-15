@@ -17,46 +17,36 @@ public class LoadingSystem extends SubsystemBase {
 
     private Encoder ballSpeedEncoder;
 
-    //**chamRotator = Chamber Rotator
+    private Talon ballLoaderInA;
+    private Talon ballLoaderInB;
+    private Talon ballLoaderUpA;
+    private Talon ballLoaderUpB;
+
+    /*---------------Descriptions---------------*/
+    /**
+    * **The CHAMBER LOADER puts balls into the 5 round chamber
+    */
+    private Talon ballLoaderCham;
+
+    /**
+    * **The INTAKE at the bottom of the robot
+    */
+    private SpeedControllerGroup ballLoadInMotors;
+
+    /**
+    * **The UPTAKE into the CHAMBER LOADER
+    */
+    private SpeedControllerGroup ballLoadUpMotors;
 
     /**
     * **The CHAMBER ROTATOR rotates the chamber
     */
     private CanMotor chamRotator;
-    
-    /*
-    private Spark ballMotorA;
-    private Spark ballMotorB;
-    private Spark queMotor;
-    private SpeedControllerGroup ballShootMotors;
-    private Spark trackMotorA;
-    private Spark intakeMotorA;
-    private Spark trackMotorB;
-    private Spark intakeMotorB;
-    */
 
-    private DigitalInput ballLimit;
-
-
-    /*---------------Descriptions---------------*/
-    /**
-     * **The INTAKE at the bottom of the robot
-     */
-    private SpeedControllerGroup ballLoadInMotors;
-     /**
-     * **The UPTAKE into the CHAMBER LOADER
-     */
-    private SpeedControllerGroup ballLoadUpMotors;
-    /**
-    * **The CHAMBER LOADER puts balls into the 5 round chamber
-    */
     /*------------------------------------------*/
 
-    private Talon ballLoaderInA;
-    private Talon ballLoaderInB;
-    private Talon ballLoaderUpA;
-    private Talon ballLoaderUpB;
-    private Talon ballLoaderCham;
+    private DigitalInput ballLimit;
+    private DigitalInput indexer;
 
     //Initialize your subsystem here
 
@@ -84,8 +74,6 @@ public class LoadingSystem extends SubsystemBase {
             
         /*----------Track Management----------*/ 
 
-        //Ball Intake
-        ballLoadInMotors = new SpeedControllerGroup(ballLoaderInA, ballLoaderInB);
 
         ballLoaderInA = new Talon(Constants.LoadBallInMotorAID);
         //addChild("BallLoaderInA",ballLoaderInA);
@@ -95,12 +83,10 @@ public class LoadingSystem extends SubsystemBase {
         //addChild("BallLoaderInB",ballLoaderInB);
         ballLoaderInB.setInverted(false);
 
-
+        //Ball Intake
+        ballLoadInMotors = new SpeedControllerGroup(ballLoaderInA, ballLoaderInB);
 
         //TODO Many problems that I see below
-
-        //Ball Uptake
-        ballLoadUpMotors = new SpeedControllerGroup(ballLoaderUpA, ballLoaderUpA); 
         
         ballLoaderUpA = new Talon(Constants.LoadBallUpMotorAID);
         //addChild("BallLoaderUpA",ballLoaderUpA);
@@ -109,6 +95,9 @@ public class LoadingSystem extends SubsystemBase {
         ballLoaderUpB = new Talon(Constants.LoadBallUpMotorBID);
         //addChild("BallLoaderUpB",ballLoaderUpB);
         ballLoaderUpB.setInverted(false);
+        
+        //Ball Uptake
+        ballLoadUpMotors = new SpeedControllerGroup(ballLoaderUpA, ballLoaderUpB); 
 
 
         ballLoaderCham = new Talon(Constants.LoadBallChamMotorID);
@@ -150,8 +139,6 @@ public class LoadingSystem extends SubsystemBase {
     }
     */
 
-    
-
     /**
      * Turns off all the loader motors
      */
@@ -161,11 +148,28 @@ public class LoadingSystem extends SubsystemBase {
         this.ballLoaderCham.set(0);
     }
 
+    public void setLoadInMotor(double speed) {
+        this.ballLoadInMotors.set(speed);
+    }
+
+    public void setLoadUpMotor(double speed) {
+
+    }
+
+    public void setChamberLoadMotor(double speed) {
+
+    }
+
+    public boolean isOff() {
+        return (ballLoadInMotors.get() == 0 && ballLoadUpMotors.get() == 0 && ballLoaderCham.get() == 0);
+    }
+
+
     /**
      * Takes in balls and puts them into chamber
      * @param speed Speed between 0 and 1
      */
-    public void loadBall(double speed){
+    public void loaderIntakeBalls(double speed){
         //Set speed of intake motor(s) to be slower than chamber loader
         this.ballLoadInMotors.set(0.7 * speed);
         this.ballLoadUpMotors.set(0.8 * speed);
@@ -176,18 +180,11 @@ public class LoadingSystem extends SubsystemBase {
      * Makes sure balls do not enter the bot, STOPS all else
      * @param speed Speed between -1 and 0
      */
-    public void rejectBalls(double speed){
+    public void loaderRejectBalls(double speed){
         this.ballLoadInMotors.set(0.9 * speed);
         this.ballLoadUpMotors.set(0);
         this.ballLoaderCham.set(0);
     } 
-
-    /**
-     * 
-     */
-    public void rotateToIndex(){
-
-    }
 
     //TODO Write out code for enabling different funtions:
     //TODO loading, shooting, turning ON/OFF, or reversing
