@@ -10,7 +10,7 @@ public class LineupToShoot extends CommandBase{
 
     public LineupToShoot() {
         addRequirements(Robot.kNetwork);
-        addRequirements(Robot.ballSystem);
+        addRequirements(Robot.loadingSystem);
         addRequirements(Robot.driveSystem);
     }
 
@@ -45,7 +45,7 @@ public class LineupToShoot extends CommandBase{
     public void rotate(double speed, double angle){
         double nangle = angle/360;
         
-        Robot.ballSystem.rotateShooter(speed*nangle);
+        Robot.loadingSystem.rotateShooter(speed*nangle);
     }
 
     // Make this return true when this Command no longer needs to run execute()

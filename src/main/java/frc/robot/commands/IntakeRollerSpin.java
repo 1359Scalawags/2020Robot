@@ -33,7 +33,7 @@ public class IntakeRollerSpin extends CommandBase {
     private double AvgBallLoadSpd;
 
     public IntakeRollerSpin() {
-        addRequirements(Robot.ballSystem);
+        addRequirements(Robot.loadingSystem);
 
         intakeIn = false;
         intakeOut = false;
@@ -60,7 +60,7 @@ public class IntakeRollerSpin extends CommandBase {
         SmartDashboard.getBoolean("Is Intake Out", intakeOut);
         SmartDashboard.getNumber("Intake Speed", intakeSpeed);
 
-        Robot.ballSystem.setBallLoaderSpeed(ballLoadSpdA, ballLoadSpdB, ballLoadSpdC, ballLoadSpdD, ballLoadSpdE);
+        Robot.loadingSystem.setBallLoaderSpeed(ballLoadSpdA, ballLoadSpdB, ballLoadSpdC, ballLoadSpdD, ballLoadSpdE);
 
     }
 

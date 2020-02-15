@@ -35,12 +35,12 @@ import frc.robot.helper.*;
 /**
  *
  */
-public class ShooterLoader extends SubsystemBase {
+public class ShooterSystem extends SubsystemBase {
 
     private Spark shootRotatorA;
     private Spark shootRotatorB;
 
-    public ShooterLoader(){
+    public ShooterSystem(){
         
         shootRotatorA = new Spark(Constants.ShootRotatorAID);
         shootRotatorA.setInverted(false);
