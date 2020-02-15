@@ -35,7 +35,7 @@ public class ManualClimb extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     @Override
-    public void execute() {
+    public void execute() {//TODO manual climb: perhaps speed should be set with joystick
         double speed = Robot.oi.getClimbSpeed();
         if (!Robot.climbSystem.isLocked()) {
             Robot.climbSystem.move(speed);

@@ -8,18 +8,18 @@
 // update. Deleting the comments indicating the section will prevent
 // it from being updated in the future.
 
-
 package frc.robot.commands;
+
 import edu.wpi.first.wpilibj2.command.CommandBase;
 //import frc.robot.Robot;
+import frc.robot.Robot;
 
 /**
  *
  */
 public class ControlPanelSetColor extends CommandBase {
-
     public ControlPanelSetColor() {
-
+        addRequirements(Robot.controlPanelSystem);
     }
 
     // Called just before this Command runs the first time
@@ -30,6 +30,8 @@ public class ControlPanelSetColor extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     @Override
     public void execute() {
+        String current = ""; //TODO get the value from scanner
+        Robot.controlPanelSystem.setExpected(current);
     }
 
     // Make this return true when this Command no longer needs to run execute()

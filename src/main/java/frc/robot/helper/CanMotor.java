@@ -37,13 +37,13 @@ public class CanMotor{
         encoder = motor.getEncoder();
     }
 
-    public void setRPM(double speed_) {
+    public void setSpeed(double speed_) {
         if(speed != speed_)
             speed = speed_;
-        updateRPM();
+        updateSpeed();
     }
 
-    public void updateRPM(){
+    public void updateSpeed(){
         controller.setReference(speed*Constants.MAXRPM, ControlType.kVelocity);
     }
 

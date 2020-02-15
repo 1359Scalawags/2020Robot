@@ -8,6 +8,7 @@ import io.github.pseudoresonance.pixy2api.Pixy2CCC.Block;
 public class PixyCommand extends CommandBase{
     public PixyCommand() {
         addRequirements(Robot.pixy);
+        addRequirements(Robot.driveSystem);
     }
 
     // Called just before this Command runs the first time
@@ -18,8 +19,7 @@ public class PixyCommand extends CommandBase{
     // Called repeatedly when this Command is scheduled to run
     @Override
     public void execute() {
-        // Robot.pixy.GotoClosest();
-        TurnToClosest();
+        DriveTwordsBall();
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -28,11 +28,11 @@ public class PixyCommand extends CommandBase{
         return false;
     }
 
-    void TurnToClosest(){
+    void DriveTwordsBall(){
         Block block = Robot.pixy.getClosest();
         double angle = block.getAngle();
         
-        Robot.driveSystem.arcadeDrive(0.0, Constants.maxRightTurnRate, angle);
+        Robot.driveSystem.arcadeDrive(Constants.DriveTwordsBall, Constants.maxRightTurnRate, angle);
     }
 
     // Called once after isFinished returns true
