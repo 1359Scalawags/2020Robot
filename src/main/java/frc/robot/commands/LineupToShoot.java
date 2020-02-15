@@ -45,7 +45,7 @@ public class LineupToShoot extends CommandBase{
     public void rotate(double speed, double angle){
         double nangle = angle/360;
         
-        Robot.loadingSystem.rotateShooter(speed*nangle);
+        Robot.shooterSystem.rotateShooter(speed*nangle);
     }
 
     // Make this return true when this Command no longer needs to run execute()
