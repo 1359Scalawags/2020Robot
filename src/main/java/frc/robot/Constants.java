@@ -187,4 +187,5 @@ public final class Constants {
     public static final double DriveTwordsBall = 0;
 
 	public static final double maxChamberSpeed = 1;
+	public static final double maxClimbSpeed = 1;
 }

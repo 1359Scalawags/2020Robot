@@ -9,9 +9,7 @@ public class aimShooter extends CommandBase{
     double angle;
 
     public aimShooter() {
-        addRequirements(Robot.kNetwork);
-        addRequirements(Robot.loadingSystem);
-        addRequirements(Robot.driveSystem);
+        addRequirements(Robot.kNetwork, Robot.loadingSystem, Robot.driveSystem);
     }
 
     @Override

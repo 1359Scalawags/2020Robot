@@ -16,10 +16,10 @@ import frc.robot.Robot;
 /**
  *
  */
-public class UnattendedClimb extends CommandBase {
-
-    public UnattendedClimb() {
-
+public class AutoClimb extends CommandBase {
+    double speed;
+    public AutoClimb(double speed_) {
+        speed = speed_;
     }
 
     // Called just before this Command runs the first time Shlarblenarfalorf
@@ -32,13 +32,13 @@ public class UnattendedClimb extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     @Override
     public void execute() {
-        Robot.climbSystem.move(-0.8);
+        Robot.climbSystem.move(speed);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     @Override
     public boolean isFinished() {
-        return Robot.climbSystem.isAtTop();
+        return (speed>0 && Robot.climbSystem.isAtTop()) || (speed <0 && Robot.climbSystem.isAtBottom());
     }
 
     // Called once after isFinished returns true

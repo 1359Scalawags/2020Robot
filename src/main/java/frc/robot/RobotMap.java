@@ -20,6 +20,8 @@ public class RobotMap {
 	public static final int rStickBtn = 10; // ShootBall-Assist
 	public static final int DpadDown = 5; // IntakeRollerSpin-Assist
     public static final int DpadUp = 6; // IntakeTrackUp-Assist
+    public static final int AutoClimbUp = 8;
+    public static final int AutoClimbDown = 9;
 
     public static final int driverxboxX = 1;
     public static final int driverxboxRT = 2;
