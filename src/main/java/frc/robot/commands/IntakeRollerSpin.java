@@ -13,6 +13,7 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 //import frc.robot.Robot;
+import frc.robot.Robot;
 
 /**
  *
@@ -23,10 +24,22 @@ public class IntakeRollerSpin extends CommandBase {
     private boolean intakeOut;
     private double intakeSpeed;
 
+    //TODO should these in the Constants file
+    private double ballLoadSpdA;
+    private double ballLoadSpdB;
+    private double ballLoadSpdC;
+    private double ballLoadSpdD;
+    private double ballLoadSpdE;
+    private double AvgBallLoadSpd;
+
     public IntakeRollerSpin() {
+        addRequirements(Robot.ballSystem);
+
         intakeIn = false;
         intakeOut = false;
         intakeSpeed = 0.1;
+        
+        AvgBallLoadSpd = (ballLoadSpdA + ballLoadSpdB + ballLoadSpdC + ballLoadSpdD + ballLoadSpdE)/5;
     }
 
     // Called just before this Command runs the first time
@@ -35,7 +48,10 @@ public class IntakeRollerSpin extends CommandBase {
         SmartDashboard.putBoolean("Is Intake In", intakeIn);
         SmartDashboard.putBoolean("Is Intake Out", intakeOut);
         SmartDashboard.putNumber("Intake Speed", intakeSpeed);
+        SmartDashboard.putNumber("Ball Loader Speed", AvgBallLoadSpd);
     }
+
+
 
     // Called repeatedly when this Command is scheduled to run
     @Override
@@ -43,12 +59,15 @@ public class IntakeRollerSpin extends CommandBase {
         SmartDashboard.getBoolean("Is Intake In", intakeIn);
         SmartDashboard.getBoolean("Is Intake Out", intakeOut);
         SmartDashboard.getNumber("Intake Speed", intakeSpeed);
+
+        Robot.ballSystem.setBallLoaderSpeed(ballLoadSpdA, ballLoadSpdB, ballLoadSpdC, ballLoadSpdD, ballLoadSpdE);
+
     }
 
     // Make this return true when this Command no longer needs to run execute()
     @Override
     public boolean isFinished() {
-        return false;
+        return !Robot.oi.getAutoDriveForwardButton();
     }
 
     // Called once after isFinished returns true

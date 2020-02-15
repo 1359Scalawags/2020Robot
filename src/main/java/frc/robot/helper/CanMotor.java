@@ -37,18 +37,13 @@ public class CanMotor{
         encoder = motor.getEncoder();
     }
 
-    /**
-     * Sets a velocity of the motor
-     * @param speed_ Motor speed between -1 and 1
-     */
-    public void set(double speed_) {
-        if(speed != speed_) {
+    public void setSpeed(double speed_) {
+        if(speed != speed_)
             speed = speed_;
-            updateRPM();
-        }
+        updateSpeed();
     }
 
-    public void updateRPM(){
+    public void updateSpeed(){
         controller.setReference(speed*Constants.MAXRPM, ControlType.kVelocity);
     }
 

@@ -139,6 +139,12 @@ public double getDistanceRight() {
     diffDrive.arcadeDrive(moveSpeed, turnSpeed);
   }
 
+  /**
+   * 
+   * @param moveSpeed Robot movspeed between -1, 1
+   * @param maxTurnSpeed Robot maximum turn speed -1, 1
+   * @param targetAngle Target angle you want to turn to 0, 360
+   */
   public void arcadeDrive(double moveSpeed, double maxTurnSpeed, double targetAngle) {
     double angleInput = driveGyro.getAngle();
     gyroControl.setSetpoint(targetAngle);

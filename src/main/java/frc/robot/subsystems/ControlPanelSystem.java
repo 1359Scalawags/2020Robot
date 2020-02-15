@@ -54,6 +54,7 @@ public class ControlPanelSystem extends SubsystemBase {
     private final ColorSensorV3 colorSensor = new ColorSensorV3(Constants.COLORSENSOR_I2C);
     // private Color prevColor;
     // private String prevColorName;
+    private String expected;
     private Color currentColor;
     private String currentColorName;
     private int consistentCount;
@@ -121,26 +122,25 @@ public class ControlPanelSystem extends SubsystemBase {
     // }
 
 
+    public void setExpected(String col){
+        expected = col;
+    }
+
     public String getScannerColorName(){
         th = SmartDashboard.getNumber("Color thresh hold", th);
 
         //prevColorName = currentColorName;
-        getColor();
+        String wheelColor = getWheelColorName();
 
-        double r = currentColor.red;
-        double g = currentColor.green;
-        double b = currentColor.blue;
-
-        if(Math.abs(0.13489306 - r) <=th && Math.abs(0.43538037- g) <=th && Math.abs(0.42972437 -b) <=th)
+        if(wheelColor=="Red")
             currentColorName = "Blue";
-        else if(Math.abs(0.17530347 - r) <=th && Math.abs(0.5667771 - g) <=th && Math.abs(0.25793532 -b) <=th)
+        else if(wheelColor=="Yellow")
             currentColorName = "Green";
-        else if(Math.abs(0.48934227 - r) <=th && Math.abs(0.36309862 - g) <=th && Math.abs(0.14753516 -b) <=th)
+        else if(wheelColor=="Blue")
             currentColorName = "Red";
-        else if(Math.abs(0.31467456 - r) <=th && Math.abs(0.5550923 - g) <=th && Math.abs(0.13020141 -b) <=th)
+        else if(wheelColor=="Green")
             currentColorName = "Yellow";
-        else
-            currentColorName = "not found";
+
         return currentColorName;
     }
     

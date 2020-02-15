@@ -1,3 +1,4 @@
+/*
 package frc.robot.deprecated;
 
 import edu.wpi.first.wpilibj.Servo;
@@ -17,3 +18,4 @@ public class ServoSystem extends SubsystemBase{
 		servo.set(val);
 	}
 }
+*/

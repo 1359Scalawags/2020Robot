@@ -3,7 +3,7 @@ package frc.robot.helper;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj.XboxController;
 
-public class AssistDPadButton extends Button {
+public class DPadButton extends Button {
 
     XboxController joystick;
     Direction direction;
@@ -14,7 +14,7 @@ public class AssistDPadButton extends Button {
      * @param controller
      * @param direction
      */
-    public AssistDPadButton(XboxController controller, Direction direction) {
+    public DPadButton(XboxController controller, Direction direction) {
         this.joystick = controller;
         this.direction = direction;
     }

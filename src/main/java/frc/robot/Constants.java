@@ -47,7 +47,14 @@ public final class Constants {
     public static int START = 8;
     public static int LEFTJoyBtn = 9;
     public static int RIGHTJoyBtn = 10;
-    
+
+    //TODO find our expectedDistance
+    public static double expectedDist =0;
+
+    //TODO find maxShooterTurnRate
+    public static double maxShooterTurnRate =0;
+
+
     /*
     public static int DpadUP = 0;
     public static int DpadRIGHT = 90;
@@ -123,7 +130,7 @@ public final class Constants {
     public static int RotateEncoderAID = 20;
     public static int RotateEncoderBID = 21;
 
-    /*----------DriveSystem----------*/
+    /*----------CANDriveSystem----------*/
 
     //Booleans, Integers, and Values
     public static final double maxMotorSpeed = 0.95;
@@ -157,7 +164,7 @@ public final class Constants {
     public static final double maxTurnRate = 0.75;
     public static final double maxRightTurnRate = 0.75;
     public static final double maxLeftTurnRate = 0.75;
-    public static final double mindistance = 0.5;
+    public static final double AutoTurnAngleThreshold = 0.5;
 
 
 	public static double MAXRPM = 5700;
@@ -170,8 +177,10 @@ public final class Constants {
     public static double gyrokFf =0;
 
     public static double driveSystemScale =.01;   // Change/Move if needed
+	public static double maxShooterTurnError =0;
     
     public final static I2C.Port COLORSENSOR_I2C = I2C.Port.kOnboard;
     public final static Link PixyLink = new I2CLink();
     // public final static Link PixyLink = new SPILink();
+	public static final double DriveTwordsBall = 0;
 }
