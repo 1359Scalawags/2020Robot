@@ -45,12 +45,12 @@ import edu.wpi.first.wpilibj.AnalogPotentiometer;
         minHeightLimit = new DigitalInput(Constants.MinHeightLimitID);
         addChild("MinHeightLimit",minHeightLimit);
        
-        climbMotor = new CanMotor(Constants.ClimbMotorID);
+        climbMotor = new CanMotor(Constants.CANClimbMotorID);
         
         climberLocked = true;
         ratchetLocked = true;
 
-        ratchet = new Servo(Constants.RatchetServoID);
+        ratchet = new Servo(Constants.PWMRatchetServoID);
         ratchet.setPosition(Constants.RatchetClosed);
         //climbMotor.setInverted(false);  
         

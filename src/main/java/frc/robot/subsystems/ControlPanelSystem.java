@@ -73,7 +73,7 @@ public class ControlPanelSystem extends SubsystemBase {
         // matcher.addColorMatch(BETWEEN);
 
 
-        rotateMotor = new Spark(Constants.RotatoPotatoID);
+        rotateMotor = new Spark(Constants.PWMRotatoPotatoID);
         addChild("RotateMotor",rotateMotor);
         rotateMotor.setInverted(false);
         

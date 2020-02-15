@@ -30,11 +30,11 @@ public class CANDriveSystem extends SubsystemBase {
 
   public CANDriveSystem() {
 
-     leftMotors[0] = new CanMotor(Constants.FrontLeftMotorID);
-     leftMotors[1] = new CanMotor(Constants.BackLeftMotorID);
+     leftMotors[0] = new CanMotor(Constants.CANFrontLeftMotorID);
+     leftMotors[1] = new CanMotor(Constants.CANBackLeftMotorID);
 
-     rightMotors[0] = new CanMotor(Constants.FrontRightMotorID);
-     rightMotors[1] = new CanMotor(Constants.BackRightMotorID);
+     rightMotors[0] = new CanMotor(Constants.CANFrontRightMotorID);
+     rightMotors[1] = new CanMotor(Constants.CANBackRightMotorID);
     
      leftControllerGroup = new SpeedControllerGroup(leftMotors[0].Motor(), leftMotors[1].Motor());
      rightControllerGroup = new SpeedControllerGroup(rightMotors[0].Motor(), rightMotors[1].Motor());

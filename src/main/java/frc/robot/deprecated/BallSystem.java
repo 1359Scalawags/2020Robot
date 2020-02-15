@@ -91,9 +91,9 @@ public class BallSystem extends SubsystemBase {
     public BallSystem() {
         //chamRotator = new CanMotor(Constants.ChamRotMotorID);
 
-        ballMotorA = new CanMotor(Constants.TopBallMotorID);
+        ballMotorA = new CanMotor(Constants.CANTopBallMotorID);
         
-        ballMotorB = new CanMotor(Constants.BottomBallMotorID);
+        ballMotorB = new CanMotor(Constants.CANBottomBallMotorID);
         
         //SendableRegistry.add(getController());//what is a parent? Do i need to add a child?
         //SendableRegistry.add(getController(), "controller");
@@ -112,10 +112,10 @@ public class BallSystem extends SubsystemBase {
                 
         /*----------Shooter Management----------*/
 
-        shootRotatorA = new Spark(Constants.ShootRotatorAID);
+        shootRotatorA = new Spark(Constants.PWMShootRotatorLeftRightID);
         shootRotatorA.setInverted(false);
         
-        shootRotatorB = new Spark(Constants.ShootRotatorBID);
+        shootRotatorB = new Spark(Constants.PWMShootRotatorUpDownID);
         shootRotatorB.setInverted(true);
             
         /*----------Track Management----------*/ 
@@ -123,11 +123,11 @@ public class BallSystem extends SubsystemBase {
         //Ball Intake
         ballLoadInMotors = new SpeedControllerGroup(ballLoaderInA, ballLoaderInB);
 
-        ballLoaderInA = new Talon(Constants.LoadBallInMotorAID);
+        ballLoaderInA = new Talon(Constants.PWMLoadBallInMotorFrontID);
         //addChild("BallLoaderInA",ballLoaderInA);
         ballLoaderInA.setInverted(false);
         
-        ballLoaderInB = new Talon(Constants.LoadBallInMotorBID);
+        ballLoaderInB = new Talon(Constants.PWMLoadBallInMotorRearID);
         //addChild("BallLoaderInB",ballLoaderInB);
         ballLoaderInB.setInverted(false);
 
@@ -136,21 +136,21 @@ public class BallSystem extends SubsystemBase {
         //Ball Uptake
         ballLoadUpMotors = new SpeedControllerGroup(ballLoaderUpA, ballLoaderUpA); 
         
-        ballLoaderUpA = new Talon(Constants.LoadBallUpMotorAID);
+        ballLoaderUpA = new Talon(Constants.PWMLoadBallUpMotorRightID);
         //addChild("BallLoaderUpA",ballLoaderUpA);
         ballLoaderUpA.setInverted(false);
         
-        ballLoaderUpB = new Talon(Constants.LoadBallUpMotorBID);
+        ballLoaderUpB = new Talon(Constants.PWMLoadBallUpMotorLeftID);
         //addChild("BallLoaderUpB",ballLoaderUpB);
         ballLoaderUpB.setInverted(false);
 
 
-        ballLoaderCham = new Talon(Constants.LoadBallChamMotorID);
+        ballLoaderCham = new Talon(Constants.PWMLoadBallChamMotorID);
         //addChild("BallLoaderIntoChamber",ballLoaderCham);
         ballLoaderCham.setInverted(false);
         
 
-        shotLoader = new Spark(Constants.LoadShotMotorID);
+        shotLoader = new Spark(Constants.PWMLoadShotMotorID);
         //addChild("ShooterLoader",shotLoader);
         shotLoader.setInverted(false);
         

@@ -23,21 +23,21 @@ public class ShooterSystem extends SubsystemBase {
     private Spark shotLoader;
 
     public ShooterSystem(){
-        topMotor = new CanMotor(Constants.TopBallMotorID);
-        bottomMotor = new CanMotor(Constants.BottomBallMotorID);
+        topMotor = new CanMotor(Constants.CANTopBallMotorID);
+        bottomMotor = new CanMotor(Constants.CANBottomBallMotorID);
         
-        shootRotatorA = new Spark(Constants.ShootRotatorAID);
+        shootRotatorA = new Spark(Constants.PWMShootRotatorLeftRightID);
         shootRotatorA.setInverted(false);
         
-        shotLoader = new Spark(Constants.LoadShotMotorID);
+        shotLoader = new Spark(Constants.PWMLoadShotMotorID);
         shotLoader.setInverted(false);
 
         //TODO Does this need to be inverted?
-        shootRotatorB = new Spark(Constants.ShootRotatorBID);
+        shootRotatorB = new Spark(Constants.PWMShootRotatorUpDownID);
         shootRotatorB.setInverted(true);
 
         
-        shotLoader = new Spark(Constants.LoadShotMotorID);
+        shotLoader = new Spark(Constants.PWMLoadShotMotorID);
         //addChild("ShooterLoader",shotLoader);
         shotLoader.setInverted(false);
     }
