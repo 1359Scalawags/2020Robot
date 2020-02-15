@@ -169,21 +169,21 @@ public class LoadingSystem extends SubsystemBase {
     }
 
     /**
-     * Takes in balls and takes them up
+     * Takes in balls and puts them into chamber
      * @param speed Speed between 0 and 1
      */
     public void loaderIntakeAll(double speed){
-        //Set speed of intake motor to be slower than chamber loader
+        //Set speed of intake motor(s) to be slower than chamber loader
         this.ballLoadInMotors.set(0.7 * speed);
         this.ballLoadUpMotors.set(0.8 * speed);
         this.ballLoaderCham.set(0.9 * speed);
     }
 
     /**
-     * Makes sure balls do not enter the bot, stops all else
+     * Makes sure balls do not enter the bot, STOPS all else
      * @param speed Speed between -1 and 0
      */
-    public void keepBallsOut(double speed){
+    public void rejectBalls(double speed){
         this.ballLoadInMotors.set(0.9 * speed);
         this.ballLoadUpMotors.set(0);
         this.ballLoaderCham.set(0);
@@ -211,7 +211,7 @@ public class LoadingSystem extends SubsystemBase {
 
 
    /**
-     * @param top Top laoder roller -1, 1
+     * @param top Top loader roller -1, 1
      * @param bottom Bottom loader roller -1, 1
      */
 
