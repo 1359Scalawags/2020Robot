@@ -29,7 +29,7 @@ public class ManualDrive extends CommandBase {
     // Called just before this Command runs the first time
     @Override
     public void initialize() {
-        Robot.driveSystem.ResetGyro();
+        // Robot.driveSystem.ResetGyro();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -37,12 +37,7 @@ public class ManualDrive extends CommandBase {
     public void execute() {
 
         // Robot.oi.getDriverJoystick();
-        Robot.driveSystem.tankDrive(Robot.oi.DriverLStickY(), Robot.oi.DriverRStickY());
-
-        
-        // need help with this
-		// Robot.driveSystem.tankDrive(Robot.oi.getLStickY()*(-.0064*Robot.climbSystem.getclimbSystemHeight()+1.064), Robot.oi.getRStickY()*(-.0064*Robot.climbSystem.getClimbSystemHeight()+1.064));
-		
+        Robot.driveSystem.tankDrive(Robot.oi.DriverLStickY(), Robot.oi.DriverRStickY());	
         
         //SmartDashboard.putNumber("Elevator Height",Robot.climbSystem.getclimbSystemHeight());
 		// SmartDashboard.putNumber("Gyro", Robot.canDriveSystem.getAngle());

@@ -23,7 +23,7 @@ public class AutoDriveForward extends CommandBase {
     private double target;
 
     public AutoDriveForward() {
-
+        addRequirements(Robot.driveSystem);
     }
 
     // Called just before this Command runs the first time

@@ -86,7 +86,7 @@ public class BallSystem extends SubsystemBase {
     private Talon ballLoaderUpB;
     private Talon ballLoaderCham;
     private Spark shotLoader;
-    
+
     //Initialize your subsystem here
 
     public BallSystem() {
@@ -114,11 +114,10 @@ public class BallSystem extends SubsystemBase {
         /*----------Shooter Management----------*/
 
         shootRotatorA = new Spark(Constants.ShootRotatorAID);
-        //addChild("ShootRotatorA",shootRotatorA);
         shootRotatorA.setInverted(false);
-                
+        
+        //TODO Does this need to be inverted?
         shootRotatorB = new Spark(Constants.ShootRotatorBID);
-        //addChild("ShootRotatorB",shootRotatorB);
         shootRotatorB.setInverted(true);
             
         /*----------Track Management----------*/ 
@@ -134,8 +133,12 @@ public class BallSystem extends SubsystemBase {
         //addChild("BallLoaderInB",ballLoaderInB);
         ballLoaderInB.setInverted(false);
 
+
+
+        //TODO Many problems that I see below
+
         //Ball Uptake
-        ballLoadUpMotors = new SpeedControllerGroup(ballLoaderUpA, ballLoaderUpA);
+        ballLoadUpMotors = new SpeedControllerGroup(ballLoaderUpA, ballLoaderUpA); 
         
         ballLoaderUpA = new Talon(Constants.LoadBallUpMotorAID);
         //addChild("BallLoaderUpA",ballLoaderUpA);
@@ -170,6 +173,14 @@ public class BallSystem extends SubsystemBase {
         //enable() - Enables the PID controller.
     }
 
+    public Spark[] getRotateMotors(){
+        Spark[] Motors = new Spark[2];
+        Motors[0] = shootRotatorA;
+        Motors[1] = shootRotatorB;
+        
+        return Motors;
+    }
+
     /*
     @Override
     public double getMeasurement() {
@@ -195,6 +206,8 @@ public class BallSystem extends SubsystemBase {
     }
     */
 
+    
+
     /**
      * Turns off all the loader motors
      */
@@ -205,10 +218,10 @@ public class BallSystem extends SubsystemBase {
     }
 
     /**
-     * Take in balls
+     * Takes in balls and takes them up
      * @param speed Speed between 0 and 1
      */
-    public void loaderIntake(double speed){
+    public void loaderIntakeAll(double speed){
         //Set speed of intake motor to be slower than chamber loader
         this.ballLoadInMotors.set(0.7 * speed);
         this.ballLoadUpMotors.set(0.8 * speed);
@@ -216,14 +229,14 @@ public class BallSystem extends SubsystemBase {
     }
 
     /**
-     * Take in balls
+     * Makes sure balls do not enter the bot, stops all else
      * @param speed Speed between -1 and 0
      */
-    public void loaderReverseIntake(double speed){
+    public void keepBallsOut(double speed){
         this.ballLoadInMotors.set(0.9 * speed);
         this.ballLoadUpMotors.set(0);
         this.chamLoader.set(0);
-    }
+    } 
 
     //TODO Write out code for enabling different funtions:
     //TODO loading, shooting, turning ON/OFF, or reversing
@@ -246,15 +259,19 @@ public class BallSystem extends SubsystemBase {
     */
 
     /**
-     * 
-     * @param top Top roller -1, 1
-     * @param bottom Bottom -1, 1
+     * @param top Top shooter roller -1, 1
+     * @param bottom Bottom shooter roller -1, 1
      */
 
     public void setShooterSpeed(double top, double bottom) {
         ballMotorA.setSpeed(top);
         ballMotorB.setSpeed(bottom);
     }
+
+   /**
+     * @param top Top laoder roller -1, 1
+     * @param bottom Bottom loader roller -1, 1
+     */
 
     public void setBallLoaderSpeed(double aMot, double bMot, double cMot, double dMot, double eMot) {
         ballLoaderUpA.set(aMot);
@@ -263,5 +280,19 @@ public class BallSystem extends SubsystemBase {
         ballLoaderInB.set(dMot);
         ballLoaderCham.set(eMot);
     }
+
+	public double getShooterPosition() {
+		return shootRotatorA.getPosition();
+	}
+
+	public void rotateShooter(double speed) {
+        if(speed > Constants.maxShooterTurnRate)
+            speed=Constants.maxShooterTurnRate;
+        else if(speed < -Constants.maxShooterTurnRate)
+            speed=-Constants.maxShooterTurnRate;
+
+        //TODO check if between limit switchs
+        shootRotatorA.set(speed);
+	}
 
 }
