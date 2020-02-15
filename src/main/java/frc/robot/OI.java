@@ -54,8 +54,9 @@ public class OI {
     private DPadButton rejectBallsButton;
     // private JoystickButton controlPanelSetColorButton;
     // private JoystickButton controlPanelSpinButton;
-    private JoystickButton climbUpButton;
-    private JoystickButton climbDownButton;
+    // private JoystickButton climbUpButton;
+    // private JoystickButton climbDownButton;
+    private JoystickButton manualClimb;
     // private JoystickButton AutoclimbUpButton;
     // private JoystickButton AutoclimbDownButton;
     private JoystickButton autoDriveForwardButton;
@@ -77,11 +78,15 @@ public class OI {
         intakeBallsButton.whenPressed(new TurnLoaderToIntakeBalls());
 
         //Joystick Buttons **DPAD IS NOT A BUTTON
-        climbDownButton = new JoystickButton(assistController, 7);
-        climbDownButton.whileHeld(new ManualClimb());
+        // climbDownButton = new JoystickButton(assistController, 7);
+        // climbDownButton.whileHeld(new ManualClimb());
 
-        climbUpButton = new JoystickButton(assistController, 6);
-        climbUpButton.whileHeld(new ManualClimb());
+        // climbUpButton = new JoystickButton(assistController, 6);
+        // climbUpButton.whileHeld(new ManualClimb());
+      
+        manualClimb = new JoystickButton(assistController, 6);
+        manualClimb.whileHeld(new ManualClimb());
+
 
         // AutoclimbUpButton = new JoystickButton(assistController, RobotMap.AutoClimbUp);
         // AutoclimbUpButton.whileHeld(new AutoClimb(Constants.maxClimbSpeed));
