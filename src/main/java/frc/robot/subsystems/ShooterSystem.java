@@ -16,15 +16,15 @@ import frc.robot.helper.*;
 public class ShooterSystem extends SubsystemBase {
 
     
-    private CanMotor ballMotorA;
-    private CanMotor ballMotorB;
+    private CanMotor topMotor;
+    private CanMotor bottomMotor;
     private Spark shootRotatorA;
     private Spark shootRotatorB;
     private Spark shotLoader;
 
     public ShooterSystem(){
-        ballMotorA = new CanMotor(Constants.TopBallMotorID);
-        ballMotorB = new CanMotor(Constants.BottomBallMotorID);
+        topMotor = new CanMotor(Constants.TopBallMotorID);
+        bottomMotor = new CanMotor(Constants.BottomBallMotorID);
         
         shootRotatorA = new Spark(Constants.ShootRotatorAID);
         shootRotatorA.setInverted(false);
@@ -48,8 +48,15 @@ public class ShooterSystem extends SubsystemBase {
      */
 
     public void setShooterSpeed(double top, double bottom) {
-        ballMotorA.setSpeed(top);
-        ballMotorB.setSpeed(bottom);
+        topMotor.setSpeed(top);
+        bottomMotor.setSpeed(bottom);
+    }
+
+    public double getShooterSpeedTop() {
+        return topMotor.Motor().get();
+    }
+    public double getShooterSpeedBottom() {
+        return topMotor.Motor().get();
     }
 
     public Spark[] getRotateMotors(){

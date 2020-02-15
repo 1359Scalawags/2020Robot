@@ -115,7 +115,6 @@ public class BallSystem extends SubsystemBase {
         shootRotatorA = new Spark(Constants.ShootRotatorAID);
         shootRotatorA.setInverted(false);
         
-        //TODO Does this need to be inverted?
         shootRotatorB = new Spark(Constants.ShootRotatorBID);
         shootRotatorB.setInverted(true);
             
@@ -133,8 +132,6 @@ public class BallSystem extends SubsystemBase {
         ballLoaderInB.setInverted(false);
 
 
-
-        //TODO Many problems that I see below
 
         //Ball Uptake
         ballLoadUpMotors = new SpeedControllerGroup(ballLoaderUpA, ballLoaderUpA); 
@@ -233,8 +230,6 @@ public class BallSystem extends SubsystemBase {
         this.ballLoaderCham.set(0);
     } 
 
-    //TODO Write out code for enabling different funtions:
-    //TODO loading, shooting, turning ON/OFF, or reversing
 
     /*
     public void generalLoading(double ballLoadUpSpd, double ballLoadInSpd){
@@ -286,7 +281,6 @@ public class BallSystem extends SubsystemBase {
         else if(speed < -Constants.maxShooterTurnRate)
             speed=-Constants.maxShooterTurnRate;
 
-        //TODO check if between limit switchs
         shootRotatorA.set(speed);
 	}
 
