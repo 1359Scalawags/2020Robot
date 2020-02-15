@@ -43,26 +43,25 @@ public class OI {
     // button.whenReleased(new ExampleCommand());
 
 
-    public XboxController assistController;
-    public XboxController driverContoller;
-    public JoystickButton speedoButton;
-    public JoystickButton startShooterButton;
-    public JoystickButton stopShooterButton;
-    public JoystickButton lineupButton;
-    public DPadButton intakeBallsButton;
-    public DPadButton rejectBallsButton;
-    public JoystickButton controlPanelSetColorButton;
-    public JoystickButton controlPanelSpinButton;
-    public JoystickButton climbUpButton;
-    public JoystickButton climbDownButton;
-    public JoystickButton AutoclimbUpButton;
-    public JoystickButton AutoclimbDownButton;
-    public JoystickButton autoDriveForwardButton;
-    public JoystickButton autoDriveTurnRight90Button;
+    private XboxController assistController;
+    private XboxController driverContoller;
+    private JoystickButton speedoButton;
+    private JoystickButton startShooterButton;
+    private JoystickButton stopShooterButton;
+    private JoystickButton lineupButton;
+    private DPadButton intakeBallsButton;
+    private DPadButton rejectBallsButton;
+    private JoystickButton controlPanelSetColorButton;
+    private JoystickButton controlPanelSpinButton;
+    private JoystickButton climbUpButton;
+    private JoystickButton climbDownButton;
+    private JoystickButton AutoclimbUpButton;
+    private JoystickButton AutoclimbDownButton;
+    private JoystickButton autoDriveForwardButton;
+    private JoystickButton autoDriveTurnRight90Button;
+    private JoystickButton manualChamberRotator;
 
-    Button autoDriveForward;
-    Button autoDriveTurn;
-
+    private JoystickButton unlockClimber;
 
     public OI() {
 
@@ -91,11 +90,20 @@ public class OI {
         //TODO Need auto climb buttons
         // AutoClimbUp
 
-        controlPanelSpinButton = new JoystickButton(assistController, Constants.Xbtn);
-        controlPanelSpinButton.whenPressed(new ControlPanelSpin());
 
-        controlPanelSetColorButton = new JoystickButton(assistController, Constants.Ybtn);
-        controlPanelSetColorButton.whenPressed(new ControlPanelSetColor());
+        unlockClimber = new JoystickButton(assistController, Constants.Xbtn);
+        unlockClimber.whenPressed(new UnlockClimber());
+
+        manualChamberRotator = new JoystickButton(assistController, Constants.Ybtn);
+        manualChamberRotator.whenPressed(new ManualChamberRotator());
+        
+        // controlPanelSpinButton = new JoystickButton(assistController, Constants.Xbtn);
+        // controlPanelSpinButton.whenPressed(new ControlPanelSpin());
+
+        // controlPanelSetColorButton = new JoystickButton(assistController, Constants.Ybtn);
+        // controlPanelSetColorButton.whenPressed(new ControlPanelSetColor());
+
+
 
         lineupButton = new JoystickButton(assistController, Constants.LB);
         lineupButton.whenPressed(new aimShooter());
@@ -109,17 +117,14 @@ public class OI {
 
         driverContoller = new XboxController(0);
 
-        autoDriveForwardButton = new JoystickButton(driverContoller, 2);
+        autoDriveForwardButton = new JoystickButton(driverContoller, RobotMap.driverxboxX);
         autoDriveForwardButton.whileHeld(new AutoDriveForward());
 
-        autoDriveTurnRight90Button = new JoystickButton(driverContoller, 3);
+        autoDriveTurnRight90Button = new JoystickButton(driverContoller, RobotMap.driverxboxRT);
         autoDriveTurnRight90Button.whenPressed(new AutoDriveTurn(90));
 
         speedoButton = new JoystickButton(driverContoller, 1);
         speedoButton.whileHeld(new ManualDrive());
-
-        autoDriveForward = new JoystickButton(driverContoller, RobotMap.driverxboxX);
-        autoDriveTurn = new JoystickButton(driverContoller, RobotMap.driverxboxRT);
 
         // SmartDashboard Buttons
         SmartDashboard.putData("Autonomous Command", new AutonomousCommand());
