@@ -137,79 +137,48 @@ public class LoadingSystem extends SubsystemBase {
     }
     */
 
-    public void setLoadInMotor(double speed) {
+    public void setLoadInMotors(double speed) {
         this.ballLoadInMotors.set(speed);
     }
 
-    public void setLoadUpMotor(double speed) {
-
+    public void setLoadUpMotors(double speed) {
+        this.ballLoadUpMotors.set(speed);
     }
 
     public void setChamberLoadMotor(double speed) {
-
+        this.ballLoaderCham.set(speed);
     }
 
     public boolean isOff() {
         return (ballLoadInMotors.get() == 0 && ballLoadUpMotors.get() == 0 && ballLoaderCham.get() == 0);
     }
-
-
-    /**
-     * Takes in balls and puts them into chamber
-     * @param speed Speed between 0 and 1
-     */
-    public void loaderIntakeBalls(double speed){
-        //Set speed of intake motor(s) to be slower than chamber loader
-        this.ballLoadInMotors.set(0.7 * speed);
-        this.ballLoadUpMotors.set(0.8 * speed);
-        this.ballLoaderCham.set(0.9 * speed);
+    
+    public boolean isOn() {
+        return (ballLoadInMotors.get() != 0 && ballLoadUpMotors.get() != 0 && ballLoaderCham.get() != 0);
     }
-
-    /**
-     * Makes sure balls do not enter the bot, STOPS all else
-     * @param speed Speed between -1 and 0
-     */
-    public void loaderRejectBalls(double speed){
-        this.ballLoadInMotors.set(0.9 * speed);
-        this.ballLoadUpMotors.set(0);
-        this.ballLoaderCham.set(0);
-    } 
 
     //TODO Write out code for enabling different funtions:
     //TODO loading, shooting, turning ON/OFF, or reversing
-
-    /*
-    public void generalLoading(double ballLoadUpSpd, double ballLoadInSpd){
-
-        ballLoadInSpd = Constants.BallLoadInSpeed;
-        ballLoadUpSpd = Constants.BallLoadUpSpeed;
-    
-        if(ballLoadInSpd <= 1, ballLoadUpSpd <= 1){
-            ballLoadInSpd = ballLoadUpSpd
-            ballLoadUpSpd = ballLoadUpSpd
-        } else {
-            ballLoadInSpd = 0
-            ballLoadUpSpd = 0
-        }
-    
-    }
-    */
-
-
-   /**
-     * @param top Top loader roller -1, 1
-     * @param bottom Bottom loader roller -1, 1
-     */
-
-    public void setBallLoaderSpeed(double aMot, double bMot, double cMot, double dMot, double eMot) {
-        ballLoaderUpA.set(aMot);
-        ballLoaderUpB.set(bMot);
-        ballLoaderInA.set(cMot);
-        ballLoaderInB.set(dMot);
-        ballLoaderCham.set(eMot);
-    }
-
+     
 	public void rotateChamber(double rotatorSpeed) {
         chamRotator.setSpeed(rotatorSpeed*Constants.maxChamberSpeed);
-	}
+    }
+    
+//Some example code on creating a group(s)
+/*
+    public void setBallLoaderSpeed(double aMot, double bMot, double cMot, double dMot, double eMot, double inMots, double upMots) {
+        ballLoaderUpA.set(aMot);
+        ballLoaderUpB.set(bMot);
+        //OR 
+        ballLoadUpMotors.set(inMots)
+
+        ballLoaderInA.set(cMot);
+        ballLoaderInB.set(dMot);
+        //OR
+        ballLoadInMotors.set(upMots)
+
+        ballLoaderCham.set(eMot);
+    }
+*/
+
 }
