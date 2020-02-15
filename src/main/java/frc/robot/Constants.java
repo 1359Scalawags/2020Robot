@@ -64,11 +64,11 @@ public final class Constants {
 
     
     //PWM Motors                                        Motor #s 0, 1, 2, 3, 4, 5, 6, 7, 10, 14, 15
-    public static int CANTopBallMotorID = 1;
-    public static int CANBottomBallMotorID = 2;
+    public static int CANTopBallMotorID = 3;
+    public static int CANBottomBallMotorID = 4;
     public static int CANFrontLeftMotorID = 11;
     public static int CANChamRotMotorID = 21;
-    public static int CANClimbMotorID = 3;
+    public static int CANClimbMotorID = 23;
     public static int CANBackLeftMotorID = 12;
     public static int CANFrontRightMotorID = 13;
     public static int CANBackRightMotorID = 14;
@@ -111,8 +111,8 @@ public final class Constants {
 
     // public static int ClimbServoID = 9;
 
-    public static double RatchetOpen = 0;
-    public static double RatchetClosed = 1;
+    public static double RatchetOpen = 1;
+    public static double RatchetClosed = 0;
 
     //Sensors                                       Sensor #s 3, 4
     public static int MaxHeightLimitID = 3;
@@ -125,7 +125,7 @@ public final class Constants {
     public static double MAX_CLIMB_POSITION = 1;
     
     //Potentiometers
-    public static  int CLIMBERPOTID = 8;    //Change if NEEDED...
+    // public static  int CLIMBERPOTID = 8;    //Change if NEEDED...
                                             //IF it was changed then let Allan know ASAP!
 
     //Defined

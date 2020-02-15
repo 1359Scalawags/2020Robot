@@ -53,7 +53,7 @@ import edu.wpi.first.wpilibj.AnalogPotentiometer;
 
         ratchet = new Servo(Constants.PWMRatchetServoID);
         ratchet.setPosition(Constants.RatchetClosed);
-        //climbMotor.setInverted(false);  
+        climbMotor.Motor().setInverted(true);  
         
         // pot = new AnalogPotentiometer(Constants.CLIMBERPOTID);
     }

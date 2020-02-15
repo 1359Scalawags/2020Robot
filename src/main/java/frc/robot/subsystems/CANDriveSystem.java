@@ -39,7 +39,7 @@ public class CANDriveSystem extends SubsystemBase {
      leftControllerGroup = new SpeedControllerGroup(leftMotors[0].Motor(), leftMotors[1].Motor());
      rightControllerGroup = new SpeedControllerGroup(rightMotors[0].Motor(), rightMotors[1].Motor());
 
-     diffDrive = new DifferentialDrive(rightControllerGroup, leftControllerGroup);
+     diffDrive = new DifferentialDrive(rightControllerGroup, leftControllerGroup);//TODO rename stuff
      gyroPids = new PID_Values(Constants.gyrokP, Constants.gyrokI, Constants.gyrokD, Constants.gyrokIz, Constants.gyrokFf);
      driveGyro = new ADXRS450_Gyro();
      gyroControl = new PIDController(gyroPids.KP(), gyroPids.KI(), gyroPids.KD());
@@ -116,10 +116,10 @@ public double getDistanceRight() {
    */
   public void tankDrive(double leftSpeed, double rightSpeed) {
     if(reverse) {
-      diffDrive.tankDrive(-rightSpeed, -leftSpeed);
+      diffDrive.tankDrive(rightSpeed, leftSpeed);
       //m_drive2.tankDrive(-rightSpeed, -leftSpeed); //new
     } else {
-      diffDrive.tankDrive(leftSpeed, rightSpeed);
+      diffDrive.tankDrive(-leftSpeed, -rightSpeed);
       //m_drive2.tankDrive(rightSpeed, leftSpeed); //new
     }
   }
