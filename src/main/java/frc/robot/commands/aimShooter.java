@@ -4,11 +4,11 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 import frc.robot.Constants;
 
-public class LineupToShoot extends CommandBase{
+public class aimShooter extends CommandBase{
 
     double angle;
 
-    public LineupToShoot() {
+    public aimShooter() {
         addRequirements(Robot.kNetwork);
         addRequirements(Robot.loadingSystem);
         addRequirements(Robot.driveSystem);
@@ -22,7 +22,7 @@ public class LineupToShoot extends CommandBase{
     // Called repeatedly when this Command is scheduled to run
     @Override
     public void execute() {
-        rotate(Constants.maxShooterTurnRate, Robot.kNetwork.getAngle());
+        rotate(Constants.maxShooterTurnRate, Robot.kNetwork.getAngles());
 
         double distance = Robot.kNetwork.getDist();
         double error = Constants.expectedDist - distance;//0, 100
@@ -42,10 +42,12 @@ public class LineupToShoot extends CommandBase{
      * @param speed speed of motors -1. 1
      * @param expectedposition set expected position 0, 1
      */
-    public void rotate(double speed, double angle){
-        double nangle = angle/360;
+    public void rotate(double speed, double angles[]){
+
+        double xangle = angles[0]/360;
+        double yangle = angles[1]/360;
         
-        Robot.shooterSystem.rotateShooter(speed*nangle);
+        Robot.shooterSystem.rotateShooter(speed*xangle, speed*yangle);
     }
 
     // Make this return true when this Command no longer needs to run execute()

@@ -3,7 +3,7 @@ package frc.robot.subsystems;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
-import edu.wpi.first.wpilibj2.command.SubsystemBase;;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class NetworkSystem extends SubsystemBase {
     NetworkTableInstance inst;
@@ -12,13 +12,14 @@ public class NetworkSystem extends SubsystemBase {
     NetworkTable Angle;
 
     NetworkTableEntry Distancevalue;
-    NetworkTableEntry AngleValue;
+    NetworkTableEntry[] AngleValues;
 
     public NetworkSystem(){
         inst = NetworkTableInstance.getDefault();
 
         Distance = inst.getTable("DistanceTable");
         Angle = inst.getTable("AngleTable");
+        AngleValues = new NetworkTableEntry[2];
     }
 
     public double getDist(){
@@ -27,10 +28,15 @@ public class NetworkSystem extends SubsystemBase {
         return value;
     }
 
-    public double getAngle(){
-        AngleValue = Angle.getEntry("Value");
-        double angle = AngleValue.getDouble(-1);
-        return angle;
+    public double[] getAngles(){
+        double[] angles = new double[2];
+        AngleValues[0] = Angle.getEntry("XValue");
+        AngleValues[1] = Angle.getEntry("YValue");
+
+        angles[0] = AngleValues[0].getDouble(-1);
+        angles[1] = AngleValues[1].getDouble(-1);
+
+        return angles;
     }
 
     public void initDefaultCommand(){

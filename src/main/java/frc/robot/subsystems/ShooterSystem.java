@@ -60,15 +60,20 @@ public class ShooterSystem extends SubsystemBase {
         return Motors;
     }
 
-	public void rotateShooter(double speed) {
-        if(speed > Constants.maxShooterTurnRate)
-            speed=Constants.maxShooterTurnRate;
-        else if(speed < -Constants.maxShooterTurnRate)
-            speed=-Constants.maxShooterTurnRate;
+	public void rotateShooter(double speed1, double speed2) {
+        if(speed1 > Constants.maxShooterTurnRate)
+            speed1=Constants.maxShooterTurnRate;
+        else if(speed1 < -Constants.maxShooterTurnRate)
+            speed1=-Constants.maxShooterTurnRate;
+
+        if(speed2 > Constants.maxShooterTurnRate)
+            speed2=Constants.maxShooterTurnRate;
+        else if(speed2 < -Constants.maxShooterTurnRate)
+            speed2=-Constants.maxShooterTurnRate;
 
         //TODO check if between limit switchs
-        shootRotatorA.set(speed);
-        shootRotatorB.set(speed);
+        shootRotatorA.set(speed1);
+        shootRotatorB.set(speed2);
 	}
 
 

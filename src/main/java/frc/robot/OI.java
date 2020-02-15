@@ -85,7 +85,7 @@ public class OI {
         controlPanelSetColorButton.whenPressed(new ControlPanelSetColor());
 
         lineupButton = new JoystickButton(assistController, Constants.LB);
-        lineupButton.whenPressed(new LineupToShoot());
+        lineupButton.whenPressed(new aimShooter());
 
         shootButton = new JoystickButton(assistController, Constants.RB);
         shootButton.whileHeld(new ShootBall());
@@ -118,7 +118,7 @@ public class OI {
         SmartDashboard.putData("ControlPanelSpin", new ControlPanelSpin());
         SmartDashboard.putData("IntakeRollerSpin", new IntakeRollerSpin());
         SmartDashboard.putData("IntakeTrackUp", new IntakeTrackUp());
-        SmartDashboard.putData("LineupToShoot", new LineupToShoot());
+        SmartDashboard.putData("LineupToShoot", new aimShooter());
         SmartDashboard.putData("ShootBall", new ShootBall());
         //SmartDashboard.putData("TestShooterSpeeds", new TestShooterSpeeds());
         //Button autoDriveForward = new JoystickButton(driverContoller, RobotMap.driverxboxX);
