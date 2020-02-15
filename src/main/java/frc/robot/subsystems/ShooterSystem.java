@@ -15,19 +15,34 @@ import frc.robot.helper.*;
  */
 public class ShooterSystem extends SubsystemBase {
 
+    
+    private CanMotor ballMotorA;
+    private CanMotor ballMotorB;
     private Spark shootRotatorA;
     private Spark shootRotatorB;
 
     public ShooterSystem(){
+        ballMotorA = new CanMotor(Constants.TopBallMotorID);
+        ballMotorB = new CanMotor(Constants.BottomBallMotorID);
         
         shootRotatorA = new Spark(Constants.ShootRotatorAID);
         shootRotatorA.setInverted(false);
+        
         
         //TODO Does this need to be inverted?
         shootRotatorB = new Spark(Constants.ShootRotatorBID);
         shootRotatorB.setInverted(true);
     }
     
+    /**
+     * @param top Top shooter roller -1, 1
+     * @param bottom Bottom shooter roller -1, 1
+     */
+
+    public void setShooterSpeed(double top, double bottom) {
+        ballMotorA.setSpeed(top);
+        ballMotorB.setSpeed(bottom);
+    }
 
     public Spark[] getRotateMotors(){
         Spark[] Motors = new Spark[2];

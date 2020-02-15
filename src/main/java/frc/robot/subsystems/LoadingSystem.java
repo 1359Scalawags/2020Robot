@@ -19,8 +19,6 @@ public class LoadingSystem extends SubsystemBase {
 
     //**chamRotator = Chamber Rotator
 
-    private CanMotor ballMotorA;
-    private CanMotor ballMotorB;
     /**
     * **The CHAMBER ROTATOR rotates the chamber
     */
@@ -66,9 +64,6 @@ public class LoadingSystem extends SubsystemBase {
     public LoadingSystem() {
         chamRotator = new CanMotor(Constants.ChamRotMotorID);
 
-        ballMotorA = new CanMotor(Constants.TopBallMotorID);
-        
-        ballMotorB = new CanMotor(Constants.BottomBallMotorID);
         
         //SendableRegistry.add(getController());//what is a parent? Do i need to add a child?
         //SendableRegistry.add(getController(), "controller");
@@ -214,15 +209,6 @@ public class LoadingSystem extends SubsystemBase {
     }
     */
 
-    /**
-     * @param top Top shooter roller -1, 1
-     * @param bottom Bottom shooter roller -1, 1
-     */
-
-    public void setShooterSpeed(double top, double bottom) {
-        ballMotorA.setSpeed(top);
-        ballMotorB.setSpeed(bottom);
-    }
 
    /**
      * @param top Top laoder roller -1, 1
