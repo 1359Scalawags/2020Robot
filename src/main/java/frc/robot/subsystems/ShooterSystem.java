@@ -20,6 +20,7 @@ public class ShooterSystem extends SubsystemBase {
     private CanMotor ballMotorB;
     private Spark shootRotatorA;
     private Spark shootRotatorB;
+    private Spark shotLoader;
 
     public ShooterSystem(){
         ballMotorA = new CanMotor(Constants.TopBallMotorID);
@@ -28,7 +29,9 @@ public class ShooterSystem extends SubsystemBase {
         shootRotatorA = new Spark(Constants.ShootRotatorAID);
         shootRotatorA.setInverted(false);
         
-        
+        shotLoader = new Spark(Constants.LoadShotMotorID);
+        shotLoader.setInverted(false);
+
         //TODO Does this need to be inverted?
         shootRotatorB = new Spark(Constants.ShootRotatorBID);
         shootRotatorB.setInverted(true);
@@ -51,10 +54,6 @@ public class ShooterSystem extends SubsystemBase {
         
         return Motors;
     }
-    
-	public double getShooterPosition() {
-		return shootRotatorA.getPosition();
-	}
 
 	public void rotateShooter(double speed) {
         if(speed > Constants.maxShooterTurnRate)
@@ -64,6 +63,8 @@ public class ShooterSystem extends SubsystemBase {
 
         //TODO check if between limit switchs
         shootRotatorA.set(speed);
+        shootRotatorB.set(speed);
 	}
+
 
 }

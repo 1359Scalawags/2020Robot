@@ -57,7 +57,6 @@ public class LoadingSystem extends SubsystemBase {
     private Talon ballLoaderUpA;
     private Talon ballLoaderUpB;
     private Talon ballLoaderCham;
-    private Spark shotLoader;
 
     //Initialize your subsystem here
 
@@ -116,10 +115,6 @@ public class LoadingSystem extends SubsystemBase {
         //addChild("BallLoaderIntoChamber",ballLoaderCham);
         ballLoaderCham.setInverted(false);
         
-
-        shotLoader = new Spark(Constants.LoadShotMotorID);
-        //addChild("ShooterLoader",shotLoader);
-        shotLoader.setInverted(false);
         
 
         //ballLimit = new DigitalInput(Constants.BallLimitID);
@@ -223,4 +218,7 @@ public class LoadingSystem extends SubsystemBase {
         ballLoaderCham.set(eMot);
     }
 
+	public void rotateChamber(double rotatorSpeed) {
+        chamRotator.setSpeed(rotatorSpeed*Constants.maxChamberSpeed);
+	}
 }
