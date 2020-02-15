@@ -12,6 +12,7 @@
 package frc.robot.commands;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.CommandGroupBase;
 import frc.robot.Constants;
 import frc.robot.Robot;
 import frc.robot.helper.CanMotor;
@@ -19,37 +20,26 @@ import frc.robot.helper.CanMotor;
 /**
  *
  */
-public class ShootBall extends CommandBase {
+public class FeedBallToShooter extends CommandBase {
     
-    private boolean shtrActive;
-    private double topShtrSpd;
-    private double btmShtrSpd;
 
 
 
-    public ShootBall() {
-        addRequirements(Robot.loadingSystem);
+    public FeedBallToShooter() {
+        addRequirements(Robot.shooterSystem);
     }
 
 
     // Called just before this Command runs the first time
     @Override
     public void initialize() {
-        SmartDashboard.putBoolean("Is Shooter Active", shtrActive);
         
-        Robot.shooterSystem.setShooterSpeed(Constants.MaxShooterSpeed, Constants.MaxShooterSpeed);
     }
 
     // Called repeatedly when this Command is scheduled to run
     @Override
     public void execute() {
-        Robot.shooterSystem.setShooterSpeed(topShtrSpd, btmShtrSpd);
-
-        SmartDashboard.getBoolean("Is Shooter Active", shtrActive);
-        SmartDashboard.getNumber("Top Shooter Speed", topShtrSpd);
-        SmartDashboard.getNumber("Bottom Shooter Speed", btmShtrSpd);
-        
-        SmartDashboard.putNumber("Ball Loader Speed", btmShtrSpd);
+       Robot.shooterSystem.setShotLoaderSpeed(Constants.LoadShotMotor);
     }
 
     // Make this return true when this Command no longer needs to run execute()

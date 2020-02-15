@@ -52,6 +52,10 @@ public class ShooterSystem extends SubsystemBase {
         bottomMotor.setSpeed(bottom);
     }
 
+    public void setShotLoaderSpeed(double loader) {
+        shotLoader.setSpeed(loader);
+    }
+
     public double getShooterSpeedTop() {
         return topMotor.Motor().get();
     }

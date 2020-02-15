@@ -67,9 +67,9 @@ public class OI {
 
         //DPad Buttons *DPAD IS POV
         intakeBallButton = new DPadButton(assistController, DPadButton.Direction.DOWN);
-        intakeBallButton.whenPressed(new IntakeRollerSpin());
-        uptakeBallButton = new DPadButton(assistController, DPadButton.Direction.UP);
-        uptakeBallButton.whenPressed(new IntakeRollerSpin());
+        // intakeBallButton.whenPressed(new IntakeRollerSpin());
+        // uptakeBallButton = new DPadButton(assistController, DPadButton.Direction.UP);
+        // uptakeBallButton.whenPressed(new IntakeRollerSpin());
 
         //Joystick Buttons *DPAD IS NOT A BUTTON
         climbDownButton = new JoystickButton(assistController, 7);
@@ -116,7 +116,7 @@ public class OI {
         SmartDashboard.putData("ManualClimbUp", new ManualClimb());
         SmartDashboard.putData("ControlPanelSetColor", new ControlPanelSetColor());
         SmartDashboard.putData("ControlPanelSpin", new ControlPanelSpin());
-        SmartDashboard.putData("IntakeRollerSpin", new IntakeRollerSpin());
+        // SmartDashboard.putData("IntakeRollerSpin", new IntakeRollerSpin());
         SmartDashboard.putData("IntakeTrackUp", new IntakeTrackUp());
         SmartDashboard.putData("LineupToShoot", new aimShooter());
         SmartDashboard.putData("ShootBall", new ShootBall());
