@@ -57,7 +57,6 @@ public class LoadingSystem extends SubsystemBase {
     private Talon ballLoaderUpA;
     private Talon ballLoaderUpB;
     private Talon ballLoaderCham;
-    private Spark shotLoader;
 
     //Initialize your subsystem here
 
@@ -116,12 +115,6 @@ public class LoadingSystem extends SubsystemBase {
         //addChild("BallLoaderIntoChamber",ballLoaderCham);
         ballLoaderCham.setInverted(false);
         
-
-        shotLoader = new Spark(Constants.LoadShotMotorID);
-        //addChild("ShooterLoader",shotLoader);
-        shotLoader.setInverted(false);
-        
-
         //ballLimit = new DigitalInput(Constants.BallLimitID);
         //addChild("BallLimit",ballLimit);
 
@@ -172,7 +165,7 @@ public class LoadingSystem extends SubsystemBase {
      * Takes in balls and puts them into chamber
      * @param speed Speed between 0 and 1
      */
-    public void loaderIntakeAll(double speed){
+    public void loadBall(double speed){
         //Set speed of intake motor(s) to be slower than chamber loader
         this.ballLoadInMotors.set(0.7 * speed);
         this.ballLoadUpMotors.set(0.8 * speed);
@@ -188,6 +181,13 @@ public class LoadingSystem extends SubsystemBase {
         this.ballLoadUpMotors.set(0);
         this.ballLoaderCham.set(0);
     } 
+
+    /**
+     * 
+     */
+    public void rotateToIndex(){
+
+    }
 
     //TODO Write out code for enabling different funtions:
     //TODO loading, shooting, turning ON/OFF, or reversing
