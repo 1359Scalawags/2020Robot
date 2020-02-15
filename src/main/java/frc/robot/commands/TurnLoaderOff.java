@@ -9,7 +9,7 @@ import frc.robot.Robot;
 public class TurnLoaderOff extends CommandBase{
 
     public TurnLoaderOff() {
-
+        addRequirements(Robot.loadingSystem);
     }
 
     @Override
@@ -19,21 +19,10 @@ public class TurnLoaderOff extends CommandBase{
         Robot.loadingSystem.setChamberLoadMotor(0.0);
     }
 
-    // Called repeatedly when this Command is scheduled to run
-    @Override
-    public void execute() {
-
-    }
-
     // Make this return true when this Command no longer needs to run execute()
     @Override
     public boolean isFinished() {
-        return Robot.loadingSystem.isOff();
+        return true;
     }
 
-    // Called once after isFinished returns true
-    @Override
-    public void end(boolean interrupted) {
-        //not much to do here
-    }
 }
