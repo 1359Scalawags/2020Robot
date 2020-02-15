@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.controller.PIDController;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants;
 //import frc.robot.Robot;
 import frc.robot.helper.*;
@@ -47,6 +48,12 @@ public class CANDriveSystem extends SubsystemBase {
   @Override
   public void periodic() {
   }
+
+  public void updateDashbord(){
+    SmartDashboard.putNumber("RightMotorVelocity", rightMotors[0].Encoder().getVelocity());
+    SmartDashboard.putNumber("LeftMotorVelocity", leftMotors[0].Encoder().getVelocity());
+    SmartDashboard.putNumber("DriveGyroAngly", driveGyro.getAngle());
+    }
 
   public void reverseDirection() {
     if (reverse) {
