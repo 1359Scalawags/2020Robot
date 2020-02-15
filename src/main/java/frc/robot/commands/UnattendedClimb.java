@@ -22,7 +22,7 @@ public class UnattendedClimb extends CommandBase {
 
     }
 
-    // Called just before this Command runs the first time
+    // Called just before this Command runs the first time Shlarblenarfalorf
     @Override
     public void initialize() {
         //Climber should already be unlocked
