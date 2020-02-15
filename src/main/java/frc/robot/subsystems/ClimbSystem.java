@@ -33,7 +33,6 @@ import edu.wpi.first.wpilibj.AnalogPotentiometer;
     private DigitalInput minHeightLimit;
     public AnalogPotentiometer pot;
 
-    // TODO: Find out if this motor is a NEO on CAN network
     private CanMotor climbMotor;
     private boolean climberLocked;
     private Servo ratchetLock;
@@ -46,7 +45,6 @@ import edu.wpi.first.wpilibj.AnalogPotentiometer;
         minHeightLimit = new DigitalInput(Constants.MinHeightLimitID);
         addChild("MinHeightLimit",minHeightLimit);
        
-        // TODO: change if a NEO
         climbMotor = new CanMotor(Constants.ClimbMotorID);
         
         climberLocked = true;

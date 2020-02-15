@@ -24,7 +24,7 @@ public class IntakeRollerSpin extends CommandBase {
     private boolean intakeOut;
     private double intakeSpeed;
 
-    //TODO should these in the Constants file
+    //TODO What are these for? can you explain the next chance.
     private double ballLoadSpdA;
     private double ballLoadSpdB;
     private double ballLoadSpdC;
