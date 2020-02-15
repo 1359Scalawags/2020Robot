@@ -98,6 +98,10 @@ public final class Constants {
     //Motors                                        Motor #s 8
     public static int ClimbMotorID = 8;
     public static int ClimbServoID = 9;
+    public static int RatchetServoID = 0;
+
+    public static double RatchetOpen = 0;
+    public static double RatchetClosed = 1;
 
     //Sensors                                       Sensor #s 3, 4
     public static int MaxHeightLimitID = 3;
@@ -106,6 +110,8 @@ public final class Constants {
     //Booleans
     public static boolean LIMIT_PRESSED = true;
     public static boolean LIMIT_NOTPRESSED = false;
+
+    public static double MAX_CLIMB_POSITION = 1;
     
     //Potentiometers
     public static  int CLIMBERPOTID = 8;    //Change if NEEDED...

@@ -10,6 +10,7 @@
 
 
 package frc.robot.commands;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.CommandGroupBase;
@@ -23,35 +24,43 @@ import frc.robot.helper.CanMotor;
 public class FeedBallToShooter extends CommandBase {
     
 
+    private double duration;
+    private double start;
+    private Timer timer;
 
-
-    public FeedBallToShooter() {
+    public FeedBallToShooter(double duration) {
         addRequirements(Robot.shooterSystem);
+        timer = new Timer();
+        this.duration = duration;
     }
 
 
     // Called just before this Command runs the first time
     @Override
     public void initialize() {
-        
+        start = timer.get();
+        Robot.shooterSystem.setShotLoaderSpeed(Constants.LoadShotMotor);       
     }
 
     // Called repeatedly when this Command is scheduled to run
     @Override
     public void execute() {
-       Robot.shooterSystem.setShotLoaderSpeed(Constants.LoadShotMotor);
+
     }
 
     // Make this return true when this Command no longer needs to run execute()
     @Override
     public boolean isFinished() {
+        if(timer.get() - start >= duration) {
+            return true;
+        }
         return false;
     }
 
     // Called once after isFinished returns true
     @Override
     public void end(boolean interrupted) {
-        Robot.shooterSystem.setShooterSpeed(0, 0);
+        Robot.shooterSystem.setShotLoaderSpeed(0);
     }
 
 

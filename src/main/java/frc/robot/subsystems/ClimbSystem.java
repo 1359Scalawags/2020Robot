@@ -29,18 +29,18 @@ import edu.wpi.first.wpilibj.AnalogPotentiometer;
  *  TODO: Find out the exact mechanics of the lift mechanism
  */
     public class ClimbSystem extends SubsystemBase {
-    private DigitalInput maxHeightLimit;
+    //private DigitalInput maxHeightLimit;
     private DigitalInput minHeightLimit;
-    public AnalogPotentiometer pot;
+    //public AnalogPotentiometer pot;
 
     private CanMotor climbMotor;
     private boolean climberLocked;
-    private Servo ratchetLock;
-    private boolean servoLocked;
+    private Servo ratchet;
+    private boolean ratchetLocked;
 
     public ClimbSystem() {
-        maxHeightLimit = new DigitalInput(Constants.MaxHeightLimitID);
-        addChild("MaxHeightLimit",maxHeightLimit);
+        //maxHeightLimit = new DigitalInput(Constants.MaxHeightLimitID);
+        //addChild("MaxHeightLimit",maxHeightLimit);
     
         minHeightLimit = new DigitalInput(Constants.MinHeightLimitID);
         addChild("MinHeightLimit",minHeightLimit);
@@ -48,8 +48,10 @@ import edu.wpi.first.wpilibj.AnalogPotentiometer;
         climbMotor = new CanMotor(Constants.ClimbMotorID);
         
         climberLocked = true;
-        servoLocked = true;
+        ratchetLocked = true;
 
+        ratchet = new Servo(Constants.RatchetServoID);
+        ratchet.setPosition(Constants.RatchetClosed);
         //climbMotor.setInverted(false);  
         
         // pot = new AnalogPotentiometer(Constants.CLIMBERPOTID);
@@ -64,6 +66,7 @@ import edu.wpi.first.wpilibj.AnalogPotentiometer;
         SmartDashboard.putNumber("ClimbSpeed", climbMotor.Encoder().getVelocity());
     }
 
+
     /**
      * Allows drivers to use, lock, and unlock the Climber.
      */
@@ -71,24 +74,29 @@ import edu.wpi.first.wpilibj.AnalogPotentiometer;
 		climberLocked = false;
     }
     
-    public void allowExtend() {
-        servoLocked = false;
+    public void unlockRatchet() {
+        ratchetLocked = false;
+        ratchet.setPosition(Constants.RatchetOpen);
     }
 
-    public void preventExtend() {
-       servoLocked = true; 
+    public void lockRatchet() {
+        if(climbMotor.Motor().get() > 0) {
+            climbMotor.Motor().set(0);
+        }
+       ratchetLocked = true; 
+       ratchet.setPosition(Constants.RatchetClosed);
     }
 
-	public boolean isLocked() {
+	public boolean isClimberLocked() {
 		return climberLocked;
     }
 	
-	public boolean getClimberLock() {
-		return climberLocked;
-    }
+	// public boolean getClimberLock() {
+	// 	return climberLocked;
+    // }
     
     public boolean isAtTop() {
-        return (maxHeightLimit.get() == Constants.LIMIT_PRESSED);
+        return (climbMotor.Encoder().getPosition() >= Constants.MAX_CLIMB_POSITION);
     }
 
     public boolean isAtBottom() {
@@ -100,7 +108,12 @@ import edu.wpi.first.wpilibj.AnalogPotentiometer;
     }
 
     public double getPosition() {
-        return pot.get() * Constants.PotToInches;
+        return this.climbMotor.Encoder().getPosition(); //com constant
+        //return pot.get() * Constants.PotToInches;
+    }
+
+    public void resetPosition() {
+        this.climbMotor.Encoder().setPosition(0);
     }
     
     /**
@@ -113,7 +126,7 @@ import edu.wpi.first.wpilibj.AnalogPotentiometer;
             climbMotor.setSpeed(0);
         } else {
             if (speed > 0) {
-                if (maxHeightLimit.get() == Constants.LIMIT_NOTPRESSED && servoLocked == false) {
+                if (climbMotor.Encoder().getPosition() < Constants.MAX_CLIMB_POSITION && ratchetLocked == false) {
                     climbMotor.setSpeed(speed);
                 } else {
                     climbMotor.setSpeed(0);

@@ -26,7 +26,7 @@ public class UnlockClimber extends CommandBase {
 
     @Override
     public boolean isFinished() {
-        return !Robot.climbSystem.isLocked();
+        return !Robot.climbSystem.isClimberLocked();
     }
 
     @Override

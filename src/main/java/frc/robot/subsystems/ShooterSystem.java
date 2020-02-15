@@ -63,13 +63,15 @@ public class ShooterSystem extends SubsystemBase {
         return topMotor.Motor().get();
     }
 
-    public Spark[] getRotateMotors(){
-        Spark[] Motors = new Spark[2];
-        Motors[0] = shootRotatorA;
-        Motors[1] = shootRotatorB;
+    // public Spark[] getRotateMotors(){
+    //     Spark[] Motors = new Spark[2];
+    //     Motors[0] = shootRotatorA;
+    //     Motors[1] = shootRotatorB;
         
-        return Motors;
-    }
+    //     return Motors;
+    // }
+
+
 
 	public void rotateShooter(double speed1, double speed2) {
         if(speed1 > Constants.maxShooterTurnRate)

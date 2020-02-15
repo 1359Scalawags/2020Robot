@@ -37,7 +37,7 @@ public class ManualClimb extends CommandBase {
     @Override
     public void execute() {
         double speed = Robot.oi.getClimbSpeed();
-        if (!Robot.climbSystem.isLocked()) {
+        if (!Robot.climbSystem.isClimberLocked()) {
             Robot.climbSystem.move(speed);
         }
         else {    
