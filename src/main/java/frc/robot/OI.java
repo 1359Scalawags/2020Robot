@@ -222,5 +222,9 @@ public class OI {
         return assistController.getY(Hand.kLeft);
     }
 
+	public double getRotatorSpeed() {
+      return assistController.getX(Hand.kRight);
+	}
+
 }
 
