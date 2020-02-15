@@ -6,7 +6,7 @@ import frc.robot.Robot;
 
 public class IndexChamberRotator extends CommandBase{
     public IndexChamberRotator(){
-        addRequirements(Robot.shooterSystem);
+        addRequirements(Robot.loadingSystem);
 
 
         Robot.loadingSystem.rotateChamber(Constants.maxChamberSpeed);

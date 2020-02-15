@@ -5,7 +5,7 @@ import frc.robot.Robot;
 
 public class ManualChamberRotator extends CommandBase{
     public ManualChamberRotator(){
-        addRequirements(Robot.shooterSystem);
+        addRequirements(Robot.loadingSystem);
 
         Robot.loadingSystem.rotateChamber(Robot.oi.getRotatorSpeed());
     }
