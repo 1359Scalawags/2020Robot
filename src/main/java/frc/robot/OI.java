@@ -101,7 +101,7 @@ public class OI {
         lineupButton.whenPressed(new aimShooter());
 
         startShooterButton = new JoystickButton(assistController, Constants.RB);
-        startShooterButton.whileHeld(new StartShooter());
+        startShooterButton.whileHeld(new StartShooter(1, 1));
 
         stopShooterButton = new JoystickButton(assistController, Constants.RB);
         stopShooterButton.whileHeld(new StopShooter());
