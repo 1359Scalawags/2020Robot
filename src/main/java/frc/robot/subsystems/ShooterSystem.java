@@ -20,7 +20,6 @@ public class ShooterSystem extends SubsystemBase {
     private CanMotor ballMotorB;
     private Spark shootRotatorA;
     private Spark shootRotatorB;
-    private Spark shotLoader;
 
     //TODO: MAKE SURE THIS IS USED!!!
     private Spark shotLoader;
