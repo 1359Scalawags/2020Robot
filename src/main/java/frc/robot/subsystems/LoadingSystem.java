@@ -132,6 +132,10 @@ public class LoadingSystem extends SubsystemBase {
         this.ballLoaderCham.set(speed);
     }
 
+    public boolean isLoadingChamber() {
+        return (this.ballLoaderCham.get() != 0);
+    }
+
     public boolean isOff() {
         return (ballLoadInMotors.get() == 0 && ballLoadUpMotors.get() == 0 && ballLoaderCham.get() == 0);
     }
@@ -143,8 +147,16 @@ public class LoadingSystem extends SubsystemBase {
     //TODO Write out code for enabling different funtions:
     //TODO loading, shooting, turning ON/OFF, or reversing
      
-	public void rotateChamber(double rotatorSpeed) {
-        chamRotator.setSpeed(rotatorSpeed*Constants.maxChamberSpeed);
+	public boolean rotateChamber(double rotatorSpeed) {
+        if(!isLoadingChamber()) {
+            chamRotator.setSpeed(rotatorSpeed*Constants.maxChamberSpeed); 
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isRotating() {
+        return (chamRotator.Encoder().getVelocity() != 0);
     }
 
     public Boolean getIndex(){
