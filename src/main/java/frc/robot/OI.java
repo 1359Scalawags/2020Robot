@@ -55,6 +55,8 @@ public class OI {
     public JoystickButton controlPanelSpinButton;
     public JoystickButton climbUpButton;
     public JoystickButton climbDownButton;
+    public JoystickButton AutoclimbUpButton;
+    public JoystickButton AutoclimbDownButton;
     public JoystickButton autoDriveForwardButton;
     public JoystickButton autoDriveTurnRight90Button;
 
@@ -79,6 +81,15 @@ public class OI {
 
         climbUpButton = new JoystickButton(assistController, 6);
         climbUpButton.whileHeld(new ManualClimb());
+
+        AutoclimbUpButton = new JoystickButton(assistController, RobotMap.AutoClimbUp);
+        AutoclimbUpButton.whileHeld(new AutoClimb(Constants.maxClimbSpeed));
+
+        AutoclimbDownButton = new JoystickButton(assistController, RobotMap.AutoClimbDown);
+        AutoclimbDownButton.whileHeld(new AutoClimb(Constants.maxClimbSpeed));
+
+        //TODO Need auto climb buttons
+        // AutoClimbUp
 
         controlPanelSpinButton = new JoystickButton(assistController, Constants.Xbtn);
         controlPanelSpinButton.whenPressed(new ControlPanelSpin());
