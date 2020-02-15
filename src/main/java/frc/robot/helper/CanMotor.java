@@ -36,7 +36,10 @@ public class CanMotor{
         controller.setOutputRange(-1, 1);
         encoder = motor.getEncoder();
     }
-
+    /**
+     * Sets velocity as percentage of maximum RPM.
+     * @param speed_ A value between -1 and 1
+     */
     public void setSpeed(double speed_) {
         if(speed != speed_)
             speed = speed_;
