@@ -46,10 +46,11 @@ public class OI {
     public XboxController assistController;
     public XboxController driverContoller;
     public JoystickButton speedoButton;
-    public JoystickButton shootButton;
+    public JoystickButton startShooterButton;
+    public JoystickButton stopShooterButton;
     public JoystickButton lineupButton;
-    public DPadButton intakeBallButton;
-    public DPadButton uptakeBallButton;
+    public DPadButton intakeBallsButton;
+    public DPadButton rejectBallsButton;
     public JoystickButton controlPanelSetColorButton;
     public JoystickButton controlPanelSpinButton;
     public JoystickButton climbUpButton;
@@ -65,13 +66,14 @@ public class OI {
 
         assistController = new XboxController(RobotMap.AssistController);
 
-        //DPad Buttons *DPAD IS POV
-        intakeBallButton = new DPadButton(assistController, DPadButton.Direction.DOWN);
-        // intakeBallButton.whenPressed(new IntakeRollerSpin());
-        // uptakeBallButton = new DPadButton(assistController, DPadButton.Direction.UP);
-        // uptakeBallButton.whenPressed(new IntakeRollerSpin());
+        //DPad Buttons **DPAD IS POV
+        rejectBallsButton = new DPadButton(assistController, DPadButton.Direction.DOWN);
+        rejectBallsButton.whenPressed(new TurnLoaderToRejectBalls());
 
-        //Joystick Buttons *DPAD IS NOT A BUTTON
+        intakeBallsButton = new DPadButton(assistController, DPadButton.Direction.UP);
+        intakeBallsButton.whenPressed(new TurnLoaderToIntakeBalls());
+
+        //Joystick Buttons **DPAD IS NOT A BUTTON
         climbDownButton = new JoystickButton(assistController, 7);
         climbDownButton.whileHeld(new ManualClimb());
 
@@ -87,9 +89,11 @@ public class OI {
         lineupButton = new JoystickButton(assistController, Constants.LB);
         lineupButton.whenPressed(new aimShooter());
 
-        shootButton = new JoystickButton(assistController, Constants.RB);
-        shootButton.whileHeld(new ShootBall());
+        startShooterButton = new JoystickButton(assistController, Constants.RB);
+        startShooterButton.whileHeld(new StartShooter());
 
+        stopShooterButton = new JoystickButton(assistController, Constants.RB);
+        stopShooterButton.whileHeld(new StopShooter());
         //DRIVER
 
         driverContoller = new XboxController(0);
@@ -116,13 +120,13 @@ public class OI {
         SmartDashboard.putData("ManualClimbUp", new ManualClimb());
         SmartDashboard.putData("ControlPanelSetColor", new ControlPanelSetColor());
         SmartDashboard.putData("ControlPanelSpin", new ControlPanelSpin());
-        // SmartDashboard.putData("IntakeRollerSpin", new IntakeRollerSpin());
-        SmartDashboard.putData("IntakeTrackUp", new IntakeTrackUp());
+        SmartDashboard.putData("IntakeBalls", new TurnLoaderToIntakeBalls());
+        SmartDashboard.putData("RejectBalls", new TurnLoaderToRejectBalls());
         SmartDashboard.putData("LineupToShoot", new aimShooter());
-        SmartDashboard.putData("ShootBall", new ShootBall());
+        SmartDashboard.putData("StartShootBall", new StartShooter());
+        SmartDashboard.putData("StopShootBall", new StopShooter());
         //SmartDashboard.putData("TestShooterSpeeds", new TestShooterSpeeds());
         //Button autoDriveForward = new JoystickButton(driverContoller, RobotMap.driverxboxX);
-        
 
     }
 

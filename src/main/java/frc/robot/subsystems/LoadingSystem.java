@@ -161,8 +161,7 @@ public class LoadingSystem extends SubsystemBase {
     //TODO loading, shooting, turning ON/OFF, or reversing
      
 	public void rotateChamber(double rotatorSpeed) {
-        if(!getIndex())
-            chamRotator.setSpeed(rotatorSpeed*Constants.maxChamberSpeed);
+        chamRotator.setSpeed(rotatorSpeed*Constants.maxChamberSpeed);
     }
 
     public Boolean getIndex(){
