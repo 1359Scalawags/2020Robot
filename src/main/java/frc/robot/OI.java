@@ -134,7 +134,7 @@ public class OI {
         SmartDashboard.putData("IntakeBalls", new TurnLoaderToIntakeBalls());
         SmartDashboard.putData("RejectBalls", new TurnLoaderToRejectBalls());
         SmartDashboard.putData("LineupToShoot", new aimShooter());
-        SmartDashboard.putData("StartShootBall", new StartShooter());
+        SmartDashboard.putData("StartShootBall", new StartShooter(1, 1));
         SmartDashboard.putData("StopShootBall", new StopShooter());
         //SmartDashboard.putData("TestShooterSpeeds", new TestShooterSpeeds());
         //Button autoDriveForward = new JoystickButton(driverContoller, RobotMap.driverxboxX);
