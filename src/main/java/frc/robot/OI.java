@@ -45,23 +45,25 @@ public class OI {
 
     private XboxController assistController;
     private XboxController driverContoller;
-    private JoystickButton speedoButton;
-    private JoystickButton startShooterButton;
-    private JoystickButton stopShooterButton;
-    private JoystickButton lineupButton;
+
+    // private JoystickButton speedoButton;
+    // private JoystickButton startShooterButton;
+    // private JoystickButton stopShooterButton;
+    // private JoystickButton lineupButton;
     private DPadButton intakeBallsButton;
     private DPadButton rejectBallsButton;
-    private JoystickButton controlPanelSetColorButton;
-    private JoystickButton controlPanelSpinButton;
+    // private JoystickButton controlPanelSetColorButton;
+    // private JoystickButton controlPanelSpinButton;
     private JoystickButton climbUpButton;
     private JoystickButton climbDownButton;
-    private JoystickButton AutoclimbUpButton;
-    private JoystickButton AutoclimbDownButton;
+    // private JoystickButton AutoclimbUpButton;
+    // private JoystickButton AutoclimbDownButton;
     private JoystickButton autoDriveForwardButton;
-    private JoystickButton autoDriveTurnRight90Button;
+    private JoystickButton autoDriveTurnRight;
+    private JoystickButton autoDriveTurnLeft;
     private JoystickButton manualChamberRotator;
-
     private JoystickButton unlockClimber;
+    private JoystickButton singleShot;
 
     public OI() {
 
@@ -81,15 +83,11 @@ public class OI {
         climbUpButton = new JoystickButton(assistController, 6);
         climbUpButton.whileHeld(new ManualClimb());
 
-        AutoclimbUpButton = new JoystickButton(assistController, RobotMap.AutoClimbUp);
-        AutoclimbUpButton.whileHeld(new AutoClimb(Constants.maxClimbSpeed));
+        // AutoclimbUpButton = new JoystickButton(assistController, RobotMap.AutoClimbUp);
+        // AutoclimbUpButton.whileHeld(new AutoClimb(Constants.maxClimbSpeed));
 
-        AutoclimbDownButton = new JoystickButton(assistController, RobotMap.AutoClimbDown);
-        AutoclimbDownButton.whileHeld(new AutoClimb(Constants.maxClimbSpeed));
-
-        //TODO Need auto climb buttons
-        // AutoClimbUp
-
+        // AutoclimbDownButton = new JoystickButton(assistController, RobotMap.AutoClimbDown);
+        // AutoclimbDownButton.whileHeld(new AutoClimb(Constants.maxClimbSpeed));
 
         unlockClimber = new JoystickButton(assistController, Constants.Xbtn);
         unlockClimber.whenPressed(new UnlockClimber());
@@ -104,15 +102,17 @@ public class OI {
         // controlPanelSetColorButton.whenPressed(new ControlPanelSetColor());
 
 
+        singleShot = new JoystickButton(assistController, Constants.LB);
+        singleShot.whenPressed(new SingleShotSequence());
 
-        lineupButton = new JoystickButton(assistController, Constants.LB);
-        lineupButton.whenPressed(new aimShooter());
+        // lineupButton = new JoystickButton(assistController, Constants.LB);
+        // lineupButton.whenPressed(new aimShooter());
 
-        startShooterButton = new JoystickButton(assistController, Constants.RB);
-        startShooterButton.whileHeld(new StartShooter(1, 1));
+        // startShooterButton = new JoystickButton(assistController, Constants.RB);
+        // startShooterButton.whileHeld(new StartShooter(1, 1));
 
-        stopShooterButton = new JoystickButton(assistController, Constants.RB);
-        stopShooterButton.whileHeld(new StopShooter());
+        // stopShooterButton = new JoystickButton(assistController, Constants.RB);
+        // stopShooterButton.whileHeld(new StopShooter());
         //DRIVER
 
         driverContoller = new XboxController(0);
@@ -120,11 +120,14 @@ public class OI {
         autoDriveForwardButton = new JoystickButton(driverContoller, RobotMap.driverxboxX);
         autoDriveForwardButton.whileHeld(new AutoDriveForward());
 
-        autoDriveTurnRight90Button = new JoystickButton(driverContoller, RobotMap.driverxboxRT);
-        autoDriveTurnRight90Button.whenPressed(new AutoDriveTurn(90));
+        autoDriveTurnRight = new JoystickButton(driverContoller, RobotMap.driverxboxRT);
+        autoDriveTurnRight.whenPressed(new AutoDriveTurn(90));
 
-        speedoButton = new JoystickButton(driverContoller, 1);
-        speedoButton.whileHeld(new ManualDrive());
+        autoDriveTurnLeft = new JoystickButton(driverContoller, RobotMap.driverxboxRT);
+        autoDriveTurnLeft.whenPressed(new AutoDriveTurn(-90));
+        
+        // speedoButton = new JoystickButton(driverContoller, 1);
+        // speedoButton.whileHeld(new ManualDrive());
 
         // SmartDashboard Buttons
         SmartDashboard.putData("Autonomous Command", new AutonomousCommand());
@@ -151,12 +154,12 @@ public class OI {
     }
 
     public boolean getAutoDriveForwardButton() {
-		return autoDriveForwardButton.get();
+		  return autoDriveForwardButton.get();
     }
 
-    public boolean getautoDriveTurnRight90Button() {
-		return autoDriveTurnRight90Button.get();
-	}
+    public boolean getautoDriveTurnRight() {
+		  return autoDriveTurnRight.get();
+	  }
 
     public XboxController getAssistJoystick() {
         return assistController;
