@@ -98,7 +98,7 @@ import edu.wpi.first.wpilibj.AnalogPotentiometer;
     }
 
     public void stop() {
-        climbMotor.set(0);
+        climbMotor.setSpeed(0);
     }
 
     public double getPosition() {
@@ -112,19 +112,19 @@ import edu.wpi.first.wpilibj.AnalogPotentiometer;
     public void move(double speed) {
 
         if (climberLocked) {
-            climbMotor.set(0);
+            climbMotor.setSpeed(0);
         } else {
             if (speed > 0) {
                 if (maxHeightLimit.get() == Constants.LIMIT_NOTPRESSED && servoLocked == false) {
-                    climbMotor.set(speed);
+                    climbMotor.setSpeed(speed);
                 } else {
-                    climbMotor.set(0);
+                    climbMotor.setSpeed(0);
                 }
             } else {
                 if (minHeightLimit.get() == Constants.LIMIT_NOTPRESSED) {
-                    climbMotor.set(speed);
+                    climbMotor.setSpeed(speed);
                 } else {
-                    climbMotor.set(0);
+                    climbMotor.setSpeed(0);
                 }
 
             }
