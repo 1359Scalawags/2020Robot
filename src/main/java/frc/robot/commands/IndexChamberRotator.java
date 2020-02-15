@@ -14,22 +14,16 @@ public class IndexChamberRotator extends CommandBase{
         Robot.loadingSystem.rotateChamber(Constants.maxChamberSpeed);
     }
 
-    // Called repeatedly when this Command is scheduled to run
-    @Override
-    public void execute() {
-    }
-
     // Make this return true when this Command no longer needs to run execute()
     @Override
     public boolean isFinished() {
-        return false;
+        return Robot.loadingSystem.getIndex();
     }
 
     // Called once after isFinished returns true
     @Override
     public void end(boolean interrupted) {
+        Robot.loadingSystem.rotateChamber(0);
     }
-
-    
 
 }
