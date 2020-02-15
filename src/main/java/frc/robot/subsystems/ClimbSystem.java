@@ -16,7 +16,9 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Spark;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants;
+import frc.robot.helper.CanMotor;
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
 //import edu.wpi.first.wpilibj.SpeedController;
@@ -31,8 +33,7 @@ import edu.wpi.first.wpilibj.AnalogPotentiometer;
     private DigitalInput minHeightLimit;
     public AnalogPotentiometer pot;
 
-    // TODO: Find out if this motor is a NEO on CAN network
-    private Spark climbMotor;
+    private CanMotor climbMotor;
     private boolean climberLocked;
     private Servo ratchetLock;
     private boolean servoLocked;
@@ -44,9 +45,7 @@ import edu.wpi.first.wpilibj.AnalogPotentiometer;
         minHeightLimit = new DigitalInput(Constants.MinHeightLimitID);
         addChild("MinHeightLimit",minHeightLimit);
        
-        // TODO: change if a NEO
-        climbMotor = new Spark(Constants.ClimbMotorID);
-        addChild("ClimbMotor",climbMotor);
+        climbMotor = new CanMotor(Constants.ClimbMotorID);
         
         climberLocked = true;
         servoLocked = true;
@@ -58,7 +57,11 @@ import edu.wpi.first.wpilibj.AnalogPotentiometer;
 
     @Override
     public void periodic() {
-        // Put code here to be run every loop
+
+    }
+
+    public void updateDashboard() {
+        SmartDashboard.putNumber("ClimbSpeed", climbMotor.Encoder().getVelocity());
     }
 
     /**
@@ -93,7 +96,7 @@ import edu.wpi.first.wpilibj.AnalogPotentiometer;
     }
 
     public void stop() {
-        climbMotor.set(0);
+        climbMotor.setSpeed(0);
     }
 
     public double getPosition() {
@@ -107,19 +110,19 @@ import edu.wpi.first.wpilibj.AnalogPotentiometer;
     public void move(double speed) {
 
         if (climberLocked) {
-            climbMotor.set(0);
+            climbMotor.setSpeed(0);
         } else {
             if (speed > 0) {
                 if (maxHeightLimit.get() == Constants.LIMIT_NOTPRESSED && servoLocked == false) {
-                    climbMotor.set(speed);
+                    climbMotor.setSpeed(speed);
                 } else {
-                    climbMotor.set(0);
+                    climbMotor.setSpeed(0);
                 }
             } else {
                 if (minHeightLimit.get() == Constants.LIMIT_NOTPRESSED) {
-                    climbMotor.set(speed);
+                    climbMotor.setSpeed(speed);
                 } else {
-                    climbMotor.set(0);
+                    climbMotor.setSpeed(0);
                 }
 
             }

@@ -77,7 +77,6 @@ public class BallSystem extends SubsystemBase {
     /**
     * **The CHAMBER LOADER puts balls into the 5 round chamber
     */
-    private Talon chamLoader;
     /*------------------------------------------*/
 
     private Talon ballLoaderInA;
@@ -157,10 +156,6 @@ public class BallSystem extends SubsystemBase {
         shotLoader = new Spark(Constants.LoadShotMotorID);
         //addChild("ShooterLoader",shotLoader);
         shotLoader.setInverted(false);
-
-        chamLoader = new Talon(Constants.LoadChamMotorID);
-        //addChild("ChamberLoader",chamLoader);
-        chamLoader.setInverted(false);
         
 
         //ballLimit = new DigitalInput(Constants.BallLimitID);
@@ -214,7 +209,7 @@ public class BallSystem extends SubsystemBase {
     public void loaderOff(){
         this.ballLoadInMotors.set(0);
         this.ballLoadUpMotors.set(0);
-        this.chamLoader.set(0);
+        this.ballLoaderCham.set(0);
     }
 
     /**
@@ -225,7 +220,7 @@ public class BallSystem extends SubsystemBase {
         //Set speed of intake motor to be slower than chamber loader
         this.ballLoadInMotors.set(0.7 * speed);
         this.ballLoadUpMotors.set(0.8 * speed);
-        this.chamLoader.set(0.9 * speed);
+        this.ballLoaderCham.set(0.9 * speed);
     }
 
     /**
@@ -235,7 +230,7 @@ public class BallSystem extends SubsystemBase {
     public void keepBallsOut(double speed){
         this.ballLoadInMotors.set(0.9 * speed);
         this.ballLoadUpMotors.set(0);
-        this.chamLoader.set(0);
+        this.ballLoaderCham.set(0);
     } 
 
     //TODO Write out code for enabling different funtions:
