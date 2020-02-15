@@ -12,7 +12,9 @@
 package frc.robot.commands;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
 import frc.robot.Robot;
+import frc.robot.helper.CanMotor;
 
 /**
  *
@@ -22,7 +24,7 @@ public class ShootBall extends CommandBase {
     private boolean shtrActive;
     private double topShtrSpd;
     private double btmShtrSpd;
-    
+
 
 
     public ShootBall() {
@@ -34,14 +36,14 @@ public class ShootBall extends CommandBase {
     @Override
     public void initialize() {
         SmartDashboard.putBoolean("Is Shooter Active", shtrActive);
-        SmartDashboard.putNumber("Top Shooter Speed", topShtrSpd);
-        SmartDashboard.putNumber("Bottom Shooter Speed", btmShtrSpd);
+        
+        Robot.shooterSystem.setShooterSpeed(Constants.MaxShooterSpeed, Constants.MaxShooterSpeed);
     }
 
     // Called repeatedly when this Command is scheduled to run
     @Override
     public void execute() {
-        Robot.loadingSystem.setShooterSpeed(topShtrSpd, btmShtrSpd);
+        Robot.shooterSystem.setShooterSpeed(topShtrSpd, btmShtrSpd);
 
         SmartDashboard.getBoolean("Is Shooter Active", shtrActive);
         SmartDashboard.getNumber("Top Shooter Speed", topShtrSpd);
@@ -59,7 +61,7 @@ public class ShootBall extends CommandBase {
     // Called once after isFinished returns true
     @Override
     public void end(boolean interrupted) {
-        Robot.loadingSystem.setShooterSpeed(0, 0);
+        Robot.shooterSystem.setShooterSpeed(0, 0);
     }
 
 

@@ -85,6 +85,8 @@ public final class Constants {
 
     //PID
     public static double BallPIDTolerance = 0d;
+    
+    public static int MaxShooterSpeed = 1;
 	
     /*----------ClimbSystem----------*/
 
