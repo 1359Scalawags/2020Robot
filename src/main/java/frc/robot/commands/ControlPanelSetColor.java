@@ -30,7 +30,7 @@ public class ControlPanelSetColor extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     @Override
     public void execute() {
-        String current = "";
+        String current = "";//TODO get value from field
         Robot.controlPanelSystem.setExpected(current);
     }
 

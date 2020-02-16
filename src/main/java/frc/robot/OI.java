@@ -135,18 +135,24 @@ public class OI {
         // speedoButton.whileHeld(new ManualDrive());
 
         // SmartDashboard Buttons
+        SmartDashboard.putData("Aim Shooter", new aimShooter());
+        SmartDashboard.putData("AutoClimb", new AutoClimb(SmartDashboard.getNumber("Climber Speed", 0)));
+        SmartDashboard.putData("ManualClimber", new ManualClimb());
+
+        // SmartDashboard.putData("Auto Drive Turn", new AutoDriveTurn(90);
         SmartDashboard.putData("Autonomous Command", new AutonomousCommand());
-        SmartDashboard.putData("ManualDrive", new ManualDrive());
+
+
+        SmartDashboard.putData("ManualDrive", new ManualDrive());//TODO does this need to be called?
         SmartDashboard.putData("AutoDriveForward", new AutoDriveForward());
         SmartDashboard.putData("AutoDriveTurnLeft", new AutoDriveTurn(90));
         SmartDashboard.putData("AutoDriveTurnRight", new AutoDriveTurn(-90));
-        SmartDashboard.putData("ManualClimbDown", new ManualClimb());
-        SmartDashboard.putData("ManualClimbUp", new ManualClimb());
-        SmartDashboard.putData("ControlPanelSetColor", new ControlPanelSetColor());
-        SmartDashboard.putData("ControlPanelSpin", new ControlPanelSpin());
+        SmartDashboard.putData("ManualClimb", new ManualClimb());
+        SmartDashboard.putData("ControlPanel Set Color", new ControlPanelSetColor());
+        SmartDashboard.putData("ControlPanel Spin", new ControlPanelSpin());
         SmartDashboard.putData("IntakeBalls", new TurnLoaderToIntakeBalls());
+        SmartDashboard.putData("IntakeBalls", new TurnLoaderOff());
         SmartDashboard.putData("RejectBalls", new TurnLoaderToRejectBalls());
-        SmartDashboard.putData("LineupToShoot", new aimShooter());
         SmartDashboard.putData("StartShootBall", new StartShooter(1, 1));
         SmartDashboard.putData("StopShootBall", new StopShooter());
         //SmartDashboard.putData("TestShooterSpeeds", new TestShooterSpeeds());
