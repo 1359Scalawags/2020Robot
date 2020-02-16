@@ -23,7 +23,7 @@ import frc.robot.Robot;
 public class ManualDrive extends CommandBase {
 
     public ManualDrive() {
-         addRequirements(Robot.driveSystem);
+          addRequirements(Robot.driveSystem);
     }
 
     // Called just before this Command runs the first time

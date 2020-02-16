@@ -12,7 +12,6 @@ public class ManualChamberRotator extends CommandBase{
     @Override
     public void initialize() {
         double speed = Robot.oi.getRotatorSpeed();
-        SmartDashboard.putNumber("Speed of chamber", speed);
         Robot.loadingSystem.rotateChamber(speed);
     }
 

@@ -67,7 +67,7 @@ public final class Constants {
     public static int CANTopBallMotorID = 3;
     public static int CANBottomBallMotorID = 4;
     public static int CANFrontLeftMotorID = 11;
-    public static int CANChamRotMotorID = 21; //TODO Is this correct?
+    public static int CANChamRotMotorID = 21; //TODO check if this id is correct?
     public static int CANClimbMotorID = 23;
     public static int CANBackLeftMotorID = 12;
     public static int CANFrontRightMotorID = 13;
@@ -162,7 +162,8 @@ public final class Constants {
     public static int DriveDistanceUltrasonicA = 10;
     public static int DriveDistanceUltrasonicB = 11;
 
-    //PID
+    //PID 
+    //TODO set values
     public static double drivePID_P;
     public static double drivePID_I;
     public static double drivePID_D;

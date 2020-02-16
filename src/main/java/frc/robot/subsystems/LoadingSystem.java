@@ -2,6 +2,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.CounterBase.EncodingType;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Spark;
@@ -49,7 +50,6 @@ public class LoadingSystem extends SubsystemBase {
     //Initialize your subsystem here
 
     public LoadingSystem() {
-        //TODO this is using default PID values!!!
         chamRotator = new CanMotor(Constants.CANChamRotMotorID);
 
         //SendableRegistry.add(getController());//what is a parent? Do i need to add a child?
@@ -151,8 +151,9 @@ public class LoadingSystem extends SubsystemBase {
      
 	public boolean rotateChamber(double rotatorSpeed) {
         // if(!isLoadingChamber()) {
-            //TODO SmartDashbord value to make sure its correct
             //TODO Check the chamRotator CAN ID
+            
+            SmartDashboard.putNumber("rotateChamber", rotatorSpeed*Constants.maxChamberSpeed);
             chamRotator.setSpeed(rotatorSpeed*Constants.maxChamberSpeed); 
             // return true;
         // }

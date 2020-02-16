@@ -10,12 +10,7 @@ import frc.robot.Constants;
 //import frc.robot.Robot;
 import frc.robot.helper.*;
 
-// import frc.robot.Global;
-// import frc.robot.Global.*;
-
-public class CANDriveSystem extends SubsystemBase {
-
-  
+public class CANDriveSystem extends SubsystemBase {  
   private CanMotor[] leftMotors = new CanMotor[2];
   private CanMotor[] rightMotors = new CanMotor[2];
   
@@ -29,20 +24,19 @@ public class CANDriveSystem extends SubsystemBase {
   boolean reverse = false;    
 
   public CANDriveSystem() {
+    leftMotors[0] = new CanMotor(Constants.CANFrontLeftMotorID);
+    leftMotors[1] = new CanMotor(Constants.CANBackLeftMotorID);
 
-     leftMotors[0] = new CanMotor(Constants.CANFrontLeftMotorID);
-     leftMotors[1] = new CanMotor(Constants.CANBackLeftMotorID);
+    rightMotors[0] = new CanMotor(Constants.CANFrontRightMotorID);
+    rightMotors[1] = new CanMotor(Constants.CANBackRightMotorID);
+  
+    leftControllerGroup = new SpeedControllerGroup(leftMotors[0].Motor(), leftMotors[1].Motor());
+    rightControllerGroup = new SpeedControllerGroup(rightMotors[0].Motor(), rightMotors[1].Motor());
 
-     rightMotors[0] = new CanMotor(Constants.CANFrontRightMotorID);
-     rightMotors[1] = new CanMotor(Constants.CANBackRightMotorID);
-    
-     leftControllerGroup = new SpeedControllerGroup(leftMotors[0].Motor(), leftMotors[1].Motor());
-     rightControllerGroup = new SpeedControllerGroup(rightMotors[0].Motor(), rightMotors[1].Motor());
-
-     diffDrive = new DifferentialDrive(rightControllerGroup, leftControllerGroup);//TODO rename stuff
-     gyroPids = new PID_Values(Constants.gyrokP, Constants.gyrokI, Constants.gyrokD, Constants.gyrokIz, Constants.gyrokFf);
-     driveGyro = new ADXRS450_Gyro();
-     gyroControl = new PIDController(gyroPids.KP(), gyroPids.KI(), gyroPids.KD());
+    diffDrive = new DifferentialDrive(rightControllerGroup, leftControllerGroup);
+    gyroPids = new PID_Values(Constants.gyrokP, Constants.gyrokI, Constants.gyrokD, Constants.gyrokIz, Constants.gyrokFf);
+    driveGyro = new ADXRS450_Gyro();
+    gyroControl = new PIDController(gyroPids.KP(), gyroPids.KI(), gyroPids.KD());
   }
 
   @Override

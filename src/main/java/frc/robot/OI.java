@@ -71,7 +71,7 @@ public class OI {
         assistController = new XboxController(RobotMap.AssistController);
 
         //DPad Buttons **DPAD IS POV
-        rejectBallsButton = new DPadButton(assistController, DPadButton.Direction.DOWN);
+        rejectBallsButton = new DPadButton(assistController, DPadButton.Direction.DOWN);//error
         rejectBallsButton.whenPressed(new TurnLoaderToRejectBalls());
 
         intakeBallsButton = new DPadButton(assistController, DPadButton.Direction.UP);
