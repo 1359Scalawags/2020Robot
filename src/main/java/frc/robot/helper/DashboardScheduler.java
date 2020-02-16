@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import frc.robot.interfaces.scheduler;
 
 public class DashboardScheduler{
-    ArrayList<scheduler> scheduled;
+    ArrayList<scheduler> scheduled = new ArrayList<scheduler>();
 
     public void add(scheduler e){
         scheduled.add(e);
