@@ -26,6 +26,7 @@ import edu.wpi.first.wpilibj.Spark;
 //import edu.wpi.first.wpilibj.SpeedController;
 // why is this not working?
 import com.revrobotics.ColorSensorV3;
+import frc.robot.scheduler;
 //import com.revrobotics.ColorSensorV3.RawColor;
 //import com.revrobotics.ColorMatch;
 //import com.revrobotics.ColorMatchResult;
@@ -34,7 +35,7 @@ import com.revrobotics.ColorSensorV3;
 /**
  *
  */
-public class ControlPanelSystem extends SubsystemBase {
+public class ControlPanelSystem extends SubsystemBase implements scheduler{
 
     // private final ColorMatch matcher = new ColorMatch();
 
@@ -61,6 +62,11 @@ public class ControlPanelSystem extends SubsystemBase {
     private int inconsistentCount;
     private double th =0.1;
 
+    private double[] rexpected = {0.13489306, 0.43538037, 0.42972437};
+    private double[] gexpected = {0.31467456, 0.5550923, 0.13020141};
+    private double[] bexpected = {0.48934227, 0.36309862, 0.14753516};
+    private double[] yexpected = {0.17530347, 0.5667771, 0.25793532};
+
     public ControlPanelSystem() {
         // matcher.addColorMatch(BLUE);
 
@@ -71,7 +77,6 @@ public class ControlPanelSystem extends SubsystemBase {
         // matcher.addColorMatch(YELLOW);
 
         // matcher.addColorMatch(BETWEEN);
-
 
         rotateMotor = new Spark(Constants.PWMRotatoPotatoID);
         addChild("RotateMotor",rotateMotor);
@@ -121,7 +126,6 @@ public class ControlPanelSystem extends SubsystemBase {
     //     return "Color Not Found";
     // }
 
-
     public void setExpected(String col){
         expected = col;
     }
@@ -154,13 +158,13 @@ public class ControlPanelSystem extends SubsystemBase {
         double g = currentColor.green;
         double b = currentColor.blue;
 
-        if(Math.abs(0.13489306 - r) <=th && Math.abs(0.43538037- g) <=th && Math.abs(0.42972437 -b) <=th)
+        if(Math.abs(rexpected[0] - r) <=th && Math.abs(rexpected[1]- g) <=th && Math.abs(rexpected[2] -b) <=th)
             currentColorName = "Red";
-        else if(Math.abs(0.17530347 - r) <=th && Math.abs(0.5667771 - g) <=th && Math.abs(0.25793532 -b) <=th)
+        else if(Math.abs(yexpected[0] - r) <=th && Math.abs(yexpected[1] - g) <=th && Math.abs(yexpected[2] -b) <=th)
             currentColorName = "Yellow";
-        else if(Math.abs(0.48934227 - r) <=th && Math.abs(0.36309862 - g) <=th && Math.abs(0.14753516 -b) <=th)
+        else if(Math.abs(bexpected[0] - r) <=th && Math.abs(bexpected[1] - g) <=th && Math.abs(bexpected[2] -b) <=th)
             currentColorName = "Blue";
-        else if(Math.abs(0.31467456 - r) <=th && Math.abs(0.5550923 - g) <=th && Math.abs(0.13020141 -b) <=th)
+        else if(Math.abs(gexpected[0] - r) <=th && Math.abs(gexpected[1] - g) <=th && Math.abs(gexpected[2] -b) <=th)
             currentColorName = "Green";
         else
             currentColorName = "not found";
@@ -180,6 +184,18 @@ public class ControlPanelSystem extends SubsystemBase {
         
     }
 
+    @Override
+    public void updateDashboard(){  
+        SmartDashboard.putString("Scanner Color", getScannerColorName());
+        SmartDashboard.putString("Wheel Color", getWheelColorName());
+
+        if(SmartDashboard.getBoolean("Override", false)){
+            rexpected = SmartDashboard.getNumberArray("Red expected", rexpected);
+            gexpected = SmartDashboard.getNumberArray("Green expected", gexpected);
+            bexpected = SmartDashboard.getNumberArray("Blue expected", bexpected);
+            yexpected = SmartDashboard.getNumberArray("Yellow state", yexpected);
+        }
+    }
 }
 
 

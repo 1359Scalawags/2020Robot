@@ -10,10 +10,11 @@ import edu.wpi.first.wpilibj.Talon;
 import frc.robot.Constants;
 import frc.robot.helper.*;
 
+import frc.robot.scheduler;
 /**
  *
  */
-public class ShooterSystem extends SubsystemBase {
+public class ShooterSystem extends SubsystemBase implements scheduler{
 
     
     private CanMotor topMotor;
@@ -85,6 +86,11 @@ public class ShooterSystem extends SubsystemBase {
         shootRotatorA.set(speed1);
         shootRotatorB.set(speed2);
 	}
+
+    @Override
+    public void updateDashboard() {
+
+    }
 
 
 }

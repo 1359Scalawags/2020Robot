@@ -10,7 +10,9 @@ import frc.robot.Constants;
 //import frc.robot.Robot;
 import frc.robot.helper.*;
 
-public class CANDriveSystem extends SubsystemBase {  
+import frc.robot.scheduler;
+
+public class CANDriveSystem extends SubsystemBase implements scheduler{  
   private CanMotor[] leftMotors = new CanMotor[2];
   private CanMotor[] rightMotors = new CanMotor[2];
   
@@ -42,12 +44,6 @@ public class CANDriveSystem extends SubsystemBase {
   @Override
   public void periodic() {
   }
-
-  public void updateDashbord(){
-    SmartDashboard.putNumber("RightMotorVelocity", rightMotors[0].Encoder().getVelocity());
-    SmartDashboard.putNumber("LeftMotorVelocity", leftMotors[0].Encoder().getVelocity());
-    SmartDashboard.putNumber("DriveGyroAngly", driveGyro.getAngle());
-    }
 
   public void reverseDirection() {
     if (reverse) {
@@ -154,6 +150,19 @@ public double getDistanceRight() {
    
   }
   
+
+  @Override
+  public void updateDashboard(){
+    SmartDashboard.putNumber("RightMotorVelocity", rightMotors[0].Encoder().getVelocity());
+    SmartDashboard.putNumber("LeftMotorVelocity", leftMotors[0].Encoder().getVelocity());
+    SmartDashboard.putNumber("DriveGyroAngly", driveGyro.getAngle());
+    
+    if(SmartDashboard.getBoolean("Override", false)){
+      rightControllerGroup.set(SmartDashboard.getNumber("Drive Right Motors", 0));
+      rightControllerGroup.set(SmartDashboard.getNumber("Drive left Motors", 0));
+    }
+  }
+
   //Put methods for controlling this subsystem
   //here. Call these from Co
 

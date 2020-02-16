@@ -15,27 +15,44 @@ public class CanMotor{
     // private SpeedController speedCont;
     private CANSparkMax motor;
     private CANPIDController controller;
-
     private double speed;
+    private PID_Values pid;
     
 // SpeedController speedController, SpeedController[] speedControllers 
     public CanMotor(int id){
         this(id, new PID_Values());
     }
 
-    public CanMotor(int id, PID_Values pid){
+    public CanMotor(int id, PID_Values pid_){
+        pid = pid_;
         motor = new CANSparkMax(id, MotorType.kBrushless);
         motor.restoreFactoryDefaults();
         motor.setInverted(false);
         controller = motor.getPIDController();
+        updatePID();
+        controller.setOutputRange(-1, 1);
+        encoder = motor.getEncoder();
+    }
+    public double getSpeed(){
+        return speed;
+    }
+
+    public void setPID(double[] PID){
+        pid = new PID_Values(PID);
+        updatePID();
+    }
+
+    private void updatePID(){
         controller.setP(pid.KP());
         controller.setI(pid.KI());
         controller.setD(pid.KD());
         controller.setIZone(pid.KIz());
         controller.setFF(pid.KFf());
-        controller.setOutputRange(-1, 1);
-        encoder = motor.getEncoder();
     }
+    public PID_Values getPID(){
+       return pid;
+    }
+
     /**
      * Sets velocity as percentage of maximum RPM.
      * @param speed_ A value between -1 and 1

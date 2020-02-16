@@ -52,6 +52,8 @@ public class PixySystem extends SubsystemBase {
                 bestRadius = radius;
             }
         }
+        if(bestIndex==-1)
+            return null;
         return blocks.get(bestIndex);
     }
 
