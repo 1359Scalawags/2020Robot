@@ -1,8 +1,6 @@
 package frc.robot.commands;
 
-import org.ejml.dense.row.linsol.AdjustableLinearSolver_FDRM;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import frc.robot.Robot;
 
 public class SingleShotSequence extends SequentialCommandGroup {
 

@@ -1,8 +1,7 @@
 package frc.robot.helper;
 
 import java.util.ArrayList;
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.interfaces.scheduler;;
+import frc.robot.interfaces.scheduler;
 
 public class DashboardScheduler{
     ArrayList<scheduler> scheduled;

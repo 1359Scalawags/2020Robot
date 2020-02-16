@@ -11,11 +11,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants;
-import frc.robot.Robot;
-
 import java.util.ArrayList;
-
 import io.github.pseudoresonance.pixy2api.*;
 import io.github.pseudoresonance.pixy2api.Pixy2CCC.Block;
 import io.github.pseudoresonance.pixy2api.links.*;
