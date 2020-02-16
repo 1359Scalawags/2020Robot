@@ -36,7 +36,6 @@ public class aimShooter extends CommandBase{
     }
 
     /**
-     * 
      * @param speed speed of motors -1. 1
      * @param expectedposition set expected position 0, 1
      */

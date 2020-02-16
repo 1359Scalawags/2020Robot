@@ -49,6 +49,7 @@ public class LoadingSystem extends SubsystemBase {
     //Initialize your subsystem here
 
     public LoadingSystem() {
+        //TODO this is using default PID values!!!
         chamRotator = new CanMotor(Constants.CANChamRotMotorID);
 
         //SendableRegistry.add(getController());//what is a parent? Do i need to add a child?
@@ -69,6 +70,7 @@ public class LoadingSystem extends SubsystemBase {
         ballLoaderInB.setInverted(false);
 
         //Ball Intake
+
         ballLoadInMotors = new SpeedControllerGroup(ballLoaderInA, ballLoaderInB);
 
         ballLoaderUpA = new Talon(Constants.PWMLoadBallUpMotorRightID);
@@ -148,10 +150,12 @@ public class LoadingSystem extends SubsystemBase {
     //TODO loading, shooting, turning ON/OFF, or reversing
      
 	public boolean rotateChamber(double rotatorSpeed) {
-        if(!isLoadingChamber()) {
+        // if(!isLoadingChamber()) {
+            //TODO SmartDashbord value to make sure its correct
+            //TODO Check the chamRotator CAN ID
             chamRotator.setSpeed(rotatorSpeed*Constants.maxChamberSpeed); 
-            return true;
-        }
+            // return true;
+        // }
         return false;
     }
 
