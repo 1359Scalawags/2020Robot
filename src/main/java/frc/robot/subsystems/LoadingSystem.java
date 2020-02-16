@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.Talon;
 import frc.robot.Constants;
 import frc.robot.helper.*;
 
-import frc.robot.scheduler;
+import frc.robot.interfaces.scheduler;
 
 /**
  *

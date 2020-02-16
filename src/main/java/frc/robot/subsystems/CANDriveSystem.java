@@ -10,7 +10,7 @@ import frc.robot.Constants;
 //import frc.robot.Robot;
 import frc.robot.helper.*;
 
-import frc.robot.scheduler;
+import frc.robot.interfaces.scheduler;
 
 public class CANDriveSystem extends SubsystemBase implements scheduler{  
   private CanMotor[] leftMotors = new CanMotor[2];

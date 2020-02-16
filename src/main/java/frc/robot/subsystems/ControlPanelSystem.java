@@ -26,7 +26,7 @@ import edu.wpi.first.wpilibj.Spark;
 //import edu.wpi.first.wpilibj.SpeedController;
 // why is this not working?
 import com.revrobotics.ColorSensorV3;
-import frc.robot.scheduler;
+import frc.robot.interfaces.scheduler;
 //import com.revrobotics.ColorSensorV3.RawColor;
 //import com.revrobotics.ColorMatch;
 //import com.revrobotics.ColorMatchResult;
