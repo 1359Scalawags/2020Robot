@@ -59,6 +59,20 @@ public final class Constants {
         public static int PWMLoadShotMotorID = 5;
     }
 
+    public static final class Climb{
+    public static int CANClimbMotorID = 23;
+    public static int PWMRatchetServoID = 8;
+    public static double RatchetOpen = 1;
+    public static double RatchetClosed = 0;
+    public static int MaxHeightLimitID = 3;
+    public static int MinHeightLimitID = 4;
+    public static boolean LIMIT_PRESSED = true;
+    public static boolean LIMIT_NOTPRESSED = false;
+    public static double MAX_CLIMB_POSITION = 1;
+    public static double PotToInches = 35.0;
+    public static final double maxClimbSpeed = 1;
+    }
+
     /*----------Operator Interface----------*/
     
     /***
@@ -112,11 +126,11 @@ public final class Constants {
     
 
     public static int CANChamRotMotorID = 21; //TODO check if this id is correct?
-    public static int CANClimbMotorID = 23;
+    
 
 
 
-    public static int PWMRatchetServoID = 8;
+    
     public static int PWMLoadBallInMotorRearID = 0;
     public static int PWMLoadBallInMotorFrontID = 4;
     public static int PWMLoadBallUpMotorRightID = 1;
@@ -151,25 +165,17 @@ public final class Constants {
 
     // public static int ClimbServoID = 9;
 
-    public static double RatchetOpen = 1;
-    public static double RatchetClosed = 0;
-
-    //Sensors                                       Sensor #s 3, 4
-    public static int MaxHeightLimitID = 3;
-    public static int MinHeightLimitID = 4;
+    
 
     //Booleans
-    public static boolean LIMIT_PRESSED = true;
-    public static boolean LIMIT_NOTPRESSED = false;
-
-    public static double MAX_CLIMB_POSITION = 1;
+    
     
     //Potentiometers
     // public static  int CLIMBERPOTID = 8;    //Change if NEEDED...
                                             //IF it was changed then let Allan know ASAP!
 
     //Defined
-    public static double PotToInches = 35.0;    //Change if NEEDED...  Pot = POTENTIOMETER
+        //Change if NEEDED...  Pot = POTENTIOMETER
                                                 //IF it was changed then let Allan know ASAP!
 
     /*----------ControlPanelSystem----------*/
@@ -210,5 +216,5 @@ public final class Constants {
     public static final double SpeedTwordsBall = 0;
 
 	public static final double maxChamberSpeed = 1;
-	public static final double maxClimbSpeed = 1;
+	
 }
