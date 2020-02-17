@@ -1,4 +1,4 @@
-package frc.robot.commands;
+package frc.robot.commands.shooter;
 
 //import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
@@ -6,15 +6,15 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 //import frc.robot.RobotMap;
 
-public class TurnLoaderOff extends CommandBase{
+public class TurnLoaderToRejectBalls extends CommandBase{
 
-    public TurnLoaderOff() {
+    public TurnLoaderToRejectBalls() {
         addRequirements(Robot.loadingSystem);
     }
 
     @Override
     public void initialize() {
-        Robot.loadingSystem.setLoadInMotors(0.0);
+        Robot.loadingSystem.setLoadInMotors(-1);
         Robot.loadingSystem.setLoadUpMotors(0.0);
         Robot.loadingSystem.setChamberLoadMotor(0.0);
     }
@@ -25,4 +25,9 @@ public class TurnLoaderOff extends CommandBase{
         return true;
     }
 
+    // Called once after isFinished returns true
+    @Override
+    public void end(boolean interrupted) {
+
+    }
 }

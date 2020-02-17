@@ -9,52 +9,55 @@
 // it from being updated in the future.
 
 
-package frc.robot.commands;
-
+package frc.robot.commands.shooter;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
 import frc.robot.Robot;
-//import frc.robot.Robot;
-//import frc.robot.subsystems.DriveSystem;
 
 /**
  *
  */
-public class ManualDrive extends CommandBase {
+public class FeedBallToShooter extends CommandBase {
+    
 
-    public ManualDrive() {
-          addRequirements(Robot.driveSystem);
+    private double duration;
+    private double start;
+    private Timer timer;
+
+    public FeedBallToShooter(double duration) {
+        addRequirements(Robot.shooterSystem);
+        timer = new Timer();
+        this.duration = duration;
     }
+
 
     // Called just before this Command runs the first time
     @Override
     public void initialize() {
-        // Robot.driveSystem.ResetGyro();
+        start = timer.get();
+        Robot.shooterSystem.setShotLoaderSpeed(Constants.LoadShotMotor);       
     }
 
     // Called repeatedly when this Command is scheduled to run
     @Override
     public void execute() {
 
-        // Robot.oi.getDriverJoystick();
-        Robot.driveSystem.tankDrive(-Robot.oi.DriverLStickY(), -Robot.oi.DriverRStickY());	
-        
-        //SmartDashboard.putNumber("Elevator Height",Robot.climbSystem.getclimbSystemHeight());
-		// SmartDashboard.putNumber("Gyro", Robot.canDriveSystem.getAngle());
-		// SmartDashboard.putNumber("Encoder Distance", Robot.canDriveSystem.getDistanceLeft());
-        // SmartDashboard.putNumber("Encoder Distance", Robot.canDriveSystem.getDistanceRight());        
-        
-
     }
 
     // Make this return true when this Command no longer needs to run execute()
     @Override
     public boolean isFinished() {
+        if(timer.get() - start >= duration) {
+            return true;
+        }
         return false;
     }
 
     // Called once after isFinished returns true
     @Override
     public void end(boolean interrupted) {
+        Robot.shooterSystem.setShotLoaderSpeed(0);
     }
 
 

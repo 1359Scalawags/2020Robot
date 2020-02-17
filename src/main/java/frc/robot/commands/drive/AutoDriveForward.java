@@ -8,65 +8,51 @@
 // update. Deleting the comments indicating the section will prevent
 // it from being updated in the future.
 
-package frc.robot.commands;
-//import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
+package frc.robot.commands.drive;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 //import frc.robot.Robot;
 import frc.robot.Robot;
-//import frc.robot.RobotMap;
 
 /**
  *
  */
-public class AutoDriveTurn extends CommandBase {
+public class AutoDriveForward extends CommandBase {
 
-    private double targetangle;
-    private double currentangle;
+    private double target;
 
-
-    public AutoDriveTurn(double angle) { 
-         addRequirements(Robot.driveSystem);
-    //right is positive, left is negative
-        targetangle = angle;
-        currentangle = Robot.driveSystem.getAngle();
+    public AutoDriveForward() {
+        addRequirements(Robot.driveSystem);
     }
 
     // Called just before this Command runs the first time
     @Override
     public void initialize() {
-        //reset the gyro
-        //get current angle
-        //Robot.driveSystem.ResetGyro();
-        //currentangle = Robot.driveSystem.getAngle();
+        
+        target = Robot.driveSystem.getAngle();
+        
     }
 
     // Called repeatedly when this Command is scheduled to run
     @Override
     public void execute() {
-        Robot.driveSystem.arcadeDrive(0.0, Constants.maxRightTurnRate, targetangle);
+
+        Robot.driveSystem.arcadeDrive(Constants.driveStraightSpeed, Constants.maxTurnRate, target);
+
     }
 
     // Make this return true when this Command no longer needs to run execute()
     @Override
     public boolean isFinished() {
-        //double distance = Math.abs(a - b);
-        //if(Math.abs(a - b) < 0.5)
-        //is the target angle the same as the current angle?
-        double diff = Math.abs(targetangle - currentangle);
-        
-        if (diff < Constants.AutoTurnAngleThreshold){
-            return true;
-        }
-        else{
-            return false;
-        }
+        return !Robot.oi.getAutoDriveForwardButton();
     }
 
     // Called once after isFinished returns true
     @Override
     public void end(boolean interrupted) {
-        //stop arcade drive
+
         Robot.driveSystem.arcadeDrive(0, 0, 0);
     }
+
 }
