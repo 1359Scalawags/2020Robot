@@ -25,7 +25,7 @@ public class DashboardScheduler{
         // System.out.println("OverRide: "+overriderState);
         if(frameCount == 10) {
             for (scheduler subsystem : scheduled) {
-                subsystem.updateDashboard(overriderState);
+                subsystem.updateDash(overriderState);
             }  
             frameCount = 0;  // TODO: move this before for loop if issues arise
         }

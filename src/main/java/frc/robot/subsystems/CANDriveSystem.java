@@ -40,7 +40,7 @@ public class CANDriveSystem extends SubsystemBase implements scheduler{
     driveGyro = new ADXRS450_Gyro();
     gyroControl = new PIDController(gyroPids.kP, gyroPids.kI, gyroPids.kD);
 
-    leftMotors[0].Encoder().setPositionConversionFactor(Drive.driveSystemScale);
+    leftMotors[0].Encoder().setPositionConversionFactor(Drive.SystemScale);
     
   }
 
@@ -156,7 +156,7 @@ public double getDistanceRight() {
   
 
   @Override
-  public void updateDashboard(boolean Override){
+  public void updateDash(boolean Override){
     SmartDashboard.putNumber("RightMotorVelocity", rightMotors[0].Encoder().getVelocity());
     SmartDashboard.putNumber("LeftMotorVelocity", leftMotors[0].Encoder().getVelocity());
     SmartDashboard.putNumber("DriveGyroAngly", driveGyro.getAngle());

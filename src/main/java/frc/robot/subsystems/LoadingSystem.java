@@ -164,7 +164,7 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
     }
     
     @Override
-    public void updateDashboard(boolean Override){    
+    public void updateDash(boolean Override){    
         if(Override){
             chamRotator.setPID(SmartDashboard.getNumberArray("Chamber Rotator PID", chamRotator.getPID().toArray()));
             chamRotator.set(SmartDashboard.getNumber("Chamber Rotator Speed", 0));

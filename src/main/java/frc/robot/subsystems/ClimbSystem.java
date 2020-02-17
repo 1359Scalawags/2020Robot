@@ -139,7 +139,7 @@ public class ClimbSystem extends SubsystemBase implements scheduler{
     }
 
     @Override
-    public void updateDashboard(boolean Override) {
+    public void updateDash(boolean Override) {
         SmartDashboard.putBoolean("RachetState", ratchetLocked);
         
         if(Override){
