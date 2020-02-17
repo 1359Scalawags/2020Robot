@@ -20,13 +20,7 @@ public final class Constants {
         public static int CANBackRightMotorID = 14;
         public static int CANFrontRightMotorID = 13;
         public static final double maxMotorSpeed = 0.95;
-        public static final double fullDriveSpeed = 8;
-        public static int DriveLeftEncoderA = 6;
-        public static int DriveLeftEncoderB = 7;
-        public static int DriveRightEncoderA = 8;
-        public static int DriveRightEncoderB = 9;
-        public static int DriveDistanceUltrasonicA = 10;
-        public static int DriveDistanceUltrasonicB = 11;
+        //public static final double fullDriveSpeed = 8;
         public static double drivePID_P = 0.00001;
         public static double drivePID_I = 0.000005;
         public static double drivePID_D = 0.000001;
