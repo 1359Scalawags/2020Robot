@@ -14,9 +14,7 @@ import frc.robot.Constants;
 import frc.robot.helper.PID_Values;
 
 public class CanMotor implements SpeedController{
-    private CANEncoder encoder;
     private CANSparkMax motor;
-    private CANPIDController controller;
     private double value;
     private PID_Values pid;
 
@@ -40,8 +38,7 @@ public class CanMotor implements SpeedController{
         this.motor = new CANSparkMax(id, MotorType.kBrushless);
         this.motor.restoreFactoryDefaults();
         this.motor.setInverted(false);
-        this.controller.setOutputRange(-1, 1);
-        this.encoder = motor.getEncoder();
+        this.motor.getPIDController().setOutputRange(-1, 1);
         updatePID();
     }
 
@@ -55,11 +52,11 @@ public class CanMotor implements SpeedController{
     }
 
     private void updatePID(){
-        controller.setP(pid.kP);
-        controller.setI(pid.kI);
-        controller.setD(pid.kD);
-        controller.setIZone(pid.kIz);
-        controller.setFF(pid.kFf);
+        motor.getPIDController().setP(pid.kP);
+        motor.getPIDController().setI(pid.kI);
+        motor.getPIDController().setD(pid.kD);
+        motor.getPIDController().setIZone(pid.kIz);
+        motor.getPIDController().setFF(pid.kFf);
     }
     public PID_Values getPID(){
        return pid;
@@ -77,11 +74,11 @@ public class CanMotor implements SpeedController{
     }
 
     public void updateSpeed(){
-        controller.setReference(value*Constants.MAXRPM, ControlType.kVelocity);
+        motor.getPIDController().setReference(value*Constants.MAXRPM, ControlType.kVelocity);
     }
 
     public CANEncoder Encoder(){
-        return encoder;
+        return motor.getEncoder();
     }
     // public SpeedController SpeedCont(){
     //     return speedCont;
@@ -92,7 +89,7 @@ public class CanMotor implements SpeedController{
     }
 
     public CANPIDController Controller(){
-        return controller;
+        return motor.getPIDController();
     }
     
     /**
