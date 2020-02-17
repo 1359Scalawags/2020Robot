@@ -8,12 +8,13 @@
 // update. Deleting the comments indicating the section will prevent
 // it from being updated in the future.
 
-
 package frc.robot.commands.drive;
+
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 //import frc.robot.Robot;
 import frc.robot.Robot;
+import frc.robot.Constants.Drive;
 
 /**
  *
@@ -38,7 +39,7 @@ public class AutoDriveForward extends CommandBase {
     @Override
     public void execute() {
 
-        Robot.driveSystem.arcadeDrive(Constants.driveStraightSpeed, Constants.maxTurnRate, target);
+        Robot.driveSystem.arcadeDrive(Drive.driveStraightSpeed, Drive.maxTurnRate, target);
 
     }
 

@@ -149,7 +149,7 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
             //TODO Check the chamRotator CAN ID
             
             SmartDashboard.putNumber("rotateChamber", rotatorSpeed*Constants.maxChamberSpeed);
-            chamRotator.setSpeed(rotatorSpeed*Constants.maxChamberSpeed); 
+            chamRotator.set(rotatorSpeed*Constants.maxChamberSpeed); 
             // return true;
         // }
         return false;
@@ -167,7 +167,7 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
     public void updateDashboard(){    
         if(SmartDashboard.getBoolean("Override", false)){
             chamRotator.setPID(SmartDashboard.getNumberArray("Chamber Rotator PID", chamRotator.getPID().toArray()));
-            chamRotator.setSpeed(SmartDashboard.getNumber("Chamber Rotator Speed", 0));
+            chamRotator.set(SmartDashboard.getNumber("Chamber Rotator Speed", 0));
         }
         else{
             SmartDashboard.putNumber("Chamber Rotator Speed", chamRotator.getSpeed());

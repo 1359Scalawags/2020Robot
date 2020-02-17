@@ -4,6 +4,7 @@ import frc.robot.commands.*;
 import frc.robot.commands.drive.*;
 import frc.robot.commands.autonomous.*;
 import frc.robot.commands.shooter.*;
+import frc.robot.commands.climb.*;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.XboxController;

@@ -206,7 +206,7 @@ public final class Constants {
     
     public final static I2C.Port COLORSENSOR_I2C = I2C.Port.kOnboard;
     public final static Link PixyLink = new I2CLink();
-    public static final double DriveTwordsBall = 0;
+    public static final double SpeedTwordsBall = 0;
 
 	public static final double maxChamberSpeed = 1;
 	public static final double maxClimbSpeed = 1;

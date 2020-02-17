@@ -1,5 +1,5 @@
 package frc.robot.helper;
-import frc.robot.Constants;
+import frc.robot.Constants.Drive;
 
 public class PID_Values {
     public final double kP;
@@ -10,7 +10,7 @@ public class PID_Values {
     public final double[] arr = new double[5];
 
     public PID_Values(){
-        this(Constants.drivePID_P, Constants.drivePID_I, Constants.drivePID_D, Constants.drivePID_Iz, Constants.drivePID_Ff);
+        this(Drive.drivePID_P, Drive.drivePID_I, Drive.drivePID_D, Drive.drivePID_Iz, Drive.drivePID_Ff);
     }
     public PID_Values(double[] arr_){
         this(arr_[0], arr_[1], arr_[2], arr_[3], arr_[4]);
