@@ -148,8 +148,8 @@ public class OI {
         SmartDashboard.putData("AutoDriveTurnLeft", new AutoDriveTurn(90));
         SmartDashboard.putData("AutoDriveTurnRight", new AutoDriveTurn(-90));
         SmartDashboard.putData("ManualClimb", new ManualClimb());
-        SmartDashboard.putData("ControlPanel Set Color", new ControlPanelSetColor());
-        SmartDashboard.putData("ControlPanel Spin", new ControlPanelSpin());
+        // SmartDashboard.putData("ControlPanel Set Color", new ControlPanelSetColor());
+        // SmartDashboard.putData("ControlPanel Spin", new ControlPanelSpin());
         SmartDashboard.putData("IntakeBalls", new TurnLoaderToIntakeBalls());
         SmartDashboard.putData("IntakeBalls", new TurnLoaderOff());
         SmartDashboard.putData("RejectBalls", new TurnLoaderToRejectBalls());

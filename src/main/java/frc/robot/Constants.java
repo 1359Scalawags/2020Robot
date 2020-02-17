@@ -181,11 +181,11 @@ public final class Constants {
 	public static double MAXRPM = 5700;
 
 
-    public static double gyrokP =0;
-    public static double gyrokI =0;
-    public static double gyrokD =0;
-    public static double gyrokIz =0;
-    public static double gyrokFf =0;
+    public static double gyrokP =0.1;
+    public static double gyrokI =0.1;
+    public static double gyrokD =0.1;
+    public static double gyrokIz =0.1;
+    public static double gyrokFf =0.1;
 
     public static double driveSystemScale =.01;   // Change/Move if needed
 	public static double maxShooterTurnError =0;

@@ -16,11 +16,11 @@ public class PID_Values {
         this(arr_[0], arr_[1], arr_[2], arr_[3], arr_[4]);
     }
     public PID_Values(double kP_, double kI_, double kD_, double kIz_, double kFf_){
-        kP = kP_ = arr[0];
-        kI = kI_ = arr[1];
-        kD = kD_ = arr[2];
-        kIz = kIz_ = arr[3];
-        kFf = kFf_ = arr[4];
+        kP = arr[0] =  kP_;
+        kI = arr[1] = kI_;
+        kD = arr[2] = kD_;
+        kIz = arr[3] = kIz_;
+        kFf = arr[4] = kFf_;
     }
 
     public double[] toArray(){
