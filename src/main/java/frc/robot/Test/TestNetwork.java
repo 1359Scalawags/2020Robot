@@ -18,7 +18,7 @@ public class TestNetwork extends CommandBase{
     @Override
     public void execute() {
         double val = Robot.kNetwork.getDist();
-        SmartDashboard.putNumber("Dist", val);
+        // SmartDashboard.putNumber("Dist", val);
     }
 
     // Make this return true when this Command no longer needs to run execute()
