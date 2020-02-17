@@ -55,6 +55,7 @@ public final class Constants {
         public static double maxShooterTurnRate =0;
         public static int CANTopBallMotorID = 3;
         public static int CANBottomBallMotorID = 4;
+        public static double expectedDist =0;
     }
 
     public static final class Climb{
@@ -115,7 +116,7 @@ public final class Constants {
     public static int RIGHTJoyBtn = 10;
 
     //TODO find our expectedDistance
-    public static double expectedDist =0;
+    
 
     //TODO find maxShooterTurnRate
     
