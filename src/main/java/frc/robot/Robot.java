@@ -124,7 +124,6 @@ public class Robot extends TimedRobot {
         dashboardScheduler.putValues();
     }
 
-    //TODO I added this, When simulating it was complaining robotPeriod wan default and needed to be overridden. is this correct?
     @Override
     public void robotPeriodic(){
     }
