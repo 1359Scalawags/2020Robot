@@ -39,7 +39,7 @@ public class AutoDriveForward extends CommandBase {
     @Override
     public void execute() {
 
-        Robot.driveSystem.arcadeDrive(Drive.driveStraightSpeed, Drive.maxTurnRate, target);
+        Robot.driveSystem.arcadeDrive(Drive.StraightSpeed, Drive.maxTurnRate, target);
 
     }
 
