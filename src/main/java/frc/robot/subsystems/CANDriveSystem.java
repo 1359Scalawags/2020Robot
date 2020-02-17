@@ -123,8 +123,8 @@ public double getDistanceRight() {
     double rightSpeed;
     double headingError = getAngle() - targetHeading;
             
-    leftSpeed =Utilities.Clamp(-(speed) - headingError * Drive.driveSystemScale, -Drive.maxMotorSpeed, Drive.maxMotorSpeed);
-    rightSpeed = Utilities.Clamp(-(speed) + headingError * Drive.driveSystemScale, -Drive.maxMotorSpeed, Drive.maxMotorSpeed);
+    leftSpeed =Utilities.Clamp(-(speed) - headingError * Drive.SystemScale, -Drive.maxMotorSpeed, Drive.maxMotorSpeed);
+    rightSpeed = Utilities.Clamp(-(speed) + headingError * Drive.SystemScale, -Drive.maxMotorSpeed, Drive.maxMotorSpeed);
     tankDrive(leftSpeed, rightSpeed);		
   }
 
