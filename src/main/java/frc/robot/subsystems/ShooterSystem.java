@@ -2,6 +2,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.Spark;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants;
 import frc.robot.helper.*;
 
@@ -25,13 +26,10 @@ public class ShooterSystem extends SubsystemBase implements scheduler{
         shootRotatorA = new Spark(Constants.PWMShootRotatorLeftRightID);
         shootRotatorA.setInverted(false);
 
-        //TODO Does this need to be inverted?
         shootRotatorB = new Spark(Constants.PWMShootRotatorUpDownID);
         shootRotatorB.setInverted(true);
-
         
-        shotLoader = new Spark(Constants.PWMLoadShotMotorID);  //bookmark
-        //addChild("ShooterLoader",shotLoader);
+        shotLoader = new Spark(Constants.PWMLoadShotMotorID);
         shotLoader.setInverted(false);
     }
     
@@ -84,7 +82,21 @@ public class ShooterSystem extends SubsystemBase implements scheduler{
 
     @Override
     public void updateDashboard() {
+        shootRotatorA.set(SmartDashboard.getNumber("ShootRotatorX speed", 0));
+        shootRotatorB.set(SmartDashboard.getNumber("ShootRotatorY speed", 0));
+        shotLoader.setSpeed(SmartDashboard.getNumber("ShotLoader Speed", 0));
+        topMotor.setSpeed(SmartDashboard.getNumber("ShooterSpeed top", 0));
+        bottomMotor.setSpeed(SmartDashboard.getNumber("ShooterSpeed bottom", 0));
+    }
 
+    @Override
+    public void putValues() {
+        // TODO Auto-generated method stub
+        SmartDashboard.putNumber("ShootRotatorX speed", 0);
+        SmartDashboard.putNumber("ShootRotatorY speed", 0);
+        SmartDashboard.putNumber("ShotLoader Speed", 0);
+        SmartDashboard.putNumber("ShooterSpeed top", 0);
+        SmartDashboard.putNumber("ShooterSpeed bottom", 0);
     }
 
 

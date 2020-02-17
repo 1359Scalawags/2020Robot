@@ -2,12 +2,12 @@ package frc.robot.helper;
 import frc.robot.Constants;
 
 public class PID_Values {
-    private double kP;
-    private double kI;
-    private double kD;
-    private double kIz;
-    private double kFf;
-    private double[] arr = new double[5];
+    public final double kP;
+    public final double kI;
+    public final double kD;
+    public final double kIz;
+    public final double kFf;
+    public final double[] arr = new double[5];
 
     public PID_Values(){
         this(Constants.drivePID_P, Constants.drivePID_I, Constants.drivePID_D, Constants.drivePID_Iz, Constants.drivePID_Ff);
@@ -26,21 +26,5 @@ public class PID_Values {
     public double[] toArray(){
         double[] result = {kP, kI, kD, kIz, kFf};
         return result;
-    }
-
-    public double KP(){
-        return kP;
-    }
-    public double KI(){
-        return kI;
-    }
-    public double KD(){
-        return kD;
-    }
-    public double KIz(){
-        return kIz;
-    }
-    public double KFf(){
-        return kFf;
     }
 }

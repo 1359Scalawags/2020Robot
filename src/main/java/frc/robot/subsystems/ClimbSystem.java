@@ -62,23 +62,6 @@ public class ClimbSystem extends SubsystemBase implements scheduler{
         }
     }
 
-    @Override
-    public void updateDashboard() {
-        SmartDashboard.putBoolean("RachetState", ratchetLocked);
-        
-        if(SmartDashboard.getBoolean("Override", false)){
-            double climbSpeed = SmartDashboard.getNumber("ClimbSpeed", 0);
-            climbMotor.setSpeed(climbSpeed);
-            
-            double ratchetPosition = SmartDashboard.getNumber("Ratchet Position", 0);
-            ratchet.setPosition(ratchetPosition);
-        }
-        else{
-            SmartDashboard.putNumber("RatchetValue", ratchet.getPosition());
-            SmartDashboard.putNumber("ClimbSpeed", climbMotor.Encoder().getVelocity());
-        }
-    }
-
 
     /**
      * Allows drivers to use, lock, and unlock the Climber.
@@ -153,5 +136,26 @@ public class ClimbSystem extends SubsystemBase implements scheduler{
 
             }
         }
+    }
+
+    @Override
+    public void updateDashboard() {
+        SmartDashboard.putBoolean("RachetState", ratchetLocked);
+        
+        if(SmartDashboard.getBoolean("Override", false)){
+            climbMotor.setSpeed(SmartDashboard.getNumber("ClimbSpeed", 0));
+            ratchet.setPosition(SmartDashboard.getNumber("Ratchet Position", 0));
+        }
+        else{
+            SmartDashboard.putNumber("RatchetValue", ratchet.getPosition());
+            SmartDashboard.putNumber("ClimbSpeed", climbMotor.Encoder().getVelocity());
+        }
+    }
+
+    @Override
+    public void putValues() {
+        // TODO Auto-generated method stub
+        SmartDashboard.putNumber("ClimbSpeed", 0);
+        SmartDashboard.putNumber("Ratchet Position", 0);
     }
 }

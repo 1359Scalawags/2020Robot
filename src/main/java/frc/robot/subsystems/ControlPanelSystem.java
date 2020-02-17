@@ -196,6 +196,15 @@ public class ControlPanelSystem extends SubsystemBase implements scheduler{
             yexpected = SmartDashboard.getNumberArray("Yellow state", yexpected);
         }
     }
+
+    @Override
+    public void putValues() {
+        // TODO Auto-generated method stub
+        SmartDashboard.putNumberArray("Red expected", rexpected);
+        SmartDashboard.putNumberArray("Green expected", gexpected);
+        SmartDashboard.putNumberArray("Blue expected", bexpected);
+        SmartDashboard.putNumberArray("Yellow state", yexpected);
+    }
 }
 
 
