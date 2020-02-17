@@ -73,18 +73,18 @@ public final class Constants {
     }
 
     public static final class Load{
-        public static double LoadShotMotor = 1;
-        public static int PWMLoadShotMotorID = 5;
-        public static int CANChamRotMotorID = 21; //TODO check if this id is correct?
-        public static int PWMLoadBallInMotorRearID = 0;
-        public static int PWMLoadBallInMotorFrontID = 4;
-        public static int PWMLoadBallUpMotorRightID = 1;
-        public static int PWMLoadBallUpMotorLeftID = 3;
-        public static int PWMLoadBallChamMotorID = 2;
-        public static double BallLoadUpSpeed = 0.001;
-        public static double BallLoadInSpeed = 0.001;
-        public static int BallLimitID = 0;
-        public static double BallPIDTolerance = 0d;
+        public static final double LoadShotMotor = 1;
+        public static final int PWMLoadShotMotorID = 5;
+        public static final int CANChamRotMotorID = 21; //TODO check if this id is correct?
+        public static final int PWMLoadBallInMotorRearID = 0;
+        public static final int PWMLoadBallInMotorFrontID = 4;
+        public static final int PWMLoadBallUpMotorRightID = 1;
+        public static final int PWMLoadBallUpMotorLeftID = 3;
+        public static final int PWMLoadBallChamMotorID = 2;
+        //public static double BallLoadUpSpeed = 0.001;
+        //public static double BallLoadInSpeed = 0.001;
+        //public static int BallLimitID = 0;
+        //public static double BallPIDTolerance = 0d;
         public static final double maxChamberSpeed = 1;
     
     }
