@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants.Shooter;
+import frc.robot.Constants.Load;
 import frc.robot.helper.*;
 
 import frc.robot.interfaces.scheduler;
@@ -29,7 +30,7 @@ public class ShooterSystem extends SubsystemBase implements scheduler{
         shootRotatorB = new Spark(Shooter.PWMShootRotatorUpDownID);
         shootRotatorB.setInverted(true);
         
-        shotLoader = new Spark(Shooter.PWMLoadShotMotorID);
+        shotLoader = new Spark(Load.PWMLoadShotMotorID);
         shotLoader.setInverted(false);
     }
     
