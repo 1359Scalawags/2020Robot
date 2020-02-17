@@ -54,6 +54,9 @@ public final class Constants {
         public static double LoadShotMotor = 1;
         public static double maxShooterTurnError = 0;
         public static double maxShooterTurnRate =0;
+        public static int CANTopBallMotorID = 3;
+        public static int CANBottomBallMotorID = 4;
+        public static int PWMLoadShotMotorID = 5;
     }
 
     /*----------Operator Interface----------*/
@@ -106,8 +109,7 @@ public final class Constants {
 
     
     //PWM Motors                                        Motor #s 0, 1, 2, 3, 4, 5, 6, 7, 10, 14, 15
-    public static int CANTopBallMotorID = 3;
-    public static int CANBottomBallMotorID = 4;
+    
 
     public static int CANChamRotMotorID = 21; //TODO check if this id is correct?
     public static int CANClimbMotorID = 23;
@@ -120,7 +122,6 @@ public final class Constants {
     public static int PWMLoadBallUpMotorRightID = 1;
     public static int PWMLoadBallUpMotorLeftID = 3;
 	public static int PWMLoadBallChamMotorID = 2;
-	public static int PWMLoadShotMotorID = 5;
     
 
 	// public static int LoadChamMotorID = 2;
