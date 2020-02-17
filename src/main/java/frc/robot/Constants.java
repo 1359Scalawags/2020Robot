@@ -88,6 +88,12 @@ public final class Constants {
         public static final double maxChamberSpeed = 1;
     }
 
+    public static final class ControlPanel{
+        public static int PWMRotatoPotatoID = 9;                              
+        public static int RotateEncoderAID = 20;
+        public static int RotateEncoderBID = 21;
+    }
+
     /*----------Operator Interface----------*/
     
     /***
@@ -186,11 +192,7 @@ public final class Constants {
 
 
     //Motors                                        Motor #s 9
-    public static int PWMRotatoPotatoID = 9;
-
-    //Sensors                              
-    public static int RotateEncoderAID = 20;
-    public static int RotateEncoderBID = 21;
+    
 
     /*----------CANDriveSystem----------*/
 
