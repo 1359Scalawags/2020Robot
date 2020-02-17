@@ -9,25 +9,21 @@
 // it from being updated in the future.
 
 
-package frc.robot.commands;
+package frc.robot.commands.autonomous;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Robot;
+//import frc.robot.Robot;
 
 /**
  *
  */
-public class ManualClimb extends CommandBase {
+public class AutonomousCommand extends CommandBase {
 
-    /**
-     * 
-     * @param up Move in the up direction.
-     */
-
-    public ManualClimb() {
+    public AutonomousCommand() {
 
     }
 
     // Called just before this Command runs the first time
+    
     @Override
     public void initialize() {
     }
@@ -35,14 +31,6 @@ public class ManualClimb extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     @Override
     public void execute() {
-        double speed = Robot.oi.getClimbSpeed();
-        if (!Robot.climbSystem.isClimberLocked()) {
-            Robot.climbSystem.move(speed);
-        }
-        else {    
-            Robot.climbSystem.stop();
-        }
-
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -54,7 +42,6 @@ public class ManualClimb extends CommandBase {
     // Called once after isFinished returns true
     @Override
     public void end(boolean interrupted) {
-        Robot.climbSystem.stop();
     }
 
 

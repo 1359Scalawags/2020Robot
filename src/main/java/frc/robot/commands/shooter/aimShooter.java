@@ -1,8 +1,9 @@
-package frc.robot.commands;
+package frc.robot.commands.shooter;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
-import frc.robot.Constants;
+import frc.robot.Constants.Drive;
+import frc.robot.Constants.Shooter;
 
 public class aimShooter extends CommandBase{
 
@@ -20,19 +21,19 @@ public class aimShooter extends CommandBase{
     // Called repeatedly when this Command is scheduled to run
     @Override
     public void execute() {
-        rotate(Constants.maxShooterTurnRate, Robot.kNetwork.getAngles());
+        rotate(Shooter.maxShooterTurnRate, Robot.kNetwork.getAngles());
 
         double distance = Robot.kNetwork.getDist();
-        double error = Constants.expectedDist - distance;//0, 100
+        double error = Shooter.expectedDist - distance;//0, 100
 
-        if(error > Constants.maxShooterTurnError)
-            error = Constants.maxShooterTurnError;
-        else if(error < -Constants.maxShooterTurnError)
-            error = -Constants.maxShooterTurnError;
+        if(error > Shooter.maxShooterTurnError)
+            error = Shooter.maxShooterTurnError;
+        else if(error < -Shooter.maxShooterTurnError)
+            error = -Shooter.maxShooterTurnError;
 
-        double motorState  = error/Constants.maxShooterTurnError;
+        double motorState  = error/Shooter.maxShooterTurnError;
 
-        Robot.driveSystem.arcadeDrive(motorState*Constants.driveStraightSpeed, Constants.maxTurnRate, angle);
+        Robot.driveSystem.arcadeDrive(motorState*Drive.driveStraightSpeed, Drive.maxTurnRate, angle);
     }
 
     /**

@@ -9,28 +9,41 @@
 // it from being updated in the future.
 
 
-package frc.robot.commands;
+package frc.robot.commands.drive;
+
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Robot;
 //import frc.robot.Robot;
+//import frc.robot.subsystems.DriveSystem;
 
 /**
  *
  */
-public class AutonomousCommand extends CommandBase {
+public class ManualDrive extends CommandBase {
 
-    public AutonomousCommand() {
-
+    public ManualDrive() {
+          addRequirements(Robot.driveSystem);
     }
 
     // Called just before this Command runs the first time
-    
     @Override
     public void initialize() {
+        // Robot.driveSystem.ResetGyro();
     }
 
     // Called repeatedly when this Command is scheduled to run
     @Override
     public void execute() {
+
+        // Robot.oi.getDriverJoystick();
+        Robot.driveSystem.tankDrive(-Robot.oi.DriverLStickY(), -Robot.oi.DriverRStickY());	
+        
+        //SmartDashboard.putNumber("Elevator Height",Robot.climbSystem.getclimbSystemHeight());
+		// SmartDashboard.putNumber("Gyro", Robot.canDriveSystem.getAngle());
+		// SmartDashboard.putNumber("Encoder Distance", Robot.canDriveSystem.getDistanceLeft());
+        // SmartDashboard.putNumber("Encoder Distance", Robot.canDriveSystem.getDistanceRight());        
+        
+
     }
 
     // Make this return true when this Command no longer needs to run execute()

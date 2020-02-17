@@ -9,52 +9,42 @@
 // it from being updated in the future.
 
 
-package frc.robot.commands;
-
+package frc.robot.commands.climb;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
-//import frc.robot.Robot;
-//import frc.robot.subsystems.DriveSystem;
 
 /**
  *
  */
-public class ManualDrive extends CommandBase {
-
-    public ManualDrive() {
-          addRequirements(Robot.driveSystem);
+public class AutoClimb extends CommandBase {
+    double speed;
+    public AutoClimb(double speed_) {
+        speed = speed_;
     }
 
-    // Called just before this Command runs the first time
+    // Called just before this Command runs the first time Shlarblenarfalorf
     @Override
     public void initialize() {
-        // Robot.driveSystem.ResetGyro();
+        //Climber should already be unlocked
+        //Robot.climbSystem.unlockClimber();
     }
 
     // Called repeatedly when this Command is scheduled to run
     @Override
     public void execute() {
-
-        // Robot.oi.getDriverJoystick();
-        Robot.driveSystem.tankDrive(-Robot.oi.DriverLStickY(), -Robot.oi.DriverRStickY());	
-        
-        //SmartDashboard.putNumber("Elevator Height",Robot.climbSystem.getclimbSystemHeight());
-		// SmartDashboard.putNumber("Gyro", Robot.canDriveSystem.getAngle());
-		// SmartDashboard.putNumber("Encoder Distance", Robot.canDriveSystem.getDistanceLeft());
-        // SmartDashboard.putNumber("Encoder Distance", Robot.canDriveSystem.getDistanceRight());        
-        
-
+        Robot.climbSystem.move(speed);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     @Override
     public boolean isFinished() {
-        return false;
+        return (speed>0 && Robot.climbSystem.isAtTop()) || (speed <0 && Robot.climbSystem.isAtBottom());
     }
 
     // Called once after isFinished returns true
     @Override
     public void end(boolean interrupted) {
+        Robot.climbSystem.stop();
     }
 
 

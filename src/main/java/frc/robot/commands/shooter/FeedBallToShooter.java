@@ -9,50 +9,56 @@
 // it from being updated in the future.
 
 
-package frc.robot.commands;
+package frc.robot.commands.shooter;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants;
-//import frc.robot.Robot;
+import frc.robot.Constants.Load;
 import frc.robot.Robot;
 
 /**
  *
  */
-public class AutoDriveForward extends CommandBase {
+public class FeedBallToShooter extends CommandBase {
+    
 
-    private double target;
+    private double duration;
+    private double start;
+    private Timer timer;
 
-    public AutoDriveForward() {
-        addRequirements(Robot.driveSystem);
+    public FeedBallToShooter(double duration) {
+        addRequirements(Robot.shooterSystem);
+        timer = new Timer();
+        this.duration = duration;
     }
+
 
     // Called just before this Command runs the first time
     @Override
     public void initialize() {
-        
-        target = Robot.driveSystem.getAngle();
-        
+        start = timer.get();
+        Robot.shooterSystem.setShotLoaderSpeed(Load.LoadShotMotor);       
     }
 
     // Called repeatedly when this Command is scheduled to run
     @Override
     public void execute() {
 
-        Robot.driveSystem.arcadeDrive(Constants.driveStraightSpeed, Constants.maxTurnRate, target);
-
     }
 
     // Make this return true when this Command no longer needs to run execute()
     @Override
     public boolean isFinished() {
-        return !Robot.oi.getAutoDriveForwardButton();
+        if(timer.get() - start >= duration) {
+            return true;
+        }
+        return false;
     }
 
     // Called once after isFinished returns true
     @Override
     public void end(boolean interrupted) {
-
-        Robot.driveSystem.arcadeDrive(0, 0, 0);
+        Robot.shooterSystem.setShotLoaderSpeed(0);
     }
+
 
 }

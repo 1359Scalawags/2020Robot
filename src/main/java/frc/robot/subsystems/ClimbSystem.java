@@ -16,7 +16,7 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.Constants;
+import frc.robot.Constants.Climb;
 import frc.robot.helper.CanMotor;
 import edu.wpi.first.wpilibj.Servo;
 import frc.robot.interfaces.scheduler;
@@ -37,17 +37,17 @@ public class ClimbSystem extends SubsystemBase implements scheduler{
         //maxHeightLimit = new DigitalInput(Constants.MaxHeightLimitID);
         //addChild("MaxHeightLimit",maxHeightLimit);
 
-        minHeightLimit = new DigitalInput(Constants.MinHeightLimitID);
+        minHeightLimit = new DigitalInput(Climb.MinHeightLimitID);
         addChild("MinHeightLimit",minHeightLimit);
         
-        climbMotor = new CanMotor(Constants.CANClimbMotorID);
+        climbMotor = new CanMotor(Climb.CANClimbMotorID);
         SmartDashboard.putNumber("ClimbMotorValue", climbMotor.Motor().get());
         
         climberLocked = true;
         ratchetLocked = true;
 
-        ratchet = new Servo(Constants.PWMRatchetServoID);
-        ratchet.setPosition(Constants.RatchetClosed);
+        ratchet = new Servo(Climb.PWMRatchetServoID);
+        ratchet.setPosition(Climb.RatchetClosed);
         climbMotor.Motor().setInverted(true);  
         
         // pot = new AnalogPotentiometer(Constants.CLIMBERPOTID);
@@ -72,7 +72,7 @@ public class ClimbSystem extends SubsystemBase implements scheduler{
 
     public void unlockRatchet() {
         ratchetLocked = false;
-        ratchet.setPosition(Constants.RatchetOpen);
+        ratchet.setPosition(Climb.RatchetOpen);
     }
 
     public void lockRatchet() {
@@ -80,7 +80,7 @@ public class ClimbSystem extends SubsystemBase implements scheduler{
             climbMotor.Motor().set(0);
         }
         ratchetLocked = true; 
-        ratchet.setPosition(Constants.RatchetClosed);
+        ratchet.setPosition(Climb.RatchetClosed);
     }
 
     public boolean isClimberLocked() {
@@ -92,15 +92,15 @@ public class ClimbSystem extends SubsystemBase implements scheduler{
     // }
 
     public boolean isAtTop() {
-        return (climbMotor.Encoder().getPosition() >= Constants.MAX_CLIMB_POSITION);
+        return (climbMotor.Encoder().getPosition() >= Climb.MAX_CLIMB_POSITION);
     }
 
     public boolean isAtBottom() {
-        return (minHeightLimit.get() == Constants.LIMIT_PRESSED);
+        return (minHeightLimit.get() == Climb.LIMIT_PRESSED);
     }
 
     public void stop() {
-        climbMotor.setSpeed(0);
+        climbMotor.set(0);
     }
 
     public double getPosition() {
@@ -119,19 +119,19 @@ public class ClimbSystem extends SubsystemBase implements scheduler{
     public void move(double speed) {
 
         if (climberLocked) {
-            climbMotor.setSpeed(0);
+            climbMotor.set(0);
         } else {
             if (speed > 0) {
-                if (climbMotor.Encoder().getPosition() < Constants.MAX_CLIMB_POSITION && ratchetLocked == false) {
-                    climbMotor.setSpeed(speed);
+                if (climbMotor.Encoder().getPosition() < Climb.MAX_CLIMB_POSITION && ratchetLocked == false) {
+                    climbMotor.set(speed);
                 } else {
-                    climbMotor.setSpeed(0);
+                    climbMotor.set(0);
                 }
             } else {
-                if (minHeightLimit.get() == Constants.LIMIT_NOTPRESSED) {
-                    climbMotor.setSpeed(speed);
+                if (minHeightLimit.get() == Climb.LIMIT_NOTPRESSED) {
+                    climbMotor.set(speed);
                 } else {
-                    climbMotor.setSpeed(0);
+                    climbMotor.set(0);
                 }
 
             }
@@ -143,7 +143,7 @@ public class ClimbSystem extends SubsystemBase implements scheduler{
         SmartDashboard.putBoolean("RachetState", ratchetLocked);
         
         if(SmartDashboard.getBoolean("Override", false)){
-            climbMotor.setSpeed(SmartDashboard.getNumber("ClimbSpeed", 0));
+            climbMotor.set(SmartDashboard.getNumber("ClimbSpeed", 0));
             ratchet.setPosition(SmartDashboard.getNumber("Ratchet Position", 0));
         }
         else{

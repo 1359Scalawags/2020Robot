@@ -8,44 +8,52 @@
 // update. Deleting the comments indicating the section will prevent
 // it from being updated in the future.
 
+package frc.robot.commands.drive;
 
-package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
+//import frc.robot.Robot;
 import frc.robot.Robot;
+import frc.robot.Constants.Drive;
 
 /**
  *
  */
-public class AutoClimb extends CommandBase {
-    double speed;
-    public AutoClimb(double speed_) {
-        speed = speed_;
+public class AutoDriveForward extends CommandBase {
+
+    private double target;
+
+    public AutoDriveForward() {
+        addRequirements(Robot.driveSystem);
     }
 
-    // Called just before this Command runs the first time Shlarblenarfalorf
+    // Called just before this Command runs the first time
     @Override
     public void initialize() {
-        //Climber should already be unlocked
-        //Robot.climbSystem.unlockClimber();
+        
+        target = Robot.driveSystem.getAngle();
+        
     }
 
     // Called repeatedly when this Command is scheduled to run
     @Override
     public void execute() {
-        Robot.climbSystem.move(speed);
+
+        Robot.driveSystem.arcadeDrive(Drive.driveStraightSpeed, Drive.maxTurnRate, target);
+
     }
 
     // Make this return true when this Command no longer needs to run execute()
     @Override
     public boolean isFinished() {
-        return (speed>0 && Robot.climbSystem.isAtTop()) || (speed <0 && Robot.climbSystem.isAtBottom());
+        return !Robot.oi.getAutoDriveForwardButton();
     }
 
     // Called once after isFinished returns true
     @Override
     public void end(boolean interrupted) {
-        Robot.climbSystem.stop();
-    }
 
+        Robot.driveSystem.arcadeDrive(0, 0, 0);
+    }
 
 }

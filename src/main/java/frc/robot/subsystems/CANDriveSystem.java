@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.controller.PIDController;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.Constants;
+import frc.robot.Constants.Drive;
 //import frc.robot.Robot;
 import frc.robot.helper.*;
 
@@ -26,17 +26,17 @@ public class CANDriveSystem extends SubsystemBase implements scheduler{
   boolean reverse = false;    
 
   public CANDriveSystem() {
-    leftMotors[0] = new CanMotor(Constants.CANFrontLeftMotorID);
-    leftMotors[1] = new CanMotor(Constants.CANBackLeftMotorID);
+    leftMotors[0] = new CanMotor(Drive.CANFrontLeftMotorID);
+    leftMotors[1] = new CanMotor(Drive.CANBackLeftMotorID);
 
-    rightMotors[0] = new CanMotor(Constants.CANFrontRightMotorID);
-    rightMotors[1] = new CanMotor(Constants.CANBackRightMotorID);
+    rightMotors[0] = new CanMotor(Drive.CANFrontRightMotorID);
+    rightMotors[1] = new CanMotor(Drive.CANBackRightMotorID);
   
     leftControllerGroup = new SpeedControllerGroup(leftMotors[0].Motor(), leftMotors[1].Motor());
     rightControllerGroup = new SpeedControllerGroup(rightMotors[0].Motor(), rightMotors[1].Motor());
 
     diffDrive = new DifferentialDrive(rightControllerGroup, leftControllerGroup);
-    gyroPids = new PID_Values(Constants.gyrokP, Constants.gyrokI, Constants.gyrokD, Constants.gyrokIz, Constants.gyrokFf);
+    gyroPids = new PID_Values(Drive.gyrokP, Drive.gyrokI, Drive.gyrokD, Drive.gyrokIz, Drive.gyrokFf);
     driveGyro = new ADXRS450_Gyro();
     gyroControl = new PIDController(gyroPids.kP, gyroPids.kI, gyroPids.kD);
   }
@@ -94,8 +94,8 @@ public double getDistanceRight() {
 	  double rightSpeed;
 	  double headingError = getAngle() - targetHeading;
 		
-	  leftSpeed = Utilities.Clamp(Math.abs(speed) - headingError * scale, -Constants.maxMotorSpeed, Constants.maxMotorSpeed);
-	  rightSpeed = Utilities.Clamp(Math.abs(speed) + headingError * scale, -Constants.maxMotorSpeed, Constants.maxMotorSpeed);
+	  leftSpeed = Utilities.Clamp(Math.abs(speed) - headingError * scale, -Drive.maxMotorSpeed, Drive.maxMotorSpeed);
+	  rightSpeed = Utilities.Clamp(Math.abs(speed) + headingError * scale, -Drive.maxMotorSpeed, Drive.maxMotorSpeed);
 	  tankDrive(leftSpeed, rightSpeed);		
   }
 
@@ -119,8 +119,8 @@ public double getDistanceRight() {
     double rightSpeed;
     double headingError = getAngle() - targetHeading;
             
-    leftSpeed =Utilities.Clamp(-(speed) - headingError * Constants.driveSystemScale, -Constants.maxMotorSpeed, Constants.maxMotorSpeed);
-    rightSpeed = Utilities.Clamp(-(speed) + headingError * Constants.driveSystemScale, -Constants.maxMotorSpeed, Constants.maxMotorSpeed);
+    leftSpeed =Utilities.Clamp(-(speed) - headingError * Drive.driveSystemScale, -Drive.maxMotorSpeed, Drive.maxMotorSpeed);
+    rightSpeed = Utilities.Clamp(-(speed) + headingError * Drive.driveSystemScale, -Drive.maxMotorSpeed, Drive.maxMotorSpeed);
     tankDrive(leftSpeed, rightSpeed);		
   }
 
