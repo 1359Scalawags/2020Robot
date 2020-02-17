@@ -3,7 +3,8 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.Constants;
+import frc.robot.Constants.Shooter;
+import frc.robot.Constants.Load;
 import frc.robot.helper.*;
 
 import frc.robot.interfaces.scheduler;
@@ -20,16 +21,16 @@ public class ShooterSystem extends SubsystemBase implements scheduler{
     private Spark shotLoader;
 
     public ShooterSystem(){
-        topMotor = new CanMotor(Constants.CANTopBallMotorID);
-        bottomMotor = new CanMotor(Constants.CANBottomBallMotorID);
+        topMotor = new CanMotor(Shooter.CANTopBallMotorID);
+        bottomMotor = new CanMotor(Shooter.CANBottomBallMotorID);
         
-        shootRotatorA = new Spark(Constants.PWMShootRotatorLeftRightID);
+        shootRotatorA = new Spark(Shooter.PWMShootRotatorLeftRightID);
         shootRotatorA.setInverted(false);
 
-        shootRotatorB = new Spark(Constants.PWMShootRotatorUpDownID);
+        shootRotatorB = new Spark(Shooter.PWMShootRotatorUpDownID);
         shootRotatorB.setInverted(true);
         
-        shotLoader = new Spark(Constants.PWMLoadShotMotorID);
+        shotLoader = new Spark(Load.PWMLoadShotMotorID);
         shotLoader.setInverted(false);
     }
     
@@ -65,15 +66,15 @@ public class ShooterSystem extends SubsystemBase implements scheduler{
 
 
 	public void rotateShooter(double speed1, double speed2) {
-        if(speed1 > Constants.maxShooterTurnRate)
-            speed1=Constants.maxShooterTurnRate;
-        else if(speed1 < -Constants.maxShooterTurnRate)
-            speed1=-Constants.maxShooterTurnRate;
+        if(speed1 > Shooter.maxShooterTurnRate)
+            speed1=Shooter.maxShooterTurnRate;
+        else if(speed1 < -Shooter.maxShooterTurnRate)
+            speed1=-Shooter.maxShooterTurnRate;
 
-        if(speed2 > Constants.maxShooterTurnRate)
-            speed2=Constants.maxShooterTurnRate;
-        else if(speed2 < -Constants.maxShooterTurnRate)
-            speed2=-Constants.maxShooterTurnRate;
+        if(speed2 > Shooter.maxShooterTurnRate)
+            speed2=Shooter.maxShooterTurnRate;
+        else if(speed2 < -Shooter.maxShooterTurnRate)
+            speed2=-Shooter.maxShooterTurnRate;
 
         //TODO check if between limit switchs
         shootRotatorA.set(speed1);

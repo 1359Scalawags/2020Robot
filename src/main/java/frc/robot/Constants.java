@@ -45,6 +45,55 @@ public final class Constants {
         public static double driveSystemScale =.01;
     }
 
+    public static final class Shooter{
+        public static double MaxShooterSpeed = 1;
+        public static int PWMShootRotatorLeftRightID = 6;
+        public static int PWMShootRotatorUpDownID = 7;
+        public static int BallSpeedEncoderAID = 1;
+        public static int BallSpeedEncoderBID = 2;
+        public static double maxShooterTurnError = 0;
+        public static double maxShooterTurnRate =0;
+        public static int CANTopBallMotorID = 3;
+        public static int CANBottomBallMotorID = 4;
+        public static double expectedDist =0;
+    }
+
+    public static final class Climb{
+    public static int CANClimbMotorID = 23;
+    public static int PWMRatchetServoID = 8;
+    public static double RatchetOpen = 1;
+    public static double RatchetClosed = 0;
+    public static int MaxHeightLimitID = 3;
+    public static int MinHeightLimitID = 4;
+    public static boolean LIMIT_PRESSED = true;
+    public static boolean LIMIT_NOTPRESSED = false;
+    public static double MAX_CLIMB_POSITION = 1;
+    public static double PotToInches = 35.0;
+    public static final double maxClimbSpeed = 1;
+    }
+
+    public static final class Load{
+        public static double LoadShotMotor = 1;
+        public static int PWMLoadShotMotorID = 5;
+        public static int CANChamRotMotorID = 21; //TODO check if this id is correct?
+        public static int PWMLoadBallInMotorRearID = 0;
+        public static int PWMLoadBallInMotorFrontID = 4;
+        public static int PWMLoadBallUpMotorRightID = 1;
+        public static int PWMLoadBallUpMotorLeftID = 3;
+        public static int PWMLoadBallChamMotorID = 2;
+        public static double BallLoadUpSpeed = 0.001;
+        public static double BallLoadInSpeed = 0.001;
+        public static int BallLimitID = 0;
+        public static double BallPIDTolerance = 0d;
+        public static final double maxChamberSpeed = 1;
+    }
+
+    public static final class ControlPanel{
+        public static int PWMRotatoPotatoID = 9;                              
+        public static int RotateEncoderAID = 20;
+        public static int RotateEncoderBID = 21;
+    }
+
     /*----------Operator Interface----------*/
     
     /***
@@ -73,10 +122,10 @@ public final class Constants {
     public static int RIGHTJoyBtn = 10;
 
     //TODO find our expectedDistance
-    public static double expectedDist =0;
+    
 
     //TODO find maxShooterTurnRate
-    public static double maxShooterTurnRate =0;
+    
 
 
     /*
@@ -95,23 +144,16 @@ public final class Constants {
 
     
     //PWM Motors                                        Motor #s 0, 1, 2, 3, 4, 5, 6, 7, 10, 14, 15
-    public static int CANTopBallMotorID = 3;
-    public static int CANBottomBallMotorID = 4;
+    
 
-    public static int CANChamRotMotorID = 21; //TODO check if this id is correct?
-    public static int CANClimbMotorID = 23;
-
+    
+    
 
 
-    public static int PWMRatchetServoID = 8;
-    public static int PWMLoadBallInMotorRearID = 0;
-    public static int PWMLoadBallInMotorFrontID = 4;
-    public static int PWMLoadBallUpMotorRightID = 1;
-    public static int PWMLoadBallUpMotorLeftID = 3;
-	public static int PWMLoadBallChamMotorID = 2;
-	public static int PWMLoadShotMotorID = 5;
-    public static int PWMShootRotatorLeftRightID = 6;
-    public static int PWMShootRotatorUpDownID = 7;
+
+    
+    
+    
 
 	// public static int LoadChamMotorID = 2;
 
@@ -119,20 +161,10 @@ public final class Constants {
 	
 
     //Motor Speeds
-    public static double BallLoadUpSpeed = 0.001;
-    public static double BallLoadInSpeed = 0.001;
+    
 
     //Sensors                                       Sensor #s 0, 1, 2
-    public static int BallLimitID = 0;
-    public static int BallSpeedEncoderAID = 1;
-    public static int BallSpeedEncoderBID = 2;
 
-    //PID
-    public static double BallPIDTolerance = 0d;
-    
-    public static double MaxShooterSpeed = 1;
-
-    public static double LoadShotMotor = 1;
 	
     /*----------ClimbSystem----------*/
 
@@ -141,25 +173,17 @@ public final class Constants {
 
     // public static int ClimbServoID = 9;
 
-    public static double RatchetOpen = 1;
-    public static double RatchetClosed = 0;
-
-    //Sensors                                       Sensor #s 3, 4
-    public static int MaxHeightLimitID = 3;
-    public static int MinHeightLimitID = 4;
+    
 
     //Booleans
-    public static boolean LIMIT_PRESSED = true;
-    public static boolean LIMIT_NOTPRESSED = false;
-
-    public static double MAX_CLIMB_POSITION = 1;
+    
     
     //Potentiometers
     // public static  int CLIMBERPOTID = 8;    //Change if NEEDED...
                                             //IF it was changed then let Allan know ASAP!
 
     //Defined
-    public static double PotToInches = 35.0;    //Change if NEEDED...  Pot = POTENTIOMETER
+        //Change if NEEDED...  Pot = POTENTIOMETER
                                                 //IF it was changed then let Allan know ASAP!
 
     /*----------ControlPanelSystem----------*/
@@ -168,11 +192,7 @@ public final class Constants {
 
 
     //Motors                                        Motor #s 9
-    public static int PWMRotatoPotatoID = 9;
-
-    //Sensors                              
-    public static int RotateEncoderAID = 20;
-    public static int RotateEncoderBID = 21;
+    
 
     /*----------CANDriveSystem----------*/
 
@@ -194,12 +214,11 @@ public final class Constants {
 
 
       // Change/Move if needed
-	public static double maxShooterTurnError =0;
     
     public final static I2C.Port COLORSENSOR_I2C = I2C.Port.kOnboard;
     public final static Link PixyLink = new I2CLink();
     public static final double SpeedTwordsBall = 0;
 
-	public static final double maxChamberSpeed = 1;
-	public static final double maxClimbSpeed = 1;
+	
+	
 }

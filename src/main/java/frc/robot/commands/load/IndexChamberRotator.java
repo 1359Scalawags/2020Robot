@@ -1,7 +1,7 @@
-package frc.robot.commands.shooter;
+package frc.robot.commands.load;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants;
+import frc.robot.Constants.Load;
 import frc.robot.Robot;
 
 public class IndexChamberRotator extends CommandBase{
@@ -11,7 +11,7 @@ public class IndexChamberRotator extends CommandBase{
 
     @Override
     public void initialize() {
-        Robot.loadingSystem.rotateChamber(Constants.maxChamberSpeed);
+        Robot.loadingSystem.rotateChamber(Load.maxChamberSpeed);
     }
 
     // Make this return true when this Command no longer needs to run execute()
