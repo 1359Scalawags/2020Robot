@@ -8,57 +8,65 @@
 // update. Deleting the comments indicating the section will prevent
 // it from being updated in the future.
 
-
-package frc.robot.commands;
-import edu.wpi.first.wpilibj.Timer;
+package frc.robot.commands.drive;
+//import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
+//import frc.robot.Robot;
 import frc.robot.Robot;
+//import frc.robot.RobotMap;
 
 /**
  *
  */
-public class FeedBallToShooter extends CommandBase {
-    
+public class AutoDriveTurn extends CommandBase {
 
-    private double duration;
-    private double start;
-    private Timer timer;
+    private double targetangle;
+    private double currentangle;
 
-    public FeedBallToShooter(double duration) {
-        addRequirements(Robot.shooterSystem);
-        timer = new Timer();
-        this.duration = duration;
+
+    public AutoDriveTurn(double angle) { 
+         addRequirements(Robot.driveSystem);
+    //right is positive, left is negative
+        targetangle = angle;
+        currentangle = Robot.driveSystem.getAngle();
     }
-
 
     // Called just before this Command runs the first time
     @Override
     public void initialize() {
-        start = timer.get();
-        Robot.shooterSystem.setShotLoaderSpeed(Constants.LoadShotMotor);       
+        //reset the gyro
+        //get current angle
+        //Robot.driveSystem.ResetGyro();
+        //currentangle = Robot.driveSystem.getAngle();
     }
 
     // Called repeatedly when this Command is scheduled to run
     @Override
     public void execute() {
-
+        Robot.driveSystem.arcadeDrive(0.0, Constants.maxRightTurnRate, targetangle);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     @Override
     public boolean isFinished() {
-        if(timer.get() - start >= duration) {
+        //double distance = Math.abs(a - b);
+        //if(Math.abs(a - b) < 0.5)
+        //is the target angle the same as the current angle?
+        double diff = Math.abs(targetangle - currentangle);
+        
+        if (diff < Constants.AutoTurnAngleThreshold){
             return true;
         }
-        return false;
+        else{
+            return false;
+        }
     }
 
     // Called once after isFinished returns true
     @Override
     public void end(boolean interrupted) {
-        Robot.shooterSystem.setShotLoaderSpeed(0);
+        //stop arcade drive
+        Robot.driveSystem.arcadeDrive(0, 0, 0);
     }
-
-
 }

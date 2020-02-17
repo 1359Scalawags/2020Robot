@@ -23,6 +23,10 @@ import frc.robot.commands.*;
 import frc.robot.helper.DashboardScheduler;
 import frc.robot.subsystems.*;
 
+import frc.robot.commands.drive.*;
+import frc.robot.commands.autonomous.*;
+import frc.robot.commands.shooter.*;
+
 import frc.robot.Test.TestNetwork;;
 
 /**

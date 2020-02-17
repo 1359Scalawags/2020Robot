@@ -14,6 +14,37 @@ import io.github.pseudoresonance.pixy2api.links.Link;
  */
 public final class Constants {
 
+    public static final class Drive {
+        public static int CANBackLeftMotorID = 12;
+        public static int CANFrontLeftMotorID = 11;
+        public static int CANBackRightMotorID = 14;
+        public static int CANFrontRightMotorID = 13;
+        public static final double maxMotorSpeed = 0.95;
+        public static final double fullDriveSpeed = 8;
+        public static int DriveLeftEncoderA = 6;
+        public static int DriveLeftEncoderB = 7;
+        public static int DriveRightEncoderA = 8;
+        public static int DriveRightEncoderB = 9;
+        public static int DriveDistanceUltrasonicA = 10;
+        public static int DriveDistanceUltrasonicB = 11;
+        public static double drivePID_P = 0.00001;
+        public static double drivePID_I = 0.000005;
+        public static double drivePID_D = 0.000001;
+        public static double drivePID_Iz = 0;
+        public static double drivePID_Ff = 0;
+        public static final double driveStraightSpeed = -0.7;
+        public static final double maxTurnRate = 0.75;
+        public static final double maxRightTurnRate = 0.75;
+        public static final double maxLeftTurnRate = 0.75;
+        public static final double AutoTurnAngleThreshold = 0.5;
+        public static double gyrokP =0.1;
+        public static double gyrokI =0.1;
+        public static double gyrokD =0.1;
+        public static double gyrokIz =0.1;
+        public static double gyrokFf =0.1;
+        public static double driveSystemScale =.01;
+    }
+
     /*----------Operator Interface----------*/
     
     /***
@@ -66,12 +97,11 @@ public final class Constants {
     //PWM Motors                                        Motor #s 0, 1, 2, 3, 4, 5, 6, 7, 10, 14, 15
     public static int CANTopBallMotorID = 3;
     public static int CANBottomBallMotorID = 4;
-    public static int CANFrontLeftMotorID = 11;
+
     public static int CANChamRotMotorID = 21; //TODO check if this id is correct?
     public static int CANClimbMotorID = 23;
-    public static int CANBackLeftMotorID = 12;
-    public static int CANFrontRightMotorID = 13;
-    public static int CANBackRightMotorID = 14;
+
+
 
     public static int PWMRatchetServoID = 8;
     public static int PWMLoadBallInMotorRearID = 0;
@@ -147,47 +177,23 @@ public final class Constants {
     /*----------CANDriveSystem----------*/
 
     //Booleans, Integers, and Values
-    public static final double maxMotorSpeed = 0.95;
-    public static final double fullDriveSpeed = 8;
+    
 
 
 
     //Sensors                                       Sensor #s 6, 7, 8, 9, 10, 11, 12, 13
-    public static int DriveLeftEncoderA = 6;
-    public static int DriveLeftEncoderB = 7;
-    public static int DriveRightEncoderA = 8;
-    public static int DriveRightEncoderB = 9;
+    
     //public static int DriveBuiltInAccelerometer = 10;
     //public static int DriveAnalogGyro = 11;
-    public static int DriveDistanceUltrasonicA = 10;
-    public static int DriveDistanceUltrasonicB = 11;
-
-    //PID 
-    //TODO set values
-    public static double drivePID_P;
-    public static double drivePID_I;
-    public static double drivePID_D;
-    public static double drivePID_Iz = 0;
-    public static double drivePID_Ff = 0;
 
     public static final double controllerDeadZone = 0.1;
-    public static final double driveStraightSpeed = -0.7;
-    public static final double maxTurnRate = 0.75;
-    public static final double maxRightTurnRate = 0.75;
-    public static final double maxLeftTurnRate = 0.75;
-    public static final double AutoTurnAngleThreshold = 0.5;
+    
 
 
 	public static double MAXRPM = 5700;
 
 
-    public static double gyrokP =0.1;
-    public static double gyrokI =0.1;
-    public static double gyrokD =0.1;
-    public static double gyrokIz =0.1;
-    public static double gyrokFf =0.1;
-
-    public static double driveSystemScale =.01;   // Change/Move if needed
+      // Change/Move if needed
 	public static double maxShooterTurnError =0;
     
     public final static I2C.Port COLORSENSOR_I2C = I2C.Port.kOnboard;
