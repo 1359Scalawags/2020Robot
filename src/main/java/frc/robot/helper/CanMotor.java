@@ -44,7 +44,7 @@ public class CanMotor implements SpeedController{
         this.encoder = motor.getEncoder();
         updatePID();
     }
-    
+
     public double getSpeed(){
         return value;
     }
@@ -69,15 +69,11 @@ public class CanMotor implements SpeedController{
      * Sets velocity as percentage of maximum RPM.
      * @param value_ A value between -1 and 1
      */
-    public void setValue(double value_, boolean forcedUpdate) {
+    private void setValue(double value_, boolean forcedUpdate) {
         if(value != value_){
             value = value_;
             updateSpeed();
         }
-    }
-    
-    public void setValue(double speed_) {
-        set(speed_,false);
     }
 
     public void updateSpeed(){
@@ -113,7 +109,7 @@ public class CanMotor implements SpeedController{
      */
     @Override
     public void set(double value) {
-        this.set(value, false);
+        this.setValue(value, false);
     }
 
     /**
