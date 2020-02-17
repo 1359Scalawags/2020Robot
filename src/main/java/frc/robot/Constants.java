@@ -86,12 +86,14 @@ public final class Constants {
         public static int BallLimitID = 0;
         public static double BallPIDTolerance = 0d;
         public static final double maxChamberSpeed = 1;
+    
     }
 
     public static final class ControlPanel{
         public static int PWMRotatoPotatoID = 9;                              
         public static int RotateEncoderAID = 20;
         public static int RotateEncoderBID = 21;
+        public final static I2C.Port COLORSENSOR_I2C = I2C.Port.kOnboard;
     }
 
     /*----------Operator Interface----------*/
@@ -215,7 +217,7 @@ public final class Constants {
 
       // Change/Move if needed
     
-    public final static I2C.Port COLORSENSOR_I2C = I2C.Port.kOnboard;
+    
     public final static Link PixyLink = new I2CLink();
     public static final double SpeedTwordsBall = 0;
 
