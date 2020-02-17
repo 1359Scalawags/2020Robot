@@ -100,7 +100,7 @@ public class ClimbSystem extends SubsystemBase implements scheduler{
     }
 
     public void stop() {
-        climbMotor.setSpeed(0);
+        climbMotor.set(0);
     }
 
     public double getPosition() {
@@ -119,19 +119,19 @@ public class ClimbSystem extends SubsystemBase implements scheduler{
     public void move(double speed) {
 
         if (climberLocked) {
-            climbMotor.setSpeed(0);
+            climbMotor.set(0);
         } else {
             if (speed > 0) {
                 if (climbMotor.Encoder().getPosition() < Constants.MAX_CLIMB_POSITION && ratchetLocked == false) {
-                    climbMotor.setSpeed(speed);
+                    climbMotor.set(speed);
                 } else {
-                    climbMotor.setSpeed(0);
+                    climbMotor.set(0);
                 }
             } else {
                 if (minHeightLimit.get() == Constants.LIMIT_NOTPRESSED) {
-                    climbMotor.setSpeed(speed);
+                    climbMotor.set(speed);
                 } else {
-                    climbMotor.setSpeed(0);
+                    climbMotor.set(0);
                 }
 
             }
@@ -143,7 +143,7 @@ public class ClimbSystem extends SubsystemBase implements scheduler{
         SmartDashboard.putBoolean("RachetState", ratchetLocked);
         
         if(SmartDashboard.getBoolean("Override", false)){
-            climbMotor.setSpeed(SmartDashboard.getNumber("ClimbSpeed", 0));
+            climbMotor.set(SmartDashboard.getNumber("ClimbSpeed", 0));
             ratchet.setPosition(SmartDashboard.getNumber("Ratchet Position", 0));
         }
         else{

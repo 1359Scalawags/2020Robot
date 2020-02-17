@@ -39,8 +39,8 @@ public class ShooterSystem extends SubsystemBase implements scheduler{
      */
 
     public void setShooterSpeed(double top, double bottom) {
-        topMotor.setSpeed(top);
-        bottomMotor.setSpeed(bottom);
+        topMotor.set(top);
+        bottomMotor.set(bottom);
     }
 
     public void setShotLoaderSpeed(double loader) {
@@ -85,8 +85,8 @@ public class ShooterSystem extends SubsystemBase implements scheduler{
         shootRotatorA.set(SmartDashboard.getNumber("ShootRotatorX speed", 0));
         shootRotatorB.set(SmartDashboard.getNumber("ShootRotatorY speed", 0));
         shotLoader.setSpeed(SmartDashboard.getNumber("ShotLoader Speed", 0));
-        topMotor.setSpeed(SmartDashboard.getNumber("ShooterSpeed top", 0));
-        bottomMotor.setSpeed(SmartDashboard.getNumber("ShooterSpeed bottom", 0));
+        topMotor.set(SmartDashboard.getNumber("ShooterSpeed top", 0));
+        bottomMotor.set(SmartDashboard.getNumber("ShooterSpeed bottom", 0));
     }
 
     @Override

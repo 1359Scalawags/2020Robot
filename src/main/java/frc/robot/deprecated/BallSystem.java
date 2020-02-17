@@ -254,8 +254,8 @@ public class BallSystem extends SubsystemBase {
      */
 
     public void setShooterSpeed(double top, double bottom) {
-        ballMotorA.setSpeed(top);
-        ballMotorB.setSpeed(bottom);
+        ballMotorA.set(top);
+        ballMotorB.set(bottom);
     }
 
    /**
