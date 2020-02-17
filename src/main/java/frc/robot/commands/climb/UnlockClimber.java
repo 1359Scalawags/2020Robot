@@ -1,4 +1,4 @@
-package frc.robot.commands;
+package frc.robot.commands.climb;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 //import frc.robot.Robot;
 import frc.robot.Robot;
@@ -15,12 +15,13 @@ public class UnlockClimber extends CommandBase {
     // Called just before this Command runs the first time
     @Override
     public void initialize() {
+
     }
 
     // Called repeatedly when this Command is scheduled to run
     @Override
     public void execute() {
-        Robot.climbSystem.unlockClimber();
+       Robot.climbSystem.unlockClimber();
     }
 
     @Override
