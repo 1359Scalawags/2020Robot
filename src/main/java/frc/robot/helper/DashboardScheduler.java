@@ -15,4 +15,10 @@ public class DashboardScheduler{
             subsystem.updateDashboard();
         }
     }
+
+    public void putValues(){
+        for (scheduler subsystem : scheduled) {
+            subsystem.putValues();
+        }
+    }
 }

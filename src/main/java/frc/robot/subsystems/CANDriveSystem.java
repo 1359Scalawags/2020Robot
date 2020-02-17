@@ -163,6 +163,13 @@ public double getDistanceRight() {
     }
   }
 
+  @Override
+  public void putValues() {
+    // TODO Auto-generated method stub
+    SmartDashboard.putNumber("Drive Right Motors", 0);
+    SmartDashboard.putNumber("Drive left Motors", 0);
+  }
+
   //Put methods for controlling this subsystem
   //here. Call these from Co
 

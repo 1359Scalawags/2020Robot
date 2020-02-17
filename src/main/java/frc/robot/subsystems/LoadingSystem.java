@@ -173,6 +173,13 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
             SmartDashboard.putNumber("Chamber Rotator Speed", chamRotator.getSpeed());
         }
     }
+
+    @Override
+    public void putValues() {
+        // TODO Auto-generated method stub
+        SmartDashboard.putNumberArray("Chamber Rotator PID", chamRotator.getPID().toArray());
+        SmartDashboard.putNumber("Chamber Rotator Speed", 0);
+    }
     
 //Some example code on creating a group(s)
 /*

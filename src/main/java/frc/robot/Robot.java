@@ -117,6 +117,8 @@ public class Robot extends TimedRobot {
         // dashboardScheduler.add(controlPanelSystem);
         dashboardScheduler.add(climbSystem);
         dashboardScheduler.add(driveSystem);
+
+        dashboardScheduler.putValues();
     }
 
     //TODO I added this, When simulating it was complaining robotPeriod wan default and needed to be overridden. is this correct?
