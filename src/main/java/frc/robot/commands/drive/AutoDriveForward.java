@@ -15,44 +15,49 @@ import frc.robot.Constants;
 //import frc.robot.Robot;
 import frc.robot.Robot;
 import frc.robot.Constants.Drive;
-
+import frc.robot.subsystems.CANDriveSystem;
 /**
  *
  */
 public class AutoDriveForward extends CommandBase {
 
+    private double start;
+    private double current;
     private double target;
+    private double distance;
 
-    public AutoDriveForward() {
+    public AutoDriveForward(int distance) {
         addRequirements(Robot.driveSystem);
+        this.distance = distance;
     }
 
     // Called just before this Command runs the first time
     @Override
     public void initialize() {
-        
+        start = Robot.driveSystem.getAverageDistance();
         target = Robot.driveSystem.getAngle();
-        
     }
 
     // Called repeatedly when this Command is scheduled to run
     @Override
     public void execute() {
-
-        Robot.driveSystem.arcadeDrive(Drive.driveStraightSpeed, Drive.maxTurnRate, target);
-
+        current = Robot.driveSystem.getAverageDistance();
+        Robot.driveSystem.driveForward(Drive.StraightSpeed, target);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     @Override
     public boolean isFinished() {
-        return !Robot.oi.getAutoDriveForwardButton();
+        if(current - start >= distance) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     // Called once after isFinished returns true
     @Override
     public void end(boolean interrupted) {
-
         Robot.driveSystem.arcadeDrive(0, 0, 0);
     }
 

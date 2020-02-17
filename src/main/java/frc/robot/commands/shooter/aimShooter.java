@@ -33,7 +33,7 @@ public class aimShooter extends CommandBase{
 
         double motorState  = error/Shooter.maxShooterTurnError;
 
-        Robot.driveSystem.arcadeDrive(motorState*Drive.driveStraightSpeed, Drive.maxTurnRate, angle);
+        Robot.driveSystem.arcadeDrive(motorState*Drive.StraightSpeed, Drive.maxTurnRate, angle);
     }
 
     /**
