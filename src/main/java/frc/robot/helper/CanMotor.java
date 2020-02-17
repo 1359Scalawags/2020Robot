@@ -43,11 +43,11 @@ public class CanMotor{
     }
 
     private void updatePID(){
-        controller.setP(pid.KP());
-        controller.setI(pid.KI());
-        controller.setD(pid.KD());
-        controller.setIZone(pid.KIz());
-        controller.setFF(pid.KFf());
+        controller.setP(pid.kP);
+        controller.setI(pid.kI);
+        controller.setD(pid.kD);
+        controller.setIZone(pid.kIz);
+        controller.setFF(pid.kFf);
     }
     public PID_Values getPID(){
        return pid;
