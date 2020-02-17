@@ -18,7 +18,6 @@ import frc.robot.Robot;
  */
 public class ManualClimb extends CommandBase {
 
-    private boolean climberLocked;
     /**
      * 
      * @param up Move in the up direction.
