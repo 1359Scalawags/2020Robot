@@ -90,6 +90,15 @@ public class Robot extends TimedRobot {
             ext.printStackTrace();
         }
         
+
+
+        // OI must be constructed after subsystems. If the OI creates Commands
+        //(which it very likely will), subsystems are not guaranteed to be
+        // constructed yet. Thus, their requires() statements may grab null
+        // pointers. Bad news. Don't move it.
+        oi = new OI();
+
+        
         try {
             CommandScheduler.getInstance().registerSubsystem(loadingSystem);
             CommandScheduler.getInstance().setDefaultCommand(loadingSystem, new ManualChamberRotator());
@@ -107,13 +116,6 @@ public class Robot extends TimedRobot {
 
         // CommandScheduler.getInstance().registerSubsystem(climbSystem);
 
-
-        // OI must be constructed after subsystems. If the OI creates Commands
-        //(which it very likely will), subsystems are not guaranteed to be
-        // constructed yet. Thus, their requires() statements may grab null
-        // pointers. Bad news. Don't move it.
-        oi = new OI();
-
         HAL.report(tResourceType.kResourceType_Framework, tInstances.kFramework_RobotBuilder);//TODO code never reaching this point.
 
         // Add commands to Autonomous Sendable Chooser
@@ -121,7 +123,7 @@ public class Robot extends TimedRobot {
         chooser.addOption("AutoDriveTurn", new AutoDriveTurn(90));
         chooser.setDefaultOption("Autonomous Command", new AutonomousCommand());
 
-        SmartDashboard.putData("Auto mode", chooser);
+        // SmartDashboard.putData("Auto mode", chooser);
 
 
         try {
@@ -131,11 +133,12 @@ public class Robot extends TimedRobot {
             dashboardScheduler.add(climbSystem);
             dashboardScheduler.add(driveSystem);
             dashboardScheduler.putValues();
-            System.out.println(">> Schedule updates to the Dashboard for subsystems");
+            System.out.println(">> Schedule updates to the Dashboard for subsystems");//TODO is crahing???
         } catch (Exception ex) {
             System.out.println("!! Unable to add subsystems to Dashboard Scheduler !!");      
             ex.printStackTrace();
         }
+        System.out.println("reaching the end of the world just fine");
      }
 
     @Override
@@ -187,7 +190,7 @@ public class Robot extends TimedRobot {
     @Override
     public void teleopPeriodic() {
         dashboardScheduler.update();
-        CommandScheduler.getInstance().run();
+        // CommandScheduler.getInstance().run();
     }
 
     @Override

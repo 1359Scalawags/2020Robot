@@ -45,10 +45,10 @@ public class IntakeRollerSpin extends CommandBase {
     // Called just before this Command runs the first time
     @Override
     public void initialize() {
-        SmartDashboard.putBoolean("Is Intake In", intakeIn);
-        SmartDashboard.putBoolean("Is Intake Out", intakeOut);
-        SmartDashboard.putNumber("Intake Speed", intakeSpeed);
-        SmartDashboard.putNumber("Ball Loader Speed", AvgBallLoadSpd);
+        // SmartDashboard.putBoolean("Is Intake In", intakeIn);
+        // SmartDashboard.putBoolean("Is Intake Out", intakeOut);
+        // SmartDashboard.putNumber("Intake Speed", intakeSpeed);
+        // SmartDashboard.putNumber("Ball Loader Speed", AvgBallLoadSpd);
     }
 
 
@@ -56,9 +56,9 @@ public class IntakeRollerSpin extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     @Override
     public void execute() {
-        SmartDashboard.getBoolean("Is Intake In", intakeIn);
-        SmartDashboard.getBoolean("Is Intake Out", intakeOut);
-        SmartDashboard.getNumber("Intake Speed", intakeSpeed);
+        // SmartDashboard.getBoolean("Is Intake In", intakeIn);
+        // SmartDashboard.getBoolean("Is Intake Out", intakeOut);
+        // SmartDashboard.getNumber("Intake Speed", intakeSpeed);
 
         //Robot.loadingSystem.setBallLoaderSpeed(ballLoadSpdA, ballLoadSpdB, ballLoadSpdC, ballLoadSpdD, ballLoadSpdE);
 

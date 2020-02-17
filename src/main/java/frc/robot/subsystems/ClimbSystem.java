@@ -56,10 +56,10 @@ public class ClimbSystem extends SubsystemBase implements scheduler{
     @Override
     public void periodic() {
 
-        double dashMotor = SmartDashboard.getNumber("ClimbMotorValue", 0.0);
-        if(climbMotor.Motor().get() != dashMotor) {
-            climbMotor.Motor().set(dashMotor);
-        }
+        // double dashMotor = SmartDashboard.getNumber("ClimbMotorValue", 0.0);
+        // if(climbMotor.Motor().get() != dashMotor) {
+        //     climbMotor.Motor().set(dashMotor);
+        // }
     }
 
 

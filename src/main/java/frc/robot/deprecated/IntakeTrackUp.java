@@ -34,19 +34,19 @@ public class IntakeTrackUp extends CommandBase {
     // Called just before this Command runs the first time
     @Override
     public void initialize() {
-        SmartDashboard.putBoolean("Is Que On", queUp);
-        SmartDashboard.putBoolean("Is Track On", trackUp);
-        SmartDashboard.putNumber("Que Speed", queSpeed);
-        SmartDashboard.putNumber("Track Speed", trackSpeed);
+        // SmartDashboard.putBoolean("Is Que On", queUp);
+        // SmartDashboard.putBoolean("Is Track On", trackUp);
+        // SmartDashboard.putNumber("Que Speed", queSpeed);
+        // SmartDashboard.putNumber("Track Speed", trackSpeed);
     }
 
     // Called repeatedly when this Command is scheduled to run
     @Override
     public void execute() {
-        SmartDashboard.getBoolean("Is Que On", queUp);
-        SmartDashboard.getBoolean("Is Track On", trackUp);
-        SmartDashboard.getNumber("Que Speed", queSpeed);
-        SmartDashboard.getNumber("Track Speed", trackSpeed);
+        // SmartDashboard.getBoolean("Is Que On", queUp);
+        // SmartDashboard.getBoolean("Is Track On", trackUp);
+        // SmartDashboard.getNumber("Que Speed", queSpeed);
+        // SmartDashboard.getNumber("Track Speed", trackSpeed);
     }
 
     // Make this return true when this Command no longer needs to run execute()
