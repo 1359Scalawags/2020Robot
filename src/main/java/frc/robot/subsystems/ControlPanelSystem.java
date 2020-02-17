@@ -13,7 +13,7 @@ package frc.robot.subsystems;
 //import frc.robot.commands.*;
 //import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants;
+import frc.robot.Constants.ControlPanel;
 //import edu.wpi.first.wpilibj.PIDOutput;
 //import edu.wpi.first.wpilibj.PIDSource;
 //import edu.wpi.first.wpilibj.AnalogInput;
@@ -52,7 +52,7 @@ public class ControlPanelSystem extends SubsystemBase implements scheduler{
     private Spark rotateMotor;
     private Encoder rotateEncoder;
     //private double testRotations;
-    private final ColorSensorV3 colorSensor = new ColorSensorV3(Constants.COLORSENSOR_I2C);
+    private final ColorSensorV3 colorSensor = new ColorSensorV3(ControlPanel.COLORSENSOR_I2C);
     // private Color prevColor;
     // private String prevColorName;
     private String expected;
@@ -78,11 +78,11 @@ public class ControlPanelSystem extends SubsystemBase implements scheduler{
 
         // matcher.addColorMatch(BETWEEN);
 
-        rotateMotor = new Spark(Constants.PWMRotatoPotatoID);
+        rotateMotor = new Spark(ControlPanel.PWMRotatoPotatoID);
         addChild("RotateMotor",rotateMotor);
         rotateMotor.setInverted(false);
         
-        rotateEncoder = new Encoder(Constants.RotateEncoderAID, Constants.RotateEncoderBID, false, EncodingType.k4X);
+        rotateEncoder = new Encoder(ControlPanel.RotateEncoderAID, ControlPanel.RotateEncoderBID, false, EncodingType.k4X);
         addChild("RotateEncoder",rotateEncoder);
         rotateEncoder.setDistancePerPulse(1.0);
         //rotateEncoder.setPIDSourceType(PIDSourceType.kRate);
