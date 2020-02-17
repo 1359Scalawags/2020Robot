@@ -39,6 +39,9 @@ public class CANDriveSystem extends SubsystemBase implements scheduler{
     gyroPids = new PID_Values(Drive.gyrokP, Drive.gyrokI, Drive.gyrokD, Drive.gyrokIz, Drive.gyrokFf);
     driveGyro = new ADXRS450_Gyro();
     gyroControl = new PIDController(gyroPids.kP, gyroPids.kI, gyroPids.kD);
+
+    leftMotors[0].Encoder().setPositionConversionFactor(Drive.driveSystemScale);
+    
   }
 
   @Override
@@ -65,18 +68,19 @@ public class CANDriveSystem extends SubsystemBase implements scheduler{
     return driveGyro.getRate();
   }
 
-/*  public double getDistanceLeft() {
-    return leftEncoder.getDistance();
+  public double getDistanceLeft() {
+    return leftMotors[0].Encoder().getPosition();
 }
 
 public double getDistanceRight() {
-    return rightEncoder.getDistance();
+    return rightMotors[0].Encoder().getPosition();
+
 }
 
   public double getAverageDistance() {
 	  return (getDistanceRight() + getDistanceLeft()) / 2;
   }
-*/    
+   
   // public void driveForwardVision(double speed){
   //   final double scale = .01;
   //   double leftSpeed;
