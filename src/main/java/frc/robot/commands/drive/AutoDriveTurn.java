@@ -9,12 +9,14 @@
 // it from being updated in the future.
 
 package frc.robot.commands.drive;
+
 //import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 //import frc.robot.Robot;
 import frc.robot.Robot;
 //import frc.robot.RobotMap;
+import frc.robot.Constants.Drive;
 
 /**
  *
@@ -44,7 +46,7 @@ public class AutoDriveTurn extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     @Override
     public void execute() {
-        Robot.driveSystem.arcadeDrive(0.0, Constants.maxRightTurnRate, targetangle);
+        Robot.driveSystem.arcadeDrive(0.0, Drive.maxRightTurnRate, targetangle);
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -55,7 +57,7 @@ public class AutoDriveTurn extends CommandBase {
         //is the target angle the same as the current angle?
         double diff = Math.abs(targetangle - currentangle);
         
-        if (diff < Constants.AutoTurnAngleThreshold){
+        if (diff < Drive.AutoTurnAngleThreshold){
             return true;
         }
         else{

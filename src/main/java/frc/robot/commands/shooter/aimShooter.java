@@ -2,6 +2,7 @@ package frc.robot.commands.shooter;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
+import frc.robot.Constants.Drive;
 import frc.robot.Constants;
 
 public class aimShooter extends CommandBase{
@@ -32,7 +33,7 @@ public class aimShooter extends CommandBase{
 
         double motorState  = error/Constants.maxShooterTurnError;
 
-        Robot.driveSystem.arcadeDrive(motorState*Constants.driveStraightSpeed, Constants.maxTurnRate, angle);
+        Robot.driveSystem.arcadeDrive(motorState*Drive.driveStraightSpeed, Drive.maxTurnRate, angle);
     }
 
     /**
