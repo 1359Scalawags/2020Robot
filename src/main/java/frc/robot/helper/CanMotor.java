@@ -17,10 +17,7 @@ public class CanMotor implements SpeedController{
     private CANSparkMax motor;
     private double value;
     private PID_Values pid;
-
     private double scaleValue;
-
-
     private ControlType controlType;
     
 // SpeedController speedController, SpeedController[] speedControllers 
@@ -52,11 +49,16 @@ public class CanMotor implements SpeedController{
     }
 
     private void updatePID(){
-        motor.getPIDController().setP(pid.kP);
-        motor.getPIDController().setI(pid.kI);
-        motor.getPIDController().setD(pid.kD);
-        motor.getPIDController().setIZone(pid.kIz);
-        motor.getPIDController().setFF(pid.kFf);
+        if(motor.getPIDController().getP() != pid.kP) 
+            motor.getPIDController().setP(pid.kP);
+        if(motor.getPIDController().getI() != pid.kI)
+            motor.getPIDController().setI(pid.kI);
+        if(motor.getPIDController().getD() != pid.kD)
+            motor.getPIDController().setD(pid.kD);
+        if(motor.getPIDController().getIZone() != pid.kIz)
+            motor.getPIDController().setIZone(pid.kIz);
+        if(motor.getPIDController().getFF() != pid.kFf)
+            motor.getPIDController().setFF(pid.kFf);
     }
     public PID_Values getPID(){
        return pid;
@@ -67,7 +69,7 @@ public class CanMotor implements SpeedController{
      * @param value_ A value between -1 and 1
      */
     private void setValue(double value_, boolean forcedUpdate) {
-        if(value != value_){
+        if(value != value_ || forcedUpdate){
             value = value_;
             updateSpeed();
         }
