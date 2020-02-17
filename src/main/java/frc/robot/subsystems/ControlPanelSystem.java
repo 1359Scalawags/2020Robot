@@ -185,11 +185,11 @@ public class ControlPanelSystem extends SubsystemBase implements scheduler{
     }
 
     @Override
-    public void updateDashboard(){  
+    public void updateDashboard(boolean Override){  
         SmartDashboard.putString("Scanner Color", getScannerColorName());
         SmartDashboard.putString("Wheel Color", getWheelColorName());
 
-        if(SmartDashboard.getBoolean("Override", false)){
+        if(Override){
             rexpected = SmartDashboard.getNumberArray("Red expected", rexpected);
             gexpected = SmartDashboard.getNumberArray("Green expected", gexpected);
             bexpected = SmartDashboard.getNumberArray("Blue expected", bexpected);

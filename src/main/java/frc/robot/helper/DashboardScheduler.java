@@ -1,13 +1,19 @@
 package frc.robot.helper;
 
 import java.util.ArrayList;
+
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.interfaces.scheduler;
 
 public class DashboardScheduler{
     ArrayList<scheduler> scheduled = new ArrayList<scheduler>();
     private int frameCount;
+    private boolean overriderState;
 
     public DashboardScheduler() {
+        SmartDashboard.putBoolean("override State", false);
+        overriderState = false;
+
         frameCount = 0;
     }
 
@@ -18,7 +24,7 @@ public class DashboardScheduler{
     public void update(){
         if(frameCount == 10) {
             for (scheduler subsystem : scheduled) {
-                subsystem.updateDashboard();
+                subsystem.updateDashboard(overriderState);
             }  
             frameCount = 0;  // TODO: move this before for loop if issues arise
         }

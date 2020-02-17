@@ -152,12 +152,12 @@ public double getDistanceRight() {
   
 
   @Override
-  public void updateDashboard(){
+  public void updateDashboard(boolean Override){
     SmartDashboard.putNumber("RightMotorVelocity", rightMotors[0].Encoder().getVelocity());
     SmartDashboard.putNumber("LeftMotorVelocity", leftMotors[0].Encoder().getVelocity());
     SmartDashboard.putNumber("DriveGyroAngly", driveGyro.getAngle());
     
-    if(SmartDashboard.getBoolean("Override", false)){
+    if(Override){
       rightControllerGroup.set(SmartDashboard.getNumber("Drive Right Motors", 0));
       rightControllerGroup.set(SmartDashboard.getNumber("Drive left Motors", 0));
     }

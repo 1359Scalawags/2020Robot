@@ -82,12 +82,14 @@ public class ShooterSystem extends SubsystemBase implements scheduler{
 	}
 
     @Override
-    public void updateDashboard() {
-        shootRotatorA.set(SmartDashboard.getNumber("ShootRotatorX speed", 0));
-        shootRotatorB.set(SmartDashboard.getNumber("ShootRotatorY speed", 0));
-        shotLoader.setSpeed(SmartDashboard.getNumber("ShotLoader Speed", 0));
-        topMotor.set(SmartDashboard.getNumber("ShooterSpeed top", 0));
-        bottomMotor.set(SmartDashboard.getNumber("ShooterSpeed bottom", 0));
+    public void updateDashboard(boolean Override) {
+        if(Override){
+            shootRotatorA.set(SmartDashboard.getNumber("ShootRotatorX speed", 0));
+            shootRotatorB.set(SmartDashboard.getNumber("ShootRotatorY speed", 0));
+            shotLoader.setSpeed(SmartDashboard.getNumber("ShotLoader Speed", 0));
+            topMotor.set(SmartDashboard.getNumber("ShooterSpeed top", 0));
+            bottomMotor.set(SmartDashboard.getNumber("ShooterSpeed bottom", 0));
+        }
     }
 
     @Override
