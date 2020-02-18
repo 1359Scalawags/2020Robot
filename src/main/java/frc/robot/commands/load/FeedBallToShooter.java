@@ -36,7 +36,7 @@ public class FeedBallToShooter extends CommandBase {
     @Override
     public void initialize() {
         start = timer.get();
-        Robot.shooterSystem.setShotLoaderSpeed(Load.LoadShotMotor);       
+        Robot.shooterSystem.setShotLoaderSpeed(Load.PWMLoadShotMotorID);       
     }
 
     // Called repeatedly when this Command is scheduled to run

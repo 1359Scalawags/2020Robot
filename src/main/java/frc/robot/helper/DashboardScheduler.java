@@ -11,7 +11,7 @@ public class DashboardScheduler{
     private boolean overriderState;
 
     public DashboardScheduler() {
-        SmartDashboard.putBoolean("override State", false);
+        SmartDashboard.putBoolean("OverRideState", false);
         overriderState = false;
 
         frameCount = 0;
@@ -24,6 +24,7 @@ public class DashboardScheduler{
     public void update(){
         // System.out.println("OverRide: "+overriderState);
         if(frameCount == 10) {
+            overriderState = SmartDashboard.getBoolean("OverRideState", false);
             for (scheduler subsystem : scheduled) {
                 subsystem.updateDash(overriderState);
             }  

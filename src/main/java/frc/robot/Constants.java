@@ -73,9 +73,9 @@ public final class Constants {
     }
 
     public static final class Load{
-        public static final double LoadShotMotor = 1;
-        public static final int PWMLoadShotMotorID = 5;
+        // public static final double LoadShotMotor = 1;
         public static final int CANChamRotMotorID = 21; //TODO check if this id is correct?
+        public static final int PWMLoadShotMotorID = 5;
         public static final int PWMLoadBallInMotorRearID = 0;
         public static final int PWMLoadBallInMotorFrontID = 4;
         public static final int PWMLoadBallUpMotorRightID = 1;
@@ -149,75 +149,13 @@ public final class Constants {
     
 
     
-    
 
-
-
-    
-    
-    
-
-	// public static int LoadChamMotorID = 2;
-
-
-	
-
-    //Motor Speeds
-    
-
-    //Sensors                                       Sensor #s 0, 1, 2
-
-	
-    /*----------ClimbSystem----------*/
-
-    //Booleans, Integers, and Values
-
-
-    // public static int ClimbServoID = 9;
-
-    
-
-    //Booleans
-    
-    
-    //Potentiometers
-    // public static  int CLIMBERPOTID = 8;    //Change if NEEDED...
-                                            //IF it was changed then let Allan know ASAP!
-
-    //Defined
-        //Change if NEEDED...  Pot = POTENTIOMETER
-                                                //IF it was changed then let Allan know ASAP!
-
-    /*----------ControlPanelSystem----------*/
-    
-    //Booleans, Integers, and Values
-
-
-    //Motors                                        Motor #s 9
-    
-
-    /*----------CANDriveSystem----------*/
-
-    //Booleans, Integers, and Values
-    
-
-
-
-    //Sensors                                       Sensor #s 6, 7, 8, 9, 10, 11, 12, 13
     
     //public static int DriveBuiltInAccelerometer = 10;
     //public static int DriveAnalogGyro = 11;
 
     public static final double controllerDeadZone = 0.1;
-    
-
-
 	public static double MAXRPM = 5700;
-
-
-      // Change/Move if needed
-    
-    
     public final static Link PixyLink = new I2CLink();
     public static final double SpeedTwordsBall = 0;
 
