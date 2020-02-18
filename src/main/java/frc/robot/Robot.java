@@ -67,7 +67,7 @@ public class Robot extends TimedRobot {
         dashboardScheduler = new DashboardScheduler();
         System.out.println(">> Dashboard Scheduler Created");
         try {
-            driveSystem = new CANDriveSystem();//TODO there is a bug in drive system
+            // driveSystem = new CANDriveSystem();//TODO there is a bug in drive system
             climbSystem = new ClimbSystem();
             loadingSystem = new LoadingSystem();
             shooterSystem = new ShooterSystem();
@@ -103,8 +103,8 @@ public class Robot extends TimedRobot {
             CommandScheduler.getInstance().registerSubsystem(loadingSystem);
             CommandScheduler.getInstance().setDefaultCommand(loadingSystem, new ManualChamberRotator());
 
-            CommandScheduler.getInstance().registerSubsystem(driveSystem);
-            CommandScheduler.getInstance().setDefaultCommand(driveSystem, new ManualDrive());
+            // CommandScheduler.getInstance().registerSubsystem(driveSystem);
+            // CommandScheduler.getInstance().setDefaultCommand(driveSystem, new ManualDrive());
 
             CommandScheduler.getInstance().registerSubsystem(kNetwork);
             CommandScheduler.getInstance().setDefaultCommand(kNetwork, new TestNetwork());
@@ -120,8 +120,8 @@ public class Robot extends TimedRobot {
 
         // Add commands to Autonomous Sendable Chooser
 
-        chooser.addOption("AutoDriveTurn", new AutoDriveTurn(90));
-        chooser.setDefaultOption("Autonomous Command", new AutonomousCommand());
+        // chooser.addOption("AutoDriveTurn", new AutoDriveTurn(90));
+        // chooser.setDefaultOption("Autonomous Command", new AutonomousCommand());
 
         // SmartDashboard.putData("Auto mode", chooser);
 
@@ -131,7 +131,7 @@ public class Robot extends TimedRobot {
             dashboardScheduler.add(loadingSystem);
             // dashboardScheduler.add(controlPanelSystem);
             dashboardScheduler.add(climbSystem);
-            dashboardScheduler.add(driveSystem);
+            // dashboardScheduler.add(driveSystem);
             dashboardScheduler.putValues();
             System.out.println(">> Schedule updates to the Dashboard for subsystems");
         } catch (Exception ex) {
