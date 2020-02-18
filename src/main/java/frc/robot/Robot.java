@@ -67,7 +67,7 @@ public class Robot extends TimedRobot {
         dashboardScheduler = new DashboardScheduler();
         System.out.println(">> Dashboard Scheduler Created");
         try {
-            // driveSystem = new CANDriveSystem();//TODO there is a bug in drive system
+            driveSystem = new CANDriveSystem(); //TODO when commenting this out it works perfectly, there is something wrong in the drive system!!!
             climbSystem = new ClimbSystem();
             loadingSystem = new LoadingSystem();
             shooterSystem = new ShooterSystem();
@@ -143,6 +143,7 @@ public class Robot extends TimedRobot {
 
     @Override
     public void robotPeriodic(){
+
     }
 
     /**
@@ -151,12 +152,12 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void disabledInit(){
-
+        CommandScheduler.getInstance().run();
     }
 
     @Override
     public void disabledPeriodic() {
-        CommandScheduler.getInstance().run();
+        // CommandScheduler.getInstance().run();
     }
 
     @Override
@@ -171,7 +172,7 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void autonomousPeriodic() {
-        dashboardScheduler.update();
+        // dashboardScheduler.update();
         CommandScheduler.getInstance().run();
     }
 
@@ -189,7 +190,7 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void teleopPeriodic() {
-        dashboardScheduler.update();
+        // dashboardScheduler.update();
         // CommandScheduler.getInstance().run();
     }
 
@@ -216,7 +217,7 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void testPeriodic() {
-        dashboardScheduler.update();
+        // dashboardScheduler.update();
         CommandScheduler.getInstance().run();
     }
 }

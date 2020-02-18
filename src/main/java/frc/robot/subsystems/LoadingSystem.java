@@ -187,7 +187,7 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
 
     @Override
     public void putValues() {
-        SmartDashboard.putNumberArray("ChamberRotatorPID", new double[1]);
+        SmartDashboard.putNumberArray("ChamberRotatorPID", chamRotator.getPID().toArray());
         SmartDashboard.putNumber("ChamberRotatorSpeed", 0);
         SmartDashboard.getNumber("BallLoadinMotors", 0);
         SmartDashboard.getNumber("BallLoadUpMotors", 0);
