@@ -167,7 +167,7 @@ public double getDistanceRight() {
     if(SmartDashboard.getNumber("DriveGyroAngle", 0) != driveangle)
        SmartDashboard.putNumber("DriveGyroAngle", driveangle);
     
-    if(Override){
+    if(Override){//drive PID, gyro pid
       double rightmotors = SmartDashboard.getNumber("DriveRightMotors", 0);
       double leftmotors = SmartDashboard.getNumber("DriveLeftMotors", 0);
 
@@ -181,7 +181,6 @@ public double getDistanceRight() {
 
   @Override
   public void putValues() {
-    // TODO Auto-generated method stub
     SmartDashboard.putNumber("Drive Right Motors", 0);
     SmartDashboard.putNumber("Drive left Motors", 0);
   }

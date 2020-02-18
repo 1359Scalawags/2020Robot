@@ -16,19 +16,19 @@ public class ShooterSystem extends SubsystemBase implements scheduler{
     
     private CanMotor topMotor;
     private CanMotor bottomMotor;
-    private Spark shootRotatorA;
-    private Spark shootRotatorB;
+    private Spark shootRotatorX;
+    private Spark shootRotatorY;
     private Spark shotLoader;
 
     public ShooterSystem(){
         topMotor = new CanMotor(Shooter.CANTopBallMotorID);
         bottomMotor = new CanMotor(Shooter.CANBottomBallMotorID);
         
-        shootRotatorA = new Spark(Shooter.PWMShootRotatorLeftRightID);
-        shootRotatorA.setInverted(false);
+        shootRotatorX = new Spark(Shooter.PWMShootRotatorLeftRightID);
+        shootRotatorX.setInverted(false);
 
-        shootRotatorB = new Spark(Shooter.PWMShootRotatorUpDownID);
-        shootRotatorB.setInverted(true);
+        shootRotatorY = new Spark(Shooter.PWMShootRotatorUpDownID);
+        shootRotatorY.setInverted(true);
         
         shotLoader = new Spark(Load.PWMLoadShotMotorID);
         shotLoader.setInverted(false);
@@ -77,29 +77,38 @@ public class ShooterSystem extends SubsystemBase implements scheduler{
             speed2=-Shooter.maxShooterTurnRate;
 
         //TODO check if between limit switchs
-        shootRotatorA.set(speed1);
-        shootRotatorB.set(speed2);
+        shootRotatorX.set(speed1);
+        shootRotatorY.set(speed2);
 	}
 
     @Override
     public void updateDash(boolean Override) {
         if(Override){
-            shootRotatorA.set(SmartDashboard.getNumber("ShootRotatorX speed", 0));
-            shootRotatorB.set(SmartDashboard.getNumber("ShootRotatorY speed", 0));
-            shotLoader.setSpeed(SmartDashboard.getNumber("ShotLoader Speed", 0));
-            topMotor.set(SmartDashboard.getNumber("ShooterSpeed top", 0));
-            bottomMotor.set(SmartDashboard.getNumber("ShooterSpeed bottom", 0));
+            double rotx = SmartDashboard.getNumber("ShootRotatorXspeed", 0);
+            double roty = SmartDashboard.getNumber("ShootRotatorYspeed", 0);
+            double sloader = SmartDashboard.getNumber("ShotLoaderSpeed", 0);
+            double stop = SmartDashboard.getNumber("ShooterSpeedtop", 0);
+            double sbot = SmartDashboard.getNumber("ShooterSpeedbottom", 0);
+            if(rotx != shootRotatorX.get())
+                shootRotatorX.set(rotx);
+            if(roty != shootRotatorY.get())
+                shootRotatorY.set(roty);
+            if(sloader != shotLoader.get())
+                shotLoader.setSpeed(sloader);
+            if(stop != topMotor.get())
+                topMotor.set(stop);
+            if(sbot != bottomMotor.get())
+                bottomMotor.set(sbot);
         }
     }
 
     @Override
     public void putValues() {
-        // TODO Auto-generated method stub
-        SmartDashboard.putNumber("ShootRotatorX speed", 0);
-        SmartDashboard.putNumber("ShootRotatorY speed", 0);
-        SmartDashboard.putNumber("ShotLoader Speed", 0);
-        SmartDashboard.putNumber("ShooterSpeed top", 0);
-        SmartDashboard.putNumber("ShooterSpeed bottom", 0);
+        SmartDashboard.putNumber("ShootRotatorXspeed", 0);
+        SmartDashboard.putNumber("ShootRotatorYspeed", 0);
+        SmartDashboard.putNumber("ShotLoaderSpeed", 0);
+        SmartDashboard.putNumber("ShooterSpeedtop", 0);
+        SmartDashboard.putNumber("ShooterSpeedbottom", 0);
     }
 
 

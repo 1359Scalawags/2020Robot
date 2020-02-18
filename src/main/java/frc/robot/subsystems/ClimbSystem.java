@@ -41,7 +41,7 @@ public class ClimbSystem extends SubsystemBase implements scheduler{
         addChild("MinHeightLimit",minHeightLimit);
         
         climbMotor = new CanMotor(Climb.CANClimbMotorID);
-        SmartDashboard.putNumber("ClimbMotorValue", climbMotor.Motor().get());
+        // SmartDashboard.putNumber("ClimbMotorValue", climbMotor.Motor().get());
         
         climberLocked = true;
         ratchetLocked = true;
@@ -140,14 +140,11 @@ public class ClimbSystem extends SubsystemBase implements scheduler{
 
     @Override
     public void updateDash(boolean Override) {
-        double ratchetpos = SmartDashboard.getNumber("RatchetPosition", 0);
         double climbSpeed = SmartDashboard.getNumber("ClimbSpeed", 0);
         boolean RachetState = SmartDashboard.getBoolean("RachetState", false);
         if(Override){
-            if(ratchetpos != ratchet.getPosition())
-                ratchet.setPosition(ratchetpos);
             if(climbSpeed != climbMotor.getSpeed())
-                climbMotor.set(climbSpeed);
+                move(climbSpeed);
             if(RachetState)
                 unlockRatchet();
             else
@@ -155,9 +152,7 @@ public class ClimbSystem extends SubsystemBase implements scheduler{
         }
         else{
             if(RachetState != ratchetLocked)
-                SmartDashboard.putBoolean("RachetState", ratchetLocked); 
-            if(ratchetpos != ratchet.getPosition())   
-                SmartDashboard.putNumber("RatchetPosition", ratchet.getPosition());
+                SmartDashboard.putBoolean("RachetState", ratchetLocked);
             if(climbSpeed != climbMotor.Encoder().getVelocity())
                 SmartDashboard.putNumber("ClimbSpeed", climbMotor.Encoder().getVelocity());
         }
@@ -165,9 +160,7 @@ public class ClimbSystem extends SubsystemBase implements scheduler{
 
     @Override
     public void putValues() {
-        // TODO Auto-generated method stub
         SmartDashboard.putBoolean("RachetState", ratchetLocked);
         SmartDashboard.putNumber("ClimbSpeed", climbMotor.getSpeed());
-        SmartDashboard.putNumber("RatchetPosition", ratchet.getPosition());
     }
 }

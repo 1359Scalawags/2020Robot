@@ -116,7 +116,7 @@ public class Robot extends TimedRobot {
 
         // CommandScheduler.getInstance().registerSubsystem(climbSystem);
 
-        HAL.report(tResourceType.kResourceType_Framework, tInstances.kFramework_RobotBuilder);//TODO code never reaching this point.
+        HAL.report(tResourceType.kResourceType_Framework, tInstances.kFramework_RobotBuilder);
 
         // Add commands to Autonomous Sendable Chooser
 
@@ -133,7 +133,7 @@ public class Robot extends TimedRobot {
             dashboardScheduler.add(climbSystem);
             dashboardScheduler.add(driveSystem);
             dashboardScheduler.putValues();
-            System.out.println(">> Schedule updates to the Dashboard for subsystems");//TODO is crahing???
+            System.out.println(">> Schedule updates to the Dashboard for subsystems");
         } catch (Exception ex) {
             System.out.println("!! Unable to add subsystems to Dashboard Scheduler !!");      
             ex.printStackTrace();
