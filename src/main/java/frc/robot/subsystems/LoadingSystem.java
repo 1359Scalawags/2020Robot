@@ -68,7 +68,7 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
         //Ball Intake
 
         ballLoadInMotors = new SpeedControllerGroup(ballLoaderInA, ballLoaderInB);
-
+        
         ballLoaderUpA = new Talon(Load.PWMLoadBallUpMotorRightID);
         ballLoaderUpA.setInverted(false);
         
@@ -165,20 +165,33 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
     
     @Override
     public void updateDash(boolean Override){    
+        double chamSpeed = SmartDashboard.getNumber("ChamberRotatorSpeed", 0);
         if(Override){
-            chamRotator.setPID(SmartDashboard.getNumberArray("Chamber Rotator PID", chamRotator.getPID().toArray()));
-            chamRotator.set(SmartDashboard.getNumber("Chamber Rotator Speed", 0));
+            double[] pid = SmartDashboard.getNumberArray("ChamberRotatorPID", new double[1]);
+            double loadin = SmartDashboard.getNumber("BallLoadinMotors", 0);
+            double loadup = SmartDashboard.getNumber("BallLoadUpMotors", 0);
+            if(!chamRotator.getPID().equals(pid))
+                chamRotator.setPID(pid);
+            if(chamSpeed == chamRotator.getSpeed())
+                chamRotator.set(chamSpeed);
+            if(loadin == ballLoadInMotors.get())
+                ballLoadInMotors.set(loadin);
+            if(loadup == ballLoadUpMotors.get())
+                ballLoadUpMotors.set(loadup);
         }
         else{
-            SmartDashboard.putNumber("Chamber Rotator Speed", chamRotator.getSpeed());
+            if(chamSpeed == chamRotator.getSpeed())
+                SmartDashboard.putNumber("ChamberRotatorSpeed", chamRotator.getSpeed());
         }
     }
 
     @Override
     public void putValues() {
         // TODO Auto-generated method stub
-        SmartDashboard.putNumberArray("Chamber Rotator PID", chamRotator.getPID().toArray());
-        SmartDashboard.putNumber("Chamber Rotator Speed", 0);
+        SmartDashboard.putNumberArray("ChamberRotatorPID", new double[1]);
+        SmartDashboard.putNumber("ChamberRotatorSpeed", 0);
+        SmartDashboard.getNumber("BallLoadinMotors", 0);
+        SmartDashboard.getNumber("BallLoadUpMotors", 0);
     }
     
 //Some example code on creating a group(s)

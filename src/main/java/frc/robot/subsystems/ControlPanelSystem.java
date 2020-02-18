@@ -186,24 +186,24 @@ public class ControlPanelSystem extends SubsystemBase implements scheduler{
 
     @Override
     public void updateDash(boolean Override){  
-        SmartDashboard.putString("Scanner Color", getScannerColorName());
-        SmartDashboard.putString("Wheel Color", getWheelColorName());
+        if(SmartDashboard.getString("currentColor", null) != currentColorName)
+            SmartDashboard.putString("currentColor", currentColorName);
 
         if(Override){
-            rexpected = SmartDashboard.getNumberArray("Red expected", rexpected);
-            gexpected = SmartDashboard.getNumberArray("Green expected", gexpected);
-            bexpected = SmartDashboard.getNumberArray("Blue expected", bexpected);
-            yexpected = SmartDashboard.getNumberArray("Yellow state", yexpected);
+            rexpected = SmartDashboard.getNumberArray("RedExpected", rexpected);
+            gexpected = SmartDashboard.getNumberArray("Greenexpected", gexpected);
+            bexpected = SmartDashboard.getNumberArray("BlueExpected", bexpected);
+            yexpected = SmartDashboard.getNumberArray("YellowExpected", yexpected);
         }
     }
 
     @Override
     public void putValues() {
         // TODO Auto-generated method stub
-        SmartDashboard.putNumberArray("Red expected", rexpected);
-        SmartDashboard.putNumberArray("Green expected", gexpected);
-        SmartDashboard.putNumberArray("Blue expected", bexpected);
-        SmartDashboard.putNumberArray("Yellow state", yexpected);
+        SmartDashboard.putNumberArray("RedExpected", rexpected);
+        SmartDashboard.putNumberArray("GreenExpected", gexpected);
+        SmartDashboard.putNumberArray("BlueExpected", bexpected);
+        SmartDashboard.putNumberArray("YellowExpect", yexpected);
     }
 }
 

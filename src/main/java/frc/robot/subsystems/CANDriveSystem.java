@@ -40,7 +40,7 @@ public class CANDriveSystem extends SubsystemBase implements scheduler{
     driveGyro = new ADXRS450_Gyro();
     gyroControl = new PIDController(gyroPids.kP, gyroPids.kI, gyroPids.kD);
 
-    leftMotors[0].Encoder().setPositionConversionFactor(Drive.SystemScale);
+    // leftMotors[0].Encoder().setPositionConversionFactor(Drive.SystemScale);
     
   }
 
@@ -153,18 +153,30 @@ public double getDistanceRight() {
     diffDrive.arcadeDrive(moveSpeed, angleOutput);
    
   }
-  
 
   @Override
   public void updateDash(boolean Override){
-    SmartDashboard.putNumber("RightMotorVelocity", rightMotors[0].Encoder().getVelocity());
-    SmartDashboard.putNumber("LeftMotorVelocity", leftMotors[0].Encoder().getVelocity());
-    SmartDashboard.putNumber("DriveGyroAngly", driveGyro.getAngle());
+    double rightspeed = rightControllerGroup.get();
+    double leftspeed = leftControllerGroup.get();
+    double driveangle = getAngle();
+
+    if(SmartDashboard.getNumber("RightMotorVelocity", 0) != rightspeed)
+       SmartDashboard.putNumber("RightMotorVelocity", rightspeed);
+    if(SmartDashboard.getNumber("LeftMotorVelocity", 0) != leftspeed)
+       SmartDashboard.putNumber("LeftMotorVelocity", leftspeed);
+    if(SmartDashboard.getNumber("DriveGyroAngle", 0) != driveangle)
+       SmartDashboard.putNumber("DriveGyroAngle", driveangle);
     
     if(Override){
-      rightControllerGroup.set(SmartDashboard.getNumber("Drive Right Motors", 0));
-      rightControllerGroup.set(SmartDashboard.getNumber("Drive left Motors", 0));
+      double rightmotors = SmartDashboard.getNumber("DriveRightMotors", 0);
+      double leftmotors = SmartDashboard.getNumber("DriveLeftMotors", 0);
+
+      if(rightControllerGroup.get() != rightmotors)
+        rightControllerGroup.set(rightmotors);
+      if(leftControllerGroup.get() != leftmotors)
+        leftControllerGroup.set(leftmotors);
     }
+    
   }
 
   @Override

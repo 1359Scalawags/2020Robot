@@ -23,6 +23,21 @@ public class PID_Values {
         kFf = arr[4] = kFf_;
     }
 
+    
+
+    public boolean equals(PID_Values pid){
+        return(this.kP == pid.kP && this.kI == pid.kI && this.kD == pid.kD && this.kIz == pid.kIz && this.kIz == pid.kFf);
+    }
+
+    public boolean equals(double[] pid_){
+        double[] pid = toArray();
+        for (int i=0; i<pid.length; i++) {
+            if(pid[i] != pid_[i])
+                return false;
+        }
+        return true;
+    }
+
     public double[] toArray(){
         double[] result = {kP, kI, kD, kIz, kFf};
         return result;

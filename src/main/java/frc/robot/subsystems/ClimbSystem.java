@@ -140,22 +140,34 @@ public class ClimbSystem extends SubsystemBase implements scheduler{
 
     @Override
     public void updateDash(boolean Override) {
-        SmartDashboard.putBoolean("RachetState", ratchetLocked);
-        
+        double ratchetpos = SmartDashboard.getNumber("RatchetPosition", 0);
+        double climbSpeed = SmartDashboard.getNumber("ClimbSpeed", 0);
+        boolean RachetState = SmartDashboard.getBoolean("RachetState", false);
         if(Override){
-            climbMotor.set(SmartDashboard.getNumber("ClimbSpeed", 0));
-            ratchet.setPosition(SmartDashboard.getNumber("Ratchet Position", 0));
+            if(ratchetpos != ratchet.getPosition())
+                ratchet.setPosition(ratchetpos);
+            if(climbSpeed != climbMotor.getSpeed())
+                climbMotor.set(climbSpeed);
+            if(RachetState)
+                unlockRatchet();
+            else
+                lockRatchet();
         }
         else{
-            SmartDashboard.putNumber("RatchetValue", ratchet.getPosition());
-            SmartDashboard.putNumber("ClimbSpeed", climbMotor.Encoder().getVelocity());
+            if(RachetState != ratchetLocked)
+                SmartDashboard.putBoolean("RachetState", ratchetLocked); 
+            if(ratchetpos != ratchet.getPosition())   
+                SmartDashboard.putNumber("RatchetPosition", ratchet.getPosition());
+            if(climbSpeed != climbMotor.Encoder().getVelocity())
+                SmartDashboard.putNumber("ClimbSpeed", climbMotor.Encoder().getVelocity());
         }
     }
 
     @Override
     public void putValues() {
         // TODO Auto-generated method stub
-        SmartDashboard.putNumber("ClimbSpeed", 0);
-        SmartDashboard.putNumber("Ratchet Position", 0);
+        SmartDashboard.putBoolean("RachetState", ratchetLocked);
+        SmartDashboard.putNumber("ClimbSpeed", climbMotor.getSpeed());
+        SmartDashboard.putNumber("RatchetPosition", ratchet.getPosition());
     }
 }
