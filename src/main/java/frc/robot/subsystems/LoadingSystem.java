@@ -174,10 +174,6 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
             double loadin = SmartDashboard.getNumber("BallLoadinMotors", 0);
             double loadup = SmartDashboard.getNumber("BallLoadUpMotors", 0);
 
-            
-            ballLoaderInB.set(SmartDashboard.getNumber("Test", 0));
-            double d = ballLoaderInB.get();
-
             if(!chamRotator.getPID().equals(pid))
                 chamRotator.setPID(pid);
             if(chamSpeed != chamRotator.getSpeed())

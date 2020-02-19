@@ -70,6 +70,7 @@ public class Robot extends TimedRobot {
             // driveSystem = new CANDriveSystem(); //TODO when commenting this out it works perfectly, there is something wrong in the drive system!!!
             climbSystem = new ClimbSystem();
             loadingSystem = new LoadingSystem();
+            controlPanelSystem = new ControlPanelSystem();
             shooterSystem = new ShooterSystem();
             kNetwork = new NetworkSystem();
             System.out.println(">> Subsystems Created");
@@ -129,7 +130,7 @@ public class Robot extends TimedRobot {
         try {
             dashboardScheduler.add(shooterSystem);
             dashboardScheduler.add(loadingSystem);
-            // dashboardScheduler.add(controlPanelSystem);
+            dashboardScheduler.add(controlPanelSystem);
             dashboardScheduler.add(climbSystem);
             // dashboardScheduler.add(driveSystem);
             dashboardScheduler.putValues();
@@ -143,7 +144,7 @@ public class Robot extends TimedRobot {
 
     @Override
     public void robotPeriodic(){
-        dashboardScheduler.update();
+        // dashboardScheduler.u1pdate();  //TODO Need to optimize!!!
     }
 
     /**

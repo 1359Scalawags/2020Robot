@@ -52,7 +52,7 @@ public final class Constants {
         //public static int BallSpeedEncoderAID = 1;
         //public static int BallSpeedEncoderBID = 2;
         public static final double maxShooterTurnError = 0;
-        public static final double maxShooterTurnRate =0;
+        public static final double maxShooterTurnRate = 1;
         public static final int CANTopBallMotorID = 3;
         public static final int CANBottomBallMotorID = 4;
         public static final double expectedDist =0;

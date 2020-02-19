@@ -84,31 +84,32 @@ public class ShooterSystem extends SubsystemBase implements scheduler{
     @Override
     public void updateDash(boolean Override) {
         if(Override){
-            double rotx = SmartDashboard.getNumber("ShootRotatorXspeed", 0);
-            double roty = SmartDashboard.getNumber("ShootRotatorYspeed", 0);
-            double sloader = SmartDashboard.getNumber("ShotLoaderSpeed", 0);
-            double stop = SmartDashboard.getNumber("ShooterSpeedtop", 0);
-            double sbot = SmartDashboard.getNumber("ShooterSpeedbottom", 0);
+            double rotx = SmartDashboard.getNumber("PWMShootRotatorXspeed", 0);
+            double roty = SmartDashboard.getNumber("PWMShootRotatorYspeed", 0);
+            double stop = SmartDashboard.getNumber("CANShooterSpeedtop", 0);
+            double sbot = SmartDashboard.getNumber("CANShooterSpeedbottom", 0);
+            double sloader = SmartDashboard.getNumber("PWMShotLoaderSpeed", 0);
             if(rotx != shootRotatorX.get())
-                shootRotatorX.set(rotx);
-            if(roty != shootRotatorY.get())
-                shootRotatorY.set(roty);
+                rotateShooter(rotx, roty);
+            else if(roty != shootRotatorY.get())
+                rotateShooter(rotx, roty);
             if(sloader != shotLoader.get())
                 shotLoader.setSpeed(sloader);
             if(stop != topMotor.get())
-                topMotor.set(stop);
-            if(sbot != bottomMotor.get())
-                bottomMotor.set(sbot);
+                setShooterSpeed(stop, sbot);
+            else if(sbot != bottomMotor.get())
+                setShooterSpeed(stop, sbot);
         }
     }
 
     @Override
     public void putValues() {
-        SmartDashboard.putNumber("ShootRotatorXspeed", 0);
-        SmartDashboard.putNumber("ShootRotatorYspeed", 0);
-        SmartDashboard.putNumber("ShotLoaderSpeed", 0);
-        SmartDashboard.putNumber("ShooterSpeedtop", 0);
-        SmartDashboard.putNumber("ShooterSpeedbottom", 0);
+        SmartDashboard.putNumber("PWMShootRotatorXspeed", 0);
+        
+        SmartDashboard.putNumber("PWMShootRotatorYspeed", 0);
+        SmartDashboard.putNumber("CANShotLoaderSpeed", 0);
+        SmartDashboard.putNumber("CANShooterSpeedtop", 0);
+        SmartDashboard.putNumber("CANShooterSpeedbottom", 0);
     }
 
 

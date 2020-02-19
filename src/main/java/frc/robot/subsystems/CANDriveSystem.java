@@ -15,6 +15,11 @@ import frc.robot.interfaces.scheduler;
 public class CANDriveSystem extends SubsystemBase implements scheduler{  
   private CanMotor[] leftMotors = new CanMotor[2];
   private CanMotor[] rightMotors = new CanMotor[2];
+
+  // private CanMotor rightMotorA;
+  // private CanMotor rightMotorB;
+  // private CanMotor leftMotorA;
+  // private CanMotor leftMotorB;
   
   private SpeedControllerGroup leftControllerGroup;
   private SpeedControllerGroup rightControllerGroup;
@@ -31,8 +36,8 @@ public class CANDriveSystem extends SubsystemBase implements scheduler{
 
     rightMotors[0] = new CanMotor(Drive.CANFrontRightMotorID);
     rightMotors[1] = new CanMotor(Drive.CANBackRightMotorID);
-  
-    leftControllerGroup = new SpeedControllerGroup(leftMotors[0].Motor(), leftMotors[1].Motor());
+
+    leftControllerGroup = new SpeedControllerGroup(leftMotors[0].Motor(), leftMotors[1].Motor()); //tODO I believe this is the source of the error!!
     rightControllerGroup = new SpeedControllerGroup(rightMotors[0].Motor(), rightMotors[1].Motor());
 
     diffDrive = new DifferentialDrive(rightControllerGroup, leftControllerGroup);
@@ -181,8 +186,11 @@ public double getDistanceRight() {
 
   @Override
   public void putValues() {
-    SmartDashboard.putNumber("Drive Right Motors", 0);
-    SmartDashboard.putNumber("Drive left Motors", 0);
+    SmartDashboard.putNumber("DriveRightMotors", 0);
+    SmartDashboard.putNumber("DriveleftMotors", 0);
+    SmartDashboard.putNumber("RightMotorVelocity", 0);
+    SmartDashboard.putNumber("LeftMotorVelocity", 0);
+    SmartDashboard.putNumber("DriveGyroAngle", 0);
   }
 
   //Put methods for controlling this subsystem
