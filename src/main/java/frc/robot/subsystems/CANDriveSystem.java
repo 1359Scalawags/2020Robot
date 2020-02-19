@@ -37,10 +37,12 @@ public class CANDriveSystem extends SubsystemBase implements scheduler{
     rightMotors[0] = new CanMotor(Drive.CANFrontRightMotorID);
     rightMotors[1] = new CanMotor(Drive.CANBackRightMotorID);
 
-    leftControllerGroup = new SpeedControllerGroup(leftMotors[0].Motor(), leftMotors[1].Motor()); //tODO I believe this is the source of the error!!
+    
+    leftControllerGroup = new SpeedControllerGroup(leftMotors[0].Motor(), leftMotors[1].Motor()); //TODO I believe this is the source of the error!!
     rightControllerGroup = new SpeedControllerGroup(rightMotors[0].Motor(), rightMotors[1].Motor());
 
     diffDrive = new DifferentialDrive(rightControllerGroup, leftControllerGroup);
+
     gyroPids = new PID_Values(Drive.gyrokP, Drive.gyrokI, Drive.gyrokD, Drive.gyrokIz, Drive.gyrokFf);
     driveGyro = new ADXRS450_Gyro();
     gyroControl = new PIDController(gyroPids.kP, gyroPids.kI, gyroPids.kD);

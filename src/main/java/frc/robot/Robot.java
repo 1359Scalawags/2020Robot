@@ -16,7 +16,7 @@ import edu.wpi.first.hal.HAL;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-//import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.*;
@@ -67,7 +67,7 @@ public class Robot extends TimedRobot {
         dashboardScheduler = new DashboardScheduler();
         System.out.println(">> Dashboard Scheduler Created");
         try {
-            // driveSystem = new CANDriveSystem(); //TODO when commenting this out it works perfectly, there is something wrong in the drive system!!!
+            driveSystem = new CANDriveSystem(); //TODO when commenting this out it works perfectly, there is something wrong in the drive system!!!
             climbSystem = new ClimbSystem();
             loadingSystem = new LoadingSystem();
             controlPanelSystem = new ControlPanelSystem();
@@ -144,7 +144,8 @@ public class Robot extends TimedRobot {
 
     @Override
     public void robotPeriodic(){
-        // dashboardScheduler.u1pdate();  //TODO Need to optimize!!!
+        dashboardScheduler.update();  //TODO Need to optimize!!!
+        
     }
 
     /**
