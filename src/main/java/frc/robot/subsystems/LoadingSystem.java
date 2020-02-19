@@ -168,11 +168,11 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
     }
     
     public void updateDash(boolean Override){    
-        double chamSpeed = SmartDashboard.getNumber("ChamberRotatorSpeed", 0);
+        double chamSpeed = SmartDashboard.getNumber("CANChamberRotatorSpeed", 0);
         if(Override){
             double[] pid = SmartDashboard.getNumberArray("ChamberRotatorPID", new double[1]);
-            double loadin = SmartDashboard.getNumber("BallLoadinMotors", 0);
-            double loadup = SmartDashboard.getNumber("BallLoadUpMotors", 0);
+            double loadin = SmartDashboard.getNumber("PWMBallLoadinMotors", 0);
+            double loadup = SmartDashboard.getNumber("PWMBallLoadUpMotors", 0);
 
             if(!chamRotator.getPID().equals(pid))
                 chamRotator.setPID(pid);
@@ -185,7 +185,7 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
         }
         else{
             if(chamSpeed == chamRotator.getSpeed())
-                SmartDashboard.putNumber("ChamberRotatorSpeed", chamRotator.getSpeed());
+                SmartDashboard.putNumber("CANChamberRotatorSpeed", chamRotator.getSpeed());
         }
     }
 
@@ -194,9 +194,9 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
         // SmartDashboard.putNumber("Test", 0);
 
         SmartDashboard.putNumberArray("ChamberRotatorPID", chamRotator.getPID().toArray());
-        SmartDashboard.putNumber("ChamberRotatorSpeed", 0);
-        SmartDashboard.putNumber("BallLoadinMotors", 0);
-        SmartDashboard.putNumber("BallLoadUpMotors", 0);
+        SmartDashboard.putNumber("CANChamberRotatorSpeed", 0);
+        SmartDashboard.putNumber("PWMBallLoadinMotors", 0);
+        SmartDashboard.putNumber("PWMBallLoadUpMotors", 0);
     }
     
 //Some example code on creating a group(s)

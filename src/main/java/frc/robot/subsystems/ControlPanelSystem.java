@@ -202,7 +202,7 @@ public class ControlPanelSystem extends SubsystemBase implements scheduler{
         SmartDashboard.putNumberArray("RedExpected", rexpected);
         SmartDashboard.putNumberArray("GreenExpected", gexpected);
         SmartDashboard.putNumberArray("BlueExpected", bexpected);
-        SmartDashboard.putNumberArray("YellowExpect", yexpected);
+        SmartDashboard.putNumberArray("YellowExpected", yexpected);
     }
 }
 

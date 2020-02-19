@@ -67,7 +67,7 @@ public class Robot extends TimedRobot {
         dashboardScheduler = new DashboardScheduler();
         System.out.println(">> Dashboard Scheduler Created");
         try {
-            driveSystem = new CANDriveSystem(); //TODO when commenting this out it works perfectly, there is something wrong in the drive system!!!
+            // driveSystem = new CANDriveSystem(); //TODO when commenting this out it works perfectly, there is something wrong in the drive system!!!
             climbSystem = new ClimbSystem();
             loadingSystem = new LoadingSystem();
             controlPanelSystem = new ControlPanelSystem();
