@@ -71,16 +71,16 @@ public class ClimbSystem extends SubsystemBase implements scheduler{
     }
 
     public void unlockRatchet() {
-        ratchetLocked = false;
         ratchet.setPosition(Climb.RatchetOpen);
+        ratchetLocked = false;
     }
 
     public void lockRatchet() {
         if(climbMotor.Motor().get() > 0) {
             climbMotor.Motor().set(0);
         }
-        ratchetLocked = true; 
         ratchet.setPosition(Climb.RatchetClosed);
+        ratchetLocked = true; 
     }
 
     public boolean isClimberLocked() {
@@ -145,10 +145,12 @@ public class ClimbSystem extends SubsystemBase implements scheduler{
         if(Override){
             if(climbSpeed != climbMotor.getSpeed())
                 move(climbSpeed);
-            if(RachetState)
-                unlockRatchet();
-            else
-                lockRatchet();
+            if(RachetState != ratchetLocked){
+                if(RachetState)
+                    lockRatchet();
+                else
+                    unlockRatchet();
+            }
         }
         else{
             if(RachetState != ratchetLocked)

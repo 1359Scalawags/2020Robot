@@ -65,6 +65,7 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
         ballLoaderInB = new Talon(Load.PWMLoadBallInMotorRearID);
         ballLoaderInB.setInverted(false);
 
+
         //Ball Intake
 
         ballLoadInMotors = new SpeedControllerGroup(ballLoaderInA, ballLoaderInB);
@@ -179,11 +180,11 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
 
             if(!chamRotator.getPID().equals(pid))
                 chamRotator.setPID(pid);
-            if(chamSpeed == chamRotator.getSpeed())
+            if(chamSpeed != chamRotator.getSpeed())
                 chamRotator.set(chamSpeed);
-            if(loadin == ballLoadInMotors.get())
+            if(loadin != ballLoadInMotors.get())
                 ballLoadInMotors.set(loadin);
-            if(loadup == ballLoadUpMotors.get())
+            if(loadup != ballLoadUpMotors.get())
                 ballLoadUpMotors.set(loadup);
         }
         else{
@@ -198,8 +199,8 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
 
         SmartDashboard.putNumberArray("ChamberRotatorPID", chamRotator.getPID().toArray());
         SmartDashboard.putNumber("ChamberRotatorSpeed", 0);
-        SmartDashboard.getNumber("BallLoadinMotors", 0);
-        SmartDashboard.getNumber("BallLoadUpMotors", 0);
+        SmartDashboard.putNumber("BallLoadinMotors", 0);
+        SmartDashboard.putNumber("BallLoadUpMotors", 0);
     }
     
 //Some example code on creating a group(s)
