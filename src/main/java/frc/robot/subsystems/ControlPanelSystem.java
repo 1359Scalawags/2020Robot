@@ -78,7 +78,7 @@ public class ControlPanelSystem extends SubsystemBase implements scheduler{
 
         // matcher.addColorMatch(BETWEEN);
 
-        rotateMotor = new Spark(ControlPanel.PWMRotatoPotatoID);
+        rotateMotor = new Spark(ControlPanel.PWMRotateControlPanelID);
         addChild("RotateMotor",rotateMotor);
         rotateMotor.setInverted(false);
         

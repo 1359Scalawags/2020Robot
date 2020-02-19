@@ -1,8 +1,8 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants;
 import frc.robot.Robot;
+import frc.robot.Constants.Vision;
 import frc.robot.Constants.Drive;
 import io.github.pseudoresonance.pixy2api.Pixy2CCC.Block;
 
@@ -33,7 +33,7 @@ public class PixyCommand extends CommandBase{
         Block block = Robot.pixy.getClosest();
         double angle = block.getAngle();
         
-        Robot.driveSystem.arcadeDrive(Constants.SpeedTwordsBall, Drive.maxRightTurnRate, angle);
+        Robot.driveSystem.arcadeDrive(Vision.SpeedTwordsBall, Drive.maxRightTurnRate, angle);
     }
 
     // Called once after isFinished returns true

@@ -90,10 +90,15 @@ public final class Constants {
     }
 
     public static final class ControlPanel{
-        public static int PWMRotatoPotatoID = 9;                              
+        public static int PWMRotateControlPanelID = 9;                              
         public static int RotateEncoderAID = 20;
         public static int RotateEncoderBID = 21;
         public final static I2C.Port COLORSENSOR_I2C = I2C.Port.kOnboard;
+    }
+
+    public static final class Vision{
+        public final static Link PixyLink = new I2CLink();
+        public static final double SpeedTwordsBall = 0;
     }
 
     /*----------Operator Interface----------*/
@@ -156,8 +161,6 @@ public final class Constants {
 
     public static final double controllerDeadZone = 0.1;
 	public static double MAXRPM = 5700;
-    public final static Link PixyLink = new I2CLink();
-    public static final double SpeedTwordsBall = 0;
 
 	
 	
