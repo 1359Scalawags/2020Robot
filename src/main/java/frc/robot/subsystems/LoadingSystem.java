@@ -173,6 +173,7 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
             double[] pid = SmartDashboard.getNumberArray("ChamberRotatorPID", new double[1]);
             double loadin = SmartDashboard.getNumber("PWMBallLoadinMotors", 0);
             double loadup = SmartDashboard.getNumber("PWMBallLoadUpMotors", 0);
+            // ballLoaderCham, 
 
             if(!chamRotator.getPID().equals(pid))
                 chamRotator.setPID(pid);

@@ -107,7 +107,7 @@ public class ShooterSystem extends SubsystemBase implements scheduler{
         SmartDashboard.putNumber("PWMShootRotatorXspeed", 0);
         
         SmartDashboard.putNumber("PWMShootRotatorYspeed", 0);
-        SmartDashboard.putNumber("CANShotLoaderSpeed", 0);
+        SmartDashboard.putNumber("PWMShotLoaderSpeed", 0);
         SmartDashboard.putNumber("CANShooterSpeedtop", 0);
         SmartDashboard.putNumber("CANShooterSpeedbottom", 0);
     }

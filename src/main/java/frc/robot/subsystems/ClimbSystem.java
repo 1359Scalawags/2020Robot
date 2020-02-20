@@ -140,8 +140,8 @@ public class ClimbSystem extends SubsystemBase implements scheduler{
 
     @Override
     public void updateDash(boolean Override) {
-        double climbSpeed = SmartDashboard.getNumber("ClimbSpeed", 0);
-        boolean RachetState = SmartDashboard.getBoolean("RachetState", false);
+        double climbSpeed = SmartDashboard.getNumber("CANClimbSpeed", 0);
+        boolean RachetState = SmartDashboard.getBoolean("PWMRatchetState", false);
         if(Override){
             if(climbSpeed != climbMotor.getSpeed())
                 move(climbSpeed);
@@ -154,15 +154,15 @@ public class ClimbSystem extends SubsystemBase implements scheduler{
         }
         else{
             if(RachetState != ratchetLocked)
-                SmartDashboard.putBoolean("RachetState", ratchetLocked);
+                SmartDashboard.putBoolean("PWMRatchetState", ratchetLocked);
             if(climbSpeed != climbMotor.Encoder().getVelocity())
-                SmartDashboard.putNumber("ClimbSpeed", climbMotor.Encoder().getVelocity());
+                SmartDashboard.putNumber("CANClimbSpeed", climbMotor.Encoder().getVelocity());
         }
     }
 
     @Override
     public void putValues() {
-        SmartDashboard.putBoolean("RachetState", ratchetLocked);
-        SmartDashboard.putNumber("ClimbSpeed", climbMotor.getSpeed());
+        SmartDashboard.putBoolean("PWMRatchetState", ratchetLocked);
+        SmartDashboard.putNumber("CANClimbSpeed", climbMotor.getSpeed());
     }
 }

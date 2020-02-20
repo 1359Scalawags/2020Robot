@@ -79,12 +79,13 @@ public class ControlPanelSystem extends SubsystemBase implements scheduler{
         // matcher.addColorMatch(BETWEEN);
 
         rotateMotor = new Spark(ControlPanel.PWMRotateControlPanelID);
-        addChild("RotateMotor",rotateMotor);
+        // addChild("RotateMotor",rotateMotor);
         rotateMotor.setInverted(false);
         
         rotateEncoder = new Encoder(ControlPanel.RotateEncoderAID, ControlPanel.RotateEncoderBID, false, EncodingType.k4X);
-        addChild("RotateEncoder",rotateEncoder);
+        // addChild("RotateEncoder",rotateEncoder);
         rotateEncoder.setDistancePerPulse(1.0);
+
         //rotateEncoder.setPIDSourceType(PIDSourceType.kRate);
     }
     // public String getSensorColor() {
@@ -190,6 +191,7 @@ public class ControlPanelSystem extends SubsystemBase implements scheduler{
         //     SmartDashboard.putString("currentColor", currentColorName);
 
         if(Override){
+            rotateMotor.set(SmartDashboard.getNumber("PWMControlPanelRotate", 0));
             rexpected = SmartDashboard.getNumberArray("RedExpected", rexpected);
             gexpected = SmartDashboard.getNumberArray("Greenexpected", gexpected);
             bexpected = SmartDashboard.getNumberArray("BlueExpected", bexpected);
@@ -199,6 +201,7 @@ public class ControlPanelSystem extends SubsystemBase implements scheduler{
 
     @Override
     public void putValues() {
+        SmartDashboard.putNumber("PWMControlPanelRotate", 0);
         SmartDashboard.putNumberArray("RedExpected", rexpected);
         SmartDashboard.putNumberArray("GreenExpected", gexpected);
         SmartDashboard.putNumberArray("BlueExpected", bexpected);
