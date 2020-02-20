@@ -20,6 +20,7 @@ public class CanMotor implements SpeedController{
     private double scaleValue;
     private ControlType controlType;
     private CANPIDController controller;
+    private CANEncoder encoder;
     
 // SpeedController speedController, SpeedController[] speedControllers 
 
@@ -38,6 +39,7 @@ public class CanMotor implements SpeedController{
         this.motor.setInverted(false);
         this.controller = this.motor.getPIDController();
         this.controller.setOutputRange(-1, 1);
+        this.encoder = this.motor.getEncoder(); 
         updatePID();
     }
 
@@ -72,7 +74,7 @@ public class CanMotor implements SpeedController{
     }
 
     public CANEncoder Encoder(){
-        return motor.getEncoder();
+        return this.encoder;
     }
     // public SpeedController SpeedCont(){
     //     return speedCont;
