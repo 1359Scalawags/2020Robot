@@ -48,17 +48,28 @@ public class CanMotor implements SpeedController{
         updatePID();
     }
 
+    private double[] getMotorPID(){
+        CANPIDController cont = motor.getPIDController();
+        double[] pids = {cont.getP(), cont.getI(), cont.getD(), cont.getIZone(), cont.getFF()};
+        return pids;
+    }
+
     private void updatePID(){
-        if(motor.getPIDController().getP() != pid.kP) 
-            motor.getPIDController().setP(pid.kP);
-        if(motor.getPIDController().getI() != pid.kI)
-            motor.getPIDController().setI(pid.kI);
-        if(motor.getPIDController().getD() != pid.kD)
-            motor.getPIDController().setD(pid.kD);
-        if(motor.getPIDController().getIZone() != pid.kIz)
-            motor.getPIDController().setIZone(pid.kIz);
-        if(motor.getPIDController().getFF() != pid.kFf)
-            motor.getPIDController().setFF(pid.kFf);
+        double[] pids = getMotorPID();
+        if(!pid.equals(pids)){
+            pid = new PID_Values(pids);
+        }
+
+        // if(motor.getPIDController().getP() != pid.kP) 
+        //     motor.getPIDController().setP(pid.kP);
+        // if(motor.getPIDController().getI() != pid.kI)
+        //     motor.getPIDController().setI(pid.kI);
+        // if(motor.getPIDController().getD() != pid.kD)
+        //     motor.getPIDController().setD(pid.kD);
+        // if(motor.getPIDController().getIZone() != pid.kIz)
+        //     motor.getPIDController().setIZone(pid.kIz);
+        // if(motor.getPIDController().getFF() != pid.kFf)
+        //     motor.getPIDController().setFF(pid.kFf);
     }
     public PID_Values getPID(){
        return pid;
