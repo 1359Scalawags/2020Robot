@@ -118,10 +118,8 @@ public double getDistanceRight() {
   public void tankDrive(double leftSpeed, double rightSpeed) {
     if(reverse) {
       diffDrive.tankDrive(rightSpeed, leftSpeed);
-      //m_drive2.tankDrive(-rightSpeed, -leftSpeed); //new
     } else {
       diffDrive.tankDrive(-leftSpeed, -rightSpeed);
-      //m_drive2.tankDrive(rightSpeed, leftSpeed); //new
     }
   }
   public void driveBackward(double speed, double targetHeading) {
@@ -163,25 +161,26 @@ public double getDistanceRight() {
 
   @Override
   public void updateDash(boolean Override){
-    double rightspeed = rightControllerGroup.get();
-    double leftspeed = leftControllerGroup.get();
-    double driveangle = getAngle();
+    
+    double rightmotors = SmartDashboard.getNumber("DriveRightMotors", 0);
+    double leftmotors = SmartDashboard.getNumber("DriveLeftMotors", 0);
+    double driveangle = SmartDashboard.getNumber("DriveGyroAngle", 0);
 
-    if(SmartDashboard.getNumber("RightMotorVelocity", 0) != rightspeed)
-       SmartDashboard.putNumber("RightMotorVelocity", rightspeed);
-    if(SmartDashboard.getNumber("LeftMotorVelocity", 0) != leftspeed)
-       SmartDashboard.putNumber("LeftMotorVelocity", leftspeed);
-    if(SmartDashboard.getNumber("DriveGyroAngle", 0) != driveangle)
-       SmartDashboard.putNumber("DriveGyroAngle", driveangle);
+    if(driveangle != getAngle())
+       SmartDashboard.putNumber("DriveGyroAngle", getAngle());
     
     if(Override){//drive PID, gyro pid
-      double rightmotors = SmartDashboard.getNumber("DriveRightMotors", 0);
-      double leftmotors = SmartDashboard.getNumber("DriveLeftMotors", 0);
 
       if(rightControllerGroup.get() != rightmotors)
         rightControllerGroup.set(rightmotors);
       if(leftControllerGroup.get() != leftmotors)
         leftControllerGroup.set(leftmotors);
+    }
+    else{
+      if(rightmotors != rightControllerGroup.get())
+        SmartDashboard.putNumber("DriveRightMotors", rightmotors);
+      if(leftmotors != leftControllerGroup.get())
+        SmartDashboard.putNumber("DriveLeftMotors", leftmotors);
     }
     
   }
@@ -190,8 +189,6 @@ public double getDistanceRight() {
   public void putValues() {
     SmartDashboard.putNumber("DriveRightMotors", 0);
     SmartDashboard.putNumber("DriveleftMotors", 0);
-    SmartDashboard.putNumber("RightMotorVelocity", 0);
-    SmartDashboard.putNumber("LeftMotorVelocity", 0);
     SmartDashboard.putNumber("DriveGyroAngle", 0);
   }
 

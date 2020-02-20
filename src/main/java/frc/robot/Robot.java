@@ -144,7 +144,7 @@ public class Robot extends TimedRobot {
 
     @Override
     public void robotPeriodic(){
-        dashboardScheduler.update();  //TODO Need to optimize!!!
+        // dashboardScheduler.update();  
         
     }
 
@@ -174,7 +174,7 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void autonomousPeriodic() {
-        // dashboardScheduler.update();
+        dashboardScheduler.update();
         CommandScheduler.getInstance().run();
     }
 
@@ -192,7 +192,7 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void teleopPeriodic() {
-        // dashboardScheduler.update();
+        dashboardScheduler.update();
         // CommandScheduler.getInstance().run();
     }
 
@@ -219,7 +219,7 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void testPeriodic() {
-        // dashboardScheduler.update();
+        dashboardScheduler.update();
         CommandScheduler.getInstance().run();
     }
 }
