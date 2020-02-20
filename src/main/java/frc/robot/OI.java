@@ -132,14 +132,14 @@ public class OI {
 
         driverContoller = new XboxController(0);
 
-        autoDriveForwardButton = new JoystickButton(driverContoller, RobotMap.driverxboxX);
-        autoDriveForwardButton.whileHeld(new AutoDriveForward(1));
+        // autoDriveForwardButton = new JoystickButton(driverContoller, RobotMap.driverxboxX);
+        // autoDriveForwardButton.whileHeld(new AutoDriveForward(1));
 
-        autoDriveTurnRight = new JoystickButton(driverContoller, RobotMap.driverxboxRT);
-        autoDriveTurnRight.whenPressed(new AutoDriveTurn(90));
+        // autoDriveTurnRight = new JoystickButton(driverContoller, RobotMap.driverxboxRT);
+        // autoDriveTurnRight.whenPressed(new AutoDriveTurn(90));
 
-        autoDriveTurnLeft = new JoystickButton(driverContoller, RobotMap.driverxboxRT);
-        autoDriveTurnLeft.whenPressed(new AutoDriveTurn(-90));
+        // autoDriveTurnLeft = new JoystickButton(driverContoller, RobotMap.driverxboxRT);
+        // autoDriveTurnLeft.whenPressed(new AutoDriveTurn(-90));
         
         // speedoButton = new JoystickButton(driverContoller, 1);
         // speedoButton.whileHeld(new ManualDrive());
@@ -153,18 +153,18 @@ public class OI {
         // SmartDashboard.putData("Autonomous Command", new AutonomousCommand());
 
 
-        SmartDashboard.putData("ManualDrive", new ManualDrive());//TODO does this need to be called?
-        SmartDashboard.putData("AutoDriveForward", new AutoDriveForward(1));
-        SmartDashboard.putData("AutoDriveTurnLeft", new AutoDriveTurn(90));
-        SmartDashboard.putData("AutoDriveTurnRight", new AutoDriveTurn(-90));
-        SmartDashboard.putData("ManualClimb", new ManualClimb());
-        SmartDashboard.putData("ControlPanel Set Color", new ControlPanelSetColor());
-        SmartDashboard.putData("ControlPanel Spin", new ControlPanelSpin());
-        SmartDashboard.putData("IntakeBalls", new TurnLoaderToIntakeBalls());
-        SmartDashboard.putData("IntakeBalls", new TurnLoaderOff());
-        SmartDashboard.putData("RejectBalls", new TurnLoaderToRejectBalls());
-        SmartDashboard.putData("StartShootBall", new StartShooter(1, 1));
-        SmartDashboard.putData("StopShootBall", new StopShooter());
+        // SmartDashboard.putData("ManualDrive", new ManualDrive());//TODO does this need to be called?
+        // SmartDashboard.putData("AutoDriveForward", new AutoDriveForward(1));
+        // SmartDashboard.putData("AutoDriveTurnLeft", new AutoDriveTurn(90));
+        // SmartDashboard.putData("AutoDriveTurnRight", new AutoDriveTurn(-90));
+        // SmartDashboard.putData("ManualClimb", new ManualClimb());
+        // SmartDashboard.putData("ControlPanel Set Color", new ControlPanelSetColor());
+        // SmartDashboard.putData("ControlPanel Spin", new ControlPanelSpin());
+        // SmartDashboard.putData("IntakeBalls", new TurnLoaderToIntakeBalls());
+        // SmartDashboard.putData("IntakeBalls", new TurnLoaderOff());
+        // SmartDashboard.putData("RejectBalls", new TurnLoaderToRejectBalls());
+        // SmartDashboard.putData("StartShootBall", new StartShooter(1, 1));
+        // SmartDashboard.putData("StopShootBall", new StopShooter());
 
     }
 
