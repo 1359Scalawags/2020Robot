@@ -14,18 +14,53 @@ package frc.robot.commands.autonomous;
 //import frc.robot.Robot;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.drive.AutoDriveTurn;
-import frc.robot.commands.drive.AutoDriveForward;;
+import sun.misc.Signal;
+import frc.robot.commands.drive.AutoDriveForward;
+import frc.robot.commands.shooter.SingleShotSequence;
 
 /**
  *
  */
 public class AutonomousCommand extends SequentialCommandGroup {
 
-    public AutonomousCommand() {
-        addCommands(
-            new AutoDriveForward(1),
-            new AutoDriveTurn(90)
-        );
+    public enum AutoMoveOptions{
+
+        ForwardTurnAndShoot,
+        ReversTurnforwardTurnAndShoot,
+        TurnForwardAndShoot
+    }
+
+    public AutonomousCommand(AutoMoveOptions moveOption) {
+
+        switch(moveOption){
+            case ForwardTurnAndShoot:
+            addCommands(
+                new AutoDriveForward(1),
+                new AutoDriveTurn(90),
+                new SingleShotSequence()
+            );
+            break;
+
+            case ReversTurnforwardTurnAndShoot:
+            addCommands(
+                new AutoDriveForward(-1),
+                new AutoDriveTurn(-90),
+                new AutoDriveForward(1),
+                new AutoDriveTurn(-90),
+                new SingleShotSequence()
+            );
+            break;
+            
+            case TurnForwardAndShoot:
+            addCommands(
+                new AutoDriveTurn(180),
+                new AutoDriveForward(1),
+                new SingleShotSequence()
+            );
+            break;
+            }
+            
+       
     }
 
 }
