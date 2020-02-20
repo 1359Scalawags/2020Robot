@@ -131,7 +131,7 @@ public class Robot extends TimedRobot {
             dashboardScheduler.add(loadingSystem);
             dashboardScheduler.add(controlPanelSystem);
             dashboardScheduler.add(climbSystem);
-            // dashboardScheduler.add(driveSystem);
+            dashboardScheduler.add(driveSystem);
             dashboardScheduler.putValues();
             System.out.println(">> Schedule updates to the Dashboard for subsystems");
         } catch (Exception ex) {
@@ -173,7 +173,7 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void autonomousPeriodic() {
-        // dashboardScheduler.update();
+        dashboardScheduler.update();
         CommandScheduler.getInstance().run();
     }
 

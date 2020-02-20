@@ -132,18 +132,15 @@ public class OI {
 
         driverContoller = new XboxController(0);
 
-        // autoDriveForwardButton = new JoystickButton(driverContoller, RobotMap.driverxboxX);
-        // autoDriveForwardButton.whileHeld(new AutoDriveForward(1));
+        autoDriveForwardButton = new JoystickButton(driverContoller, RobotMap.driverxboxX);
+        autoDriveForwardButton.whileHeld(new AutoDriveForward(1));
 
-        // autoDriveTurnRight = new JoystickButton(driverContoller, RobotMap.driverxboxRT);
-        // autoDriveTurnRight.whenPressed(new AutoDriveTurn(90));
+        autoDriveTurnRight = new JoystickButton(driverContoller, RobotMap.driverxboxRT);
+        autoDriveTurnRight.whenPressed(new AutoDriveTurn(90));
 
-        // autoDriveTurnLeft = new JoystickButton(driverContoller, RobotMap.driverxboxRT);
-        // autoDriveTurnLeft.whenPressed(new AutoDriveTurn(-90));
+        autoDriveTurnLeft = new JoystickButton(driverContoller, RobotMap.driverxboxRT);
+        autoDriveTurnLeft.whenPressed(new AutoDriveTurn(-90));
         
-        // speedoButton = new JoystickButton(driverContoller, 1);
-        // speedoButton.whileHeld(new ManualDrive());
-
         // // SmartDashboard Buttons
         // SmartDashboard.putData("Aim Shooter", new aimShooter());
         // SmartDashboard.putData("AutoClimb", new AutoClimb(SmartDashboard.getNumber("Climber Speed", 0)));
