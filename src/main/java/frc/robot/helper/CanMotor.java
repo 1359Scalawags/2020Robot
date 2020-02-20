@@ -19,6 +19,7 @@ public class CanMotor implements SpeedController{
     private PID_Values pid;
     private double scaleValue;
     private ControlType controlType;
+    private CANPIDController controller;
     
 // SpeedController speedController, SpeedController[] speedControllers 
 
@@ -35,7 +36,8 @@ public class CanMotor implements SpeedController{
         this.motor = new CANSparkMax(id, MotorType.kBrushless);
         this.motor.restoreFactoryDefaults();
         this.motor.setInverted(false);
-        this.motor.getPIDController().setOutputRange(-1, 1);
+        this.controller = this.motor.getPIDController();
+        this.controller.setOutputRange(-1, 1);
         updatePID();
     }
 
@@ -43,33 +45,12 @@ public class CanMotor implements SpeedController{
         return value;
     }
 
-    public void setPID(double[] PID){
-        pid = new PID_Values(PID);
-        updatePID();
-    }
-
-    private double[] getMotorPID(){
-        CANPIDController cont = motor.getPIDController();
-        double[] pids = {cont.getP(), cont.getI(), cont.getD(), cont.getIZone(), cont.getFF()};
-        return pids;
-    }
 
     private void updatePID(){
-        double[] pids = getMotorPID();
+        double[] pids = {controller.getP(), controller.getI(), controller.getD(), controller.getIZone(), controller.getFF()};
         if(!pid.equals(pids)){
             pid = new PID_Values(pids);
         }
-
-        // if(motor.getPIDController().getP() != pid.kP) 
-        //     motor.getPIDController().setP(pid.kP);
-        // if(motor.getPIDController().getI() != pid.kI)
-        //     motor.getPIDController().setI(pid.kI);
-        // if(motor.getPIDController().getD() != pid.kD)
-        //     motor.getPIDController().setD(pid.kD);
-        // if(motor.getPIDController().getIZone() != pid.kIz)
-        //     motor.getPIDController().setIZone(pid.kIz);
-        // if(motor.getPIDController().getFF() != pid.kFf)
-        //     motor.getPIDController().setFF(pid.kFf);
     }
     public PID_Values getPID(){
        return pid;
@@ -87,7 +68,7 @@ public class CanMotor implements SpeedController{
     }
 
     public void updateSpeed(){
-        motor.getPIDController().setReference(value*Constants.MAXRPM, ControlType.kVelocity);
+        controller.setReference(value*Constants.MAXRPM, ControlType.kVelocity);
     }
 
     public CANEncoder Encoder(){
@@ -102,7 +83,7 @@ public class CanMotor implements SpeedController{
     }
 
     public CANPIDController Controller(){
-        return motor.getPIDController();
+        return controller;
     }
     
     /**
@@ -122,6 +103,10 @@ public class CanMotor implements SpeedController{
         this.setValue(value, false);
     }
 
+    public void setPID(double[] arr){
+        pid = new PID_Values(arr);
+    }
+
     /**
      * Sets percentage value for the motor dependent on the current ControlType.
      * @param value A value between -1 and 1 that is multipled by the Scale.
@@ -136,7 +121,7 @@ public class CanMotor implements SpeedController{
     }
 
     private void updateMotor() {
-        motor.getPIDController().setReference(value * this.scaleValue, this.controlType);
+        this.controller.setReference(value * this.scaleValue, this.controlType);
     }
 
     @Override

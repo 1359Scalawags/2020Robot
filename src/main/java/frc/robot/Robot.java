@@ -67,12 +67,13 @@ public class Robot extends TimedRobot {
         dashboardScheduler = new DashboardScheduler();
         System.out.println(">> Dashboard Scheduler Created");
         try {
-            // driveSystem = new CANDriveSystem(); //TODO when commenting this out it works perfectly, there is something wrong in the drive system!!!
+            driveSystem = new CANDriveSystem(); //TODO when commenting this out it works perfectly, there is something wrong in the drive system!!!
             climbSystem = new ClimbSystem();
             loadingSystem = new LoadingSystem();
             controlPanelSystem = new ControlPanelSystem();
             shooterSystem = new ShooterSystem();
             kNetwork = new NetworkSystem();
+            // pixy = new PixySystem(Constants.PixyLink);
             System.out.println(">> Subsystems Created");
         } catch (Exception ex) {
             System.out.println("!! An error occured while instantiating the subsystems !!");
@@ -80,9 +81,7 @@ public class Robot extends TimedRobot {
         }
 
         try{
-            // controlPanelSystem = new ControlPanelSystem();
             
-            // pixy = new PixySystem(Constants.PixyLink);
             // CommandScheduler.getInstance().registerSubsystem(pixy);
             // CommandScheduler.getInstance().setDefaultCommand(pixy, new PixyCommand());
         }
@@ -132,7 +131,7 @@ public class Robot extends TimedRobot {
             dashboardScheduler.add(loadingSystem);
             dashboardScheduler.add(controlPanelSystem);
             dashboardScheduler.add(climbSystem);
-            // dashboardScheduler.add(driveSystem);
+            dashboardScheduler.add(driveSystem);
             dashboardScheduler.putValues();
             System.out.println(">> Schedule updates to the Dashboard for subsystems");
         } catch (Exception ex) {

@@ -9,7 +9,8 @@ import frc.robot.commands.load.TurnLoaderToRejectBalls;
 import frc.robot.commands.autonomous.*;
 import frc.robot.commands.shooter.*;
 import frc.robot.commands.climb.*;
-
+import frc.robot.commands.controlpanel.ControlPanelSetColor;
+import frc.robot.commands.controlpanel.ControlPanelSpin;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
@@ -86,7 +87,7 @@ public class OI {
         intakeBallsButton = new DPadButton(assistController, DPadButton.Direction.UP);
         intakeBallsButton.whenPressed(new TurnLoaderToIntakeBalls());
 
-        //Joystick Buttons **DPAD IS NOT A BUTTON
+        // Joystick Buttons **DPAD IS NOT A BUTTON
         // climbDownButton = new JoystickButton(assistController, 7);
         // climbDownButton.whileHeld(new ManualClimb());
 
@@ -131,14 +132,14 @@ public class OI {
 
         driverContoller = new XboxController(0);
 
-        // autoDriveForwardButton = new JoystickButton(driverContoller, RobotMap.driverxboxX);
-        // autoDriveForwardButton.whileHeld(new AutoDriveForward(1));
+        autoDriveForwardButton = new JoystickButton(driverContoller, RobotMap.driverxboxX);
+        autoDriveForwardButton.whileHeld(new AutoDriveForward(1));
 
-        // autoDriveTurnRight = new JoystickButton(driverContoller, RobotMap.driverxboxRT);
-        // autoDriveTurnRight.whenPressed(new AutoDriveTurn(90));
+        autoDriveTurnRight = new JoystickButton(driverContoller, RobotMap.driverxboxRT);
+        autoDriveTurnRight.whenPressed(new AutoDriveTurn(90));
 
-        // autoDriveTurnLeft = new JoystickButton(driverContoller, RobotMap.driverxboxRT);
-        // autoDriveTurnLeft.whenPressed(new AutoDriveTurn(-90));
+        autoDriveTurnLeft = new JoystickButton(driverContoller, RobotMap.driverxboxRT);
+        autoDriveTurnLeft.whenPressed(new AutoDriveTurn(-90));
         
         // speedoButton = new JoystickButton(driverContoller, 1);
         // speedoButton.whileHeld(new ManualDrive());
@@ -152,20 +153,18 @@ public class OI {
         // SmartDashboard.putData("Autonomous Command", new AutonomousCommand());
 
 
-        // SmartDashboard.putData("ManualDrive", new ManualDrive());//TODO does this need to be called?
-        // SmartDashboard.putData("AutoDriveForward", new AutoDriveForward());
-        // SmartDashboard.putData("AutoDriveTurnLeft", new AutoDriveTurn(90));
-        // SmartDashboard.putData("AutoDriveTurnRight", new AutoDriveTurn(-90));
-        // SmartDashboard.putData("ManualClimb", new ManualClimb());
-        // // SmartDashboard.putData("ControlPanel Set Color", new ControlPanelSetColor());
-        // // SmartDashboard.putData("ControlPanel Spin", new ControlPanelSpin());
-        // SmartDashboard.putData("IntakeBalls", new TurnLoaderToIntakeBalls());
-        // SmartDashboard.putData("IntakeBalls", new TurnLoaderOff());
-        // SmartDashboard.putData("RejectBalls", new TurnLoaderToRejectBalls());
-        // SmartDashboard.putData("StartShootBall", new StartShooter(1, 1));
-        // SmartDashboard.putData("StopShootBall", new StopShooter());
-        // //SmartDashboard.putData("TestShooterSpeeds", new TestShooterSpeeds());
-        // //Button autoDriveForward = new JoystickButton(driverContoller, RobotMap.driverxboxX);
+        SmartDashboard.putData("ManualDrive", new ManualDrive());//TODO does this need to be called?
+        SmartDashboard.putData("AutoDriveForward", new AutoDriveForward(1));
+        SmartDashboard.putData("AutoDriveTurnLeft", new AutoDriveTurn(90));
+        SmartDashboard.putData("AutoDriveTurnRight", new AutoDriveTurn(-90));
+        SmartDashboard.putData("ManualClimb", new ManualClimb());
+        SmartDashboard.putData("ControlPanel Set Color", new ControlPanelSetColor());
+        SmartDashboard.putData("ControlPanel Spin", new ControlPanelSpin());
+        SmartDashboard.putData("IntakeBalls", new TurnLoaderToIntakeBalls());
+        SmartDashboard.putData("IntakeBalls", new TurnLoaderOff());
+        SmartDashboard.putData("RejectBalls", new TurnLoaderToRejectBalls());
+        SmartDashboard.putData("StartShootBall", new StartShooter(1, 1));
+        SmartDashboard.putData("StopShootBall", new StopShooter());
 
     }
 
