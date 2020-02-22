@@ -27,6 +27,7 @@ import frc.robot.commands.load.ManualChamberRotator;
 import frc.robot.commands.shooter.*;
 
 import frc.robot.Test.TestNetwork;
+import frc.robot.Test.TestUltrasonicSensor;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -214,9 +215,11 @@ public class Robot extends TimedRobot {
     /**
      * This function is called periodically during operator control
      */
+    TestUltrasonicSensor t = new TestUltrasonicSensor();
     @Override
     public void testPeriodic() {
         dashboardScheduler.update();
+        t.update();
         CommandScheduler.getInstance().run();
     }
 }

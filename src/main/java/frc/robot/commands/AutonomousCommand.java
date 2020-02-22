@@ -17,6 +17,7 @@ import frc.robot.commands.drive.AutoDriveTurn;
 import sun.misc.Signal;
 import frc.robot.commands.drive.AutoDriveForward;
 import frc.robot.commands.shooter.SingleShotSequence;
+import frc.robot.commands.shooter.aimShooter;
 
 /**
  *
@@ -37,6 +38,7 @@ public class AutonomousCommand extends SequentialCommandGroup {
                 addCommands(
                     new AutoDriveForward(1),
                     new AutoDriveTurn(90),
+                    new aimShooter(),
                     new SingleShotSequence()
                 );
             break;
@@ -47,6 +49,7 @@ public class AutonomousCommand extends SequentialCommandGroup {
                     new AutoDriveTurn(-90),
                     new AutoDriveForward(1),
                     new AutoDriveTurn(-90),
+                    new aimShooter(),
                     new SingleShotSequence()
                 );
             break;
@@ -55,6 +58,7 @@ public class AutonomousCommand extends SequentialCommandGroup {
                 addCommands(
                     new AutoDriveTurn(180),
                     new AutoDriveForward(1),
+                    new aimShooter(),
                     new SingleShotSequence()
                 );
             break;
