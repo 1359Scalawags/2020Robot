@@ -25,7 +25,8 @@ public class DashboardScheduler{
         if(frameCount >= 10) {
             overriderState = SmartDashboard.getBoolean("OverRideState", false);
             for (scheduler subsystem : scheduled) {
-                new DashThread(subsystem, overriderState).start();
+                // new DashThread(subsystem, overriderState).start();// 15        
+                subsystem.updateDash(overriderState);//15
             }  
             frameCount = 0;  // TODO: move this before for loop if issues arise
         }

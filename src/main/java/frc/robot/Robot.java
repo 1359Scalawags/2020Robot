@@ -22,13 +22,12 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.*;
 import frc.robot.helper.DashboardScheduler;
 import frc.robot.subsystems.*;
-
 import frc.robot.commands.drive.*;
 import frc.robot.commands.load.ManualChamberRotator;
 import frc.robot.commands.autonomous.*;
 import frc.robot.commands.shooter.*;
 
-import frc.robot.Test.TestNetwork;;
+import frc.robot.Test.TestNetwork;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -173,7 +172,7 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void autonomousPeriodic() {
-        dashboardScheduler.update();
+        dashboardScheduler.update();//TODO thjihngng!!!
         CommandScheduler.getInstance().run();
     }
 
