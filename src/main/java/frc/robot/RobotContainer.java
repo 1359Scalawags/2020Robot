@@ -10,7 +10,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 //import frc.robot.commands.AutonomousCommand;
-import frc.robot.commands.autonomous.AutonomousCommand;
+import frc.robot.commands.AutonomousCommand;
 // import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 
@@ -23,7 +23,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   // private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
-   private final AutonomousCommand m_autoCommand = new AutonomousCommand(null);//TODO add arguments!!!
+   private final AutonomousCommand m_autoCommand = new AutonomousCommand(null);//TODO change from null to a enum argument arguments!!!
 
 
 

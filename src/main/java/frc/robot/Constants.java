@@ -68,6 +68,7 @@ public final class Constants {
         public static final boolean LIMIT_PRESSED = true;
         public static final boolean LIMIT_NOTPRESSED = false;
         public static final double MAX_CLIMB_POSITION = 1;
+        public static final int PWMClimberSensor = 9;
         //public static double PotToInches = 35.0;
         //public static final double maxClimbSpeed = 1;
     }
@@ -90,7 +91,7 @@ public final class Constants {
     }
 
     public static final class ControlPanel{
-        public static int PWMRotateControlPanelID = 9;                              
+        public static int PWMRotateControlPanelID = 10;                              
         public static int RotateEncoderAID = 20;
         public static int RotateEncoderBID = 21;
         public final static I2C.Port COLORSENSOR_I2C = I2C.Port.kOnboard;

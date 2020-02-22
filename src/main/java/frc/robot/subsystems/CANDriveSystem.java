@@ -38,7 +38,7 @@ public class CANDriveSystem extends SubsystemBase implements scheduler{
     rightMotors[1] = new CanMotor(Drive.CANBackRightMotorID);
 
     
-    leftControllerGroup = new SpeedControllerGroup(leftMotors[0].Motor(), leftMotors[1].Motor()); //TODO I believe this is the source of the error!!
+    leftControllerGroup = new SpeedControllerGroup(leftMotors[0].Motor(), leftMotors[1].Motor());
     rightControllerGroup = new SpeedControllerGroup(rightMotors[0].Motor(), rightMotors[1].Motor());
 
     diffDrive = new DifferentialDrive(rightControllerGroup, leftControllerGroup);

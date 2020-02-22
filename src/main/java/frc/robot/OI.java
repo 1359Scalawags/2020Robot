@@ -6,7 +6,6 @@ import frc.robot.commands.load.ManualChamberRotator;
 import frc.robot.commands.load.TurnLoaderOff;
 import frc.robot.commands.load.TurnLoaderToIntakeBalls;
 import frc.robot.commands.load.TurnLoaderToRejectBalls;
-import frc.robot.commands.autonomous.*;
 import frc.robot.commands.shooter.*;
 import frc.robot.commands.climb.*;
 import frc.robot.commands.controlpanel.ControlPanelSetColor;

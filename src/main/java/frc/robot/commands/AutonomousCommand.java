@@ -9,7 +9,7 @@
 // it from being updated in the future.
 
 
-package frc.robot.commands.autonomous;
+package frc.robot.commands;
 // import edu.wpi.first.wpilibj2.command.CommandBase;
 //import frc.robot.Robot;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
@@ -34,31 +34,31 @@ public class AutonomousCommand extends SequentialCommandGroup {
 
         switch(moveOption){
             case ForwardTurnAndShoot:
-            addCommands(
-                new AutoDriveForward(1),
-                new AutoDriveTurn(90),
-                new SingleShotSequence()
-            );
+                addCommands(
+                    new AutoDriveForward(1),
+                    new AutoDriveTurn(90),
+                    new SingleShotSequence()
+                );
             break;
 
             case ReversTurnforwardTurnAndShoot:
-            addCommands(
-                new AutoDriveForward(-1),
-                new AutoDriveTurn(-90),
-                new AutoDriveForward(1),
-                new AutoDriveTurn(-90),
-                new SingleShotSequence()
-            );
+                addCommands(
+                    new AutoDriveForward(-1),
+                    new AutoDriveTurn(-90),
+                    new AutoDriveForward(1),
+                    new AutoDriveTurn(-90),
+                    new SingleShotSequence()
+                );
             break;
             
             case TurnForwardAndShoot:
-            addCommands(
-                new AutoDriveTurn(180),
-                new AutoDriveForward(1),
-                new SingleShotSequence()
-            );
+                addCommands(
+                    new AutoDriveTurn(180),
+                    new AutoDriveForward(1),
+                    new SingleShotSequence()
+                );
             break;
-            }
+        }
             
        
     }

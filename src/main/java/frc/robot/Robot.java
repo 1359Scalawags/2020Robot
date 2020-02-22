@@ -24,7 +24,6 @@ import frc.robot.helper.DashboardScheduler;
 import frc.robot.subsystems.*;
 import frc.robot.commands.drive.*;
 import frc.robot.commands.load.ManualChamberRotator;
-import frc.robot.commands.autonomous.*;
 import frc.robot.commands.shooter.*;
 
 import frc.robot.Test.TestNetwork;
@@ -66,7 +65,7 @@ public class Robot extends TimedRobot {
         dashboardScheduler = new DashboardScheduler();
         System.out.println(">> Dashboard Scheduler Created");
         try {
-            driveSystem = new CANDriveSystem(); //TODO when commenting this out it works perfectly, there is something wrong in the drive system!!!
+            driveSystem = new CANDriveSystem();
             climbSystem = new ClimbSystem();
             loadingSystem = new LoadingSystem();
             controlPanelSystem = new ControlPanelSystem();
@@ -172,7 +171,7 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void autonomousPeriodic() {
-        dashboardScheduler.update();//TODO thjihngng!!!
+        dashboardScheduler.update();
         CommandScheduler.getInstance().run();
     }
 
