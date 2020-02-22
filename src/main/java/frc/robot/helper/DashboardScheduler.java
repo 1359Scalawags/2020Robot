@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.interfaces.scheduler;
+import frc.robot.threading.DashThread;
 
 public class DashboardScheduler{
     ArrayList<scheduler> scheduled = new ArrayList<scheduler>();
@@ -24,7 +25,7 @@ public class DashboardScheduler{
         if(frameCount >= 10) {
             overriderState = SmartDashboard.getBoolean("OverRideState", false);
             for (scheduler subsystem : scheduled) {
-                subsystem.updateDash(overriderState);
+                new DashThread(subsystem, overriderState).start();
             }  
             frameCount = 0;  // TODO: move this before for loop if issues arise
         }

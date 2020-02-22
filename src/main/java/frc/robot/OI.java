@@ -79,6 +79,7 @@ public class OI {
     public OI() {
 
         assistController = new XboxController(RobotMap.AssistController);
+        driverContoller = new XboxController(RobotMap.DriverController);
 
         //DPad Buttons **DPAD IS POV
         rejectBallsButton = new DPadButton(assistController, DPadButton.Direction.DOWN);//error
@@ -129,8 +130,6 @@ public class OI {
         // stopShooterButton = new JoystickButton(assistController, Constants.RB);
         // stopShooterButton.whileHeld(new StopShooter());
         //DRIVER
-
-        driverContoller = new XboxController(0);
 
         autoDriveForwardButton = new JoystickButton(driverContoller, RobotMap.driverxboxX);
         autoDriveForwardButton.whileHeld(new AutoDriveForward(1));
