@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj2.command.button.*;
 import frc.robot.Constants;
+import frc.robot.Test.TestUltrasonicSensor;
 import frc.robot.helper.DPadButton;
 //import frc.robot.subsystems.*;
 
@@ -160,6 +161,8 @@ public class OI {
         // SmartDashboard.putData("RejectBalls", new TurnLoaderToRejectBalls());
         // SmartDashboard.putData("StartShootBall", new StartShooter(1, 1));
         // SmartDashboard.putData("StopShootBall", new StopShooter());
+
+        SmartDashboard.putData("test", new TestUltrasonicSensor());
 
     }
 

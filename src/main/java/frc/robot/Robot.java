@@ -215,11 +215,9 @@ public class Robot extends TimedRobot {
     /**
      * This function is called periodically during operator control
      */
-    TestUltrasonicSensor t = new TestUltrasonicSensor();
     @Override
     public void testPeriodic() {
         dashboardScheduler.update();
-        t.update();
         CommandScheduler.getInstance().run();
     }
 }
