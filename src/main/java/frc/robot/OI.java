@@ -162,8 +162,6 @@ public class OI {
         // SmartDashboard.putData("StartShootBall", new StartShooter(1, 1));
         // SmartDashboard.putData("StopShootBall", new StopShooter());
 
-        SmartDashboard.putData("test", new TestUltrasonicSensor());
-
     }
 
     public XboxController getDriverJoystick() {
