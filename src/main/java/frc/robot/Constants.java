@@ -75,13 +75,13 @@ public final class Constants {
 
     public static final class Load{
         // public static final double LoadShotMotor = 1;
-        public static final int CANChamRotMotorID = 21; //TODO check if this id is correct?
+        public static final int PWMChamRotMotorID = 1; //TODO check if this id is correct?
         public static final int PWMLoadShotMotorID = 5;
-        public static final int PWMLoadBallInMotorRearID = 0;
-        public static final int PWMLoadBallInMotorFrontID = 4;
-        public static final int PWMLoadBallUpMotorRightID = 1;
+        // public static final int PWMLoadBallInMotorRearID = 0;
+        public static final int PWMLowerBallLoad = 4;
+        public static final int PWMUpperBallLoad = 2;
+        // public static final int PWMLoadBallUpMotorRightID = 1;
         public static final int PWMLoadBallUpMotorLeftID = 3;
-        public static final int PWMLoadBallChamMotorID = 2;
         //public static double BallLoadUpSpeed = 0.001;
         //public static double BallLoadInSpeed = 0.001;
         //public static int BallLimitID = 0;
