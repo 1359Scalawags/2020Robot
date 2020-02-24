@@ -104,6 +104,9 @@ public class Robot extends TimedRobot {
 
             CommandScheduler.getInstance().registerSubsystem(driveSystem);
             CommandScheduler.getInstance().setDefaultCommand(driveSystem, new ManualDrive());
+            
+            CommandScheduler.getInstance().registerSubsystem(climbSystem);
+
 
             CommandScheduler.getInstance().registerSubsystem(kNetwork);
             CommandScheduler.getInstance().setDefaultCommand(kNetwork, new TestNetwork());
@@ -113,7 +116,6 @@ public class Robot extends TimedRobot {
             ex.printStackTrace();
         }
 
-        CommandScheduler.getInstance().registerSubsystem(climbSystem);
 
         HAL.report(tResourceType.kResourceType_Framework, tInstances.kFramework_RobotBuilder);
 
@@ -172,7 +174,7 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void autonomousPeriodic() {
-        dashboardScheduler.update();
+        // dashboardScheduler.update();
         CommandScheduler.getInstance().run();
     }
 
@@ -190,7 +192,7 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void teleopPeriodic() {
-        dashboardScheduler.update();
+        // dashboardScheduler.update();
         CommandScheduler.getInstance().run();
     }
 
@@ -217,7 +219,7 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void testPeriodic() {
-        dashboardScheduler.update();
+        // dashboardScheduler.update();
         CommandScheduler.getInstance().run();
     }
 }
