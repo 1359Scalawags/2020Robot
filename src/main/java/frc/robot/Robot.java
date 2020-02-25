@@ -25,7 +25,7 @@ import frc.robot.subsystems.*;
 import frc.robot.commands.drive.*;
 import frc.robot.commands.load.ManualChamberRotator;
 import frc.robot.commands.shooter.*;
-
+import frc.robot.Test.TestClimberMotor;
 import frc.robot.Test.TestNetwork;
 import frc.robot.Test.TestUltrasonicSensor;
 
@@ -210,6 +210,9 @@ public class Robot extends TimedRobot {
         // SmartDashboard.putData("Test_Shooter_Speeds", testShooter);
         // ShuffleboardTab testtab = Shuffleboard.getTab("Test2020");
         // testtab.add(testShooter);
+
+        CommandBase testClimberMotor = new TestClimberMotor();
+        testClimberMotor.schedule();
         
 
     }
