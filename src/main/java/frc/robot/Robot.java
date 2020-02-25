@@ -26,7 +26,7 @@ import frc.robot.commands.drive.*;
 import frc.robot.commands.load.ManualChamberRotator;
 import frc.robot.commands.shooter.*;
 import frc.robot.commands.climb.*;
-
+import frc.robot.Test.TestClimberMotor;
 import frc.robot.Test.TestNetwork;
 import frc.robot.Test.TestUltrasonicSensor;
 
