@@ -64,7 +64,7 @@ public final class Constants {
         public static final double RatchetOpen = 1;
         public static final double RatchetClosed = 0;
         //public static int MaxHeightLimitID = 3;
-        public static final int MinHeightLimitID = 4;
+        public static final int MinHeightLimitID = 5;
         public static final boolean LIMIT_PRESSED = true;
         public static final boolean LIMIT_NOTPRESSED = false;
         public static final double MAX_CLIMB_POSITION = 1;
