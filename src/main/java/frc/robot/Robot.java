@@ -25,6 +25,7 @@ import frc.robot.subsystems.*;
 import frc.robot.commands.drive.*;
 import frc.robot.commands.load.ManualChamberRotator;
 import frc.robot.commands.shooter.*;
+import frc.robot.commands.climb.*;
 
 import frc.robot.Test.TestNetwork;
 import frc.robot.Test.TestUltrasonicSensor;
@@ -106,7 +107,7 @@ public class Robot extends TimedRobot {
             CommandScheduler.getInstance().setDefaultCommand(driveSystem, new ManualDrive());
             
             CommandScheduler.getInstance().registerSubsystem(climbSystem);
-
+            CommandScheduler.getInstance().setDefaultCommand(climbSystem, new ManualClimb());
 
             CommandScheduler.getInstance().registerSubsystem(kNetwork);
             CommandScheduler.getInstance().setDefaultCommand(kNetwork, new TestNetwork());
