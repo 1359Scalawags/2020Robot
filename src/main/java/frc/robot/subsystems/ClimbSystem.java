@@ -16,6 +16,7 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.Robot;
 import frc.robot.Constants.Climb;
 import frc.robot.helper.CanMotor;
 import edu.wpi.first.wpilibj.Servo;
@@ -138,13 +139,19 @@ public class ClimbSystem extends SubsystemBase implements scheduler{
         }
     }
 
+    public void testMotor(double speed){
+        climbMotor.set(speed);
+    }
+
     @Override
     public void updateDash(boolean Override) {
-        double climbSpeed = SmartDashboard.getNumber("CANClimbSpeed", 0);
+        double motorClimbSpeed = climbMotor.get();
+        double dashClimbSpeed = SmartDashboard.getNumber("CANClimbSpeed", 0);
+
         boolean RachetState = SmartDashboard.getBoolean("PWMRatchetState", false);
         if(Override){
-            if(climbSpeed != climbMotor.getSpeed())
-                move(climbSpeed);
+            if(dashClimbSpeed != motorClimbSpeed)
+                move(dashClimbSpeed);
             if(RachetState != ratchetLocked){
                 if(RachetState)
                     lockRatchet();
@@ -155,14 +162,14 @@ public class ClimbSystem extends SubsystemBase implements scheduler{
         else{
             if(RachetState != ratchetLocked)
                 SmartDashboard.putBoolean("PWMRatchetState", ratchetLocked);
-            if(climbSpeed != climbMotor.Encoder().getVelocity())
-                SmartDashboard.putNumber("CANClimbSpeed", climbMotor.Encoder().getVelocity());
+            if(dashClimbSpeed != motorClimbSpeed)
+                SmartDashboard.putNumber("CANClimbSpeed", motorClimbSpeed);
         }
     }
 
     @Override
     public void putValues() {
         SmartDashboard.putBoolean("PWMRatchetState", ratchetLocked);
-        SmartDashboard.putNumber("CANClimbSpeed", climbMotor.getSpeed());
+        SmartDashboard.putNumber("CANClimbSpeed", climbMotor.get());
     }
 }
