@@ -29,7 +29,7 @@ public final class Constants {
         //public static int DriveDistanceUltrasonicB = 11;
         public static final double PID_P = 0.00001;
         public static final double PID_I = 0.000005;
-        public static final double PID_D = 0.000001;
+        public static final double PID_D = 0.0001;
         public static final double PID_Iz = 0;
         public static final double PID_Ff = 0;
         public static final double StraightSpeed = -0.7;
