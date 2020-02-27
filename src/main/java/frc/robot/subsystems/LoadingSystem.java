@@ -14,6 +14,16 @@ import frc.robot.interfaces.scheduler;
  *
  */
 public class LoadingSystem extends SubsystemBase implements scheduler{
+
+    private boolean ballSlots[];
+    private boolean indexSlot[];
+
+    private DigitalInput indexSensorA;
+    private DigitalInput indexSensorB;
+    private DigitalInput indexSensorC;
+    private DigitalInput indexSensorD;
+    private DigitalInput indexSensorE;
+
     private Talon ballLoaderInA;
     // private Talon ballLoaderInB;
     private Talon ballLoaderUpA;
@@ -48,9 +58,19 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
     //Initialize your subsystem here
 
     public LoadingSystem() {
+
+        indexSensorA = new DigitalInput(0);
+
+        ballSlots = new boolean[5];
+        ballSlots[0] = indexSensorA.get();
+        ballSlots[1] = indexSensorB.get();
+        ballSlots[2] = indexSensorC.get();
+        ballSlots[3] = indexSensorD.get();
+        ballSlots[4] = indexSensorE.get();
+
         chamRotator = new Talon(Load.PWMChamRotMotorID);
 
-        //SendableRegistry.add(getController());//what is a parent? Do i need to add a child?
+        //SendableRegistry.add(getController());//what is a parent? Do i need to add a child? A p
         //SendableRegistry.add(getController(), "controller");
         //super("BallSystem", 1.0, 0.0, 0.0); //super??
         //getPIDController().setContinuous(false);
@@ -220,4 +240,13 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
     }
 */
 
+    public boolean[] getBallSlots(){
+        return new boolean[] {ballSlots[0], ballSlots[1], ballSlots[2], ballSlots[3], ballSlots[4]};
+    }
+    
+    public boolean[] getCurrentIndex(){
+        return new boolean[] {indexSlot[0], indexSlot[1], indexSlot[2], indexSlot[3], indexSlot[4]};
+    }
+
+    //advanceLoadingSlots
 }

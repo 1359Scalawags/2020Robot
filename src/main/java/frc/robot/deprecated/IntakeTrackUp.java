@@ -10,7 +10,7 @@
 
 
 package frc.robot.deprecated;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+//import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 //import frc.robot.Robot;
 
@@ -19,16 +19,16 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
  */
 public class IntakeTrackUp extends CommandBase {
 
-    private boolean queUp;
-    private boolean trackUp;
-    private double queSpeed;
-    private double trackSpeed;
+    //private boolean queUp;
+    //private boolean trackUp;
+    //private double queSpeed;
+    //private double trackSpeed;
 
     public IntakeTrackUp() {
-        queUp = false;
-        trackUp = false;
-        queSpeed = 0.1;
-        trackSpeed = 0.1;
+        //queUp = false;
+        //trackUp = false;
+        //queSpeed = 0.1;
+        //trackSpeed = 0.1;
     }
 
     // Called just before this Command runs the first time
