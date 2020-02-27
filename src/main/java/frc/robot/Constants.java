@@ -99,6 +99,7 @@ public final class Constants {
         //public static int BallLimitID = 0;
         //public static double BallPIDTolerance = 0d;
         public static final double maxChamberSpeed = 1;
+        public static final double indextimer = 0;
     
     }
 
