@@ -36,16 +36,14 @@ public class IndexChamberRotator extends CommandBase{
             if(Robot.loadingSystem.isAtIndex()) {
                 return true;
             }           
-            else{
-                return false;
-            }
         }
+        return false;    
     }
 
     // Called once after isFinished returns true
     @Override
     public void end(boolean interrupted) {
-        Robot.loadingSystem.rotateChamber(0);
+        
     }
 
 }
