@@ -14,6 +14,9 @@ import io.github.pseudoresonance.pixy2api.links.Link;
  */
 public final class Constants {
 
+    /*------------------------------*/
+    /**Drive System*/
+
     public static final class Drive {
         public static final int CANBackLeftMotorID = 12;
         public static final int CANFrontLeftMotorID = 11;
@@ -45,6 +48,9 @@ public final class Constants {
         public static final double SystemScale =.01;
     }
 
+    /*------------------------------*/
+    /**Shooter System*/
+
     public static final class Shooter{
         //public static double MaxShooterSpeed = 1;
         public static final int PWMShootRotatorLeftRightID = 6;
@@ -57,6 +63,9 @@ public final class Constants {
         public static final int CANBottomBallMotorID = 4;
         public static final double expectedDist =0;
     }
+
+    /*------------------------------*/
+    /**Climb System*/
 
     public static final class Climb{
         public static final int CANClimbMotorID = 23;
@@ -72,6 +81,9 @@ public final class Constants {
         //public static double PotToInches = 35.0;
         //public static final double maxClimbSpeed = 1;
     }
+
+    /*------------------------------*/
+    /**Load System*/
 
     public static final class Load{
         // public static final double LoadShotMotor = 1;
@@ -90,6 +102,9 @@ public final class Constants {
     
     }
 
+    /*------------------------------*/
+    /**Control Panel System*/
+
     public static final class ControlPanel{
         public static int PWMRotateControlPanelID = 10;                              
         public static int RotateEncoderAID = 20;
@@ -97,6 +112,9 @@ public final class Constants {
         public final static I2C.Port COLORSENSOR_I2C = I2C.Port.kOnboard;
     }
 
+    /*------------------------------*/
+    /**Vision System*/
+    
     public static final class Vision{
         public final static Link PixyLink = new I2CLink();
         public static final double SpeedTwordsBall = 0;
@@ -142,23 +160,6 @@ public final class Constants {
     public static int DpadDOWN = 180;
     public static int DpadLEFT = 270;
     */
-    
-    /*----------BallSystem----------*/
-
-    //Booleans, Integers, and Values
-    //CAN Motors
-
-
-
-    
-    //PWM Motors                                        Motor #s 0, 1, 2, 3, 4, 5, 6, 7, 10, 14, 15
-    
-
-    
-
-    
-    //public static int DriveBuiltInAccelerometer = 10;
-    //public static int DriveAnalogGyro = 11;
 
     public static final double controllerDeadZone = 0.1;
 	public static double MAXRPM = 5700;
