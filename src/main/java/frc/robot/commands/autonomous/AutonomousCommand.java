@@ -42,7 +42,7 @@ public class AutonomousCommand extends SequentialCommandGroup {
             case ReverseTurnShoot:
                 addCommands(
                     new AutoDriveForward(-1),
-                    new AutoDriveTurn(),
+                    new AutoDriveTurn(90),
                     new SingleShotSequence()
                 );
                 break;

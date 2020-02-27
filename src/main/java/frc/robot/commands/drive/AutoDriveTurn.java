@@ -27,11 +27,7 @@ public class AutoDriveTurn extends CommandBase {
     private double currentangle;
 
 
-<<<<<<< HEAD
-    public AutoDriveTurn(double angle) { 
-=======
     public AutoDriveTurn(float angle) { 
->>>>>>> Add Drive Station simulation config.
          addRequirements(Robot.driveSystem);
     //right is positive, left is negative
         targetangle = angle;

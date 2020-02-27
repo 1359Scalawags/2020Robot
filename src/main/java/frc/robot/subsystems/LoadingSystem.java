@@ -193,30 +193,25 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
         SmartDashboard.putNumber("PWMBallLoadinMotors", 0);
         SmartDashboard.putNumber("PWMBallLoadUpMotors", 0);
     }
-    
-//Some example code on creating a group(s)
-/*
-    public void setBallLoaderSpeed(double aMot, double bMot, double cMot, double dMot, double eMot, double inMots, double upMots) {
-        ballLoaderUpA.set(aMot);
-        ballLoaderUpB.set(bMot);
-        //OR 
-        ballLoadUpMotors.set(inMots)
-
-        ballLoaderInA.set(cMot);
-        ballLoaderInB.set(dMot);
-        //OR
-        ballLoadInMotors.set(upMots)
-
-        ballLoaderCham.set(eMot);
-    }
-*/
 
     public boolean[] getBallSlots(){
-        return new boolean[] {ballSlots[0], ballSlots[1], ballSlots[2], ballSlots[3], ballSlots[4]};
+        return new boolean[] {
+            ballSlots[0], 
+            ballSlots[1], 
+            ballSlots[2], 
+            ballSlots[3], 
+            ballSlots[4]
+        };
     }
 
     public boolean[] getCurrentIndex(){
-        return new boolean[] {indexMarkers[0], indexMarkers[1], indexMarkers[2], indexMarkers[3], indexMarkers[4]};
+        return new boolean[] {
+            indexMarkers[0], 
+            indexMarkers[1], 
+            indexMarkers[2], 
+            indexMarkers[3], 
+            indexMarkers[4]
+        };
     }
 
     public boolean isAtIndex(){
@@ -226,6 +221,10 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
     public void advanceLoadingSlots() {
         boolean tempLast = indexMarkers[4];
         indexMarkers[4] = indexMarkers[3];
+        indexMarkers[3] = indexMarkers[2];
+        indexMarkers[2] = indexMarkers[1];
+        indexMarkers[1] = indexMarkers[0];
+        indexMarkers[0] = tempLast;
 
     }
 }

@@ -285,3 +285,20 @@
 // 	}
 
 // }
+
+//Some example code on creating a group(s)
+/*
+    public void setBallLoaderSpeed(double aMot, double bMot, double cMot, double dMot, double eMot, double inMots, double upMots) {
+        ballLoaderUpA.set(aMot);
+        ballLoaderUpB.set(bMot);
+        //OR 
+        ballLoadUpMotors.set(inMots)
+
+        ballLoaderInA.set(cMot);
+        ballLoaderInB.set(dMot);
+        //OR
+        ballLoadInMotors.set(upMots)
+
+        ballLoaderCham.set(eMot);
+    }
+*/
