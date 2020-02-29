@@ -5,11 +5,11 @@ import frc.robot.Robot;
 import frc.robot.Constants.Drive;
 import frc.robot.Constants.Shooter;
 
-public class aimShooter extends CommandBase{
+public class AutoAimShooter extends CommandBase{
 
     double angle;
 
-    public aimShooter() {
+    public AutoAimShooter() {
         addRequirements(Robot.kNetwork, Robot.loadingSystem, Robot.driveSystem);
     }
 

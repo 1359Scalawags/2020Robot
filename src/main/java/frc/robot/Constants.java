@@ -70,6 +70,8 @@ public final class Constants {
         public static final int shotDownLimit = 7;
         public static final int shotLeftLimit = 8;
         public static final int shotRightLimit = 9;
+        public static final boolean LIMIT_PRESSED = true;
+        public static final boolean LIMIT_NOTPRESSED = false;
     }
 
     /*------------------------------*/
@@ -84,6 +86,7 @@ public final class Constants {
         public static final boolean LIMIT_NOTPRESSED = false;
         public static final double MAX_CLIMB_POSITION = 1;
         public static final double CLIMBER_SCALE_TO_INCHES = 0.5;
+        
         //public static final int PWMClimberSensor = 9;
         //public static double PotToInches = 35.0;
         //public static final double maxClimbSpeed = 1;

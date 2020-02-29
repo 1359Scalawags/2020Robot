@@ -15,8 +15,8 @@ public class TurnLoaderToRejectBalls extends CommandBase{
     @Override
     public void initialize() {
         Robot.loadingSystem.setLoadInMotors(-1);
-        Robot.loadingSystem.setLoadUpMotors(0.0);
-        Robot.loadingSystem.setChamberLoadMotor(0.0);
+        //Robot.loadingSystem.setLoadUpMotors(0.0);
+        //Robot.loadingSystem.setChamberLoadMotor(0.0);
     }
 
     // Make this return true when this Command no longer needs to run execute()

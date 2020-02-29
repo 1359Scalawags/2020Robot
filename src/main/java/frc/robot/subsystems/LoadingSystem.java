@@ -19,48 +19,33 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
     * **The BALL SLOTS are on the inside of the chamber
     */
     private boolean ballSlots[];
-    //private boolean indexMarkers[];
 
     /**
-    * **The INDEX SENSORS line up for shooting or loading
-    */
-
-    private DigitalInput indexSensorA;
-    private DigitalInput indexSensorB;
-    private DigitalInput indexSensorC;
-    private DigitalInput indexSensorD;
-    private DigitalInput indexSensorE;
-
+     * Index sensors show position of chamber rotation.
+     */
     private DigitalInput[] indexSensors;
 
     //(value += x) and (value = value + x) are the same
 
     private int getSensorValue() {
         int value = 0;
-        if(indexSensorB.get()){
+        if(indexSensors[1].get()){
             value += 8;
         }
-        if(indexSensorC.get()){
+        if(indexSensors[2].get()){
             value += 4;
         }
-        if(indexSensorD.get()){
+        if(indexSensors[3].get()){
             value += 2;
         }
-        if(indexSensorE.get()){
+        if(indexSensors[4].get()){
             value += 1;
         }
         return value;
     }
 
     private Talon ballLoaderInA;
-    // private Talon ballLoaderInB;
     private Talon ballLoaderUpA;
-    // private Talon ballLoaderUpB;
-
-    /**
-    * **The CHAMBER LOADER puts balls into the 5 round chamber
-    */
-    private Talon ballLoaderCham;
 
     /**
     * **The INTAKE at the bottom of the robot
@@ -68,17 +53,12 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
     private SpeedControllerGroup ballLoadInMotors;
 
     /**
-    * **The UPTAKE into the CHAMBER LOADER
-    */
-    private SpeedControllerGroup ballLoadUpMotors;
-
-    /**
     * **The CHAMBER ROTATOR rotates the chamber
     */
     private Talon chamRotator;
 
     //private DigitalInput ballLimit;
-    private DigitalInput indexer;
+    //private DigitalInput indexer;
 
     public LoadingSystem() {
 
@@ -101,14 +81,11 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
         ballLoaderInA = new Talon(Load.PWMLowerBallLoad);
         ballLoaderInA.setInverted(false);
         
-
         ballLoaderUpA = new Talon(Load.PWMUpperBallLoad);
         ballLoaderUpA.setInverted(false);
         
-
         ballLoadInMotors = new SpeedControllerGroup(ballLoaderInA, ballLoaderUpA);
         
-
     }
 
     /*
@@ -140,34 +117,30 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
         this.ballLoadInMotors.set(speed);
     }
 
-    public void setLoadUpMotors(double speed) {
-        this.ballLoadUpMotors.set(speed);
-    }
+    // public void setLoadUpMotors(double speed) {
+    //     this.ballLoadUpMotors.set(speed);
+    // }
 
-    public void setChamberLoadMotor(double speed) {
-        this.ballLoaderCham.set(speed);
-    }
+    // public void setChamberLoadMotor(double speed) {
+    //     this.ballLoaderCham.set(speed);
+    // }
 
     public boolean isLoadingChamber() {
-        return (this.ballLoaderCham.get() != 0);
+        return (this.ballLoadInMotors.get() != 0);
     }
     
     public boolean isLoading() {
-        return (ballLoadInMotors.get() != 0 && ballLoadUpMotors.get() != 0 && ballLoaderCham.get() != 0);
+        return (ballLoadInMotors.get() != 0);
     }
 
     //TODO Write out code for enabling different funtions:
     //TODO loading, shooting, turning ON/OFF, or reversing
      
 	public boolean rotateChamber(double rotatorSpeed) {
-        // if(!isLoadingChamber()) {
-            
-            //TODO Check the chamRotator CAN ID
-            
-            // SmartDashboard.putNumber("rotateChamber", rotatorSpeed*Load.maxChamberSpeed);
+        if(!isLoadingChamber()) {
             chamRotator.set(rotatorSpeed*Load.maxChamberSpeed); 
-            // return true;
-        // }
+            return true;
+        }
         return false;
     }
 
@@ -175,12 +148,12 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
         return (chamRotator.get() != 0);
     }
 
-    public boolean getIndex() {
-        return indexer.get();
-    }
+    // public boolean getIndex() {
+    //     return indexer.get();
+    // }
 
     public boolean isAtIndex() {
-        return indexSensorA.get();
+        return indexSensors[0].get();
     }
     
     /**
@@ -210,8 +183,8 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
         if(Override){
             //double[] pid = SmartDashboard.getNumberArray("ChamberRotatorPID", new double[1]);
             double loadin = SmartDashboard.getNumber("PWMBallLoadinMotors", 0);
-            double loadup = SmartDashboard.getNumber("PWMBallLoadUpMotors", 0);
-            double loadcham = SmartDashboard.getNumber("PWMBallLoadChamber", 0);
+            //double loadup = SmartDashboard.getNumber("PWMBallLoadUpMotors", 0);
+            //double loadcham = SmartDashboard.getNumber("PWMBallLoadChamber", 0);
 
             // if(!chamRotator.getPID().equals(pid))
             //     chamRotator.setPID(pid);
@@ -219,10 +192,10 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
                 chamRotator.set(chamSpeed);
             if(loadin != ballLoadInMotors.get())
                 ballLoadInMotors.set(loadin);
-            if(loadup != ballLoadUpMotors.get())
-                ballLoadUpMotors.set(loadup);
-            if(loadcham != ballLoaderCham.get())
-                ballLoaderCham.set(loadcham);
+            // if(loadup != ballLoadUpMotors.get())
+            //     ballLoadUpMotors.set(loadup);
+            // if(loadcham != ballLoaderCham.get())
+            //     ballLoaderCham.set(loadcham);
         }
         else{
             if(chamSpeed == chamRotator.getSpeed())
@@ -236,7 +209,7 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
         SmartDashboard.putNumber("CANChamberRotatorSpeed", 0);
         SmartDashboard.putNumber("PWMBallLoadChamber", 0);
         SmartDashboard.putNumber("PWMBallLoadinMotors", 0);
-        SmartDashboard.putNumber("PWMBallLoadUpMotors", 0);
+        //SmartDashboard.putNumber("PWMBallLoadUpMotors", 0);
     }
 
     public boolean[] getBallSlots(){

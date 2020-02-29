@@ -1,10 +1,10 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.Constants.Shooter;
-import frc.robot.Constants.Load;
+import frc.robot.Constants.*;
 import frc.robot.helper.*;
 
 import frc.robot.interfaces.scheduler;
@@ -20,6 +20,11 @@ public class ShooterSystem extends SubsystemBase implements scheduler{
     private Spark shootRotatorY;
     private Spark shotLoader;
 
+    private DigitalInput rightLimit;
+    private DigitalInput leftLimit;
+    private DigitalInput upLimit;
+    private DigitalInput downLimit;
+
     public ShooterSystem(){
         topMotor = new CanMotor(Shooter.CANTopBallMotorID);
         bottomMotor = new CanMotor(Shooter.CANBottomBallMotorID);
@@ -28,7 +33,7 @@ public class ShooterSystem extends SubsystemBase implements scheduler{
         shootRotatorX.setInverted(false);
 
         shootRotatorY = new Spark(Shooter.PWMShootRotatorUpDownID);
-        shootRotatorY.setInverted(true);
+        shootRotatorY.setInverted(false);
         
         shotLoader = new Spark(Load.PWMLoadShotMotorID);
         shotLoader.setInverted(false);
@@ -63,8 +68,6 @@ public class ShooterSystem extends SubsystemBase implements scheduler{
     //     return Motors;
     // }
 
-
-
 	public void rotateShooter(double speed1, double speed2) {
         if(speed1 > Shooter.maxShooterTurnRate)
             speed1=Shooter.maxShooterTurnRate;
@@ -79,7 +82,33 @@ public class ShooterSystem extends SubsystemBase implements scheduler{
         //TODO check if between limit switchs
         shootRotatorX.set(speed1);
         shootRotatorY.set(speed2);
-	}
+    }
+    
+    /**
+     * @param speed Positive is right, negative is left
+     */
+    public void rotateHorizontally(double speed) {
+        if(speed > 0 && rightLimit.get() != Shooter.LIMIT_PRESSED) {
+            shootRotatorX.set(speed);            
+        } else if(speed < 0 && leftLimit.get() != Shooter.LIMIT_PRESSED) {
+            shootRotatorX.set(speed);
+        } else {
+            shootRotatorX.set(0);
+        }
+    }
+
+    /**
+     * @param speed Positive is up, negative is down
+     */
+    public void rotateVertically(double speed) {
+        if(speed > 0 && upLimit.get() != Shooter.LIMIT_PRESSED) {
+            shootRotatorY.set(speed);            
+        } else if(speed < 0 && downLimit.get() != Shooter.LIMIT_PRESSED) {
+            shootRotatorY.set(speed);
+        } else {
+            shootRotatorY.set(0);
+        }
+    }
 
     @Override
     public void updateDash(boolean Override) {
@@ -111,6 +140,5 @@ public class ShooterSystem extends SubsystemBase implements scheduler{
         SmartDashboard.putNumber("CANShooterSpeedtop", 0);
         SmartDashboard.putNumber("CANShooterSpeedbottom", 0);
     }
-
 
 }
