@@ -82,10 +82,10 @@ public class OI {
         driverContoller = new XboxController(RobotMap.DriverController);
 
         //DPad Buttons **DPAD IS POV
-        rejectBallsButton = new DPadButton(assistController, DPadButton.Direction.DOWN);//error
+        rejectBallsButton = new DPadButton(assistController, DPadButton.Direction.UP);//error
         rejectBallsButton.whenPressed(new TurnLoaderToRejectBalls());
 
-        intakeBallsButton = new DPadButton(assistController, DPadButton.Direction.UP);
+        intakeBallsButton = new DPadButton(assistController, DPadButton.Direction.DOWN);
         intakeBallsButton.whenPressed(new TurnLoaderToIntakeBalls());
 
         // Joystick Buttons **DPAD IS NOT A BUTTON
@@ -95,8 +95,8 @@ public class OI {
         // climbUpButton = new JoystickButton(assistController, 6);
         // climbUpButton.whileHeld(new ManualClimb());
       
-        manualClimb = new JoystickButton(assistController, 6);
-        manualClimb.whileHeld(new ManualClimb());
+        //manualClimb = new JoystickButton(assistController, 6);
+        //manualClimb.whileHeld(new ManualClimb());
 
 
         // AutoclimbUpButton = new JoystickButton(assistController, RobotMap.AutoClimbUp);
@@ -105,7 +105,7 @@ public class OI {
         // AutoclimbDownButton = new JoystickButton(assistController, RobotMap.AutoClimbDown);
         // AutoclimbDownButton.whileHeld(new AutoClimb(Constants.maxClimbSpeed));
 
-        unlockClimber = new JoystickButton(assistController, Constants.Xbtn);
+        unlockClimber = new JoystickButton(assistController, Constants.SELECT);
         unlockClimber.whenPressed(new UnlockClimber());
 
         manualChamberRotator = new JoystickButton(assistController, Constants.Ybtn);
@@ -118,7 +118,7 @@ public class OI {
         // controlPanelSetColorButton.whenPressed(new ControlPanelSetColor());
 
 
-        singleShot = new JoystickButton(assistController, Constants.LB);
+        singleShot = new JoystickButton(assistController, Constants.Abtn);
         singleShot.whenPressed(new SingleShotSequence());
 
         // lineupButton = new JoystickButton(assistController, Constants.LB);
@@ -131,14 +131,14 @@ public class OI {
         // stopShooterButton.whileHeld(new StopShooter());
         //DRIVER
 
-        autoDriveForwardButton = new JoystickButton(driverContoller, RobotMap.driverxboxX);
-        autoDriveForwardButton.whileHeld(new AutoDriveForward(1));
+        // autoDriveForwardButton = new JoystickButton(driverContoller, RobotMap.driverxboxX);
+        // autoDriveForwardButton.whileHeld(new AutoDriveForward(1));
 
-        autoDriveTurnRight = new JoystickButton(driverContoller, RobotMap.driverxboxRT);
-        autoDriveTurnRight.whenPressed(new AutoDriveTurn(90));
+        // autoDriveTurnRight = new JoystickButton(driverContoller, RobotMap.driverxboxRT);
+        // autoDriveTurnRight.whenPressed(new AutoDriveTurn(90));
 
-        autoDriveTurnLeft = new JoystickButton(driverContoller, RobotMap.driverxboxRT);
-        autoDriveTurnLeft.whenPressed(new AutoDriveTurn(-90));
+        // autoDriveTurnLeft = new JoystickButton(driverContoller, RobotMap.driverxboxRT);
+        // autoDriveTurnLeft.whenPressed(new AutoDriveTurn(-90));
         
         // // SmartDashboard Buttons
         // SmartDashboard.putData("Aim Shooter", new aimShooter());
