@@ -134,12 +134,12 @@ public final class Constants {
     /*------------------------------*/
     /**Control Panel System*/
 
-    public static final class ControlPanel{
-        public static int PWMRotateControlPanelID = 10;                              
-        public static int RotateEncoderAID = 20;
-        public static int RotateEncoderBID = 21;
-        public final static I2C.Port COLORSENSOR_I2C = I2C.Port.kOnboard;
-    }
+    // public static final class ControlPanel{
+    //     public static int PWMRotateControlPanelID = 10;                              
+    //     public static int RotateEncoderAID = 20;
+    //     public static int RotateEncoderBID = 21;
+    //     public final static I2C.Port COLORSENSOR_I2C = I2C.Port.kOnboard;
+    // }
 
     /*------------------------------*/
     /**Vision System*/
