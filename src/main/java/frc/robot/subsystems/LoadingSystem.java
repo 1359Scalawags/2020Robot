@@ -15,7 +15,13 @@ import frc.robot.interfaces.scheduler;
  */
 public class LoadingSystem extends SubsystemBase implements scheduler{
 
+    /**
+    * **The BALL SLOTS are on the inside of the chamber
+    */
     private boolean ballSlots[];
+    /**
+    * **The INDEX MARKERS line up 
+    */
     private boolean indexMarkers[];
 
     private DigitalInput indexSensorA;
@@ -59,11 +65,11 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
 
     public LoadingSystem() {
 
-        indexSensorA = new DigitalInput(0);
-        indexSensorB = new DigitalInput(0);
-        indexSensorC = new DigitalInput(0);
-        indexSensorD = new DigitalInput(0);
-        indexSensorE = new DigitalInput(0);
+        indexSensorA = new DigitalInput(Load.LoadSensorA);
+        indexSensorB = new DigitalInput(Load.LoadSensorB);
+        indexSensorC = new DigitalInput(Load.LoadSensorC);
+        indexSensorD = new DigitalInput(Load.LoadSensorD);
+        indexSensorE = new DigitalInput(Load.LoadSensorE);
 
         ballSlots = new boolean[5];
         ballSlots[0] = indexSensorA.get();
