@@ -10,7 +10,7 @@
 
 
 package frc.robot.deprecated;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+//import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 //import frc.robot.Robot;
 import frc.robot.Robot;
@@ -20,26 +20,26 @@ import frc.robot.Robot;
  */
 public class IntakeRollerSpin extends CommandBase {
 
-    private boolean intakeIn;
-    private boolean intakeOut;
-    private double intakeSpeed;
+    //private boolean intakeIn;
+    //private boolean intakeOut;
+    //private double intakeSpeed;
 
     //TODO What are these for? can you explain the next chance.
-    private double ballLoadSpdA;
-    private double ballLoadSpdB;
-    private double ballLoadSpdC;
-    private double ballLoadSpdD;
-    private double ballLoadSpdE;
-    private double AvgBallLoadSpd;
+    //private double ballLoadSpdA;
+    //private double ballLoadSpdB;
+    //private double ballLoadSpdC;
+    //private double ballLoadSpdD;
+    //private double ballLoadSpdE;
+    //private double AvgBallLoadSpd;
 
     public IntakeRollerSpin() {
         addRequirements(Robot.loadingSystem);
 
-        intakeIn = false;
-        intakeOut = false;
-        intakeSpeed = 0.1;
+        //intakeIn = false;
+        //intakeOut = false;
+        //intakeSpeed = 0.1;
         
-        AvgBallLoadSpd = (ballLoadSpdA + ballLoadSpdB + ballLoadSpdC + ballLoadSpdD + ballLoadSpdE)/5;
+        //AvgBallLoadSpd = (ballLoadSpdA + ballLoadSpdB + ballLoadSpdC + ballLoadSpdD + ballLoadSpdE)/5;
     }
 
     // Called just before this Command runs the first time

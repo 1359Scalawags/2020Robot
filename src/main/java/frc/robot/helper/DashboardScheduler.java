@@ -28,7 +28,7 @@ public class DashboardScheduler{
                 // new DashThread(subsystem, overriderState).start();// 15        
                 subsystem.updateDash(overriderState);//15
             }  
-            frameCount = 0;  // TODO: move this before for loop if issues arise
+            frameCount = 0;  // TODO: move this before the above FOR loop, if issues arise
         }
         frameCount++;
     }
