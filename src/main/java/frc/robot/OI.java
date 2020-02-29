@@ -53,9 +53,6 @@ public class OI {
         manualChamberRotator = new JoystickButton(assistController, Constants.Ybtn);
         manualChamberRotator.whenPressed(new ManualChamberRotator());
       
-        manualClimb = new JoystickButton(assistController, 6);
-        manualClimb.whileHeld(new ManualClimb());
-
         unlockClimber = new JoystickButton(assistController, Constants.Xbtn);
         unlockClimber.whenPressed(new UnlockClimber());
 
@@ -155,19 +152,21 @@ public class OI {
     }
   }
 
-    public double getMainTriggers() {
+  public double getMainTriggers() {
 		return Math.max(driverContoller.getTriggerAxis(Hand.kLeft), driverContoller.getTriggerAxis(Hand.kRight));
 	}
 
-    
-    
-    public double getClimbSpeed() {
-        return assistController.getY(Hand.kLeft);
-    }
+  public double getClimbSpeed() {
+      return assistController.getY(Hand.kLeft);
+  }
 
 	public double getRotatorSpeed() {
       return assistController.getX(Hand.kRight);
-	}
+  }
+  
+  public XboxController getDriverJoystick() {
+    return driverContoller;
+  }
 
     //// CREATING BUTTONS
     // One type of button is a joystick button which is any button on a joystick.
