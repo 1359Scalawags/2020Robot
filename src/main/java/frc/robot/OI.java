@@ -27,7 +27,7 @@ public class OI {
     private DPadButton rejectBallsButton;
     private JoystickButton manualChamberRotator;
 
-    private JoystickButton manualClimb;
+    //private JoystickButton manualClimb;
     private JoystickButton unlockClimber;
 
     private JoystickButton autoDriveForwardButton;
