@@ -90,11 +90,18 @@ public class ShooterSystem extends SubsystemBase implements scheduler{
      * 
      * @param speed Positive is to the right, negative is to the left
      */
+
     public void rotateHorizontally(double speed) {
         if(speed > 0 && rightLimit.get() != Shooter.LIMIT_PRESSED) {
+            
+        } else {
+            speed = -speed;
+        }
 
-        } else if (speed < 0 && leftLimit.get() != Shooter.LIMIT_PRESSED){
+        if (speed < 0 && leftLimit.get() != Shooter.LIMIT_PRESSED){
 
+        } else {
+            speed = speed;
         }
     }
 
