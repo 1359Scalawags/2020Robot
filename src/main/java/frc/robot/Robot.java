@@ -25,6 +25,8 @@ import frc.robot.subsystems.*;
 import frc.robot.commands.drive.*;
 import frc.robot.commands.load.ManualChamberRotator;
 import frc.robot.commands.shooter.*;
+import frc.robot.commands.climb.*;
+import frc.robot.Constants.Vision;
 import frc.robot.Test.TestClimberMotor;
 import frc.robot.Test.TestNetwork;
 import frc.robot.Test.TestUltrasonicSensor;
@@ -65,30 +67,22 @@ public class Robot extends TimedRobot {
         chooser = new SendableChooser<CommandBase>();
         dashboardScheduler = new DashboardScheduler();
         System.out.println(">> Dashboard Scheduler Created");
+        
         try {
+            System.out.println(">> Subsystems Created");
+
             driveSystem = new CANDriveSystem();
             climbSystem = new ClimbSystem();
             loadingSystem = new LoadingSystem();
             controlPanelSystem = new ControlPanelSystem();
             shooterSystem = new ShooterSystem();
             kNetwork = new NetworkSystem();
-            // pixy = new PixySystem(Constants.PixyLink);
-            System.out.println(">> Subsystems Created");
+            pixy = new PixySystem(Vision.PixyLink);
+
         } catch (Exception ex) {
             System.out.println("!! An error occured while instantiating the subsystems !!");
             ex.printStackTrace();
         }
-
-        try{
-            
-            // CommandScheduler.getInstance().registerSubsystem(pixy);
-            // CommandScheduler.getInstance().setDefaultCommand(pixy, new PixyCommand());
-        }
-        catch(Exception ext){
-            System.out.println(ext);
-            ext.printStackTrace();
-        }
-        
 
 
         // OI must be constructed after subsystems. If the OI creates Commands
@@ -97,23 +91,29 @@ public class Robot extends TimedRobot {
         // pointers. Bad news. Don't move it.
         oi = new OI();
 
+
+        
         
         try {
             CommandScheduler.getInstance().registerSubsystem(loadingSystem);
             CommandScheduler.getInstance().setDefaultCommand(loadingSystem, new ManualChamberRotator());
-
+    
             CommandScheduler.getInstance().registerSubsystem(driveSystem);
             CommandScheduler.getInstance().setDefaultCommand(driveSystem, new ManualDrive());
             
             CommandScheduler.getInstance().registerSubsystem(climbSystem);
-
-
+            CommandScheduler.getInstance().setDefaultCommand(climbSystem, new ManualClimb());
+    
             CommandScheduler.getInstance().registerSubsystem(kNetwork);
             CommandScheduler.getInstance().setDefaultCommand(kNetwork, new TestNetwork());
+            
+            CommandScheduler.getInstance().registerSubsystem(pixy);
+            CommandScheduler.getInstance().setDefaultCommand(pixy, new PixyCommand());
+            
             System.out.println(">> Subsystems Registered and Default Commands Set.");
         } catch (Exception ex) {
             System.out.println("!! Unable to register subsystems and their default commands !!");
-            ex.printStackTrace();
+            // ex.printStackTrace();
         }
 
 
