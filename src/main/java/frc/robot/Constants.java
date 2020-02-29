@@ -77,7 +77,7 @@ public final class Constants {
         public static final boolean LIMIT_PRESSED = true;
         public static final boolean LIMIT_NOTPRESSED = false;
         public static final double MAX_CLIMB_POSITION = 1;
-        public static final int PWMClimberSensor = 9;
+        //public static final int PWMClimberSensor = 9;
         //public static double PotToInches = 35.0;
         //public static final double maxClimbSpeed = 1;
     }
@@ -100,6 +100,13 @@ public final class Constants {
         //public static double BallPIDTolerance = 0d;
         public static final double maxChamberSpeed = 1;
         public static final double indextimer = 0;
+
+        //Digital I/O
+        public static final int LoadSensorA = 0;
+        public static final int LoadSensorB = 1;
+        public static final int LoadSensorC = 2;
+        public static final int LoadSensorD = 3;
+        public static final int LoadSensorE = 4;
     
     }
 
