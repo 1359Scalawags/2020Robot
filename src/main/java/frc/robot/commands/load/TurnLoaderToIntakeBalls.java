@@ -21,8 +21,8 @@ public class TurnLoaderToIntakeBalls extends CommandBase{
 
         
         Robot.loadingSystem.setLoadInMotors(Load.laodIn);
-        Robot.loadingSystem.setLoadUpMotors(Load.laodUp);
-        Robot.loadingSystem.setChamberLoadMotor(Load.chamberLoad);
+        //Robot.loadingSystem.setLoadUpMotors(Load.laodUp);
+        //Robot.loadingSystem.setChamberLoadMotor(Load.chamberLoad);
         
     }
 
