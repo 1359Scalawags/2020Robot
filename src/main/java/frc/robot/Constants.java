@@ -102,11 +102,11 @@ public final class Constants {
         public static final double indextimer = 0;
 
         //Digital I/O
-        public static final int LoadSensorA = 6;
-        public static final int LoadSensorB = 7;
-        public static final int LoadSensorC = 8;
-        public static final int LoadSensorD = 9;
-        public static final int LoadSensorE = 10;
+        public static final int LoadSensorA = 0;
+        public static final int LoadSensorB = 1;
+        public static final int LoadSensorC = 2;
+        public static final int LoadSensorD = 3;
+        public static final int LoadSensorE = 4;
     
     }
 
