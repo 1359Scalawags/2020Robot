@@ -277,7 +277,7 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
     // public boolean isAtIndex(){
     //     return indexMarkers[0];
     // }
-
+*/
     public void advanceLoadingSlots() {
         boolean tempLast = ballSlots[4];
         ballSlots[4] = ballSlots[3];
@@ -286,6 +286,6 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
         ballSlots[1] = ballSlots[0];
         ballSlots[0] = tempLast;
     }
-    */
+    
 
 }
