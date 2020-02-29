@@ -27,10 +27,10 @@ public class ShooterSystem extends SubsystemBase implements scheduler{
 
     public ShooterSystem(){
         
-        rightLimit = new DigitalInput(Shooter.shotRightLimit)
-        leftLimit = new DigitalInput(Shooter.shotLeftLimit)
-        upLimit = new DigitalInput(Shooter.shotUpLimit)
-        downLimit = new DigitalInput(Shooter.shotDownLimit)
+        rightLimit = new DigitalInput(Shooter.shotRightLimit);
+        leftLimit = new DigitalInput(Shooter.shotLeftLimit);
+        upLimit = new DigitalInput(Shooter.shotUpLimit);
+        downLimit = new DigitalInput(Shooter.shotDownLimit);
 
         topMotor = new CanMotor(Shooter.CANTopBallMotorID);
         bottomMotor = new CanMotor(Shooter.CANBottomBallMotorID);
