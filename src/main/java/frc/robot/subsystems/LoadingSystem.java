@@ -25,11 +25,11 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
     * **The INDEX SENSORS line up for shooting or loading
     */
 
-    private DigitalInput indexSensorA;
-    private DigitalInput indexSensorB;
-    private DigitalInput indexSensorC;
-    private DigitalInput indexSensorD;
-    private DigitalInput indexSensorE;
+    // private DigitalInput indexSensorA;
+    // private DigitalInput indexSensorB;
+    // private DigitalInput indexSensorC;
+    // private DigitalInput indexSensorD;
+    // private DigitalInput indexSensorE;
 
     private DigitalInput[] indexSensors;
 
@@ -37,16 +37,16 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
 
     private int getSensorValue() {
         int value = 0;
-        if(indexSensorB.get()){
+        if(indexSensors[1].get()){
             value += 8;
         }
-        if(indexSensorC.get()){
+        if(indexSensors[2].get()){
             value += 4;
         }
-        if(indexSensorD.get()){
+        if(indexSensors[3].get()){
             value += 2;
         }
-        if(indexSensorE.get()){
+        if(indexSensors[4].get()){
             value += 1;
         }
         return value;
