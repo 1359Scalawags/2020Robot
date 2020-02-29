@@ -93,28 +93,28 @@ public class Robot extends TimedRobot {
 
 
         
-        // CommandScheduler.getInstance().registerSubsystem(loadingSystem);
-        // CommandScheduler.getInstance().setDefaultCommand(loadingSystem, new ManualChamberRotator());
-
-        CommandScheduler.getInstance().registerSubsystem(driveSystem);
-        CommandScheduler.getInstance().setDefaultCommand(driveSystem, new ManualDrive());
         
-        // CommandScheduler.getInstance().registerSubsystem(climbSystem);
-        // CommandScheduler.getInstance().setDefaultCommand(climbSystem, new ManualClimb());
-
-        CommandScheduler.getInstance().registerSubsystem(kNetwork);
-        CommandScheduler.getInstance().setDefaultCommand(kNetwork, new TestNetwork());
-        
-        CommandScheduler.getInstance().registerSubsystem(pixy);
-        CommandScheduler.getInstance().setDefaultCommand(pixy, new PixyCommand());
-        
-        // try {
+        try {
+            CommandScheduler.getInstance().registerSubsystem(loadingSystem);
+            CommandScheduler.getInstance().setDefaultCommand(loadingSystem, new ManualChamberRotator());
+    
+            CommandScheduler.getInstance().registerSubsystem(driveSystem);
+            CommandScheduler.getInstance().setDefaultCommand(driveSystem, new ManualDrive());
             
-        //     System.out.println(">> Subsystems Registered and Default Commands Set.");
-        // } catch (Exception ex) {
-        //     System.out.println("!! Unable to register subsystems and their default commands !!");
-        //     // ex.printStackTrace();
-        // }
+            CommandScheduler.getInstance().registerSubsystem(climbSystem);
+            CommandScheduler.getInstance().setDefaultCommand(climbSystem, new ManualClimb());
+    
+            CommandScheduler.getInstance().registerSubsystem(kNetwork);
+            CommandScheduler.getInstance().setDefaultCommand(kNetwork, new TestNetwork());
+            
+            CommandScheduler.getInstance().registerSubsystem(pixy);
+            CommandScheduler.getInstance().setDefaultCommand(pixy, new PixyCommand());
+            
+            System.out.println(">> Subsystems Registered and Default Commands Set.");
+        } catch (Exception ex) {
+            System.out.println("!! Unable to register subsystems and their default commands !!");
+            // ex.printStackTrace();
+        }
 
 
         HAL.report(tResourceType.kResourceType_Framework, tInstances.kFramework_RobotBuilder);
