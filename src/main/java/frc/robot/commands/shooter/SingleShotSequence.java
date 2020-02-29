@@ -8,7 +8,8 @@ public class SingleShotSequence extends SequentialCommandGroup {
     public SingleShotSequence() {
         addCommands(
             new StartShooter(1,1),
-            new FeedBallToShooter(0.5),
+            // new FeedBallToShooter(0.5),
+            new FeedBallToShooter(),
             new StopShooter()
         );
     }

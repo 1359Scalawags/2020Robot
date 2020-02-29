@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 //import frc.robot.Constants;
 import frc.robot.Robot;
 //import frc.robot.RobotMap;
+import frc.robot.Constants.Load;
 
 public class TurnLoaderToIntakeBalls extends CommandBase{
 
@@ -19,9 +20,9 @@ public class TurnLoaderToIntakeBalls extends CommandBase{
         // Robot.loadingSystem.setChamberLoadMotor(0.9);
 
         
-        Robot.loadingSystem.setLoadInMotors(1);
-        Robot.loadingSystem.setLoadUpMotors(1);
-        Robot.loadingSystem.setChamberLoadMotor(1);
+        Robot.loadingSystem.setLoadInMotors(Load.laodIn);
+        Robot.loadingSystem.setLoadUpMotors(Load.laodUp);
+        Robot.loadingSystem.setChamberLoadMotor(Load.chamberLoad);
         
     }
 

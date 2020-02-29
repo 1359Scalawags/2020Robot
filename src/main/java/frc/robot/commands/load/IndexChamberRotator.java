@@ -43,7 +43,7 @@ public class IndexChamberRotator extends CommandBase{
     // Called once after isFinished returns true
     @Override
     public void end(boolean interrupted) {
-        
+        Robot.loadingSystem.advanceLoadingSlots();
     }
 
 }

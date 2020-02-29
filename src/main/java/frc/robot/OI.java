@@ -84,9 +84,12 @@ public class OI {
         //DPad Buttons **DPAD IS POV
         rejectBallsButton = new DPadButton(assistController, DPadButton.Direction.DOWN);//error
         rejectBallsButton.whenPressed(new TurnLoaderToRejectBalls());
+        rejectBallsButton.whenReleased(new TurnLoaderOff());
 
         intakeBallsButton = new DPadButton(assistController, DPadButton.Direction.UP);
         intakeBallsButton.whenPressed(new TurnLoaderToIntakeBalls());
+        intakeBallsButton.whenReleased(new TurnLoaderOff());
+
 
         // Joystick Buttons **DPAD IS NOT A BUTTON
         // climbDownButton = new JoystickButton(assistController, 7);

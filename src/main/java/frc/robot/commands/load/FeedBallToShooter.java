@@ -21,14 +21,12 @@ import frc.robot.Robot;
 public class FeedBallToShooter extends CommandBase {
     
 
-    private double duration;
     private double start;
     private Timer timer;
 
-    public FeedBallToShooter(double duration) {
+    public FeedBallToShooter() {
         addRequirements(Robot.shooterSystem);
         timer = new Timer();
-        this.duration = duration;
     }
 
 
@@ -48,7 +46,7 @@ public class FeedBallToShooter extends CommandBase {
     // Make this return true when this Command no longer needs to run execute()
     @Override
     public boolean isFinished() {
-        if(timer.get() - start >= duration) {
+        if(timer.get() - start >= Load.shooterLoaderduration) {
             return true;
         }
         return false;
