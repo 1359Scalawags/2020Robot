@@ -1,9 +1,11 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants.Shooter;
+import frc.robot.Constants;
 import frc.robot.Constants.Load;
 import frc.robot.helper.*;
 
@@ -19,6 +21,11 @@ public class ShooterSystem extends SubsystemBase implements scheduler{
     private Spark shootRotatorX;
     private Spark shootRotatorY;
     private Spark shotLoader;
+
+    private DigitalInput rightLimit;
+    private DigitalInput leftLimit;
+    private DigitalInput upLimit;
+    private DigitalInput downLimit;
 
     public ShooterSystem(){
         topMotor = new CanMotor(Shooter.CANTopBallMotorID);
@@ -63,8 +70,6 @@ public class ShooterSystem extends SubsystemBase implements scheduler{
     //     return Motors;
     // }
 
-
-
 	public void rotateShooter(double speed1, double speed2) {
         if(speed1 > Shooter.maxShooterTurnRate)
             speed1=Shooter.maxShooterTurnRate;
@@ -79,7 +84,19 @@ public class ShooterSystem extends SubsystemBase implements scheduler{
         //TODO check if between limit switchs
         shootRotatorX.set(speed1);
         shootRotatorY.set(speed2);
-	}
+    }
+    
+    /**
+     * 
+     * @param speed Positive is to the right, negative is to the left
+     */
+    public void rotateHorizontally(double speed) {
+        if(speed > 0 && rightLimit.get() != Shooter.LIMIT_PRESSED) {
+
+        } else if (speed < 0 && leftLimit.get() != Shooter.LIMIT_PRESSED){
+
+        }
+    }
 
     @Override
     public void updateDash(boolean Override) {
@@ -111,6 +128,5 @@ public class ShooterSystem extends SubsystemBase implements scheduler{
         SmartDashboard.putNumber("CANShooterSpeedtop", 0);
         SmartDashboard.putNumber("CANShooterSpeedbottom", 0);
     }
-
 
 }

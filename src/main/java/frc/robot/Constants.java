@@ -70,6 +70,8 @@ public final class Constants {
         public static final int shotDownLimit = 7;
         public static final int shotLeftLimit = 8;
         public static final int shotRightLimit = 9;
+        public static final boolean LIMIT_PRESSED = true;
+        public static final boolean LIMIT_NOTPRESSED = false;
     }
 
     /*------------------------------*/
