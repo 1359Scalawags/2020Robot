@@ -25,7 +25,6 @@ public class IndexLoadChamber extends CommandBase{
     @Override
     public void execute() {
 
-
     }
 
     // Make this return true when this Command no longer needs to run execute()
