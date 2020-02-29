@@ -33,7 +33,7 @@ public class ShooterSystem extends SubsystemBase implements scheduler{
         shootRotatorX.setInverted(false);
 
         shootRotatorY = new Spark(Shooter.PWMShootRotatorUpDownID);
-        shootRotatorY.setInverted(true);
+        shootRotatorY.setInverted(false);
         
         shotLoader = new Spark(Load.PWMLoadShotMotorID);
         shotLoader.setInverted(false);
@@ -89,15 +89,11 @@ public class ShooterSystem extends SubsystemBase implements scheduler{
      */
     public void rotateHorizontally(double speed) {
         if(speed > 0 && rightLimit.get() != Shooter.LIMIT_PRESSED) {
-            
+            shootRotatorX.set(speed);            
+        } else if(speed < 0 && leftLimit.get() != Shooter.LIMIT_PRESSED) {
+            shootRotatorX.set(speed);
         } else {
-            speed = -speed;
-        }
-
-        if (speed < 0 && leftLimit.get() != Shooter.LIMIT_PRESSED){
-
-        } else {
-            speed = -speed;
+            shootRotatorX.set(0);
         }
     }
 
@@ -106,15 +102,11 @@ public class ShooterSystem extends SubsystemBase implements scheduler{
      */
     public void rotateVertically(double speed) {
         if(speed > 0 && upLimit.get() != Shooter.LIMIT_PRESSED) {
-            
+            shootRotatorY.set(speed);            
+        } else if(speed < 0 && downLimit.get() != Shooter.LIMIT_PRESSED) {
+            shootRotatorY.set(speed);
         } else {
-            speed = -speed;
-        }
-
-        if (speed < 0 && downLimit.get() != Shooter.LIMIT_PRESSED){
-
-        } else {
-            speed = -speed;
+            shootRotatorY.set(0);
         }
     }
 
