@@ -6,10 +6,10 @@ import frc.robot.subsystems.LoadingSystem;
 import frc.robot.Robot;
 import edu.wpi.first.wpilibj.Timer;
 
-public class IndexChamberRotator extends CommandBase{
+public class IndexLoadChamber extends CommandBase{
     private Timer indexerDelay;
 
-    public IndexChamberRotator(){
+    public IndexLoadChamber(){
         addRequirements(Robot.loadingSystem);
         indexerDelay = new Timer();
         

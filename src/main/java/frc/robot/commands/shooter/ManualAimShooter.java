@@ -9,4 +9,13 @@ public class ManualAimShooter extends CommandBase{
         addRequirements(Robot.shooterSystem);
     }
 
+    @Override
+    public void initialize(){
+    }
+
+    @Override
+    public void execute() {
+
+    }
+
 }
