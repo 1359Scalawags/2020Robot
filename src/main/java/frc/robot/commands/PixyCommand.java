@@ -1,5 +1,6 @@
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 import frc.robot.Constants.Vision;
@@ -31,9 +32,9 @@ public class PixyCommand extends CommandBase{
 
     void DriveTwordsBall(){
         Block block = Robot.pixy.getClosest();
-        double angle = block.getAngle();
+        // double angle = block.getAngle();
         
-        Robot.driveSystem.arcadeDrive(Vision.SpeedTwordsBall, Drive.maxRightTurnRate, angle);
+        // Robot.driveSystem.arcadeDrive(Vision.SpeedTwordsBall, Drive.maxRightTurnRate, angle);
     }
 
     // Called once after isFinished returns true
