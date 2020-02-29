@@ -46,7 +46,7 @@ public class Robot extends TimedRobot {
     public static OI oi;
     public static CANDriveSystem driveSystem;
     public static ClimbSystem climbSystem;
-    public static ControlPanelSystem controlPanelSystem;
+    //public static ControlPanelSystem controlPanelSystem;
     public static LoadingSystem loadingSystem;
     public static ShooterSystem shooterSystem;
     public static NetworkSystem kNetwork;
@@ -71,7 +71,7 @@ public class Robot extends TimedRobot {
             driveSystem = new CANDriveSystem();
             climbSystem = new ClimbSystem();
             loadingSystem = new LoadingSystem();
-            controlPanelSystem = new ControlPanelSystem();
+            //controlPanelSystem = new ControlPanelSystem();
             shooterSystem = new ShooterSystem();
             kNetwork = new NetworkSystem();
             pixy = new PixySystem(Vision.PixyLink);
@@ -121,7 +121,7 @@ public class Robot extends TimedRobot {
         try {
             dashboardScheduler.add(shooterSystem);
             dashboardScheduler.add(loadingSystem);
-            dashboardScheduler.add(controlPanelSystem);
+            //dashboardScheduler.add(controlPanelSystem);
             dashboardScheduler.add(climbSystem);
             dashboardScheduler.add(driveSystem);
             dashboardScheduler.putValues();
