@@ -122,7 +122,7 @@ public class Robot extends TimedRobot {
             dashboardScheduler.add(shooterSystem);
             dashboardScheduler.add(loadingSystem);
             //dashboardScheduler.add(controlPanelSystem);
-            dashboardScheduler.add(climbSystem);
+            // dashboardScheduler.add(climbSystem);
             dashboardScheduler.add(driveSystem);
             dashboardScheduler.putValues();
             System.out.println(">> Schedule updates to the Dashboard for subsystems");
