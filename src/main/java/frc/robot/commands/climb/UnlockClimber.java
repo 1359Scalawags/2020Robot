@@ -22,11 +22,12 @@ public class UnlockClimber extends CommandBase {
     @Override
     public void execute() {
        Robot.climbSystem.unlockClimber();
+       Robot.climbSystem.unlockRatchet();
     }
 
     @Override
     public boolean isFinished() {
-        return !Robot.climbSystem.isClimberLocked();
+        return (!Robot.climbSystem.isClimberLocked() && !Robot.climbSystem.isRatchetLocked());
     }
 
     @Override
