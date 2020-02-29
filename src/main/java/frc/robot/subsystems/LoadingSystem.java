@@ -15,7 +15,13 @@ import frc.robot.interfaces.scheduler;
  */
 public class LoadingSystem extends SubsystemBase implements scheduler{
 
+    /**
+    * **The BALL SLOTS are on the inside of the chamber
+    */
     private boolean ballSlots[];
+    /**
+    * **The INDEX MARKERS line up for shooting or loading
+    */
     private boolean indexMarkers[];
 
     private DigitalInput indexSensorA;
@@ -23,6 +29,27 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
     private DigitalInput indexSensorC;
     private DigitalInput indexSensorD;
     private DigitalInput indexSensorE;
+
+    private DigitalInput[] indexSensors;
+
+    //(value += x) and (value = value + x) are the same
+
+    private int getSensorValue() {
+        int value = 0;
+        if(indexSensorB.get()){
+            value += 8;
+        }
+        if(indexSensorC.get()){
+            value += 4;
+        }
+        if(indexSensorD.get()){
+            value += 2;
+        }
+        if(indexSensorE.get()){
+            value += 1;
+        }
+        return value;
+    }
 
     private Talon ballLoaderInA;
     // private Talon ballLoaderInB;
@@ -59,18 +86,19 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
 
     public LoadingSystem() {
 
-        indexSensorA = new DigitalInput(0);
-        indexSensorB = new DigitalInput(0);
-        indexSensorC = new DigitalInput(0);
-        indexSensorD = new DigitalInput(0);
-        indexSensorE = new DigitalInput(0);
+        indexSensors = new DigitalInput[5];
+        indexSensors[0] = new DigitalInput(Load.LoadSensorA);
+        indexSensors[1] = new DigitalInput(Load.LoadSensorB);
+        indexSensors[2] = new DigitalInput(Load.LoadSensorC);
+        indexSensors[3] = new DigitalInput(Load.LoadSensorD);
+        indexSensors[4] = new DigitalInput(Load.LoadSensorE);
 
         ballSlots = new boolean[5];
-        ballSlots[0] = indexSensorA.get();
-        ballSlots[1] = indexSensorB.get();
-        ballSlots[2] = indexSensorC.get();
-        ballSlots[3] = indexSensorD.get();
-        ballSlots[4] = indexSensorE.get();
+        ballSlots[0] = false;
+        ballSlots[1] = false;
+        ballSlots[2] = false;
+        ballSlots[3] = false;
+        ballSlots[4] = false;
 
         chamRotator = new Talon(Load.PWMChamRotMotorID);
 
@@ -128,12 +156,8 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
     public boolean isLoadingChamber() {
         return (this.ballLoaderCham.get() != 0);
     }
-
-    public boolean isOff() {
-        return (ballLoadInMotors.get() == 0 && ballLoadUpMotors.get() == 0 && ballLoaderCham.get() == 0);
-    }
     
-    public boolean isOn() {
+    public boolean isLoading() {
         return (ballLoadInMotors.get() != 0 && ballLoadUpMotors.get() != 0 && ballLoaderCham.get() != 0);
     }
 
@@ -156,10 +180,32 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
         return (chamRotator.get() != 0);
     }
 
-    public Boolean getIndex(){
+    public boolean getIndex() {
         return indexer.get();
     }
     
+    /**
+    * **Lines up the index to allow shooting
+    */
+    public boolean isShooterIndexed() {
+        int v = getSensorValue();
+        if(v==9 || v==7 || v==5 || v==3 || v==1){
+            return true;
+        }
+        return false;
+    }
+
+    /**
+    * **Lines up the index to allow loading
+    */
+    public boolean isLoaderIndexed() {
+        int v = getSensorValue();
+        if(v==8 || v==6 || v==4 || v==2 || v==0){
+            return true;
+        }
+        return false;
+    }
+
     public void updateDash(boolean Override){    
         double chamSpeed = SmartDashboard.getNumber("CANChamberRotatorSpeed", 0);
         if(Override){
@@ -204,27 +250,41 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
         };
     }
 
-    public boolean[] getCurrentIndex(){
-        return new boolean[] {
-            indexMarkers[0], 
-            indexMarkers[1], 
-            indexMarkers[2], 
-            indexMarkers[3], 
-            indexMarkers[4]
-        };
+    public void setBallLoaded() {
+        if(this.isLoaderIndexed()) {
+            int slot = getSensorValue() / 2;
+            ballSlots[slot] = true;
+        }
     }
 
-    public boolean isAtIndex(){
-        return indexMarkers[0];
+    public void setBallShot() {
+        if(this.isShooterIndexed()) {
+            int slot = getSensorValue() + 5;
+            slot %= 10;
+            ballSlots[slot] = false;
+        }
     }
+
+    // public boolean[] getCurrentIndex(){
+    //     return new boolean[] {
+    //         indexMarkers[0], 
+    //         indexMarkers[1], 
+    //         indexMarkers[2], 
+    //         indexMarkers[3], 
+    //         indexMarkers[4]
+    //     };
+    // }
+
+    // public boolean isAtIndex(){
+    //     return indexMarkers[0];
+    // }
 
     public void advanceLoadingSlots() {
-        boolean tempLast = indexMarkers[4];
-        indexMarkers[4] = indexMarkers[3];
-        indexMarkers[3] = indexMarkers[2];
-        indexMarkers[2] = indexMarkers[1];
-        indexMarkers[1] = indexMarkers[0];
-        indexMarkers[0] = tempLast;
-
+        boolean tempLast = ballSlots[4];
+        ballSlots[4] = ballSlots[3];
+        ballSlots[3] = ballSlots[2];
+        ballSlots[2] = ballSlots[1];
+        ballSlots[1] = ballSlots[0];
+        ballSlots[0] = tempLast;
     }
 }
