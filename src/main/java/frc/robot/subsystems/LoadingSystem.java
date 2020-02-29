@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.Talon;
 import frc.robot.Constants.Load;
-import frc.robot.helper.*;
+//import frc.robot.helper.*;
 
 import frc.robot.interfaces.scheduler;
 
@@ -19,10 +19,11 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
     * **The BALL SLOTS are on the inside of the chamber
     */
     private boolean ballSlots[];
+    //private boolean indexMarkers[];
+
     /**
-    * **The INDEX MARKERS line up for shooting or loading
+    * **The INDEX SENSORS line up for shooting or loading
     */
-    private boolean indexMarkers[];
 
     private DigitalInput indexSensorA;
     private DigitalInput indexSensorB;
@@ -56,7 +57,6 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
     private Talon ballLoaderUpA;
     // private Talon ballLoaderUpB;
 
-    /*---------------Descriptions---------------*/
     /**
     * **The CHAMBER LOADER puts balls into the 5 round chamber
     */
@@ -77,12 +77,8 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
     */
     private Talon chamRotator;
 
-    /*------------------------------------------*/
-
-    // private DigitalInput ballLimit;
+    //private DigitalInput ballLimit;
     private DigitalInput indexer;
-
-    //Initialize your subsystem here
 
     public LoadingSystem() {
 
@@ -114,7 +110,6 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
         
 
     }
-
 
     /*
     @Override
@@ -183,6 +178,10 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
     public boolean getIndex() {
         return indexer.get();
     }
+
+    public boolean isAtIndex() {
+        return indexSensorA.get();
+    }
     
     /**
     * **Lines up the index to allow shooting
@@ -209,7 +208,7 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
     public void updateDash(boolean Override){    
         double chamSpeed = SmartDashboard.getNumber("CANChamberRotatorSpeed", 0);
         if(Override){
-            double[] pid = SmartDashboard.getNumberArray("ChamberRotatorPID", new double[1]);
+            //double[] pid = SmartDashboard.getNumberArray("ChamberRotatorPID", new double[1]);
             double loadin = SmartDashboard.getNumber("PWMBallLoadinMotors", 0);
             double loadup = SmartDashboard.getNumber("PWMBallLoadUpMotors", 0);
             double loadcham = SmartDashboard.getNumber("PWMBallLoadChamber", 0);
@@ -264,7 +263,7 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
             ballSlots[slot] = false;
         }
     }
-
+/*
     // public boolean[] getCurrentIndex(){
     //     return new boolean[] {
     //         indexMarkers[0], 
@@ -287,4 +286,6 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
         ballSlots[1] = ballSlots[0];
         ballSlots[0] = tempLast;
     }
+    */
+
 }
