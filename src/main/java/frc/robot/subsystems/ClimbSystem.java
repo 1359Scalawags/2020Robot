@@ -35,14 +35,11 @@ public class ClimbSystem extends SubsystemBase implements scheduler{
     private boolean ratchetLocked;
 
     public ClimbSystem() {
-        //maxHeightLimit = new DigitalInput(Constants.MaxHeightLimitID);
-        //addChild("MaxHeightLimit",maxHeightLimit);
 
         minHeightLimit = new DigitalInput(Climb.MinHeightLimitID);
         addChild("MinHeightLimit",minHeightLimit);
         
         climbMotor = new CanMotor(Climb.CANClimbMotorID);
-        // SmartDashboard.putNumber("ClimbMotorValue", climbMotor.Motor().get());
         
         climberLocked = true;
         ratchetLocked = true;
@@ -50,17 +47,13 @@ public class ClimbSystem extends SubsystemBase implements scheduler{
         ratchet = new Servo(Climb.PWMRatchetServoID);
         ratchet.setPosition(Climb.RatchetClosed);
         climbMotor.Motor().setInverted(true);  
+        climbMotor.Encoder().setPositionConversionFactor(Climb.CLIMBER_SCALE_TO_INCHES);
         
-        // pot = new AnalogPotentiometer(Constants.CLIMBERPOTID);
     }
 
     @Override
     public void periodic() {
 
-        // double dashMotor = SmartDashboard.getNumber("ClimbMotorValue", 0.0);
-        // if(climbMotor.Motor().get() != dashMotor) {
-        //     climbMotor.Motor().set(dashMotor);
-        // }
     }
 
 
@@ -88,10 +81,6 @@ public class ClimbSystem extends SubsystemBase implements scheduler{
         return climberLocked;
     }
 
-    // public boolean getClimberLock() {
-    // 	return climberLocked;
-    // }
-
     public boolean isAtTop() {
         return (climbMotor.Encoder().getPosition() >= Climb.MAX_CLIMB_POSITION);
     }
@@ -104,9 +93,12 @@ public class ClimbSystem extends SubsystemBase implements scheduler{
         climbMotor.set(0);
     }
 
+    /**
+     * 
+     * @return Returns the position of climber in Inches
+     */
     public double getPosition() {
         return this.climbMotor.Encoder().getPosition(); //com constant
-        //return pot.get() * Constants.PotToInches;
     }
 
     public void resetPosition() {
@@ -118,7 +110,6 @@ public class ClimbSystem extends SubsystemBase implements scheduler{
      * @param speed Positive numbers elevate...negative numbers climb.
      */
     public void move(double speed) {
-
         if (climberLocked) {
             climbMotor.set(0);
         } else {
@@ -134,7 +125,6 @@ public class ClimbSystem extends SubsystemBase implements scheduler{
                 } else {
                     climbMotor.set(0);
                 }
-
             }
         }
     }
