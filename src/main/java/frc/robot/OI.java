@@ -27,8 +27,9 @@ public class OI {
     private DPadButton rejectBallsButton;
     private JoystickButton manualChamberRotator;
 
-    //private JoystickButton manualClimb;
+    private JoystickButton manualClimb;
     private JoystickButton unlockClimber;
+    private JoystickButton lockRatchet;
 
     private JoystickButton autoDriveForwardButton;
     private JoystickButton autoDriveTurnRight;
@@ -55,6 +56,9 @@ public class OI {
       
         unlockClimber = new JoystickButton(assistController, Constants.Xbtn);
         unlockClimber.whenPressed(new UnlockClimber());
+
+        lockRatchet = new JoystickButton(assistController, Constants.START);
+        lockRatchet.whenPressed(new LockRatchet());
 
         singleShot = new JoystickButton(assistController, Constants.LB);
         singleShot.whenPressed(new SingleShotSequence());

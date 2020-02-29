@@ -32,7 +32,7 @@ public class ClimbSystem extends SubsystemBase implements scheduler{
     private CanMotor climbMotor;
     private boolean climberLocked;
     private Servo ratchet;
-    private boolean ratchetLocked;
+    //private boolean ratchetLocked;
 
     public ClimbSystem() {
 
@@ -42,7 +42,7 @@ public class ClimbSystem extends SubsystemBase implements scheduler{
         climbMotor = new CanMotor(Climb.CANClimbMotorID);
         
         climberLocked = true;
-        ratchetLocked = true;
+        //ratchetLocked = true;
 
         ratchet = new Servo(Climb.PWMRatchetServoID);
         ratchet.setPosition(Climb.RatchetClosed);
@@ -66,7 +66,7 @@ public class ClimbSystem extends SubsystemBase implements scheduler{
 
     public void unlockRatchet() {
         ratchet.setPosition(Climb.RatchetOpen);
-        ratchetLocked = false;
+        //ratchetLocked = false;
     }
 
     public void lockRatchet() {
@@ -74,11 +74,16 @@ public class ClimbSystem extends SubsystemBase implements scheduler{
             climbMotor.Motor().set(0);
         }
         ratchet.setPosition(Climb.RatchetClosed);
-        ratchetLocked = true; 
+        //ratchetLocked = true; 
     }
 
     public boolean isClimberLocked() {
         return climberLocked;
+    }
+
+    public boolean isRatchetLocked() {
+        double difference = Math.abs(ratchet.get() - Climb.RatchetOpen);
+        return difference > 0.25;
     }
 
     public boolean isAtTop() {
@@ -114,7 +119,7 @@ public class ClimbSystem extends SubsystemBase implements scheduler{
             climbMotor.set(0);
         } else {
             if (speed > 0) {
-                if (climbMotor.Encoder().getPosition() < Climb.MAX_CLIMB_POSITION && ratchetLocked == false) {
+                if (!isAtTop() && !isRatchetLocked()) {
                     climbMotor.set(speed);
                 } else {
                     climbMotor.set(0);
@@ -142,7 +147,7 @@ public class ClimbSystem extends SubsystemBase implements scheduler{
         if(Override){
             if(dashClimbSpeed != motorClimbSpeed)
                 move(dashClimbSpeed);
-            if(RachetState != ratchetLocked){
+            if(RachetState != isRatchetLocked()){
                 if(RachetState)
                     lockRatchet();
                 else
@@ -150,8 +155,8 @@ public class ClimbSystem extends SubsystemBase implements scheduler{
             }
         }
         else{
-            if(RachetState != ratchetLocked)
-                SmartDashboard.putBoolean("PWMRatchetState", ratchetLocked);
+            if(RachetState != isRatchetLocked())
+                SmartDashboard.putBoolean("PWMRatchetState", isRatchetLocked());
             if(dashClimbSpeed != motorClimbSpeed)
                 SmartDashboard.putNumber("CANClimbSpeed", motorClimbSpeed);
         }
@@ -159,7 +164,7 @@ public class ClimbSystem extends SubsystemBase implements scheduler{
 
     @Override
     public void putValues() {
-        SmartDashboard.putBoolean("PWMRatchetState", ratchetLocked);
+        SmartDashboard.putBoolean("PWMRatchetState", isRatchetLocked());
         SmartDashboard.putNumber("CANClimbSpeed", climbMotor.get());
     }
 }
