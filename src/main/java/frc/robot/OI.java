@@ -72,6 +72,7 @@ public class OI {
     private JoystickButton manualIndexLoadChamber;
     private JoystickButton manualIndexShootChamber;
     private JoystickButton unlockClimber;
+    private JoystickButton lockClimber;
     private JoystickButton singleShot;
  
     public OI() {
@@ -106,13 +107,16 @@ public class OI {
       // AutoclimbDownButton = new JoystickButton(assistController, RobotMap.AutoClimbDown);
       // AutoclimbDownButton.whileHeld(new AutoClimb(Constants.maxClimbSpeed));
  
-      unlockClimber = new JoystickButton(assistController, Constants.SELECT);
+      unlockClimber = new JoystickButton(assistController, Constants.BACK);
       unlockClimber.whenPressed(new UnlockClimber());
+
+      lockClimber = new JoystickButton(assistController, Constants.START);
+      lockClimber.whenPressed(new LockRatchet());
  
       manualIndexLoadChamber = new JoystickButton(assistController, Constants.Ybtn);
       manualIndexLoadChamber.whenPressed(new IndexLoadChamber());
  
-      manualIndexShootChamber = new JoystickButton(assistController, Constants.Ybtn);
+      manualIndexShootChamber = new JoystickButton(assistController, Constants.Xbtn);
       manualIndexShootChamber.whenPressed(new IndexShootChamber());
         
       // controlPanelSpinButton = new JoystickButton(assistController, Constants.Xbtn);

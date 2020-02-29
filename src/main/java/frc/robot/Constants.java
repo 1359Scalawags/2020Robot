@@ -157,7 +157,7 @@ public final class Constants {
     public static int Ybtn = 4;
     public static int LB = 5;
     public static int RB = 6;
-    public static int SELECT = 7;
+    public static int BACK = 7;
     public static int START = 8;
     public static int LEFTJoyBtn = 9;
     public static int RIGHTJoyBtn = 10;
