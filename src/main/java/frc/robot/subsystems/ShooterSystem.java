@@ -4,9 +4,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.Constants.Shooter;
-import frc.robot.Constants;
-import frc.robot.Constants.Load;
+import frc.robot.Constants.*;
 import frc.robot.helper.*;
 
 import frc.robot.interfaces.scheduler;
@@ -87,10 +85,8 @@ public class ShooterSystem extends SubsystemBase implements scheduler{
     }
     
     /**
-     * 
-     * @param speed Positive is to the right, negative is to the left
+     * @param speed Positive is right, negative is left
      */
-
     public void rotateHorizontally(double speed) {
         if(speed > 0 && rightLimit.get() != Shooter.LIMIT_PRESSED) {
             
@@ -101,7 +97,24 @@ public class ShooterSystem extends SubsystemBase implements scheduler{
         if (speed < 0 && leftLimit.get() != Shooter.LIMIT_PRESSED){
 
         } else {
-            speed = speed;
+            speed = -speed;
+        }
+    }
+
+    /**
+     * @param speed Positive is up, negative is down
+     */
+    public void rotateVertically(double speed) {
+        if(speed > 0 && upLimit.get() != Shooter.LIMIT_PRESSED) {
+            
+        } else {
+            speed = -speed;
+        }
+
+        if (speed < 0 && downLimit.get() != Shooter.LIMIT_PRESSED){
+
+        } else {
+            speed = -speed;
         }
     }
 
