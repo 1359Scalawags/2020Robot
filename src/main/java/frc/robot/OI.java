@@ -1,7 +1,7 @@
 package frc.robot;
 
 import frc.robot.commands.drive.*;
-import frc.robot.commands.load.ManualChamberRotator;
+import frc.robot.commands.load.ManualChamberNextIndex;
 import frc.robot.commands.load.TurnLoaderOff;
 import frc.robot.commands.load.TurnLoaderToIntakeBalls;
 import frc.robot.commands.load.TurnLoaderToRejectBalls;
@@ -50,7 +50,7 @@ public class OI {
         intakeBallsButton.whenReleased(new TurnLoaderOff());
 
         manualChamberRotator = new JoystickButton(assistController, Constants.Ybtn);
-        manualChamberRotator.whenPressed(new ManualChamberRotator());
+        manualChamberRotator.whenPressed(new ManualChamberNextIndex());
       
         unlockClimber = new JoystickButton(assistController, Constants.Xbtn);
         unlockClimber.whenPressed(new UnlockClimber());
@@ -156,11 +156,15 @@ public class OI {
 	}
 
   public double getClimbSpeed() {
-      return assistController.getY(Hand.kLeft);
+      return assistController.getY(Hand.kRight);
   }
 
-	public double getRotatorSpeed() {
-      return assistController.getX(Hand.kRight);
+	public double getAimXSpeed() {
+      return assistController.getX(Hand.kLeft);
+  }
+
+	public double getAimYSpeed() {
+      return assistController.getY(Hand.kLeft);
   }
   
   public XboxController getDriverJoystick() {
@@ -194,6 +198,4 @@ public class OI {
     // until it is finished as determined by it's isFinished method.
     // button.whenReleased(new ExampleCommand());
 
-
 }
-

@@ -23,7 +23,7 @@ import frc.robot.commands.*;
 import frc.robot.helper.DashboardScheduler;
 import frc.robot.subsystems.*;
 import frc.robot.commands.drive.*;
-import frc.robot.commands.load.ManualChamberRotator;
+import frc.robot.commands.load.ManualChamberNextIndex;
 import frc.robot.commands.shooter.*;
 import frc.robot.commands.climb.*;
 import frc.robot.Constants.Vision;
@@ -87,7 +87,7 @@ public class Robot extends TimedRobot {
         // register systems and set default commands
         try {
             CommandScheduler.getInstance().registerSubsystem(loadingSystem);
-            CommandScheduler.getInstance().setDefaultCommand(loadingSystem, new ManualChamberRotator());
+            CommandScheduler.getInstance().setDefaultCommand(loadingSystem, new ManualChamberNextIndex());
     
             CommandScheduler.getInstance().registerSubsystem(driveSystem);
             CommandScheduler.getInstance().setDefaultCommand(driveSystem, new ManualDrive());

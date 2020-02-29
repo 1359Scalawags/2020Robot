@@ -3,8 +3,8 @@ package frc.robot.commands.load;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
-public class ManualChamberRotator extends CommandBase{
-    public ManualChamberRotator(){
+public class ManualChamberNextIndex extends CommandBase{
+    public ManualChamberNextIndex(){
         addRequirements(Robot.loadingSystem);
     }
 
@@ -15,8 +15,8 @@ public class ManualChamberRotator extends CommandBase{
     // Called repeatedly when this Command is scheduled to run
     @Override
     public void execute() {
-        double speed = Robot.oi.getRotatorSpeed();
-        Robot.loadingSystem.rotateChamber(speed);
+    //     double speed = Robot.oi.getRotatorSpeed();
+    //     Robot.loadingSystem.rotateChamber(speed);
     }
 
     @Override
