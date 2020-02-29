@@ -21,7 +21,7 @@ import frc.robot.helper.DPadButton;
 public class OI {
 
     private XboxController assistController;
-    private XboxController driverContoller;
+    private XboxController driverController;
 
     private DPadButton intakeBallsButton;
     private DPadButton rejectBallsButton;
@@ -39,7 +39,7 @@ public class OI {
     public OI() {
 
         assistController = new XboxController(RobotMap.AssistController);
-        driverContoller = new XboxController(RobotMap.DriverController);
+        driverController = new XboxController(RobotMap.DriverController);
 
         //DPad Buttons **DPAD IS POV
         rejectBallsButton = new DPadButton(assistController, DPadButton.Direction.DOWN);//error
@@ -59,13 +59,13 @@ public class OI {
         singleShot = new JoystickButton(assistController, Constants.LB);
         singleShot.whenPressed(new SingleShotSequence());
 
-        autoDriveForwardButton = new JoystickButton(driverContoller, RobotMap.driverxboxX);
+        autoDriveForwardButton = new JoystickButton(driverController, RobotMap.driverxboxX);
         autoDriveForwardButton.whileHeld(new AutoDriveForward(1));
 
-        autoDriveTurnRight = new JoystickButton(driverContoller, RobotMap.driverxboxRT);
+        autoDriveTurnRight = new JoystickButton(driverController, RobotMap.driverxboxRT);
         autoDriveTurnRight.whenPressed(new AutoDriveTurn(90));
 
-        autoDriveTurnLeft = new JoystickButton(driverContoller, RobotMap.driverxboxRT);
+        autoDriveTurnLeft = new JoystickButton(driverController, RobotMap.driverxboxRT);
         autoDriveTurnLeft.whenPressed(new AutoDriveTurn(-90));
         
     }
@@ -121,16 +121,16 @@ public class OI {
     }
     
   public double DriverLStickY() {
-    if (Math.abs(Robot.oi.driverContoller.getY(Hand.kLeft)) > Constants.controllerDeadZone) {
-      return -(Robot.oi.driverContoller.getY(Hand.kLeft) * (.2 * Robot.oi.getMainTriggers() + .50));
+    if (Math.abs(Robot.oi.driverController.getY(Hand.kLeft)) > Constants.controllerDeadZone) {
+      return -(Robot.oi.driverController.getY(Hand.kLeft) * (.2 * Robot.oi.getMainTriggers() + .50));
     } else {
       return 0;
     }
   }
 
   public double DriverRStickY() {
-    if (Math.abs(Robot.oi.driverContoller.getY(Hand.kRight)) > Constants.controllerDeadZone) {
-      return -(Robot.oi.driverContoller.getY(Hand.kRight) * (.2 * Robot.oi.getMainTriggers() + .50));
+    if (Math.abs(Robot.oi.driverController.getY(Hand.kRight)) > Constants.controllerDeadZone) {
+      return -(Robot.oi.driverController.getY(Hand.kRight) * (.2 * Robot.oi.getMainTriggers() + .50));
     } else {
       return 0;
     }
@@ -153,7 +153,7 @@ public class OI {
   }
 
   public double getMainTriggers() {
-		return Math.max(driverContoller.getTriggerAxis(Hand.kLeft), driverContoller.getTriggerAxis(Hand.kRight));
+		return Math.max(driverController.getTriggerAxis(Hand.kLeft), driverController.getTriggerAxis(Hand.kRight));
 	}
 
   public double getClimbSpeed() {
@@ -165,7 +165,7 @@ public class OI {
   }
   
   public XboxController getDriverJoystick() {
-    return driverContoller;
+    return driverController;
   }
 
     //// CREATING BUTTONS
