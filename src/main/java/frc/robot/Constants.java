@@ -66,10 +66,10 @@ public final class Constants {
         //public static double MaxShooterSpeed = 1;
 
         //Digital I/O
-        public static final int shotUpLimit = 6;
-        public static final int shotDownLimit = 7;
-        public static final int shotLeftLimit = 8;
-        public static final int shotRightLimit = 9;
+        public static final int shotUpLimit = 11;
+        public static final int shotDownLimit = 12;
+        public static final int shotLeftLimit = 10;
+        public static final int shotRightLimit = 13;
         public static final boolean LIMIT_PRESSED = true;
         public static final boolean LIMIT_NOTPRESSED = false;
     }
@@ -92,7 +92,7 @@ public final class Constants {
         //public static final double maxClimbSpeed = 1;
 
         //Digital I/O
-        public static final int MinHeightLimitID = 10;
+        public static final int MinHeightLimitID = 5;
 
         //public static int MaxHeightLimitID = 3;
     }

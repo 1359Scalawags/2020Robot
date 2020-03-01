@@ -15,15 +15,30 @@ import frc.robot.interfaces.scheduler;
  */
 public class LoadingSystem extends SubsystemBase implements scheduler{
 
+    private Talon ballLoaderInA;
+    private Talon ballLoaderUpA;
+
+    private DigitalInput postShooterSensor;
+    private int postShooterArraySlot = 3;
+    private DigitalInput preLoadSensor;
     /**
     * **The BALL SLOTS are on the inside of the chamber
     */
     private boolean ballSlots[];
 
     /**
+    * **The CHAMBER ROTATOR rotates the chamber
+    */
+    private Talon chamRotator;
+    /**
      * Index sensors show position of chamber rotation.
      */
     private DigitalInput[] indexSensors;
+    
+    /**
+    * **The INTAKE at the bottom of the robot
+    */
+    private SpeedControllerGroup ballLoadInMotors;
 
     //(value += x) and (value = value + x) are the same
 
@@ -44,22 +59,6 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
         return value;
     }
 
-    private Talon ballLoaderInA;
-    private Talon ballLoaderUpA;
-
-    /**
-    * **The INTAKE at the bottom of the robot
-    */
-    private SpeedControllerGroup ballLoadInMotors;
-
-    /**
-    * **The CHAMBER ROTATOR rotates the chamber
-    */
-    private Talon chamRotator;
-
-    //private DigitalInput ballLimit;
-    //private DigitalInput indexer;
-
     public LoadingSystem() {
 
         indexSensors = new DigitalInput[5];
@@ -75,6 +74,9 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
         ballSlots[2] = false;
         ballSlots[3] = false;
         ballSlots[4] = false;
+
+        preLoadSensor = new DigitalInput(6); // TODO: add a constant here
+        postShooterSensor = new DigitalInput(7); // TODO: add a constant here
 
         chamRotator = new Talon(Load.PWMChamRotMotorID);
 
@@ -235,6 +237,14 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
             slot %= 10;
             ballSlots[slot] = false;
         }
+    }
+
+    public void updateUpperChamberSlot() {
+        ballSlots[postShooterArraySlot] = this.postShooterSensor.get();
+    }
+
+    public boolean isBallPreloading() {
+        return preLoadSensor.get();
     }
 /*
     // public boolean[] getCurrentIndex(){
