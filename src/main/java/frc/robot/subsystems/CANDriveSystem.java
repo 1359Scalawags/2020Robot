@@ -12,15 +12,12 @@ import frc.robot.helper.*;
 
 import frc.robot.interfaces.scheduler;
 import frc.robot.sendable.PIDSparkMax;
+import frc.robot.sendable.SparkMaxEncoder;
 
 public class CANDriveSystem extends SubsystemBase implements scheduler{  
   private PIDSparkMax[] leftMotors = new PIDSparkMax[2];
   private PIDSparkMax[] rightMotors = new PIDSparkMax[2];
-
-  // private CanMotor rightMotorA;
-  // private CanMotor rightMotorB;
-  // private CanMotor leftMotorA;
-  // private CanMotor leftMotorB;
+  private SparkMaxEncoder[] leftEncoders = new SparkMaxEncoder[2];
   
   private SpeedControllerGroup leftControllerGroup;
   private SpeedControllerGroup rightControllerGroup;
@@ -34,13 +31,14 @@ public class CANDriveSystem extends SubsystemBase implements scheduler{
   public CANDriveSystem() {
     leftMotors[0] = new PIDSparkMax(Drive.CANFrontLeftMotorID);
     leftMotors[1] = new PIDSparkMax(Drive.CANBackLeftMotorID);
+    leftEncoders[0] = leftMotors[0].getEncoder();
 
     rightMotors[0] = new PIDSparkMax(Drive.CANFrontRightMotorID);
     rightMotors[1] = new PIDSparkMax(Drive.CANBackRightMotorID);
 
     
-    leftControllerGroup = new SpeedControllerGroup(leftMotors[0].getMotorController(), leftMotors[1].getMotorController());
-    rightControllerGroup = new SpeedControllerGroup(rightMotors[0].getMotorController(), rightMotors[1].getMotorController());
+    leftControllerGroup = new SpeedControllerGroup(leftMotors[0], leftMotors[1]);
+    rightControllerGroup = new SpeedControllerGroup(rightMotors[0], rightMotors[1]);
 
     diffDrive = new DifferentialDrive(rightControllerGroup, leftControllerGroup);
 
