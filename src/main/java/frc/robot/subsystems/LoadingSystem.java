@@ -130,13 +130,6 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
     public boolean isLoadingChamber() {
         return (this.ballLoadInMotors.get() != 0);
     }
-    
-    public boolean isLoading() {
-        return (ballLoadInMotors.get() != 0);
-    }
-
-    //TODO Write out code for enabling different funtions:
-    //TODO loading, shooting, turning ON/OFF, or reversing
      
 	public boolean rotateChamber(double rotatorSpeed) {
         if(!isLoadingChamber()) {
@@ -180,6 +173,58 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
         return false;
     }
 
+    public boolean[] getBallSlots(){
+        return new boolean[] {
+            ballSlots[0], 
+            ballSlots[1], 
+            ballSlots[2], 
+            ballSlots[3], 
+            ballSlots[4]
+        };
+    }
+
+    /**
+     * Tell the chamber that it has a ball loaded in the lowest slot.
+     */
+    public void setBallLoaded() {
+        if(this.isLoaderIndexed()) {
+            int slot = getSensorValue() / 2;
+            ballSlots[slot] = true;
+        }
+    }
+
+    /**
+     * Tell the chamber that a ball was removed at the shooter.
+     */
+    public void setBallShot() {
+        if(this.isShooterIndexed()) {
+            int slot = getSensorValue() + 5;
+            slot %= 10;
+            ballSlots[slot] = false;
+        }
+    }
+
+    public void updateUpperChamberSlot() {
+        ballSlots[postShooterArraySlot] = this.postShooterSensor.get();
+    }
+
+    public boolean isBallPreloading() {
+        return preLoadSensor.get();
+    }
+/*
+    // public boolean isAtIndex(){
+    //     return indexMarkers[0];
+    // }
+*/
+    public void advanceLoadingSlots() {
+        boolean tempLast = ballSlots[4];
+        ballSlots[4] = ballSlots[3];
+        ballSlots[3] = ballSlots[2];
+        ballSlots[2] = ballSlots[1];
+        ballSlots[1] = ballSlots[0];
+        ballSlots[0] = tempLast;
+    }
+    
     public void updateDash(boolean Override){    
         double chamSpeed = SmartDashboard.getNumber("CANChamberRotatorSpeed", 0);
         if(Override){
@@ -214,61 +259,5 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
         //SmartDashboard.putNumber("PWMBallLoadUpMotors", 0);
     }
 
-    public boolean[] getBallSlots(){
-        return new boolean[] {
-            ballSlots[0], 
-            ballSlots[1], 
-            ballSlots[2], 
-            ballSlots[3], 
-            ballSlots[4]
-        };
-    }
-
-    public void setBallLoaded() {
-        if(this.isLoaderIndexed()) {
-            int slot = getSensorValue() / 2;
-            ballSlots[slot] = true;
-        }
-    }
-
-    public void setBallShot() {
-        if(this.isShooterIndexed()) {
-            int slot = getSensorValue() + 5;
-            slot %= 10;
-            ballSlots[slot] = false;
-        }
-    }
-
-    public void updateUpperChamberSlot() {
-        ballSlots[postShooterArraySlot] = this.postShooterSensor.get();
-    }
-
-    public boolean isBallPreloading() {
-        return preLoadSensor.get();
-    }
-/*
-    // public boolean[] getCurrentIndex(){
-    //     return new boolean[] {
-    //         indexMarkers[0], 
-    //         indexMarkers[1], 
-    //         indexMarkers[2], 
-    //         indexMarkers[3], 
-    //         indexMarkers[4]
-    //     };
-    // }
-
-    // public boolean isAtIndex(){
-    //     return indexMarkers[0];
-    // }
-*/
-    public void advanceLoadingSlots() {
-        boolean tempLast = ballSlots[4];
-        ballSlots[4] = ballSlots[3];
-        ballSlots[3] = ballSlots[2];
-        ballSlots[2] = ballSlots[1];
-        ballSlots[1] = ballSlots[0];
-        ballSlots[0] = tempLast;
-    }
-    
 
 }
