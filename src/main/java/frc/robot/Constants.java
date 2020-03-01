@@ -86,6 +86,13 @@ public final class Constants {
         public static final boolean LIMIT_NOTPRESSED = false;
         public static final double MAX_CLIMB_POSITION = 1;
         public static final double CLIMBER_SCALE_TO_INCHES = 0.5;
+        public static final double P = 0.1;
+        public static final double I = 1e-4;
+        public static final double D = 1;
+        public static final double Ff = 0;
+        public static final double Iz = 0;
+        public static final double MaxOut = 1;
+        public static final double MinOut = -1;
         
         //public static final int PWMClimberSensor = 9;
         //public static double PotToInches = 35.0;

@@ -14,6 +14,13 @@ package frc.robot.subsystems;
 //import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+
+import com.revrobotics.CANEncoder;
+import com.revrobotics.CANPIDController;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.ControlType;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
@@ -29,18 +36,62 @@ public class ClimbSystem extends SubsystemBase { // implements scheduler{
     private DigitalInput minHeightLimit;
     //public AnalogPotentiometer pot;
 
-    private CanMotor climbMotor;
+    private CANSparkMax climbMotor;
+    private CANEncoder climbEncoder;
+    private CANPIDController climbController;
     private boolean climberLocked;
     private Servo ratchet;
+    private double kP, kI, kD, kIz, kFF, kMaxOutput, kMinOutput;
+
     //private boolean ratchetLocked;
 
     public ClimbSystem() {
 
+        //testing branch configuration
+
         minHeightLimit = new DigitalInput(Climb.MinHeightLimitID);
         addChild("MinHeightLimit",minHeightLimit);
 
-        climbMotor = new CanMotor(Climb.CANClimbMotorID);
-        addChild("ClimbMotor", climbMotor);
+
+        //set default PID values
+        kP = Climb.P; 
+        kI = Climb.I;
+        kD = Climb.D; 
+        kIz = Climb.Iz; 
+        kFF = Climb.Ff; 
+        kMaxOutput = Climb.MaxOut; 
+        kMinOutput = Climb.MinOut;
+
+        //create CAN motor
+        climbMotor = new CANSparkMax(Climb.CANClimbMotorID, MotorType.kBrushless);
+        climbMotor.restoreFactoryDefaults();
+        //climbMotor.setInverted(true); 
+
+        //capture encoder and controller
+
+        climbEncoder = climbMotor.getEncoder();
+        climbController = climbMotor.getPIDController();
+        //climbEncoder.setPositionConversionFactor(Climb.CLIMBER_SCALE_TO_INCHES);
+
+
+        climbController.setP(kP);
+        climbController.setI(kI);
+        climbController.setD(kD);
+        climbController.setIZone(kIz);
+        climbController.setFF(kFF);
+        climbController.setOutputRange(kMinOutput, kMaxOutput);
+
+        // display PID coefficients on SmartDashboard
+        SmartDashboard.putNumber("P Gain", kP);
+        SmartDashboard.putNumber("I Gain", kI);
+        SmartDashboard.putNumber("D Gain", kD);
+        SmartDashboard.putNumber("I Zone", kIz);
+        SmartDashboard.putNumber("Feed Forward", kFF);
+        SmartDashboard.putNumber("Max Output", kMaxOutput);
+        SmartDashboard.putNumber("Min Output", kMinOutput);
+        SmartDashboard.putNumber("Set Rotations", 0);
+
+
         
         climberLocked = true;
         //ratchetLocked = true;
@@ -49,14 +100,54 @@ public class ClimbSystem extends SubsystemBase { // implements scheduler{
         addChild("ClimbRatchet", ratchet);
 
         ratchet.setPosition(Climb.RatchetClosed);
-
-        climbMotor.Motor().setInverted(true);  
-        climbMotor.Encoder().setPositionConversionFactor(Climb.CLIMBER_SCALE_TO_INCHES);
         
     }
 
+    /**
+     * The periodic method runs repeatedly during the Telop and Auto Modes (or during those modes in Practice Mode).
+     */
     @Override
     public void periodic() {
+        System.out.println("#####");
+        // read PID coefficients from SmartDashboard
+        double p = SmartDashboard.getNumber("P Gain", 0);
+        double i = SmartDashboard.getNumber("I Gain", 0);
+        double d = SmartDashboard.getNumber("D Gain", 0);
+        double iz = SmartDashboard.getNumber("I Zone", 0);
+        double ff = SmartDashboard.getNumber("Feed Forward", 0);
+        double max = SmartDashboard.getNumber("Max Output", 0);
+        double min = SmartDashboard.getNumber("Min Output", 0);
+        double rotations = SmartDashboard.getNumber("Set Rotations", 0);
+
+        // if PID coefficients on SmartDashboard have changed, write new values to controller
+        if((p != kP)) { climbController.setP(p); kP = p; }
+        if((i != kI)) { climbController.setI(i); kI = i; }
+        if((d != kD)) { climbController.setD(d); kD = d; }
+        if((iz != kIz)) { climbController.setIZone(iz); kIz = iz; }
+        if((ff != kFF)) { climbController.setFF(ff); kFF = ff; }
+        if((max != kMaxOutput) || (min != kMinOutput)) { 
+            climbController.setOutputRange(min, max); 
+            kMinOutput = min; kMaxOutput = max; 
+        }
+
+        /**
+         * PIDController objects are commanded to a set point using the 
+         * SetReference() method.
+         * 
+         * The first parameter is the value of the set point, whose units vary
+         * depending on the control type set in the second parameter.
+         * 
+         * The second parameter is the control type can be set to one of four 
+         * parameters:
+         *  com.revrobotics.ControlType.kDutyCycle
+         *  com.revrobotics.ControlType.kPosition
+         *  com.revrobotics.ControlType.kVelocity
+         *  com.revrobotics.ControlType.kVoltage
+         */
+        climbController.setReference(rotations, ControlType.kPosition);
+        
+        SmartDashboard.putNumber("SetPoint", rotations);
+        SmartDashboard.putNumber("ClimbPosition", climbEncoder.getPosition());
 
     }
 
@@ -74,8 +165,8 @@ public class ClimbSystem extends SubsystemBase { // implements scheduler{
     }
 
     public void lockRatchet() {
-        if(climbMotor.Motor().get() > 0) {
-            climbMotor.Motor().set(0);
+        if(climbMotor.get() > 0) {
+            climbMotor.set(0);
         }
         ratchet.setPosition(Climb.RatchetClosed);
         //ratchetLocked = true; 
@@ -91,7 +182,7 @@ public class ClimbSystem extends SubsystemBase { // implements scheduler{
     }
 
     public boolean isAtTop() {
-        return (climbMotor.Encoder().getPosition() >= Climb.MAX_CLIMB_POSITION);
+        return (climbEncoder.getPosition() >= Climb.MAX_CLIMB_POSITION);
     }
 
     public boolean isAtBottom() {
@@ -107,11 +198,11 @@ public class ClimbSystem extends SubsystemBase { // implements scheduler{
      * @return Returns the position of climber in Inches
      */
     public double getPosition() {
-        return this.climbMotor.Encoder().getPosition(); //com constant
+        return this.climbEncoder.getPosition(); //com constant
     }
 
     public void resetPosition() {
-        this.climbMotor.Encoder().setPosition(0);
+        this.climbEncoder.setPosition(0);
     }
 
     /**

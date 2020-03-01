@@ -86,7 +86,7 @@ public class Robot extends TimedRobot {
         // register systems and set default commands
         try {
             CommandScheduler.getInstance().registerSubsystem(loadingSystem);
-            // CommandScheduler.getInstance().setDefaultCommand(loadingSystem, new IndexLoadChamber());
+            //CommandScheduler.getInstance().setDefaultCommand(loadingSystem, new IndexLoadChamber());
 
             CommandScheduler.getInstance().registerSubsystem(shooterSystem);
             CommandScheduler.getInstance().setDefaultCommand(shooterSystem, new ManualAimShooter() );
@@ -119,7 +119,7 @@ public class Robot extends TimedRobot {
 
         // SmartDashboard.putData("Auto mode", chooser);
 
-
+        /*
         try {
             dashboardScheduler.add(shooterSystem);
             dashboardScheduler.add(loadingSystem);
@@ -132,6 +132,7 @@ public class Robot extends TimedRobot {
             System.out.println("!! Unable to add subsystems to Dashboard Scheduler !!");      
             ex.printStackTrace();
         }
+        */
         System.out.println("reaching the end of the world just fine");
      }
 
