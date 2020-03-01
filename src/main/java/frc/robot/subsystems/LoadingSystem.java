@@ -75,8 +75,8 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
         ballSlots[3] = false;
         ballSlots[4] = false;
 
-        preLoadSensor = new DigitalInput(Load.preLoadSensorID); // TODO: add a constant here
-        postShooterSensor = new DigitalInput(Load.postShotSensorID); // TODO: add a constant here
+        preLoadSensor = new DigitalInput(Load.preLoadSensorID);
+        postShooterSensor = new DigitalInput(Load.postShotSensorID);
 
         chamRotator = new Talon(Load.PWMChamRotMotorID);
 
@@ -127,17 +127,9 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
     //     this.ballLoaderCham.set(speed);
     // }
 
-    // TODO: Remove duplicate method
     public boolean isLoadingChamber() {
         return (this.ballLoadInMotors.get() != 0);
     }
-    
-    public boolean isLoading() {
-        return (ballLoadInMotors.get() != 0);
-    }
-
-    //TODO Write out code for enabling different funtions:
-    //TODO loading, shooting, turning ON/OFF, or reversing
      
 	public boolean rotateChamber(double rotatorSpeed) {
         if(!isLoadingChamber()) {
