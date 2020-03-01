@@ -11,10 +11,11 @@ import frc.robot.Constants.Drive;
 import frc.robot.helper.*;
 
 import frc.robot.interfaces.scheduler;
+import frc.robot.sendable.PIDSparkMax;
 
 public class CANDriveSystem extends SubsystemBase implements scheduler{  
-  private CanMotor[] leftMotors = new CanMotor[2];
-  private CanMotor[] rightMotors = new CanMotor[2];
+  private PIDSparkMax[] leftMotors = new PIDSparkMax[2];
+  private PIDSparkMax[] rightMotors = new PIDSparkMax[2];
 
   // private CanMotor rightMotorA;
   // private CanMotor rightMotorB;
@@ -31,15 +32,15 @@ public class CANDriveSystem extends SubsystemBase implements scheduler{
   boolean reverse = false;    
 
   public CANDriveSystem() {
-    leftMotors[0] = new CanMotor(Drive.CANFrontLeftMotorID);
-    leftMotors[1] = new CanMotor(Drive.CANBackLeftMotorID);
+    leftMotors[0] = new PIDSparkMax(Drive.CANFrontLeftMotorID);
+    leftMotors[1] = new PIDSparkMax(Drive.CANBackLeftMotorID);
 
-    rightMotors[0] = new CanMotor(Drive.CANFrontRightMotorID);
-    rightMotors[1] = new CanMotor(Drive.CANBackRightMotorID);
+    rightMotors[0] = new PIDSparkMax(Drive.CANFrontRightMotorID);
+    rightMotors[1] = new PIDSparkMax(Drive.CANBackRightMotorID);
 
     
-    leftControllerGroup = new SpeedControllerGroup(leftMotors[0].Motor(), leftMotors[1].Motor());
-    rightControllerGroup = new SpeedControllerGroup(rightMotors[0].Motor(), rightMotors[1].Motor());
+    leftControllerGroup = new SpeedControllerGroup(leftMotors[0].getMotorController(), leftMotors[1].getMotorController());
+    rightControllerGroup = new SpeedControllerGroup(rightMotors[0].getMotorController(), rightMotors[1].getMotorController());
 
     diffDrive = new DifferentialDrive(rightControllerGroup, leftControllerGroup);
 
@@ -76,11 +77,11 @@ public class CANDriveSystem extends SubsystemBase implements scheduler{
   }
 
   public double getDistanceLeft() {
-    return leftMotors[0].Encoder().getPosition();
+    return leftMotors[0].getEncoder().getDistance();
 }
 
 public double getDistanceRight() {
-    return rightMotors[0].Encoder().getPosition();
+    return rightMotors[0].getEncoder().getDistance();
 
 }
 

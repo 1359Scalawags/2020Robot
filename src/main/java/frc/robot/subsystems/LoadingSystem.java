@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.Talon;
 import frc.robot.Constants.Load;
 //import frc.robot.helper.*;
-import frc.robot.helper.CanMotor;
+import frc.robot.sendable.PIDSparkMax;
 import frc.robot.interfaces.scheduler;
 
 /**
@@ -17,7 +17,7 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
 
     // private Talon ballLoaderInA;
     private Talon ballLoaderUpA;
-    private CanMotor[] ballLoaderIn;
+    private PIDSparkMax[] ballLoaderIn;
 
     private DigitalInput postShooterSensor;
     private int postShooterArraySlot = 3;
@@ -85,10 +85,10 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
         ballLoaderUpA = new Talon(Load.PWMUpperBallLoad);
         ballLoaderUpA.setInverted(false);
 
-        ballLoaderIn = new CanMotor[2];
+        ballLoaderIn = new PIDSparkMax[2];
 
-        ballLoaderIn[0] = new CanMotor(Load.CANLowerBallLoadA);
-        ballLoaderIn[1] = new CanMotor(Load.CANLowerBallLoadB);
+        ballLoaderIn[0] = new PIDSparkMax(Load.CANLowerBallLoadA);
+        ballLoaderIn[1] = new PIDSparkMax(Load.CANLowerBallLoadB);
         // ballLoaderInA = new Talon(Load.PWMLowerBallLoad);
         // ballLoaderInA.setInverted(false);
         
@@ -235,20 +235,21 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
         double chamSpeed = SmartDashboard.getNumber("CANChamberRotatorSpeed", 0);
         if(Override){
             //double[] pid = SmartDashboard.getNumberArray("ChamberRotatorPID", new double[1]);
-            double loadin = SmartDashboard.getNumber("PWMBallLoadinMotors", 0);
             //double loadup = SmartDashboard.getNumber("PWMBallLoadUpMotors", 0);
             //double loadcham = SmartDashboard.getNumber("PWMBallLoadChamber", 0);
 
             // if(!chamRotator.getPID().equals(pid))
             //     chamRotator.setPID(pid);
-            if(chamSpeed != chamRotator.getSpeed())
-                chamRotator.set(chamSpeed);
-            if(loadin != ballLoadInMotors.get())
-                ballLoadInMotors.set(loadin);
             // if(loadup != ballLoadUpMotors.get())
             //     ballLoadUpMotors.set(loadup);
             // if(loadcham != ballLoaderCham.get())
             //     ballLoaderCham.set(loadcham);
+            
+            double loadin = SmartDashboard.getNumber("PWMBallLoadinMotors", 0);
+            if(chamSpeed != chamRotator.getSpeed())
+                chamRotator.set(chamSpeed);
+            if(loadin != ballLoadInMotors.get())
+                ballLoadInMotors.set(loadin);
         }
         else{
             if(chamSpeed == chamRotator.getSpeed())
