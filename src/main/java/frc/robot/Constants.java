@@ -39,14 +39,14 @@ public final class Constants {
         public static final double gyrokFf =0.1;
         public static final double SystemScale =.01;
         
-        //public static final double fullDriveSpeed = 8;
-        //public static int DriveLeftEncoderA = 6;
-        //public static int DriveLeftEncoderB = 7;
-        //public static int DriveRightEncoderA = 8;
-        //public static int DriveRightEncoderB = 9;
-        //public static int DriveDistanceUltrasonicA = 10;
-        //public static int DriveDistanceUltrasonicB = 11;
-        //public static final double maxLeftTurnRate = 0.75;
+        // public static final double fullDriveSpeed = 8;
+        // public static int DriveLeftEncoderA = 6;
+        // public static int DriveLeftEncoderB = 7;
+        // public static int DriveRightEncoderA = 8;
+        // public static int DriveRightEncoderB = 9;
+        // public static int DriveDistanceUltrasonicA = 10;
+        // public static int DriveDistanceUltrasonicB = 11;
+        // public static final double maxLeftTurnRate = 0.75;
     }
 
     /*------------------------------*/
@@ -61,9 +61,9 @@ public final class Constants {
         public static final int CANBottomBallMotorID = 4;
         public static final double expectedDist =0;
 
-        //public static int BallSpeedEncoderAID = 1;
-        //public static int BallSpeedEncoderBID = 2;
-        //public static double MaxShooterSpeed = 1;
+        // public static int BallSpeedEncoderAID = 1;
+        // public static int BallSpeedEncoderBID = 2;
+        // public static double MaxShooterSpeed = 1;
 
         //Digital I/O
         public static final int shotUpLimit = 11;
@@ -87,14 +87,14 @@ public final class Constants {
         public static final double MAX_CLIMB_POSITION = 1;
         public static final double CLIMBER_SCALE_TO_INCHES = 0.5;
         
-        //public static final int PWMClimberSensor = 9;
-        //public static double PotToInches = 35.0;
-        //public static final double maxClimbSpeed = 1;
+        // public static final int PWMClimberSensor = 9;
+        // public static double PotToInches = 35.0;
+        // public static final double maxClimbSpeed = 1;
 
         //Digital I/O
         public static final int MinHeightLimitID = 5;
 
-        //public static int MaxHeightLimitID = 3;
+        // public static int MaxHeightLimitID = 3;
     }
 
     /*------------------------------*/
@@ -109,16 +109,16 @@ public final class Constants {
         public static final double maxChamberSpeed = 1;
         public static final double indextimer = 0;
         public static final double shooterLoaderduration = 1;
-        public static final double laodIn = 0.8;
-        public static final double laodUp = 0.8;
+        public static final double loadIn = 0.8;
+        public static final double loadUp = 0.8;
         public static final double chamberLoad = 0.8;
         public static final int preLoadSensorID = 6;
         public static final int postShotSensorID = 7;
 
-        //public static double BallLoadUpSpeed = 0.001;
-        //public static double BallLoadInSpeed = 0.001;
-        //public static int BallLimitID = 0;
-        //public static double BallPIDTolerance = 0d;
+        // public static double BallLoadUpSpeed = 0.001;
+        // public static double BallLoadInSpeed = 0.001;
+        // public static int BallLimitID = 0;
+        // public static double BallPIDTolerance = 0d;
         // public static final double LoadShotMotor = 1;
         // public static final int PWMLoadBallUpMotorRightID = 1;
         // public static final int PWMLoadBallInMotorRearID = 0;
@@ -135,14 +135,14 @@ public final class Constants {
 
     /*------------------------------*/
     /**Control Panel System*/
-
-    // public static final class ControlPanel{
-    //     public static int PWMRotateControlPanelID = 10;                              
-    //     public static int RotateEncoderAID = 20;
-    //     public static int RotateEncoderBID = 21;
-    //     public final static I2C.Port COLORSENSOR_I2C = I2C.Port.kOnboard;
-    // }
-
+/*
+    public static final class ControlPanel{
+        public static int PWMRotateControlPanelID = 10;                              
+        public static int RotateEncoderAID = 20;
+        public static int RotateEncoderBID = 21;
+        public final static I2C.Port COLORSENSOR_I2C = I2C.Port.kOnboard;
+    }
+*/
     /*------------------------------*/
     /**Vision System*/
     
@@ -175,6 +175,7 @@ public final class Constants {
     */
 
     /*----------Dpad POV----------*/
+    //**DPAD IS POV, NOT A BUTTON
     /**
      * 0 is UP
      * 45 is UP-RIGHT
