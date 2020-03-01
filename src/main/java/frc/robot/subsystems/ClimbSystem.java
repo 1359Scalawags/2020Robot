@@ -108,7 +108,7 @@ public class ClimbSystem extends SubsystemBase { // implements scheduler{
      */
     @Override
     public void periodic() {
-        System.out.println("#####");
+        // System.out.println("#####");
         // read PID coefficients from SmartDashboard
         double p = SmartDashboard.getNumber("P Gain", 0);
         double i = SmartDashboard.getNumber("I Gain", 0);

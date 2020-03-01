@@ -205,8 +205,8 @@ public class Robot extends TimedRobot {
         // ShuffleboardTab testtab = Shuffleboard.getTab("Test2020");
         // testtab.add(testShooter);
 
-        CommandBase testClimberMotor = new TestClimberMotor();
-        testClimberMotor.schedule();
+        // CommandBase testClimberMotor = new TestClimberMotor();
+        // testClimberMotor.schedule();
         
 
     }
