@@ -27,8 +27,8 @@ import frc.robot.commands.drive.*;
 import frc.robot.commands.shooter.*;
 import frc.robot.commands.climb.*;
 import frc.robot.Constants.Vision;
-import frc.robot.Test.TestClimberMotor;
-import frc.robot.Test.TestNetwork;
+import frc.robot.test.TestClimberMotor;
+import frc.robot.test.TestNetwork;
 
 /**
  * The VM is configured to automatically run this class, and to call the
