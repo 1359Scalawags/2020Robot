@@ -226,14 +226,19 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
         ballSlots[0] = tempLast;
     }
 
-    //TODO: Set advancement for loading and shooting
+    //TODO: Make sure these do their job CORRECTLY and be able to work.
+    //TODO: Put into inferred commands if necessary (Index-Chamber)
 
     public void nextLoadingIndex() {
-        
+        if(isLoaderIndexed() != true) {
+            rotateChamber(Load.maxChamberSpeed);
+        }
     }
 
     public void nextShootingIndex() {
-        
+        if(isShooterIndexed() != true) {
+            rotateChamber(Load.maxChamberSpeed);
+        }
     }
     
     public void updateDash(boolean Override){    
