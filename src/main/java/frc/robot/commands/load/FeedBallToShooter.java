@@ -25,7 +25,7 @@ public class FeedBallToShooter extends CommandBase {
     private Timer timer;
 
     public FeedBallToShooter() {
-        addRequirements(Robot.shooterSystem);
+        addRequirements(Robot.shooterSystem, Robot.loadingSystem);
         timer = new Timer();
     }
 

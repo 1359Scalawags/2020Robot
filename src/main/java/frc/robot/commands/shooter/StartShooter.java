@@ -16,6 +16,7 @@ public class StartShooter extends CommandBase {
 
     @Override
     public void initialize() {
+        // TODO: need to turn on targeting LED's
         Robot.shooterSystem.setShooterSpeed(targetSpeedTop, targetSpeedBottom);
     }
 

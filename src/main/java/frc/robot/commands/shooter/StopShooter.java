@@ -20,4 +20,8 @@ public class StopShooter extends CommandBase {
         return (Robot.shooterSystem.getShooterSpeedTop() == 0 && Robot.shooterSystem.getShooterSpeedBottom() == 0);
     }
 
+    @Override
+    public void end(boolean interrupted) {
+        //TODO: turn off targeting LED's
+    }
 }
