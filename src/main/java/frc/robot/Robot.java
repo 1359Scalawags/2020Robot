@@ -86,7 +86,7 @@ public class Robot extends TimedRobot {
         // register systems and set default commands
         try {
             CommandScheduler.getInstance().registerSubsystem(loadingSystem);
-            CommandScheduler.getInstance().setDefaultCommand(loadingSystem, new IndexLoadChamber());
+            // CommandScheduler.getInstance().setDefaultCommand(loadingSystem, new IndexLoadChamber());
 
             CommandScheduler.getInstance().registerSubsystem(shooterSystem);
             CommandScheduler.getInstance().setDefaultCommand(shooterSystem, new ManualAimShooter() );
