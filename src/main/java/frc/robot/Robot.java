@@ -25,6 +25,7 @@ import frc.robot.subsystems.*;
 import frc.robot.commands.drive.*;
 //import frc.robot.commands.load.IndexLoadChamber;
 import frc.robot.commands.shooter.*;
+import frc.robot.commands.vision.PixyCommand;
 import frc.robot.commands.climb.*;
 import frc.robot.Constants.Vision;
 import frc.robot.test.TestClimberMotor;
