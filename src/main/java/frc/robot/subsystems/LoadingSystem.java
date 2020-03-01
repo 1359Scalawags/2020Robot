@@ -6,7 +6,6 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.Talon;
 import frc.robot.Constants.Load;
-//import frc.robot.helper.*;
 import frc.robot.sendable.PIDSparkMax;
 import frc.robot.interfaces.scheduler;
 
