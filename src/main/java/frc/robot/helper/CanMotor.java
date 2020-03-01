@@ -161,7 +161,6 @@ public class CanMotor implements SpeedController, Sendable {
 
     @Override
     public void initSendable(SendableBuilder builder) {
-        // TODO Auto-generated method stub
         builder.setSmartDashboardType("Speed Controller");
         builder.setActuator(true);
         builder.setSafeState(this::disable);
