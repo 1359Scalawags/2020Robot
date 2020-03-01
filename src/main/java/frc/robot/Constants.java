@@ -112,6 +112,8 @@ public final class Constants {
         public static final double laodIn = 0.8;
         public static final double laodUp = 0.8;
         public static final double chamberLoad = 0.8;
+        public static final int preLoadSensorID = 6;
+        public static final int postShotSensorID = 7;
 
         //public static double BallLoadUpSpeed = 0.001;
         //public static double BallLoadInSpeed = 0.001;
