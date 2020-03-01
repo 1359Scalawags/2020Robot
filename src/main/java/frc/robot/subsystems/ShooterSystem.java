@@ -8,14 +8,15 @@ import frc.robot.Constants.*;
 import frc.robot.helper.*;
 
 import frc.robot.interfaces.scheduler;
+import frc.robot.sendable.PIDSparkMax;
 /**
  *
  */
 public class ShooterSystem extends SubsystemBase implements scheduler{
 
     
-    private CanMotor topMotor;
-    private CanMotor bottomMotor;
+    private PIDSparkMax topMotor;
+    private PIDSparkMax bottomMotor;
     private Spark shootRotatorX;
     private Spark shootRotatorY;
     private Spark shotLoader;
@@ -32,8 +33,8 @@ public class ShooterSystem extends SubsystemBase implements scheduler{
         upLimit = new DigitalInput(Shooter.shotUpLimit);
         downLimit = new DigitalInput(Shooter.shotDownLimit);
 
-        topMotor = new CanMotor(Shooter.CANTopBallMotorID);
-        bottomMotor = new CanMotor(Shooter.CANBottomBallMotorID);
+        topMotor = new PIDSparkMax(Shooter.CANTopBallMotorID);
+        bottomMotor = new PIDSparkMax(Shooter.CANBottomBallMotorID);
         
         shootRotatorX = new Spark(Shooter.PWMShootRotatorLeftRightID);
         shootRotatorX.setInverted(false);
@@ -60,10 +61,10 @@ public class ShooterSystem extends SubsystemBase implements scheduler{
     }
 
     public double getShooterSpeedTop() {
-        return topMotor.Motor().get();
+        return topMotor.get();
     }
     public double getShooterSpeedBottom() {
-        return topMotor.Motor().get();
+        return topMotor.get();
     }
 
     // public Spark[] getRotateMotors(){
