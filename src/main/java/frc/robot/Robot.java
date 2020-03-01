@@ -29,7 +29,6 @@ import frc.robot.commands.climb.*;
 import frc.robot.Constants.Vision;
 import frc.robot.Test.TestClimberMotor;
 import frc.robot.Test.TestNetwork;
-import frc.robot.Test.TestUltrasonicSensor;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -88,6 +87,8 @@ public class Robot extends TimedRobot {
         try {
             CommandScheduler.getInstance().registerSubsystem(loadingSystem);
             CommandScheduler.getInstance().setDefaultCommand(loadingSystem, new IndexLoadChamber());
+
+            CommandScheduler.getInstance().registerSubsystem(Shooter);
     
             CommandScheduler.getInstance().registerSubsystem(driveSystem);
             CommandScheduler.getInstance().setDefaultCommand(driveSystem, new ManualDrive());
