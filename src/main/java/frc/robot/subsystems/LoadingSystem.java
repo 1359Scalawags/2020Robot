@@ -127,6 +127,7 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
     //     this.ballLoaderCham.set(speed);
     // }
 
+    // TODO: Remove duplicate method
     public boolean isLoadingChamber() {
         return (this.ballLoadInMotors.get() != 0);
     }
