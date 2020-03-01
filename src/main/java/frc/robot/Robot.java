@@ -89,7 +89,7 @@ public class Robot extends TimedRobot {
             CommandScheduler.getInstance().setDefaultCommand(loadingSystem, new IndexLoadChamber());
 
             CommandScheduler.getInstance().registerSubsystem(shooterSystem);
-            CommandScheduler.getInstance().setDefaultCommand(shooterSystem, new ManualAimShooter());
+            CommandScheduler.getInstance().setDefaultCommand(shooterSystem, new ManualAimShooter() );
     
             CommandScheduler.getInstance().registerSubsystem(driveSystem);
             CommandScheduler.getInstance().setDefaultCommand(driveSystem, new ManualDrive());
