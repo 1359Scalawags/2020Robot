@@ -101,7 +101,7 @@ public final class Constants {
     /**Load System*/
 
     public static final class Load{
-        public static final int PWMChamRotMotorID = 1; //TODO check if this id is correct?
+        public static final int PWMChamRotMotorID = 1;
         public static final int PWMLoadShotMotorID = 5;
         public static final int PWMLowerBallLoad = 4;
         public static final int PWMUpperBallLoad = 2;
