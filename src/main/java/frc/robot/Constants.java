@@ -128,6 +128,8 @@ public final class Constants {
         public static final int LoadSensorD = 3;
         public static final int LoadSensorE = 4;
         public static final int ballSensor = 5;
+        public static final int preLoadSenor = 6;
+        public static final int postShootSensor = 7;
     
     }
 
