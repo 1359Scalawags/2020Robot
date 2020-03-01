@@ -2,7 +2,6 @@ package frc.robot.commands.load;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants.Load;
-import frc.robot.subsystems.LoadingSystem;
 import frc.robot.Robot;
 import edu.wpi.first.wpilibj.Timer;
 
@@ -42,7 +41,8 @@ public class IndexLoadChamber extends CommandBase{
     // Called once after isFinished returns true
     @Override
     public void end(boolean interrupted) {
-        Robot.loadingSystem.advanceLoadingSlots();
+        Robot.loadingSystem.advanceBallSlots();
+        Robot.loadingSystem.nextLoadingIndex();
     }
 
 }

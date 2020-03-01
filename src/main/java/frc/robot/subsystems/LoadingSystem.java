@@ -216,18 +216,24 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
     public boolean isBallPreloading() {
         return preLoadSensor.get();
     }
-/*
-    // public boolean isAtIndex(){
-    //     return indexMarkers[0];
-    // }
-*/
-    public void advanceLoadingSlots() {
+    
+    public void advanceBallSlots() {
         boolean tempLast = ballSlots[4];
         ballSlots[4] = ballSlots[3];
         ballSlots[3] = ballSlots[2];
         ballSlots[2] = ballSlots[1];
         ballSlots[1] = ballSlots[0];
         ballSlots[0] = tempLast;
+    }
+
+    //TODO: Set advancement for loading and shooting
+
+    public void nextLoadingIndex() {
+        
+    }
+
+    public void nextShootingIndex() {
+        
     }
     
     public void updateDash(boolean Override){    
