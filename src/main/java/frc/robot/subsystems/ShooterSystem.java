@@ -74,20 +74,9 @@ public class ShooterSystem extends SubsystemBase implements scheduler{
     //     return Motors;
     // }
 
-	public void rotateShooter(double speed1, double speed2) {
-        if(speed1 > Shooter.maxShooterTurnRate)
-            speed1=Shooter.maxShooterTurnRate;
-        else if(speed1 < -Shooter.maxShooterTurnRate)
-            speed1=-Shooter.maxShooterTurnRate;
-
-        if(speed2 > Shooter.maxShooterTurnRate)
-            speed2=Shooter.maxShooterTurnRate;
-        else if(speed2 < -Shooter.maxShooterTurnRate)
-            speed2=-Shooter.maxShooterTurnRate;
-
-        //TODO check if between limit switchs
-        shootRotatorX.set(speed1);
-        shootRotatorY.set(speed2);
+	public void rotateShooter(double Horizontal, double Vetical) {
+        rotateHorizontally(Horizontal);
+        rotateVertically(Vetical);
     }
     
     /**

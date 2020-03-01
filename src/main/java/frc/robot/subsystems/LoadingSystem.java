@@ -75,8 +75,8 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
         ballSlots[3] = false;
         ballSlots[4] = false;
 
-        preLoadSensor = new DigitalInput(Load.preLoadSensorID);
-        postShooterSensor = new DigitalInput(Load.postShotSensorID);
+        preLoadSensor = new DigitalInput(Load.preLoadSenor);
+        postShooterSensor = new DigitalInput(Load.postShootSensor);
 
         chamRotator = new Talon(Load.PWMChamRotMotorID);
 
