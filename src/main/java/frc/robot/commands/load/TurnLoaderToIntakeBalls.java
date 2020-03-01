@@ -9,26 +9,28 @@ import frc.robot.Constants.Load;
 
 public class TurnLoaderToIntakeBalls extends CommandBase{
 
+    //TODO: will need a timer for when sensor is tripped
+
     public TurnLoaderToIntakeBalls() {
         addRequirements(Robot.loadingSystem);
     }
 
     @Override
     public void initialize() {
-        // Robot.loadingSystem.setLoadInMotors(0.7);
-        // Robot.loadingSystem.setLoadUpMotors(0.8);
-        // Robot.loadingSystem.setChamberLoadMotor(0.9);
-
-        
+        // TODO: check if a ball is already in loading slot before starting   
         Robot.loadingSystem.setLoadInMotors(Load.laodIn);
-        //Robot.loadingSystem.setLoadUpMotors(Load.laodUp);
-        //Robot.loadingSystem.setChamberLoadMotor(Load.chamberLoad);
         
     }
 
-    // Make this return true when this Command no longer needs to run execute()
+    @Override 
+    public void execute() {
+        // TODO: when ball is sensed in loader, start a timer
+        
+    }
+
     @Override
     public boolean isFinished() {
+        // TODO: is finished when timer is done
         return true;
     }
 
