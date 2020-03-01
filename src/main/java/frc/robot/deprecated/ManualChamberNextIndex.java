@@ -15,8 +15,8 @@
 
 //     @Override
 //     public void execute() {
-//         //TODO make it so that when the Y button is pressed,
-//         //TODO the chamber goes to the next index regardless of loading or shooting
+//         
+//         
 
 
 //         //double speed = Robot.oi.getRotatorSpeed();

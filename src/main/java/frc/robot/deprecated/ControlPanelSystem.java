@@ -48,7 +48,7 @@
 //     // public static Color YELLOW = ColorMatch.makeColor(0.31467456, 0.5550923, 0.13020141);
 //     // public static Color BETWEEN = ColorMatch.makeColor(0.2308, 0.5239, 0.2452);
 
-//     // TODO: Is this a NEO or brushed motor? Probably brushed.
+//    
 //     private Spark rotateMotor;
 //     private Encoder rotateEncoder;
 //     //private double testRotations;

@@ -30,7 +30,7 @@
 //     // Called repeatedly when this Command is scheduled to run
 //     @Override
 //     public void execute() {
-//         String current = "";//TODO get value from field
+//         String current = "";
 //         Robot.controlPanelSystem.setExpected(current);
 //     }
 
