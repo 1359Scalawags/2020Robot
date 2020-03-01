@@ -103,8 +103,12 @@ public class ClimbSystem extends SubsystemBase { // implements scheduler{
         
     }
 
+    /**
+     * The periodic method runs repeatedly during the Telop and Auto Modes (or during those modes in Practice Mode).
+     */
     @Override
     public void periodic() {
+        System.out.println("#####");
         // read PID coefficients from SmartDashboard
         double p = SmartDashboard.getNumber("P Gain", 0);
         double i = SmartDashboard.getNumber("I Gain", 0);
@@ -143,7 +147,7 @@ public class ClimbSystem extends SubsystemBase { // implements scheduler{
         climbController.setReference(rotations, ControlType.kPosition);
         
         SmartDashboard.putNumber("SetPoint", rotations);
-        SmartDashboard.putNumber("ProcessVariable", climbEncoder.getPosition());
+        SmartDashboard.putNumber("ClimbPosition", climbEncoder.getPosition());
 
     }
 
@@ -161,8 +165,8 @@ public class ClimbSystem extends SubsystemBase { // implements scheduler{
     }
 
     public void lockRatchet() {
-        if(climbMotor.Motor().get() > 0) {
-            climbMotor.Motor().set(0);
+        if(climbMotor.get() > 0) {
+            climbMotor.set(0);
         }
         ratchet.setPosition(Climb.RatchetClosed);
         //ratchetLocked = true; 
@@ -178,7 +182,7 @@ public class ClimbSystem extends SubsystemBase { // implements scheduler{
     }
 
     public boolean isAtTop() {
-        return (climbMotor.Encoder().getPosition() >= Climb.MAX_CLIMB_POSITION);
+        return (climbEncoder.getPosition() >= Climb.MAX_CLIMB_POSITION);
     }
 
     public boolean isAtBottom() {
@@ -194,11 +198,11 @@ public class ClimbSystem extends SubsystemBase { // implements scheduler{
      * @return Returns the position of climber in Inches
      */
     public double getPosition() {
-        return this.climbMotor.Encoder().getPosition(); //com constant
+        return this.climbEncoder.getPosition(); //com constant
     }
 
     public void resetPosition() {
-        this.climbMotor.Encoder().setPosition(0);
+        this.climbEncoder.setPosition(0);
     }
 
     /**
