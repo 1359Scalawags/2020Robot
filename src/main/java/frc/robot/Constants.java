@@ -132,6 +132,9 @@ public final class Constants {
         public static final int ballSensor = 5;
         public static final int preLoadSenor = 6;
         public static final int postShootSensor = 7;
+
+		public static final int CANLowerBallLoadA = 21;
+		public static final int CANLowerBallLoadB = 20;
     
     }
 

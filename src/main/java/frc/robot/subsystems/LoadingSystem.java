@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.Talon;
 import frc.robot.Constants.Load;
 //import frc.robot.helper.*;
-
+import frc.robot.helper.CanMotor;
 import frc.robot.interfaces.scheduler;
 
 /**
@@ -15,8 +15,9 @@ import frc.robot.interfaces.scheduler;
  */
 public class LoadingSystem extends SubsystemBase implements scheduler{
 
-    private Talon ballLoaderInA;
+    // private Talon ballLoaderInA;
     private Talon ballLoaderUpA;
+    private CanMotor[] ballLoaderIn;
 
     private DigitalInput postShooterSensor;
     private int postShooterArraySlot = 3;
@@ -80,13 +81,18 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
 
         chamRotator = new Talon(Load.PWMChamRotMotorID);
 
-        ballLoaderInA = new Talon(Load.PWMLowerBallLoad);
-        ballLoaderInA.setInverted(false);
         
         ballLoaderUpA = new Talon(Load.PWMUpperBallLoad);
         ballLoaderUpA.setInverted(false);
+
+        ballLoaderIn = new CanMotor[2];
+
+        ballLoaderIn[0] = new CanMotor(Load.CANLowerBallLoadA);
+        ballLoaderIn[1] = new CanMotor(Load.CANLowerBallLoadB);
+        // ballLoaderInA = new Talon(Load.PWMLowerBallLoad);
+        // ballLoaderInA.setInverted(false);
         
-        ballLoadInMotors = new SpeedControllerGroup(ballLoaderInA, ballLoaderUpA);
+        ballLoadInMotors = new SpeedControllerGroup(ballLoaderUpA, ballLoaderIn);
         
     }
 
