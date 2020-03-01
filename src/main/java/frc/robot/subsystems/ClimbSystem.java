@@ -14,11 +14,16 @@ package frc.robot.subsystems;
 //import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+
+import com.revrobotics.ControlType;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 import frc.robot.Constants.Climb;
-import frc.robot.helper.CanMotor;
+import frc.robot.sendable.PIDSparkMax;
+import frc.robot.sendable.SparkMaxEncoder;
 import edu.wpi.first.wpilibj.Servo;
 import frc.robot.interfaces.scheduler;
 //import edu.wpi.first.wpilibj.SpeedController;
@@ -29,7 +34,8 @@ public class ClimbSystem extends SubsystemBase { // implements scheduler{
     private DigitalInput minHeightLimit;
     //public AnalogPotentiometer pot;
 
-    private CanMotor climbMotor;
+    private PIDSparkMax climbMotor;
+    private SparkMaxEncoder climbEncoder;
     private boolean climberLocked;
     private Servo ratchet;
     //private boolean ratchetLocked;
@@ -39,8 +45,10 @@ public class ClimbSystem extends SubsystemBase { // implements scheduler{
         minHeightLimit = new DigitalInput(Climb.MinHeightLimitID);
         addChild("MinHeightLimit",minHeightLimit);
 
-        climbMotor = new CanMotor(Climb.CANClimbMotorID);
+        climbMotor = new PIDSparkMax(Climb.CANClimbMotorID);
         addChild("ClimbMotor", climbMotor);
+        climbEncoder = climbMotor.getEncoder();
+        addChild("ClimbEncoder", climbEncoder);
         
         climberLocked = true;
         //ratchetLocked = true;
@@ -50,8 +58,8 @@ public class ClimbSystem extends SubsystemBase { // implements scheduler{
 
         ratchet.setPosition(Climb.RatchetClosed);
 
-        climbMotor.Motor().setInverted(true);  
-        climbMotor.Encoder().setPositionConversionFactor(Climb.CLIMBER_SCALE_TO_INCHES);
+        climbMotor.setInverted(true);  
+        climbMotor.getEncoder().setPositionConversionFactor(Climb.CLIMBER_SCALE_TO_INCHES);
         
     }
 
@@ -74,8 +82,8 @@ public class ClimbSystem extends SubsystemBase { // implements scheduler{
     }
 
     public void lockRatchet() {
-        if(climbMotor.Motor().get() > 0) {
-            climbMotor.Motor().set(0);
+        if(climbMotor.get() > 0) {
+            climbMotor.set(0);
         }
         ratchet.setPosition(Climb.RatchetClosed);
         //ratchetLocked = true; 
@@ -91,7 +99,7 @@ public class ClimbSystem extends SubsystemBase { // implements scheduler{
     }
 
     public boolean isAtTop() {
-        return (climbMotor.Encoder().getPosition() >= Climb.MAX_CLIMB_POSITION);
+        return (climbMotor.getEncoder().getDistance() >= Climb.MAX_CLIMB_POSITION);
     }
 
     public boolean isAtBottom() {
@@ -107,11 +115,11 @@ public class ClimbSystem extends SubsystemBase { // implements scheduler{
      * @return Returns the position of climber in Inches
      */
     public double getPosition() {
-        return this.climbMotor.Encoder().getPosition(); //com constant
+        return this.climbMotor.getEncoder().getDistance(); //com constant
     }
 
     public void resetPosition() {
-        this.climbMotor.Encoder().setPosition(0);
+        this.climbMotor.getEncoder().reset();
     }
 
     /**
