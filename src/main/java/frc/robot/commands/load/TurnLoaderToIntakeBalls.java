@@ -18,7 +18,7 @@ public class TurnLoaderToIntakeBalls extends CommandBase{
     @Override
     public void initialize() {
         // TODO: check if a ball is already in loading slot before starting   
-        Robot.loadingSystem.setLoadInMotors(Load.laodIn);
+        Robot.loadingSystem.setLoadInMotors(Load.loadIn);
         
     }
 
