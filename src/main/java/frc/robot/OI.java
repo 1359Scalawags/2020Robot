@@ -237,15 +237,20 @@ public class OI {
   }
  
   public double getClimbSpeed() {
-    return assistController.getY(Hand.kLeft);
+    if(Math.abs(assistController.getY(Hand.kLeft)) > Constants.controllerDeadZone) {
+        return assistController.getY(Hand.kLeft);
+    } else {
+      return 0;
+    }
+
   }
  
   public double getRotatorSpeed() {
-    return assistController.getX(Hand.kRight);
+    return assistController.getX(Hand.kRight); //TODO: add dead zone
   }
 
 	public double getAimXSpeed() {
-    return assistController.getX(Hand.kLeft);
+    return assistController.getX(Hand.kLeft); //TODO: add dead zone
   }
 
 	public double getAimYSpeed() {
