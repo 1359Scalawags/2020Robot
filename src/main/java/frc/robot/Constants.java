@@ -84,7 +84,7 @@ public final class Constants {
         public static final double RatchetClosed = 0;
         public static final boolean LIMIT_PRESSED = true;
         public static final boolean LIMIT_NOTPRESSED = false;
-        public static final double MAX_CLIMB_POSITION = 1;
+        public static final double MAX_CLIMB_POSITION = 10000;
         public static final double CLIMBER_SCALE_TO_INCHES = 0.5;
         
         // public static final int PWMClimberSensor = 9;
