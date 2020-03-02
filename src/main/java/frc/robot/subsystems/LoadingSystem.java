@@ -79,6 +79,7 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
         postShooterSensor = new DigitalInput(Load.postShootSensor);
 
         chamRotator = new Talon(Load.PWMChamRotMotorID);
+        chamRotator.setInverted(true);
 
         
         ballLoaderUpA = new Talon(Load.PWMUpperBallLoad);

@@ -42,7 +42,7 @@ public class ShooterSystem extends SubsystemBase implements scheduler{
         shootRotatorY.setInverted(false);
         
         shotLoader = new Spark(Load.PWMLoadShotMotorID);
-        shotLoader.setInverted(false);
+        shotLoader.setInverted(true);
     }
     
     /**
@@ -56,7 +56,7 @@ public class ShooterSystem extends SubsystemBase implements scheduler{
     }
 
     public void setShotLoaderSpeed(double loader) {
-        shotLoader.setSpeed(loader);
+        shotLoader.setSpeed(loader * 0.5);
     }
 
     public double getShooterSpeedTop() {
