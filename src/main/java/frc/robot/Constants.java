@@ -107,7 +107,8 @@ public final class Constants {
         public static final int PWMUpperBallLoad = 2;
         public static final int PWMLoadBallUpMotorLeftID = 3;
         public static final double maxChamberSpeed = 1;
-        public static final double indextimer = 0;
+        public static final double indextimer = 0.1;
+        public static final double MaxIndexTime = 3;
         public static final double shooterLoaderduration = 1;
         public static final double loadIn = 0.8;
         public static final double loadUp = 0.8;
