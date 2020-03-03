@@ -63,10 +63,15 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
 
         indexSensors = new DigitalInput[5];
         indexSensors[0] = new DigitalInput(Load.LoadSensorA);
+        addChild("IndexSensor0", preLoadSensor);
         indexSensors[1] = new DigitalInput(Load.LoadSensorB);
+        addChild("IndexSensor1", preLoadSensor);
         indexSensors[2] = new DigitalInput(Load.LoadSensorC);
+        addChild("DigitalInput2", preLoadSensor);
         indexSensors[3] = new DigitalInput(Load.LoadSensorD);
+        addChild("DigitalInput3", preLoadSensor);
         indexSensors[4] = new DigitalInput(Load.LoadSensorE);
+        addChild("DigitalInput4", preLoadSensor);
 
         ballSlots = new boolean[5];
         ballSlots[0] = false;
@@ -76,19 +81,27 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
         ballSlots[4] = false;
 
         preLoadSensor = new DigitalInput(Load.preLoadSenor);
+        addChild("PreLoadSensor", preLoadSensor);
         postShooterSensor = new DigitalInput(Load.postShootSensor);
+        addChild("PostShooterSensor", postShooterSensor);
 
         chamRotator = new Talon(Load.PWMChamRotMotorID);
+        addChild("ChamberRotater", chamRotator);
         chamRotator.setInverted(true);
+        addChild("ChamberRotator", chamRotator);
 
         
         ballLoaderUpA = new Talon(Load.PWMUpperBallLoad);
+        addChild("BallLoaderUpA", ballLoaderUpA);
         ballLoaderUpA.setInverted(false);
+        addChild("BallLoaderUpA", ballLoaderUpA);
 
         ballLoaderIn = new PIDSparkMax[2];
 
         ballLoaderIn[0] = new PIDSparkMax(Load.CANLowerBallLoadA);
+        addChild("LowerBallLaodA", ballLoaderUpA);
         ballLoaderIn[1] = new PIDSparkMax(Load.CANLowerBallLoadB);
+        addChild("LowerBallLaodB", ballLoaderUpA);
         // ballLoaderInA = new Talon(Load.PWMLowerBallLoad);
         // ballLoaderInA.setInverted(false);
         
