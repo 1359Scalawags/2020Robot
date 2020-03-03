@@ -11,6 +11,9 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+
+import com.revrobotics.ControlType;
+
 import edu.wpi.first.wpilibj.DigitalInput;
 import frc.robot.Constants.Climb;
 import frc.robot.sendable.PIDSparkMax;
@@ -110,10 +113,14 @@ public class ClimbSystem extends SubsystemBase { // implements scheduler{
         climbEncoder.reset();
     }
 
+
+    //TODO: Rewrite a new moveTo() method using absolute position
+
     /**
      * 
      * @param speed Positive numbers elevate...negative numbers climb.
      */
+    @Deprecated(forRemoval = true)
     public void move(double speed) {
         if (climberLocked) {
             climbMotor.set(0);
@@ -132,6 +139,11 @@ public class ClimbSystem extends SubsystemBase { // implements scheduler{
                 }
             }
         }
+    }
+
+    public void gotoPosition(double position) {
+        climbMotor.setControlType(ControlType.kPosition);
+        climbMotor.setSetpoint(position);
     }
 
     public void testMotor(double speed){
