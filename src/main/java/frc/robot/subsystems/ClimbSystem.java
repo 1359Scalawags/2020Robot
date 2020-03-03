@@ -110,10 +110,14 @@ public class ClimbSystem extends SubsystemBase { // implements scheduler{
         climbEncoder.reset();
     }
 
+
+    //TODO: Rewrite a new moveTo() method using absolute position
+
     /**
      * 
      * @param speed Positive numbers elevate...negative numbers climb.
      */
+    @Deprecated(forRemoval = true)
     public void move(double speed) {
         if (climberLocked) {
             climbMotor.set(0);
