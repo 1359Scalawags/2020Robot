@@ -22,7 +22,7 @@ public class AutoClimberExtend extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     @Override
     public void execute() {
-        Robot.climbSystem.gotoPosition(Climb.MAX_CLIMB_POSITION);
+        Robot.climbSystem.MoveTo(Climb.MAX_CLIMB_POSITION);
     }
 
     // Make this return true when this Command no longer needs to run execute()

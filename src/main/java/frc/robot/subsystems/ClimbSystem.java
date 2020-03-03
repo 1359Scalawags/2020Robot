@@ -16,6 +16,7 @@ import com.revrobotics.ControlType;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import frc.robot.Constants.Climb;
+import frc.robot.helper.Utilities;
 import frc.robot.sendable.PIDSparkMax;
 import frc.robot.sendable.SparkMaxEncoder;
 import edu.wpi.first.wpilibj.Servo;
@@ -37,6 +38,7 @@ public class ClimbSystem extends SubsystemBase { // implements scheduler{
         addChild("MinHeightLimit",minHeightLimit);
 
         climbMotor = new PIDSparkMax(Climb.CANClimbMotorID);
+        climbMotor.setControlType(ControlType.kPosition);
         climbEncoder = climbMotor.getEncoder();
         addChild("ClimbMotor", climbMotor);
         addChild("ClimbEncoder", climbEncoder);
@@ -52,12 +54,16 @@ public class ClimbSystem extends SubsystemBase { // implements scheduler{
 
         climbMotor.setInverted(true);  
         climbEncoder.setPositionConversionFactor(Climb.CLIMBER_SCALE_TO_INCHES);
-        
+        climbEncoder.reset();
     }
 
     @Override
     public void periodic() {
         SmartDashboard.putBoolean("ClimberLocked", climberLocked);
+        if(isAtBottom() && climbEncoder.getDistance() != 0) {
+            stop();
+            resetPosition();
+        }
     }
 
     /**
@@ -116,35 +122,45 @@ public class ClimbSystem extends SubsystemBase { // implements scheduler{
 
     //TODO: Rewrite a new moveTo() method using absolute position
 
-    /**
-     * 
-     * @param speed Positive numbers elevate...negative numbers climb.
-     */
-    @Deprecated(forRemoval = true)
-    public void move(double speed) {
-        if (climberLocked) {
-            climbMotor.set(0);
-        } else {
-            if (speed > 0) {
-                if (!isAtTop() && !isRatchetLocked()) {
-                    climbMotor.set(speed);
-                } else {
-                    climbMotor.set(0);
-                }
-            } else {
-                if (minHeightLimit.get() == Climb.LIMIT_NOTPRESSED) {
-                    climbMotor.set(speed);
-                } else {
-                    climbMotor.set(0);
-                }
+    public void MoveTo(double position) {
+        double currentPosition = climbEncoder.getDistance();
+        position = Utilities.Clamp(position, Climb.MIN_CLIMB_POSITION, Climb.MAX_CLIMB_POSITION);
+        if(!isClimberLocked()) {
+            if(!isRatchetLocked() || position < currentPosition){
+                climbMotor.setSetpoint(position);
             }
         }
     }
 
-    public void gotoPosition(double position) {
-        climbMotor.setControlType(ControlType.kPosition);
-        climbMotor.setSetpoint(position);
-    }
+    // /**
+    //  * 
+    //  * @param speed Positive numbers elevate...negative numbers climb.
+    //  */
+    // @Deprecated(forRemoval = true)
+    // public void move(double speed) {
+    //     if (climberLocked) {
+    //         climbMotor.set(0);
+    //     } else {
+    //         if (speed > 0) {
+    //             if (!isAtTop() && !isRatchetLocked()) {
+    //                 climbMotor.set(speed);
+    //             } else {
+    //                 climbMotor.set(0);
+    //             }
+    //         } else {
+    //             if (minHeightLimit.get() == Climb.LIMIT_NOTPRESSED) {
+    //                 climbMotor.set(speed);
+    //             } else {
+    //                 climbMotor.set(0);
+    //             }
+    //         }
+    //     }
+    // }
+
+    // public void gotoPosition(double position) {
+    //     climbMotor.setControlType(ControlType.kPosition);
+    //     climbMotor.setSetpoint(position);
+    // }
 
     public void testMotor(double speed){
         climbMotor.set(speed);
