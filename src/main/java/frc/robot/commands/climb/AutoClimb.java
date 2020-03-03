@@ -32,7 +32,7 @@ public class AutoClimb extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     @Override
     public void execute() {
-        Robot.climbSystem.move(speed);
+        Robot.climbSystem.MoveTo(speed);
     }
 
     // Make this return true when this Command no longer needs to run execute()

@@ -129,6 +129,8 @@ public class ClimbSystem extends SubsystemBase { // implements scheduler{
             if(!isRatchetLocked() || position < currentPosition){
                 climbMotor.setSetpoint(position);
             }
+        } else {
+            stop();
         }
     }
 
