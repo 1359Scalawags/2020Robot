@@ -39,7 +39,7 @@ public class ManualClimb extends CommandBase {
         double currentPosition = Robot.climbSystem.getPosition();
         double speed = Robot.oi.getClimbSpeed();
         double newPosition = currentPosition + speed;
-        Robot.climbSystem.MoveTo(newPosition);
+        Robot.climbSystem.moveTo(newPosition);
     }
 
     // Make this return true when this Command no longer needs to run execute()
