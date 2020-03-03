@@ -84,7 +84,7 @@ public final class Constants {
         public static final double RatchetClosed = 0;
         public static final boolean LIMIT_PRESSED = true;
         public static final boolean LIMIT_NOTPRESSED = false;
-        public static final double MAX_CLIMB_POSITION = 1;
+        public static final double MAX_CLIMB_POSITION = 10000;
         public static final double CLIMBER_SCALE_TO_INCHES = 0.5;
         
         // public static final int PWMClimberSensor = 9;
@@ -107,7 +107,8 @@ public final class Constants {
         public static final int PWMUpperBallLoad = 2;
         public static final int PWMLoadBallUpMotorLeftID = 3;
         public static final double maxChamberSpeed = 1;
-        public static final double indextimer = 0;
+        public static final double indextimer = 0.1;
+        public static final double MaxIndexTime = 3;
         public static final double shooterLoaderduration = 1;
         public static final double loadIn = 0.8;
         public static final double loadUp = 0.8;

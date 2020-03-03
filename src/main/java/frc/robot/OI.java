@@ -237,19 +237,35 @@ public class OI {
   }
  
   public double getClimbSpeed() {
-    return assistController.getY(Hand.kLeft);
+    if(Math.abs(assistController.getY(Hand.kLeft)) > Constants.controllerDeadZone) {
+        return assistController.getY(Hand.kLeft);
+    } else {
+      return 0;
+    }
   }
  
   public double getRotatorSpeed() {
-    return assistController.getX(Hand.kRight);
+    if(Math.abs(assistController.getX(Hand.kRight)) > Constants.controllerDeadZone) {
+        return assistController.getX(Hand.kRight);
+    } else {
+      return 0;
+    }
   }
 
 	public double getAimXSpeed() {
-    return assistController.getX(Hand.kLeft);
+    if(Math.abs(assistController.getX(Hand.kLeft)) > Constants.controllerDeadZone) {
+        return assistController.getX(Hand.kLeft);
+    } else {
+      return 0;
+    }
   }
 
 	public double getAimYSpeed() {
-    return assistController.getY(Hand.kLeft);
+    if(Math.abs(assistController.getY(Hand.kLeft)) > Constants.controllerDeadZone) {
+        return assistController.getY(Hand.kLeft);
+    } else {
+      return 0;
+    }
   }
   
   public XboxController getDriverJoystick() {

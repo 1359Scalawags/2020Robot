@@ -19,6 +19,7 @@ import frc.robot.Constants.Climb;
 import frc.robot.sendable.PIDSparkMax;
 import frc.robot.sendable.SparkMaxEncoder;
 import edu.wpi.first.wpilibj.Servo;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class ClimbSystem extends SubsystemBase { // implements scheduler{
 
@@ -38,8 +39,10 @@ public class ClimbSystem extends SubsystemBase { // implements scheduler{
         climbMotor = new PIDSparkMax(Climb.CANClimbMotorID);
         climbEncoder = climbMotor.getEncoder();
         addChild("ClimbMotor", climbMotor);
+        addChild("ClimbEncoder", climbEncoder);
         
         climberLocked = true;
+        SmartDashboard.putBoolean("ClimberLocked", climberLocked);
         //ratchetLocked = true;
 
         ratchet = new Servo(Climb.PWMRatchetServoID);
@@ -48,15 +51,14 @@ public class ClimbSystem extends SubsystemBase { // implements scheduler{
         ratchet.setPosition(Climb.RatchetClosed);
 
         climbMotor.setInverted(true);  
-        climbMotor.getEncoder().setPositionConversionFactor(Climb.CLIMBER_SCALE_TO_INCHES);
+        climbEncoder.setPositionConversionFactor(Climb.CLIMBER_SCALE_TO_INCHES);
         
     }
 
     @Override
     public void periodic() {
-
+        SmartDashboard.putBoolean("ClimberLocked", climberLocked);
     }
-
 
     /**
      * Allows drivers to use, lock, and unlock the Climber.

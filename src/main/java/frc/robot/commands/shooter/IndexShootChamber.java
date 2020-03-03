@@ -5,6 +5,8 @@ import frc.robot.Constants.Load;
 import frc.robot.Robot;
 import edu.wpi.first.wpilibj.Timer;
 
+//TODO: Make this command do its inferred task of getting shots ready
+
 public class IndexShootChamber extends CommandBase{
     private Timer indexerDelay;
 
@@ -31,9 +33,12 @@ public class IndexShootChamber extends CommandBase{
     public boolean isFinished() {
         if(indexerDelay.get() > Load.indextimer)
         {
-            if(Robot.loadingSystem.isAtIndex()) {
+            if(Robot.loadingSystem.isShooterIndexed()) {
                 return true;
-            }           
+            }   
+            if(indexerDelay.get() > Load.MaxIndexTime) {
+                return true;
+            }
         }
         return false;    
     }
@@ -42,7 +47,6 @@ public class IndexShootChamber extends CommandBase{
     @Override
     public void end(boolean interrupted) {
         Robot.loadingSystem.advanceBallSlots();
-        Robot.loadingSystem.nextShootingIndex();
     }
 
 }

@@ -153,6 +153,7 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
     //     return indexer.get();
     // }
 
+    @Deprecated
     public boolean isAtIndex() {
         return indexSensors[0].get();
     }
@@ -227,21 +228,6 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
         ballSlots[0] = tempLast;
     }
 
-    //TODO: Make sure these do their job CORRECTLY and be able to work.
-    //TODO: Put into inferred commands if necessary (Index-Chamber)
-
-    public void nextLoadingIndex() {
-        if(isLoaderIndexed() != true) {
-            rotateChamber(Load.maxChamberSpeed);
-        }
-    }
-
-    public void nextShootingIndex() {
-        if(isShooterIndexed() != true) {
-            rotateChamber(Load.maxChamberSpeed);
-        }
-    }
-    
     public void updateDash(boolean Override){    
         double chamSpeed = SmartDashboard.getNumber("CANChamberRotatorSpeed", 0);
         if(Override){

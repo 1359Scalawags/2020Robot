@@ -28,9 +28,13 @@ public class ShooterSystem extends SubsystemBase implements scheduler{
     public ShooterSystem(){
         
         rightLimit = new DigitalInput(Shooter.shotRightLimit);
+        addChild("ShooterRightLimit", rightLimit);
         leftLimit = new DigitalInput(Shooter.shotLeftLimit);
+        addChild("ShooterleftLimit", leftLimit);
         upLimit = new DigitalInput(Shooter.shotUpLimit);
+        addChild("ShooterUpLimit", upLimit);
         downLimit = new DigitalInput(Shooter.shotDownLimit);
+        addChild("ShooterDownLimit", downLimit);
 
         topMotor = new PIDSparkMax(Shooter.CANTopBallMotorID);
         bottomMotor = new PIDSparkMax(Shooter.CANBottomBallMotorID);
