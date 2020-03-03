@@ -119,10 +119,18 @@ public class ClimbSystem extends SubsystemBase { // implements scheduler{
         climbEncoder.reset();
     }
 
+    public void initializeSystem() {
+        if(!isAtBottom()) {
+            climbMotor.set(-0.1);
+        } else {
+            stop();
+            resetPosition();
+        }
+    }
 
     //TODO: Rewrite a new moveTo() method using absolute position
 
-    public void MoveTo(double position) {
+    public void moveTo(double position) {
         double currentPosition = climbEncoder.getDistance();
         position = Utilities.Clamp(position, Climb.MIN_CLIMB_POSITION, Climb.MAX_CLIMB_POSITION);
         if(!isClimberLocked()) {

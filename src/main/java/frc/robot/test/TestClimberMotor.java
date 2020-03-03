@@ -26,7 +26,7 @@ public class TestClimberMotor extends CommandBase {
     public void execute() {
         double speed = Robot.oi.getClimbSpeed();
 
-        Robot.climbSystem.move(speed);
+//        Robot.climbSystem.moveTo(speed); //change speed to position when you know how to make it stop arguing when changed to position.
 
     }
 

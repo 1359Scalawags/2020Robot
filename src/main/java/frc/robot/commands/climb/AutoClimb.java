@@ -10,6 +10,8 @@
 
 
 package frc.robot.commands.climb;
+import javax.swing.text.Position;
+
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
@@ -17,9 +19,9 @@ import frc.robot.Robot;
  *
  */
 public class AutoClimb extends CommandBase {
-    double speed;
-    public AutoClimb(double speed_) {
-        speed = speed_;
+
+    public AutoClimb() {
+
     }
 
     // Called just before this Command runs the first time Shlarblenarfalorf
@@ -32,13 +34,13 @@ public class AutoClimb extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     @Override
     public void execute() {
-        Robot.climbSystem.MoveTo(speed);
+        Robot.climbSystem.moveTo(0);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     @Override
     public boolean isFinished() {
-        return (speed>0 && Robot.climbSystem.isAtTop()) || (speed <0 && Robot.climbSystem.isAtBottom());
+        return Robot.climbSystem.isAtBottom();
     }
 
     // Called once after isFinished returns true
