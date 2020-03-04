@@ -252,7 +252,7 @@ public class OI {
     }
   }
 
-	public double getAimXSpeed() {
+	public double getAimHorizontalSpeed() {
     if(Math.abs(assistController.getX(Hand.kLeft)) > Constants.controllerDeadZone) {
         return assistController.getX(Hand.kLeft);
     } else {
@@ -260,7 +260,7 @@ public class OI {
     }
   }
 
-	public double getAimYSpeed() {
+	public double getAimVerticalSpeed() {
     if(Math.abs(assistController.getY(Hand.kLeft)) > Constants.controllerDeadZone) {
         return assistController.getY(Hand.kLeft);
     } else {

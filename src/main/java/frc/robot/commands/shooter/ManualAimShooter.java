@@ -18,9 +18,8 @@ public class ManualAimShooter extends CommandBase{
 
     @Override
     public void execute() {
-        // Robot.shooterSystem.rotateHorizontally(speed);
-        // Robot.shooterSystem.rotateVertically(speed);
-        
+        Robot.shooterSystem.rotateHorizontally(Robot.oi.getAimHorizontalSpeed());
+        Robot.shooterSystem.rotateVertically(Robot.oi.getAimVerticalSpeed());        
     }
 
 }
