@@ -6,6 +6,7 @@ import frc.robot.subsystems.LoadingSystem;
 import frc.robot.Robot;
 import edu.wpi.first.wpilibj.Timer;
 
+@Deprecated
 public class IndexLoadChamber extends CommandBase{
     private Timer indexerDelay;
 
