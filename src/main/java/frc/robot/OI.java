@@ -53,8 +53,8 @@ public class OI {
     private DPadButton rejectBallsButton;
     private JoystickButton autoDriveForwardButton;
     private JoystickButton autoDriveTurnRight;
-    private JoystickButton manualIndexLoadChamber;
-    private JoystickButton manualIndexShootChamber;
+    // private JoystickButton manualIndexLoadChamber;
+    // private JoystickButton manualIndexShootChamber;
     private JoystickButton unlockClimber;
     private JoystickButton lockClimber;
     private JoystickButton singleShot;
@@ -78,12 +78,17 @@ public class OI {
 
       assistController = new XboxController(RobotMap.AssistController);
       driverController = new XboxController(RobotMap.DriverController);
- 
-      rejectBallsButton = new DPadButton(driverController, DPadButton.Direction.UP);//error
-      rejectBallsButton.whenPressed(new TurnLoaderToRejectBalls());
+
+      //TODO what will happen if the user presses both reject and intake at the same time?
+      rejectBallsButton = new DPadButton(driverController, DPadButton.Direction.UP);
+      rejectBallsButton.whenHeld(new TurnLoaderToRejectBalls());
+      rejectBallsButton.whenReleased(new TurnLoaderOff());
+      // rejectBallsButton.whenPressed(new TurnLoaderToRejectBalls());
  
       intakeBallsButton = new DPadButton(driverController, DPadButton.Direction.DOWN);
-      intakeBallsButton.whenPressed(new TurnLoaderToIntakeBalls());
+      intakeBallsButton.whenHeld(new TurnLoaderToIntakeBalls());
+      intakeBallsButton.whenReleased(new TurnLoaderOff());
+      // intakeBallsButton.whenPressed(new TurnLoaderToIntakeBalls());
  
       unlockClimber = new JoystickButton(assistController, Constants.BACK);
       unlockClimber.whenPressed(new UnlockClimber());
@@ -91,11 +96,11 @@ public class OI {
       lockClimber = new JoystickButton(assistController, Constants.START);
       lockClimber.whenPressed(new LockRatchet());
  
-      manualIndexLoadChamber = new JoystickButton(assistController, Constants.Ybtn);
-      manualIndexLoadChamber.whenPressed(new IndexLoadChamber());
+      // manualIndexLoadChamber = new JoystickButton(assistController, Constants.Ybtn);
+      // manualIndexLoadChamber.whenPressed(new IndexLoadChamber());
  
-      manualIndexShootChamber = new JoystickButton(assistController, Constants.Xbtn);
-      manualIndexShootChamber.whenPressed(new IndexShootChamber());
+      // manualIndexShootChamber = new JoystickButton(assistController, Constants.Xbtn);
+      // manualIndexShootChamber.whenPressed(new IndexShootChamber());
         
       singleShot = new JoystickButton(assistController, Constants.Abtn);
       singleShot.whenPressed(new SingleShotSequence());
