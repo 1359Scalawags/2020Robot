@@ -36,8 +36,9 @@ public class ManualClimb extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     @Override
     public void execute() {
+
         double currentPosition = Robot.climbSystem.getPosition();
-        double speed = Robot.oi.getClimbSpeed();
+        double speed = Robot.oi.getClimbSpeed();//TODO does there need to be a scaler, if not then range will be [-1, 1]
         
         double newPosition = currentPosition + speed;
 
