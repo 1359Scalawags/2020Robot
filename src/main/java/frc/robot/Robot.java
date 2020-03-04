@@ -16,19 +16,19 @@ import edu.wpi.first.hal.HAL;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+//import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.commands.*;
-import frc.robot.helper.DashboardScheduler;
+//import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+// import frc.robot.helper.DashboardScheduler;
 import frc.robot.subsystems.*;
 import frc.robot.commands.drive.*;
-import frc.robot.commands.load.IndexLoadChamber;
+//import frc.robot.commands.load.IndexLoadChamber;
 import frc.robot.commands.shooter.*;
+import frc.robot.commands.vision.PixyCommand;
 import frc.robot.commands.climb.*;
 import frc.robot.Constants.Vision;
-import frc.robot.Test.TestClimberMotor;
-import frc.robot.Test.TestNetwork;
+import frc.robot.test.TestClimberMotor;
+import frc.robot.test.TestNetwork;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -50,7 +50,7 @@ public class Robot extends TimedRobot {
     public static ShooterSystem shooterSystem;
     public static NetworkSystem kNetwork;
     public static PixySystem pixy;
-    public static DashboardScheduler dashboardScheduler;
+    // public static DashboardScheduler dashboardScheduler;
 
     /**
      * This function is run when the robot is first started up and should be
@@ -60,7 +60,7 @@ public class Robot extends TimedRobot {
     public void robotInit() {
 
         chooser = new SendableChooser<CommandBase>();
-        dashboardScheduler = new DashboardScheduler();
+        // dashboardScheduler = new DashboardScheduler();
         System.out.println(">> Dashboard Scheduler Created");
         
         // instantiate subsystems
@@ -121,12 +121,12 @@ public class Robot extends TimedRobot {
 
 
         try {
-            dashboardScheduler.add(shooterSystem);
-            dashboardScheduler.add(loadingSystem);
+            // dashboardScheduler.add(shooterSystem);
+            // dashboardScheduler.add(loadingSystem);
             //dashboardScheduler.add(controlPanelSystem);
             // dashboardScheduler.add(climbSystem);
-            dashboardScheduler.add(driveSystem);
-            dashboardScheduler.putValues();
+            // dashboardScheduler.add(driveSystem);
+            // dashboardScheduler.putValues();
             System.out.println(">> Schedule updates to the Dashboard for subsystems");
         } catch (Exception ex) {
             System.out.println("!! Unable to add subsystems to Dashboard Scheduler !!");      

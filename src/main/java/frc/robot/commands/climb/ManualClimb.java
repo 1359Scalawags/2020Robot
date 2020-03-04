@@ -12,6 +12,7 @@
 package frc.robot.commands.climb;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
+import frc.robot.subsystems.ClimbSystem;
 
 /**
  *
@@ -35,14 +36,13 @@ public class ManualClimb extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     @Override
     public void execute() {
-        double speed = Robot.oi.getClimbSpeed();
-        if (!Robot.climbSystem.isClimberLocked()) {
-            Robot.climbSystem.move(speed);
-        }
-        else {    
-            Robot.climbSystem.stop();
-        }
 
+        double currentPosition = Robot.climbSystem.getPosition();
+        double speed = Robot.oi.getClimbSpeed();//TODO does there need to be a scaler, if not then range will be [-1, 1]
+        
+        double newPosition = currentPosition + speed;
+
+        Robot.climbSystem.moveTo(newPosition);
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -54,7 +54,7 @@ public class ManualClimb extends CommandBase {
     // Called once after isFinished returns true
     @Override
     public void end(boolean interrupted) {
-        Robot.climbSystem.stop();
+
     }
 
 

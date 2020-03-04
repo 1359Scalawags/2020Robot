@@ -11,10 +11,14 @@ import frc.robot.Constants.Drive;
 import frc.robot.helper.*;
 
 import frc.robot.interfaces.scheduler;
+import frc.robot.sendable.PIDSparkMax;
+import frc.robot.sendable.SparkMaxEncoder;
 
 public class CANDriveSystem extends SubsystemBase implements scheduler{  
-  private CanMotor[] leftMotors = new CanMotor[2];
-  private CanMotor[] rightMotors = new CanMotor[2];
+  private PIDSparkMax[] leftMotors = new PIDSparkMax[2];
+  private PIDSparkMax[] rightMotors = new PIDSparkMax[2];
+  private SparkMaxEncoder[] leftEncoders = new SparkMaxEncoder[2];
+  private SparkMaxEncoder[] rightEncoders = new SparkMaxEncoder[2];
 
   // private CanMotor rightMotorA;
   // private CanMotor rightMotorB;
@@ -31,15 +35,22 @@ public class CANDriveSystem extends SubsystemBase implements scheduler{
   boolean reverse = false;    
 
   public CANDriveSystem() {
-    leftMotors[0] = new CanMotor(Drive.CANFrontLeftMotorID);
-    leftMotors[1] = new CanMotor(Drive.CANBackLeftMotorID);
+    leftMotors[0] = new PIDSparkMax(Drive.CANFrontLeftMotorID);
+    leftMotors[1] = new PIDSparkMax(Drive.CANBackLeftMotorID);
 
-    rightMotors[0] = new CanMotor(Drive.CANFrontRightMotorID);
-    rightMotors[1] = new CanMotor(Drive.CANBackRightMotorID);
+    //leftMotors[1].getMotorController().follow(leftMotors[0].getMotorController());
 
-    
-    leftControllerGroup = new SpeedControllerGroup(leftMotors[0].Motor(), leftMotors[1].Motor());
-    rightControllerGroup = new SpeedControllerGroup(rightMotors[0].Motor(), rightMotors[1].Motor());
+    leftEncoders[0] = leftMotors[0].getEncoder();
+    leftEncoders[1] = leftMotors[1].getEncoder();
+
+    rightMotors[0] = new PIDSparkMax(Drive.CANFrontRightMotorID);
+    rightMotors[1] = new PIDSparkMax(Drive.CANBackRightMotorID);
+
+    rightEncoders[0] = rightMotors[0].getEncoder();
+    rightEncoders[1] = rightMotors[1].getEncoder();
+
+    leftControllerGroup = new SpeedControllerGroup(leftMotors[0], leftMotors[1]);
+    rightControllerGroup = new SpeedControllerGroup(rightMotors[0], rightMotors[1]);
 
     diffDrive = new DifferentialDrive(rightControllerGroup, leftControllerGroup);
 
@@ -76,11 +87,11 @@ public class CANDriveSystem extends SubsystemBase implements scheduler{
   }
 
   public double getDistanceLeft() {
-    return leftMotors[0].Encoder().getPosition();
+    return leftEncoders[0].getDistance();
 }
 
 public double getDistanceRight() {
-    return rightMotors[0].Encoder().getPosition();
+    return rightEncoders[0].getDistance();
 
 }
 

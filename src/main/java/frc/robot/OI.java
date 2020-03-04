@@ -1,9 +1,11 @@
 package frc.robot;
+
 //import frc.robot.commands.*;
 //import frc.robot.commands.drive.*;
 import frc.robot.commands.load.*;
 import frc.robot.commands.shooter.*;
 import frc.robot.commands.climb.*;
+import frc.robot.commands.drive.ManualDrive;
 //import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
@@ -44,17 +46,25 @@ public class OI {
     // Start the command when the button is released  and let it run the command
     // until it is finished as determined by it's isFinished method.
     // button.whenReleased(new ExampleCommand());
- 
- 
+
     private XboxController assistController;
     private XboxController driverController;
- 
+    private DPadButton intakeBallsButton;
+    private DPadButton rejectBallsButton;
+    private JoystickButton autoDriveForwardButton;
+    private JoystickButton autoDriveTurnRight;
+    private JoystickButton manualIndexLoadChamber;
+    private JoystickButton manualIndexShootChamber;
+    private JoystickButton unlockClimber;
+    private JoystickButton lockClimber;
+    private JoystickButton singleShot;
+    private JoystickButton driveRightFaster;
+    private JoystickButton driveLeftFaster;
+
     // private JoystickButton speedoButton;
     // private JoystickButton startShooterButton;
     // private JoystickButton stopShooterButton;
     // private JoystickButton lineupButton;
-    private DPadButton intakeBallsButton;
-    private DPadButton rejectBallsButton;
     // private JoystickButton controlPanelSetColorButton;
     // private JoystickButton controlPanelSpinButton;
     // private JoystickButton climbUpButton;
@@ -62,46 +72,18 @@ public class OI {
     // private JoystickButton manualClimb;
     // private JoystickButton AutoclimbUpButton;
     // private JoystickButton AutoclimbDownButton;
-    private JoystickButton autoDriveForwardButton;
-    private JoystickButton autoDriveTurnRight;
-    //private JoystickButton autoDriveTurnLeft;
-    private JoystickButton manualIndexLoadChamber;
-    private JoystickButton manualIndexShootChamber;
-    private JoystickButton unlockClimber;
-    private JoystickButton lockClimber;
-    private JoystickButton singleShot;
+    // private JoystickButton autoDriveTurnLeft;
  
     public OI() {
- 
-      //private XboxController assistController;
-      //private XboxController driverController;
-      
+
       assistController = new XboxController(RobotMap.AssistController);
       driverController = new XboxController(RobotMap.DriverController);
  
-      //DPad Buttons **DPAD IS POV
-      rejectBallsButton = new DPadButton(assistController, DPadButton.Direction.UP);//error
+      rejectBallsButton = new DPadButton(driverController, DPadButton.Direction.UP);//error
       rejectBallsButton.whenPressed(new TurnLoaderToRejectBalls());
  
-      intakeBallsButton = new DPadButton(assistController, DPadButton.Direction.DOWN);
+      intakeBallsButton = new DPadButton(driverController, DPadButton.Direction.DOWN);
       intakeBallsButton.whenPressed(new TurnLoaderToIntakeBalls());
- 
-      // Joystick Buttons **DPAD IS NOT A BUTTON
-      // climbDownButton = new JoystickButton(assistController, 7);
-      // climbDownButton.whileHeld(new ManualClimb());
- 
-      // climbUpButton = new JoystickButton(assistController, 6);
-      // climbUpButton.whileHeld(new ManualClimb());
-      
-      //manualClimb = new JoystickButton(assistController, 6);
-      //manualClimb.whileHeld(new ManualClimb());
- 
- 
-      // AutoclimbUpButton = new JoystickButton(assistController, RobotMap.AutoClimbUp);
-      // AutoclimbUpButton.whileHeld(new AutoClimb(Constants.maxClimbSpeed));
- 
-      // AutoclimbDownButton = new JoystickButton(assistController, RobotMap.AutoClimbDown);
-      // AutoclimbDownButton.whileHeld(new AutoClimb(Constants.maxClimbSpeed));
  
       unlockClimber = new JoystickButton(assistController, Constants.BACK);
       unlockClimber.whenPressed(new UnlockClimber());
@@ -115,14 +97,29 @@ public class OI {
       manualIndexShootChamber = new JoystickButton(assistController, Constants.Xbtn);
       manualIndexShootChamber.whenPressed(new IndexShootChamber());
         
-      // controlPanelSpinButton = new JoystickButton(assistController, Constants.Xbtn);
-      // controlPanelSpinButton.whenPressed(new ControlPanelSpin());
- 
-      // controlPanelSetColorButton = new JoystickButton(assistController, Constants.Ybtn);
-      // controlPanelSetColorButton.whenPressed(new ControlPanelSetColor());
-
       singleShot = new JoystickButton(assistController, Constants.Abtn);
       singleShot.whenPressed(new SingleShotSequence());
+
+      driveLeftFaster = new JoystickButton(driverController, Constants.LB);
+      driveLeftFaster.whenPressed(new ManualDrive());
+
+      driveRightFaster = new JoystickButton(driverController, Constants.RB);
+      driveRightFaster.whenPressed(new ManualDrive());
+ 
+      // climbDownButton = new JoystickButton(assistController, 7);
+      // climbDownButton.whileHeld(new ManualClimb());
+ 
+      // climbUpButton = new JoystickButton(assistController, 6);
+      // climbUpButton.whileHeld(new ManualClimb());
+      
+      // manualClimb = new JoystickButton(assistController, 6);
+      // manualClimb.whileHeld(new ManualClimb());
+ 
+      // AutoclimbUpButton = new JoystickButton(assistController, RobotMap.AutoClimbUp);
+      // AutoclimbUpButton.whileHeld(new AutoClimb(Constants.maxClimbSpeed));
+ 
+      // AutoclimbDownButton = new JoystickButton(assistController, RobotMap.AutoClimbDown);
+      // AutoclimbDownButton.whileHeld(new AutoClimb(Constants.maxClimbSpeed));
  
       // lineupButton = new JoystickButton(assistController, Constants.LB);
       // lineupButton.whenPressed(new aimShooter());
@@ -132,6 +129,7 @@ public class OI {
  
       // stopShooterButton = new JoystickButton(assistController, Constants.RB);
       // stopShooterButton.whileHeld(new StopShooter());
+
       //DRIVER
  
       // autoDriveForwardButton = new JoystickButton(driverContoller, RobotMap.driverxboxX);
@@ -151,8 +149,7 @@ public class OI {
       // SmartDashboard.putData("Auto Drive Turn", new AutoDriveTurn(90);
       // SmartDashboard.putData("Autonomous Command", new AutonomousCommand());
  
- 
-      // SmartDashboard.putData("ManualDrive", new ManualDrive());//TODO does this need to be called?
+      // SmartDashboard.putData("ManualDrive", new ManualDrive());
       // SmartDashboard.putData("AutoDriveForward", new AutoDriveForward(1));
       // SmartDashboard.putData("AutoDriveTurnLeft", new AutoDriveTurn(90));
       // SmartDashboard.putData("AutoDriveTurnRight", new AutoDriveTurn(-90));
@@ -178,20 +175,6 @@ public class OI {
     public XboxController getAssistJoystick() {
         return assistController;
     }
- 
-    /***
-     * ----------Dpad POV----------
-     * 0 is UP
-     * 45 is UP-RIGHT
-     * 90 is RIGHT
-     * 135 is DOWN-RIGHT
-     * 180 is DOWN
-     * 225 is DOWN-LEFT
-     * 270 is LEFT
-     * 315 is UP-LEFT
-     * Returns to 0 going UP again
-     * @return
-     */
  
     public int getAssistDPad() {
       return assistController.getPOV();
@@ -254,19 +237,35 @@ public class OI {
   }
  
   public double getClimbSpeed() {
-    return assistController.getY(Hand.kLeft);
+    if(Math.abs(assistController.getY(Hand.kLeft)) > Constants.controllerDeadZone) {
+        return assistController.getY(Hand.kLeft);
+    } else {
+      return 0;
+    }
   }
  
   public double getRotatorSpeed() {
-    return assistController.getX(Hand.kRight);
+    if(Math.abs(assistController.getX(Hand.kRight)) > Constants.controllerDeadZone) {
+        return assistController.getX(Hand.kRight);
+    } else {
+      return 0;
+    }
   }
 
 	public double getAimXSpeed() {
-    return assistController.getX(Hand.kLeft);
+    if(Math.abs(assistController.getX(Hand.kLeft)) > Constants.controllerDeadZone) {
+        return assistController.getX(Hand.kLeft);
+    } else {
+      return 0;
+    }
   }
 
 	public double getAimYSpeed() {
-    return assistController.getY(Hand.kLeft);
+    if(Math.abs(assistController.getY(Hand.kLeft)) > Constants.controllerDeadZone) {
+        return assistController.getY(Hand.kLeft);
+    } else {
+      return 0;
+    }
   }
   
   public XboxController getDriverJoystick() {

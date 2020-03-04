@@ -5,17 +5,17 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants.*;
-import frc.robot.helper.*;
 
 import frc.robot.interfaces.scheduler;
+import frc.robot.sendable.PIDSparkMax;
 /**
  *
  */
 public class ShooterSystem extends SubsystemBase implements scheduler{
 
     
-    private CanMotor topMotor;
-    private CanMotor bottomMotor;
+    private PIDSparkMax topMotor;
+    private PIDSparkMax bottomMotor;
     private Spark shootRotatorX;
     private Spark shootRotatorY;
     private Spark shotLoader;
@@ -28,12 +28,16 @@ public class ShooterSystem extends SubsystemBase implements scheduler{
     public ShooterSystem(){
         
         rightLimit = new DigitalInput(Shooter.shotRightLimit);
+        addChild("ShooterRightLimit", rightLimit);
         leftLimit = new DigitalInput(Shooter.shotLeftLimit);
+        addChild("ShooterleftLimit", leftLimit);
         upLimit = new DigitalInput(Shooter.shotUpLimit);
+        addChild("ShooterUpLimit", upLimit);
         downLimit = new DigitalInput(Shooter.shotDownLimit);
+        addChild("ShooterDownLimit", downLimit);
 
-        topMotor = new CanMotor(Shooter.CANTopBallMotorID);
-        bottomMotor = new CanMotor(Shooter.CANBottomBallMotorID);
+        topMotor = new PIDSparkMax(Shooter.CANTopBallMotorID);
+        bottomMotor = new PIDSparkMax(Shooter.CANBottomBallMotorID);
         
         shootRotatorX = new Spark(Shooter.PWMShootRotatorLeftRightID);
         shootRotatorX.setInverted(false);
@@ -42,7 +46,7 @@ public class ShooterSystem extends SubsystemBase implements scheduler{
         shootRotatorY.setInverted(false);
         
         shotLoader = new Spark(Load.PWMLoadShotMotorID);
-        shotLoader.setInverted(false);
+        shotLoader.setInverted(true);
     }
     
     /**
@@ -56,14 +60,14 @@ public class ShooterSystem extends SubsystemBase implements scheduler{
     }
 
     public void setShotLoaderSpeed(double loader) {
-        shotLoader.setSpeed(loader);
+        shotLoader.setSpeed(loader * 0.5);
     }
 
     public double getShooterSpeedTop() {
-        return topMotor.Motor().get();
+        return topMotor.get();
     }
     public double getShooterSpeedBottom() {
-        return topMotor.Motor().get();
+        return topMotor.get();
     }
 
     // public Spark[] getRotateMotors(){

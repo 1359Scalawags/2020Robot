@@ -14,40 +14,57 @@ package frc.robot.commands.autonomous;
 //import frc.robot.Robot;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.drive.AutoDriveTurn;
+//import sun.misc.Signal;
+import frc.robot.commands.drive.AutoDriveForward;
 import frc.robot.commands.shooter.SingleShotSequence;
-import frc.robot.commands.drive.AutoDriveForward;;
+import frc.robot.commands.shooter.AutoAimShooter;
 
 /**
  *
  */
 public class AutonomousCommand extends SequentialCommandGroup {
 
-    public enum AutoOptions {
-        SitStill,
-        ForwardTurnShoot,
-        ReverseTurnShoot,
-        TurnShootTurnForward
+    public enum AutoMoveOptions{
+
+        ForwardTurnAndShoot,
+        ReversTurnforwardTurnAndShoot,
+        TurnForwardAndShoot
     }
 
-    public AutonomousCommand(AutoOptions option) {
+    public AutonomousCommand(AutoMoveOptions moveOption) {
 
-        switch(option) {
-            case ForwardTurnShoot:
+        switch(moveOption){
+            case ForwardTurnAndShoot:
                 addCommands(
                     new AutoDriveForward(1),
                     new AutoDriveTurn(90),
+                    new AutoAimShooter(),
                     new SingleShotSequence()
                 );
-                break;
-            case ReverseTurnShoot:
+            break;
+
+            case ReversTurnforwardTurnAndShoot:
                 addCommands(
                     new AutoDriveForward(-1),
-                    new AutoDriveTurn(90),
+                    new AutoDriveTurn(-90),
+                    new AutoDriveForward(1),
+                    new AutoDriveTurn(-90),
+                    new AutoAimShooter(),
                     new SingleShotSequence()
                 );
-                break;
+            break;
+            
+            case TurnForwardAndShoot:
+                addCommands(
+                    new AutoDriveTurn(180),
+                    new AutoDriveForward(1),
+                    new AutoAimShooter(),
+                    new SingleShotSequence()
+                );
+            break;
         }
-
+            
+       
     }
 
 }

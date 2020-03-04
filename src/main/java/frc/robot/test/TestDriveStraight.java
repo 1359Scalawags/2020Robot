@@ -9,7 +9,7 @@
 // it from being updated in the future.
 
 
-package frc.robot.Test;
+package frc.robot.test;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 //import frc.robot.Robot;
 import frc.robot.Robot;
