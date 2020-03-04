@@ -28,8 +28,8 @@ public class AutoDriveTurn extends CommandBase {
 
 
     public AutoDriveTurn(float angle) { 
-         addRequirements(Robot.driveSystem);
-    //right is positive, left is negative
+        addRequirements(Robot.driveSystem);
+        //right is positive, left is negative
         targetangle = angle;
         currentangle = Robot.driveSystem.getAngle();
     }

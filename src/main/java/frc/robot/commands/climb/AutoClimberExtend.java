@@ -16,7 +16,7 @@ public class AutoClimberExtend extends CommandBase {
     @Override
     public void initialize() {
         //Climber should already be unlocked
-        //Robot.climbSystem.unlockClimber();
+        // Robot.climbSystem.unlockClimber();
     }
 
     // Called repeatedly when this Command is scheduled to run

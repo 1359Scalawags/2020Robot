@@ -8,16 +8,19 @@
 // update. Deleting the comments indicating the section will prevent
 // it from being updated in the future.
 
-
 package frc.robot.commands.climb;
+
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
+import frc.robot.Constants.Climb;
+import frc.robot.helper.Utilities;
 import frc.robot.subsystems.ClimbSystem;
 
 /**
  *
  */
 public class ManualClimb extends CommandBase {
+    private double vel =0;
 
     /**
      * 
@@ -38,9 +41,11 @@ public class ManualClimb extends CommandBase {
     public void execute() {
 
         double currentPosition = Robot.climbSystem.getPosition();
-        double speed = Robot.oi.getClimbSpeed();//TODO does there need to be a scaler, if not then range will be [-1, 1]
-        
-        double newPosition = currentPosition + speed;
+        double speed = Robot.oi.getClimbSpeed();//TODO does there need to be a scaler, if not then the range will be [-1, 1]
+        vel = Utilities.Clamp(vel+speed, -Climb.maxClimbSpeed, Climb.maxClimbSpeed);//TODO I want someone else to look over this.
+        double newPosition = currentPosition + vel;
+
+        // double newPosition = currentPosition+speed;
 
         Robot.climbSystem.moveTo(newPosition);
     }
