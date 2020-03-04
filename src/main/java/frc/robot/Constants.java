@@ -1,6 +1,5 @@
 package frc.robot;
 
-import edu.wpi.first.wpilibj.I2C;
 import io.github.pseudoresonance.pixy2api.links.I2CLink;
 import io.github.pseudoresonance.pixy2api.links.Link;
 
