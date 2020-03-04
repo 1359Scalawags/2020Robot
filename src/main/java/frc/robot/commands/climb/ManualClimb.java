@@ -20,7 +20,7 @@ import frc.robot.subsystems.ClimbSystem;
  *
  */
 public class ManualClimb extends CommandBase {
-    private double vel =0;
+    // private double vel =0;
 
     /**
      * 
@@ -42,10 +42,15 @@ public class ManualClimb extends CommandBase {
 
         double currentPosition = Robot.climbSystem.getPosition();
         double speed = Robot.oi.getClimbSpeed();//TODO does there need to be a scaler, if not then the range will be [-1, 1]
-        vel = Utilities.Clamp(vel+speed, -Climb.maxClimbSpeed, Climb.maxClimbSpeed);//TODO I want someone else to look over this.
-        double newPosition = currentPosition + vel;
+        
+        // if(speed==0)
+        //     vel = 0;
+        // else
+        //     vel = Utilities.Clamp(vel+speed, -Climb.maxClimbVel, Climb.maxClimbVel);
 
-        // double newPosition = currentPosition+speed;
+        // double newPosition = currentPosition + vel;
+
+        double newPosition = currentPosition+speed;
 
         Robot.climbSystem.moveTo(newPosition);
     }
