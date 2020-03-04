@@ -38,7 +38,9 @@ public class ManualClimb extends CommandBase {
     public void execute() {
         double currentPosition = Robot.climbSystem.getPosition();
         double speed = Robot.oi.getClimbSpeed();
+        
         double newPosition = currentPosition + speed;
+
         Robot.climbSystem.moveTo(newPosition);
     }
 

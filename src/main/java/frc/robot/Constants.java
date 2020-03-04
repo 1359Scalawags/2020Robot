@@ -56,6 +56,7 @@ public final class Constants {
         public static final int PWMShootRotatorLeftRightID = 6;
         public static final int PWMShootRotatorUpDownID = 7;
         public static final double maxShooterTurnError = 0;
+        //TODO find maxShooterTurnRate
         public static final double maxShooterTurnRate = 1;
         public static final int CANTopBallMotorID = 3;
         public static final int CANBottomBallMotorID = 4;
@@ -194,8 +195,4 @@ public final class Constants {
      * 315 is UP-LEFT
      * Returns to 0 going UP again
      */
-    
-    //TODO find our expectedDistance
-    //TODO find maxShooterTurnRate
-
 }

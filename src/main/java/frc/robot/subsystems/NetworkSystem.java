@@ -37,7 +37,7 @@ public class NetworkSystem extends SubsystemBase{
     
     /**
      * 
-     * @return X and Y angles from the network table in an array
+     * @return an array of X and Y angles from the network table
      */
     public double[] getAngles(){
         double[] angles = new double[2];
