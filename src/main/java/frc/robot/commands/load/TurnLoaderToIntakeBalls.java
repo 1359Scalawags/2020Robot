@@ -34,4 +34,9 @@ public class TurnLoaderToIntakeBalls extends CommandBase{
         return true;
     }
 
+    @Override
+    public void end(boolean interrupted) {
+        
+    }
+
 }
