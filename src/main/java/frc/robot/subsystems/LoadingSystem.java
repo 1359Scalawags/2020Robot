@@ -34,6 +34,8 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
      * Index sensors show position of chamber rotation.
      */
     private DigitalInput[] indexSensors;
+
+    //TODO: replace array with single indexer digital input
     
     /**
     * **The INTAKE at the bottom of the robot
@@ -42,6 +44,9 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
 
     //(value += x) and (value = value + x) are the same
 
+
+    //TODO: when the new indexer is hit, reset the encoder for chamber rotator
+    //TODO: comment out old array of sensors logic
     private int getSensorValue() {
         int value = 0;
         if(indexSensors[1].get()){
