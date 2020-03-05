@@ -20,28 +20,27 @@ import frc.robot.subsystems.ClimbSystem;
  *
  */
 public class ManualClimb extends CommandBase {
-    // private double vel =0;
-
-    /**
-     * 
-     * @param up Move in the up direction.
-     */
-
+    
+    private double desiredPosition;
+    
     public ManualClimb() {
-
     }
 
     // Called just before this Command runs the first time
     @Override
     public void initialize() {
+        desiredPosition = Robot.climbSystem.getPosition();
     }
 
     // Called repeatedly when this Command is scheduled to run
     @Override
     public void execute() {
-
-        double currentPosition = Robot.climbSystem.getPosition();
-        double speed = Robot.oi.getClimbSpeed();//TODO does there need to be a scaler, if not then the range will be [-1, 1]
+        //double currentPosition = Robot.climbSystem.getPosition();
+        double speed = Robot.oi.getClimbSpeed();
+        if(Robot.climbSystem.moveTo(desiredPosition + speed)) {
+            desiredPosition += speed;
+        }
+        
         
         // if(speed==0)
         //     vel = 0;
@@ -50,9 +49,9 @@ public class ManualClimb extends CommandBase {
 
         // double newPosition = currentPosition + vel;
 
-        double newPosition = currentPosition+speed;
+        // double newPosition = currentPosition+speed;
 
-        Robot.climbSystem.moveTo(newPosition);
+        // Robot.climbSystem.moveTo(newPosition);
     }
 
     // Make this return true when this Command no longer needs to run execute()

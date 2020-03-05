@@ -42,6 +42,7 @@ public class ClimbSystem extends SubsystemBase { // implements scheduler{
         climbEncoder = climbMotor.getEncoder();
         addChild("ClimbMotor", climbMotor);
         addChild("ClimbEncoder", climbEncoder);
+        SmartDashboard.putNumber("climbMotorRate", climbEncoder.getRate());
         
         climberLocked = true;
         SmartDashboard.putBoolean("ClimberLocked", climberLocked);
@@ -60,8 +61,11 @@ public class ClimbSystem extends SubsystemBase { // implements scheduler{
     @Override
     public void periodic() {
         SmartDashboard.putBoolean("ClimberLocked", climberLocked);
+        SmartDashboard.putNumber("ClimbMotorRate", climbEncoder.getRate());
         if(isAtBottom() && climbEncoder.getDistance() != 0) {
-            stop();
+            // if(climbEncoder.getRate() < 0) {
+            //     stop();
+            // }
             resetPosition();
         }
     }
@@ -130,16 +134,23 @@ public class ClimbSystem extends SubsystemBase { // implements scheduler{
 
     //TODO: Rewrite a new moveTo() method using absolute position
 
-    public void moveTo(double position) {
+    /**
+     * Primary method for moving the climber mechanism. 
+     * @param position The desired elevation in inches
+     * @return Returns true if movement is allowed, false if not
+     */
+    public boolean moveTo(double position) {
         double currentPosition = climbEncoder.getDistance();
         position = Utilities.Clamp(position, Climb.MIN_CLIMB_POSITION, Climb.MAX_CLIMB_POSITION);
         if(!isClimberLocked()) {
-            if(!isRatchetLocked() || position < currentPosition){
+            if( !isRatchetLocked() || (position < currentPosition) ) {
                 climbMotor.setSetpoint(position);
+                return true;
             }
         } else {
             stop();
         }
+        return false;
     }
 
     // /**

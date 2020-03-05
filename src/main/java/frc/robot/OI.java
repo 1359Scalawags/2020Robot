@@ -242,6 +242,7 @@ public class OI {
   }
  
   public double getClimbSpeed() {
+    //TODO: does there need to be a scaler, if not then the range will be [-1, 1]
     if(Math.abs(assistController.getY(Hand.kLeft)) > Constants.controllerDeadZone) {
         return assistController.getY(Hand.kLeft);
     } else {
