@@ -32,9 +32,9 @@ public class IndexShootChamber extends CommandBase{
     public boolean isFinished() {
         if(indexerDelay.get() > Load.indextimer)
         {
-            if(Robot.loadingSystem.isShooterIndexed()) {
-                return true;
-            }   
+            // if(Robot.loadingSystem.isShooterIndexed()) {
+            //     return true;
+            // }   
             if(indexerDelay.get() > Load.MaxIndexTime) {
                 return true;
             }

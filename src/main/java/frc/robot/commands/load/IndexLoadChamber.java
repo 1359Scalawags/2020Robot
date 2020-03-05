@@ -32,9 +32,9 @@ public class IndexLoadChamber extends CommandBase{
     public boolean isFinished() {
         if(indexerDelay.get() > Load.indextimer)
         {
-            if(Robot.loadingSystem.isLoaderIndexed()) {
-                return true;
-            }        
+            // if(Robot.loadingSystem.isLoaderIndexed()) {
+            //     return true;
+            // }        
             if(indexerDelay.get() > Load.MaxIndexTime) {
                 return true;
             }   

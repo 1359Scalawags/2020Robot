@@ -105,7 +105,8 @@ public final class Constants {
     public static final class Load{
         public static final int PWMChamRotMotorID = 1;
         public static final int PWMLoadShotMotorID = 5;
-        public static final int PWMLowerBallLoad = 4;
+        public static final int PWMLowerBallLoadAID = 4;
+        public static final int PWMLowerBallLoadBID = 5;
         public static final int PWMUpperBallLoad = 2;
         public static final int PWMLoadBallUpMotorLeftID = 3;
         public static final double maxChamberSpeed = 1;
@@ -127,17 +128,20 @@ public final class Constants {
         // public static final int PWMLoadBallInMotorRearID = 0;
 
         //Digital I/O
-        public static final int LoadSensorA = 0;
-        public static final int LoadSensorB = 1;
-        public static final int LoadSensorC = 2;
-        public static final int LoadSensorD = 3;
-        public static final int LoadSensorE = 4;
+
         public static final int ballSensor = 5;
-        public static final int preLoadSenor = 6;
+        public static final int preLoadSensor = 6;
         public static final int postShootSensor = 7;
+        public static final int fullRotationLimitIDedition = 8;
 
 		public static final int CANLowerBallLoadA = 21;
-		public static final int CANLowerBallLoadB = 20;
+        public static final int CANLowerBallLoadB = 20;
+        
+        // public static final int LoadSensorA = 0;
+        // public static final int LoadSensorB = 1;
+        // public static final int LoadSensorC = 2;
+        // public static final int LoadSensorD = 3;
+        // public static final int LoadSensorE = 4;
     
     }
 
