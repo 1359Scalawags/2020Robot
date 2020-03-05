@@ -24,9 +24,9 @@ public class TestClimberMotor extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     @Override
     public void execute() {
-        double speed = Robot.oi.getClimbSpeed();
+        // double speed = Robot.oi.getClimbSpeed();
 
-        Robot.climbSystem.move(speed);
+//        Robot.climbSystem.moveTo(speed); //change speed to position when you know how to make it stop arguing when changed to position.
 
     }
 

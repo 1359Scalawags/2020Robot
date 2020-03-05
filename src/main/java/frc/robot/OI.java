@@ -53,8 +53,8 @@ public class OI {
     private DPadButton rejectBallsButton;
     private JoystickButton autoDriveForwardButton;
     private JoystickButton autoDriveTurnRight;
-    private JoystickButton manualIndexLoadChamber;
-    private JoystickButton manualIndexShootChamber;
+    // private JoystickButton manualIndexLoadChamber;
+    // private JoystickButton manualIndexShootChamber;
     private JoystickButton unlockClimber;
     private JoystickButton lockClimber;
     private JoystickButton singleShot;
@@ -78,12 +78,17 @@ public class OI {
 
       assistController = new XboxController(RobotMap.AssistController);
       driverController = new XboxController(RobotMap.DriverController);
- 
-      rejectBallsButton = new DPadButton(driverController, DPadButton.Direction.UP);//error
-      rejectBallsButton.whenPressed(new TurnLoaderToRejectBalls());
+
+      //TODO what will happen if the user presses both reject and intake at the same time?
+      rejectBallsButton = new DPadButton(driverController, DPadButton.Direction.UP);
+      rejectBallsButton.whenHeld(new TurnLoaderToRejectBalls());
+      rejectBallsButton.whenReleased(new TurnLoaderOff());
+      // rejectBallsButton.whenPressed(new TurnLoaderToRejectBalls());
  
       intakeBallsButton = new DPadButton(driverController, DPadButton.Direction.DOWN);
-      intakeBallsButton.whenPressed(new TurnLoaderToIntakeBalls());
+      intakeBallsButton.whenHeld(new TurnLoaderToIntakeBalls());
+      intakeBallsButton.whenReleased(new TurnLoaderOff());
+      // intakeBallsButton.whenPressed(new TurnLoaderToIntakeBalls());
  
       unlockClimber = new JoystickButton(assistController, Constants.BACK);
       unlockClimber.whenPressed(new UnlockClimber());
@@ -91,11 +96,11 @@ public class OI {
       lockClimber = new JoystickButton(assistController, Constants.START);
       lockClimber.whenPressed(new LockRatchet());
  
-      manualIndexLoadChamber = new JoystickButton(assistController, Constants.Ybtn);
-      manualIndexLoadChamber.whenPressed(new IndexLoadChamber());
+      // manualIndexLoadChamber = new JoystickButton(assistController, Constants.Ybtn);
+      // manualIndexLoadChamber.whenPressed(new IndexLoadChamber());
  
-      manualIndexShootChamber = new JoystickButton(assistController, Constants.Xbtn);
-      manualIndexShootChamber.whenPressed(new IndexShootChamber());
+      // manualIndexShootChamber = new JoystickButton(assistController, Constants.Xbtn);
+      // manualIndexShootChamber.whenPressed(new IndexShootChamber());
         
       singleShot = new JoystickButton(assistController, Constants.Abtn);
       singleShot.whenPressed(new SingleShotSequence());
@@ -149,7 +154,7 @@ public class OI {
       // SmartDashboard.putData("Auto Drive Turn", new AutoDriveTurn(90);
       // SmartDashboard.putData("Autonomous Command", new AutonomousCommand());
  
-      // SmartDashboard.putData("ManualDrive", new ManualDrive());//TODO does this need to be called?
+      // SmartDashboard.putData("ManualDrive", new ManualDrive());
       // SmartDashboard.putData("AutoDriveForward", new AutoDriveForward(1));
       // SmartDashboard.putData("AutoDriveTurnLeft", new AutoDriveTurn(90));
       // SmartDashboard.putData("AutoDriveTurnRight", new AutoDriveTurn(-90));
@@ -237,6 +242,7 @@ public class OI {
   }
  
   public double getClimbSpeed() {
+    //TODO: does there need to be a scaler, if not then the range will be [-1, 1]
     if(Math.abs(assistController.getY(Hand.kLeft)) > Constants.controllerDeadZone) {
         return assistController.getY(Hand.kLeft);
     } else {
@@ -252,7 +258,7 @@ public class OI {
     }
   }
 
-	public double getAimXSpeed() {
+	public double getAimHorizontalSpeed() {//TODO finalize the joystick for this!!!
     if(Math.abs(assistController.getX(Hand.kLeft)) > Constants.controllerDeadZone) {
         return assistController.getX(Hand.kLeft);
     } else {
@@ -260,7 +266,7 @@ public class OI {
     }
   }
 
-	public double getAimYSpeed() {
+	public double getAimVerticalSpeed() {//TODO finalize the joystick for this!!!
     if(Math.abs(assistController.getY(Hand.kLeft)) > Constants.controllerDeadZone) {
         return assistController.getY(Hand.kLeft);
     } else {

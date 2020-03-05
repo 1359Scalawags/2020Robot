@@ -8,41 +8,50 @@
 // update. Deleting the comments indicating the section will prevent
 // it from being updated in the future.
 
-
 package frc.robot.commands.climb;
+
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
+import frc.robot.Constants.Climb;
+import frc.robot.helper.Utilities;
+import frc.robot.subsystems.ClimbSystem;
 
 /**
  *
  */
 public class ManualClimb extends CommandBase {
-
-    /**
-     * 
-     * @param up Move in the up direction.
-     */
-
+    
+    private double desiredPosition;
+    
     public ManualClimb() {
-
     }
 
     // Called just before this Command runs the first time
     @Override
     public void initialize() {
+        desiredPosition = Robot.climbSystem.getPosition();
     }
 
     // Called repeatedly when this Command is scheduled to run
     @Override
     public void execute() {
+        //double currentPosition = Robot.climbSystem.getPosition();
         double speed = Robot.oi.getClimbSpeed();
-        if (!Robot.climbSystem.isClimberLocked()) {
-            Robot.climbSystem.move(speed);
+        if(Robot.climbSystem.moveTo(desiredPosition + speed)) {
+            desiredPosition += speed;
         }
-        else {    
-            Robot.climbSystem.stop();
-        }
+        
+        
+        // if(speed==0)
+        //     vel = 0;
+        // else
+        //     vel = Utilities.Clamp(vel+speed, -Climb.maxClimbVel, Climb.maxClimbVel);
 
+        // double newPosition = currentPosition + vel;
+
+        // double newPosition = currentPosition+speed;
+
+        // Robot.climbSystem.moveTo(newPosition);
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -54,7 +63,7 @@ public class ManualClimb extends CommandBase {
     // Called once after isFinished returns true
     @Override
     public void end(boolean interrupted) {
-        Robot.climbSystem.stop();
+
     }
 
 

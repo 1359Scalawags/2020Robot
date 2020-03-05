@@ -18,6 +18,12 @@ public class CANDriveSystem extends SubsystemBase implements scheduler{
   private PIDSparkMax[] leftMotors = new PIDSparkMax[2];
   private PIDSparkMax[] rightMotors = new PIDSparkMax[2];
   private SparkMaxEncoder[] leftEncoders = new SparkMaxEncoder[2];
+  private SparkMaxEncoder[] rightEncoders = new SparkMaxEncoder[2];
+
+  // private CanMotor rightMotorA;
+  // private CanMotor rightMotorB;
+  // private CanMotor leftMotorA;
+  // private CanMotor leftMotorB;
   
   private SpeedControllerGroup leftControllerGroup;
   private SpeedControllerGroup rightControllerGroup;
@@ -31,12 +37,18 @@ public class CANDriveSystem extends SubsystemBase implements scheduler{
   public CANDriveSystem() {
     leftMotors[0] = new PIDSparkMax(Drive.CANFrontLeftMotorID);
     leftMotors[1] = new PIDSparkMax(Drive.CANBackLeftMotorID);
+
+    //leftMotors[1].getMotorController().follow(leftMotors[0].getMotorController());
+
     leftEncoders[0] = leftMotors[0].getEncoder();
+    leftEncoders[1] = leftMotors[1].getEncoder();
 
     rightMotors[0] = new PIDSparkMax(Drive.CANFrontRightMotorID);
     rightMotors[1] = new PIDSparkMax(Drive.CANBackRightMotorID);
 
-    
+    rightEncoders[0] = rightMotors[0].getEncoder();
+    rightEncoders[1] = rightMotors[1].getEncoder();
+
     leftControllerGroup = new SpeedControllerGroup(leftMotors[0], leftMotors[1]);
     rightControllerGroup = new SpeedControllerGroup(rightMotors[0], rightMotors[1]);
 
@@ -75,11 +87,11 @@ public class CANDriveSystem extends SubsystemBase implements scheduler{
   }
 
   public double getDistanceLeft() {
-    return leftMotors[0].getEncoder().getDistance();
+    return leftEncoders[0].getDistance();
 }
 
 public double getDistanceRight() {
-    return rightMotors[0].getEncoder().getDistance();
+    return rightEncoders[0].getDistance();
 
 }
 

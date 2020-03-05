@@ -1,6 +1,5 @@
 package frc.robot;
 
-import edu.wpi.first.wpilibj.I2C;
 import io.github.pseudoresonance.pixy2api.links.I2CLink;
 import io.github.pseudoresonance.pixy2api.links.Link;
 
@@ -56,6 +55,7 @@ public final class Constants {
         public static final int PWMShootRotatorLeftRightID = 6;
         public static final int PWMShootRotatorUpDownID = 7;
         public static final double maxShooterTurnError = 0;
+        //TODO find maxShooterTurnRate
         public static final double maxShooterTurnRate = 1;
         public static final int CANTopBallMotorID = 3;
         public static final int CANBottomBallMotorID = 4;
@@ -85,8 +85,10 @@ public final class Constants {
         public static final boolean LIMIT_PRESSED = true;
         public static final boolean LIMIT_NOTPRESSED = false;
         public static final double MAX_CLIMB_POSITION = 10000;
-        public static final double CLIMBER_SCALE_TO_INCHES = 0.5;
-        
+        public static final double MIN_CLIMB_POSITION = 0;
+        public static final double CLIMBER_SCALE_TO_INCHES = 1.0;
+		public static int maxClimbVel = 10;
+
         // public static final int PWMClimberSensor = 9;
         // public static double PotToInches = 35.0;
         // public static final double maxClimbSpeed = 1;
@@ -193,8 +195,4 @@ public final class Constants {
      * 315 is UP-LEFT
      * Returns to 0 going UP again
      */
-    
-    //TODO find our expectedDistance
-    //TODO find maxShooterTurnRate
-
 }

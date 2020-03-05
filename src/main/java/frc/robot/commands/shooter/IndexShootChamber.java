@@ -5,8 +5,7 @@ import frc.robot.Constants.Load;
 import frc.robot.Robot;
 import edu.wpi.first.wpilibj.Timer;
 
-//TODO: Make this command do its inferred task of getting shots ready
-
+@Deprecated
 public class IndexShootChamber extends CommandBase{
     private Timer indexerDelay;
 
