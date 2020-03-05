@@ -13,6 +13,7 @@ package frc.robot.commands.load;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants.Load;
+import frc.robot.Constants.Shooter;
 import frc.robot.Robot;
 
 /**
@@ -34,7 +35,7 @@ public class FeedBallToShooter extends CommandBase {
     @Override
     public void initialize() {
         start = timer.get();
-        Robot.shooterSystem.setShotLoaderSpeed(Load.PWMLoadShotMotorID);       
+        Robot.shooterSystem.setShotLoaderSpeed(Shooter.shotLoadSpeed);
     }
 
     // Called repeatedly when this Command is scheduled to run

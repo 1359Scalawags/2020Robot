@@ -59,19 +59,20 @@ public final class Constants {
         public static final double maxShooterTurnRate = 1;
         public static final int CANTopBallMotorID = 3;
         public static final int CANBottomBallMotorID = 4;
-        public static final double expectedDist =0;
+        public static final double expectedDist = 0;
+        public static final double shotLoadSpeed = 0.5;
 
         // public static int BallSpeedEncoderAID = 1;
         // public static int BallSpeedEncoderBID = 2;
         // public static double MaxShooterSpeed = 1;
 
         //Digital I/O
+        public static final int shotLeftLimit = 10;
         public static final int shotUpLimit = 11;
         public static final int shotDownLimit = 12;
-        public static final int shotLeftLimit = 10;
         public static final int shotRightLimit = 13;
-        public static final boolean LIMIT_PRESSED = true;
-        public static final boolean LIMIT_NOTPRESSED = false;
+        public static final boolean LIMIT_PRESSED = false;
+        public static final boolean LIMIT_NOTPRESSED = true;
     }
 
     /*------------------------------*/
@@ -82,9 +83,9 @@ public final class Constants {
         public static final int PWMRatchetServoID = 8;
         public static final double RatchetOpen = 1;
         public static final double RatchetClosed = 0;
-        public static final boolean LIMIT_PRESSED = true;
-        public static final boolean LIMIT_NOTPRESSED = false;
-        public static final double MAX_CLIMB_POSITION = 10000;
+        public static final boolean LIMIT_PRESSED = false;
+        public static final boolean LIMIT_NOTPRESSED = true;
+        public static final double MAX_CLIMB_POSITION = 178.44;
         public static final double MIN_CLIMB_POSITION = 0;
         public static final double CLIMBER_SCALE_TO_INCHES = 1.0;
 		public static int maxClimbVel = 10;
@@ -103,12 +104,13 @@ public final class Constants {
     /**Load System*/
 
     public static final class Load{
-        public static final int PWMChamRotMotorID = 1;
-        public static final int PWMLoadShotMotorID = 5;
-        public static final int PWMLowerBallLoadAID = 4;
-        public static final int PWMLowerBallLoadBID = 5;
-        public static final int PWMUpperBallLoad = 2;
-        public static final int PWMLoadBallUpMotorLeftID = 3;
+        
+        //TODO: Fix ALL motor IDs
+        public static final int CANChamRotatorMotorID = 20;
+        public static final int SparkLoadShotMotorID = 5;
+        public static final int CANLowerBallLoadFrontID = 21;
+        public static final int TalonLowerBallLoadRearID = 1;
+        public static final int TalonUpperBallLoad = 2;
         public static final double maxChamberSpeed = 1;
         public static final double indextimer = 0.1;
         public static final double MaxIndexTime = 3;
@@ -116,9 +118,8 @@ public final class Constants {
         public static final double loadIn = 0.8;
         public static final double loadUp = 0.8;
         public static final double chamberLoad = 0.8;
-        public static final int preLoadSensorID = 6;
-        public static final int postShotSensorID = 7;
 
+        // public static final int PWMLoadBallUpMotorLeftID = 3;
         // public static double BallLoadUpSpeed = 0.001;
         // public static double BallLoadInSpeed = 0.001;
         // public static int BallLimitID = 0;
@@ -129,13 +130,17 @@ public final class Constants {
 
         //Digital I/O
 
-        public static final int ballSensor = 5;
         public static final int preLoadSensor = 6;
         public static final int postShootSensor = 7;
-        public static final int fullRotationLimitIDedition = 8;
+        public static final int fullRotationLimitID = 8;
+        public static final boolean LIMIT_PRESSED = false;
+        public static final boolean LIMIT_NOTPRESSED = true;
 
-		public static final int CANLowerBallLoadA = 21;
-        public static final int CANLowerBallLoadB = 20;
+        // public static final int preLoadSensorID = 6;
+        // public static final int postShotSensorID = 7;
+        // public static final int ballSensor = 6;
+		// public static final int CANLowerBallLoadA = 21;
+        // public static final int CANLowerBallLoadB = 20;
         
         // public static final int LoadSensorA = 0;
         // public static final int LoadSensorB = 1;

@@ -45,7 +45,7 @@ public class ShooterSystem extends SubsystemBase implements scheduler{
         shootRotatorY = new Spark(Shooter.PWMShootRotatorUpDownID);
         shootRotatorY.setInverted(false);
         
-        shotLoader = new Spark(Load.PWMLoadShotMotorID);
+        shotLoader = new Spark(Load.SparkLoadShotMotorID);
         shotLoader.setInverted(true);
     }
     

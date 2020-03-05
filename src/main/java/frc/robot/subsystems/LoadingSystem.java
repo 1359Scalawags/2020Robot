@@ -3,6 +3,7 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.PWMSparkMax;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.Talon;
 import frc.robot.Constants.Load;
@@ -15,9 +16,17 @@ import frc.robot.interfaces.scheduler;
 public class LoadingSystem extends SubsystemBase implements scheduler{
 
     // private Talon ballLoaderInA;
-    private Talon ballLoaderUpA;
-    private Talon ballLoaderInA;
-    private Talon ballLoaderInB;
+    private Talon ballLoaderUp;
+    private PIDSparkMax ballLoaderInFront;
+    private Talon ballLoaderInRear;
+        /**
+    * **The CHAMBER ROTATOR rotates the chamber
+    */
+    private PIDSparkMax chamRotator;
+    /**
+    * **The ballLoadInMotors INTAKE from the bottom of the robot to the uptake
+    */
+    private SpeedControllerGroup ballLoadInMotors;
 
     private DigitalInput postShooterSensor;
     private int postShooterArraySlot = 3;
@@ -27,10 +36,7 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
     */
     private boolean ballSlots[];
 
-    /**
-    * **The CHAMBER ROTATOR rotates the chamber
-    */
-    private Talon chamRotator;
+
     /**
      * Index sensors show position of chamber rotation.
      */
@@ -38,15 +44,25 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
 
     private DigitalInput fullRotation;
     
-    /**
-    * **The INTAKE at the bottom of the robot
-    */
-    private SpeedControllerGroup ballLoadInMotors;
+
 
     //(value += x) and (value = value + x) are the same
 
 
     //TODO: when the new indexer is hit, reset the encoder for chamber rotator
+    
+    public boolean isFullRotation() {
+        return (fullRotation.get() == Load.LIMIT_PRESSED);
+    }
+
+    public void setFullRotation(double rotationAngle) {
+        if (Load.LIMIT_PRESSED){
+            rotationAngle = 0;
+        } else {
+
+        }
+    }
+
     // private int getSensorValue() {
     //     int value = 0;
     //     if(indexSensors[1].get()){
@@ -73,7 +89,7 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
         ballSlots[3] = false;
         ballSlots[4] = false;
 
-        fullRotation = new DigitalInput(Load.fullRotationLimitIDedition);
+        fullRotation = new DigitalInput(Load.fullRotationLimitID);
         addChild("FullRotationLimit", fullRotation);
 
         preLoadSensor = new DigitalInput(Load.preLoadSensor);
@@ -81,21 +97,22 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
         postShooterSensor = new DigitalInput(Load.postShootSensor);
         addChild("PostShooterSensor", postShooterSensor);
 
-        chamRotator = new Talon(Load.PWMChamRotMotorID);
+        chamRotator = new PIDSparkMax(Load.CANChamRotatorMotorID);
         addChild("ChamberRotater", chamRotator);
         chamRotator.setInverted(true);
-        addChild("ChamberRotator", chamRotator);
         
-        ballLoaderUpA = new Talon(Load.PWMUpperBallLoad);
-        addChild("BallLoaderUpA", ballLoaderUpA);
-        ballLoaderUpA.setInverted(false);
+        ballLoaderUp = new Talon(Load.TalonUpperBallLoad);
+        addChild("BallLoaderUpA", ballLoaderUp);
+        ballLoaderUp.setInverted(false);
 
-        ballLoaderInA = new Talon(Load.PWMLowerBallLoadAID);
-        addChild("LowerBallLaodA", ballLoaderInA);
-        ballLoaderInB = new Talon(Load.PWMLowerBallLoadBID);
-        addChild("LowerBallLaodB", ballLoaderInB);
+        //TODO: Fix ALL motor IDs
+        ballLoaderInFront = new PIDSparkMax(Load.CANLowerBallLoadFrontID);
+        addChild("LowerBallLoadA", ballLoaderInFront);
+
+        ballLoaderInRear = new Talon(Load.TalonLowerBallLoadRearID);
+        addChild("LowerBallLoadB", ballLoaderInRear);
         
-        ballLoadInMotors = new SpeedControllerGroup(ballLoaderUpA, ballLoaderInA, ballLoaderInB);
+        ballLoadInMotors = new SpeedControllerGroup(ballLoaderUp, ballLoaderInRear);
         
         // ballLoaderInA = new Talon(Load.PWMLowerBallLoad);
         // ballLoaderInA.setInverted(false);
@@ -141,6 +158,7 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
 
     public void setLoadInMotors(double speed) {
         this.ballLoadInMotors.set(speed);
+        this.ballLoaderInFront.set(speed);
     }
 
     public boolean isLoadingChamber() {
@@ -186,39 +204,40 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
         ballSlots[0] = tempLast;
     }
 
+    @Override
     public void updateDash(boolean Override){    
-        double chamSpeed = SmartDashboard.getNumber("CANChamberRotatorSpeed", 0);
-        if(Override){
-            //double[] pid = SmartDashboard.getNumberArray("ChamberRotatorPID", new double[1]);
-            //double loadup = SmartDashboard.getNumber("PWMBallLoadUpMotors", 0);
-            //double loadcham = SmartDashboard.getNumber("PWMBallLoadChamber", 0);
+    //     double chamSpeed = SmartDashboard.getNumber("CANChamberRotatorSpeed", 0);
+    //     if(Override){
+    //         //double[] pid = SmartDashboard.getNumberArray("ChamberRotatorPID", new double[1]);
+    //         //double loadup = SmartDashboard.getNumber("PWMBallLoadUpMotors", 0);
+    //         //double loadcham = SmartDashboard.getNumber("PWMBallLoadChamber", 0);
 
-            // if(!chamRotator.getPID().equals(pid))
-            //     chamRotator.setPID(pid);
-            // if(loadup != ballLoadUpMotors.get())
-            //     ballLoadUpMotors.set(loadup);
-            // if(loadcham != ballLoaderCham.get())
-            //     ballLoaderCham.set(loadcham);
+    //         // if(!chamRotator.getPID().equals(pid))
+    //         //     chamRotator.setPID(pid);
+    //         // if(loadup != ballLoadUpMotors.get())
+    //         //     ballLoadUpMotors.set(loadup);
+    //         // if(loadcham != ballLoaderCham.get())
+    //         //     ballLoaderCham.set(loadcham);
             
-            double loadin = SmartDashboard.getNumber("PWMBallLoadinMotors", 0);
-            if(chamSpeed != chamRotator.getSpeed())
-                chamRotator.set(chamSpeed);
-            if(loadin != ballLoadInMotors.get())
-                ballLoadInMotors.set(loadin);
-        }
-        else{
-            if(chamSpeed == chamRotator.getSpeed())
-                SmartDashboard.putNumber("CANChamberRotatorSpeed", chamRotator.getSpeed());
-        }
+    //         double loadin = SmartDashboard.getNumber("PWMBallLoadinMotors", 0);
+    //         if(chamSpeed != chamRotator.get())    
+    //             chamRotator.set(chamSpeed);
+    //         if(loadin != ballLoadInMotors.get())
+    //             ballLoadInMotors.set(loadin);
+    //     }
+    //     else{
+    //         if(chamSpeed == chamRotator.get())
+    //             SmartDashboard.putNumber("CANChamberRotatorSpeed", chamRotator.get());
+    //     }
     }
 
     @Override
     public void putValues() {
-        // SmartDashboard.putNumberArray("ChamberRotatorPID", chamRotator.getPID().toArray());
-        SmartDashboard.putNumber("CANChamberRotatorSpeed", 0);
-        SmartDashboard.putNumber("PWMBallLoadChamber", 0);
-        SmartDashboard.putNumber("PWMBallLoadinMotors", 0);
-        //SmartDashboard.putNumber("PWMBallLoadUpMotors", 0);
+    //     // SmartDashboard.putNumberArray("ChamberRotatorPID", chamRotator.getPID().toArray());
+    //     SmartDashboard.putNumber("CANChamberRotatorSpeed", 0);
+    //     SmartDashboard.putNumber("PWMBallLoadChamber", 0);
+    //     SmartDashboard.putNumber("PWMBallLoadinMotors", 0);
+    //     //SmartDashboard.putNumber("PWMBallLoadUpMotors", 0);
     }
 
     // public void setLoadUpMotors(double speed) {
