@@ -19,7 +19,7 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
     private Talon ballLoaderUp;
     private PIDSparkMax ballLoaderInFront;
     private Talon ballLoaderInRear;
-        /**
+    /**
     * **The CHAMBER ROTATOR rotates the chamber
     */
     private PIDSparkMax chamRotator;
@@ -31,11 +31,11 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
     private DigitalInput postShooterSensor;
     private int postShooterArraySlot = 3;
     private DigitalInput preLoadSensor;
+
     /**
     * **The BALL SLOTS are on the inside of the chamber
     */
     private boolean ballSlots[];
-
 
     /**
      * Index sensors show position of chamber rotation.
@@ -44,17 +44,15 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
 
     private DigitalInput fullRotation;
     
-
-
     //(value += x) and (value = value + x) are the same
 
-
-    //TODO: when the new indexer is hit, reset the encoder for chamber rotator
-    
+    //TODO: this method should reset the encoder for chamber rotator
     public boolean isFullRotation() {
         return (fullRotation.get() == Load.LIMIT_PRESSED);
     }
 
+    //TODO: use the encoder on the SparkMax to find the current angle
+    //TODO: will likely need to convert encoder values to an angle
     public void setFullRotation(double rotationAngle) {
         if (Load.LIMIT_PRESSED){
             rotationAngle = 0;
@@ -102,15 +100,15 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
         chamRotator.setInverted(true);
         
         ballLoaderUp = new Talon(Load.TalonUpperBallLoad);
-        addChild("BallLoaderUpA", ballLoaderUp);
+        addChild("LoadBallUp", ballLoaderUp);
         ballLoaderUp.setInverted(false);
 
-        //TODO: Fix ALL motor IDs
+        //TODO: Check that ALL motor IDs are corrected
         ballLoaderInFront = new PIDSparkMax(Load.CANLowerBallLoadFrontID);
-        addChild("LowerBallLoadA", ballLoaderInFront);
+        addChild("LowerFrontLoader", ballLoaderInFront);
 
         ballLoaderInRear = new Talon(Load.TalonLowerBallLoadRearID);
-        addChild("LowerBallLoadB", ballLoaderInRear);
+        addChild("LowerRearLoader", ballLoaderInRear);
         
         ballLoadInMotors = new SpeedControllerGroup(ballLoaderUp, ballLoaderInRear);
         
@@ -159,6 +157,7 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
     public void setLoadInMotors(double speed) {
         this.ballLoadInMotors.set(speed);
         this.ballLoaderInFront.set(speed);
+        //TODO: Add a constant scale factor to match PWM and CAN motor speeds
     }
 
     public boolean isLoadingChamber() {
@@ -177,6 +176,7 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
         return (chamRotator.get() != 0);
     }
 
+    //TODO: Should also have a getBallSlot(int) method so you can get a specific slots contents
     public boolean[] getBallSlots(){
         return new boolean[] {
             ballSlots[0], 
@@ -188,6 +188,8 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
     }
 
     public void updateUpperChamberSlot() {
+        //TODO: The ball slot that is aligned to the top will not always be the same index
+        //TODO: Need a good way to see what ball slot is where
         ballSlots[postShooterArraySlot] = this.postShooterSensor.get();
     }
 

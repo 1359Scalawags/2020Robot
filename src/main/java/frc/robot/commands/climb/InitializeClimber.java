@@ -5,6 +5,7 @@ import frc.robot.Robot;
 import frc.robot.Constants.Climb;
 import frc.robot.subsystems.ClimbSystem;
 
+//TODO: This class has not been implemented yet.
 public class InitializeClimber extends CommandBase {
  
     public InitializeClimber() {
