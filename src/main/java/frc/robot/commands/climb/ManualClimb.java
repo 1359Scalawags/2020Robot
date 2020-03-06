@@ -25,6 +25,7 @@ public class ManualClimb extends CommandBase {
     private double desiredPosition;
     
     public ManualClimb() {
+        addRequirements(Robot.climbSystem);
     }
 
     // Called just before this Command runs the first time
