@@ -61,7 +61,7 @@ public class Robot extends TimedRobot {
 
         chooser = new SendableChooser<CommandBase>();
         // dashboardScheduler = new DashboardScheduler();
-        System.out.println(">> Dashboard Scheduler Created");
+        //System.out.println(">> Dashboard Scheduler Created");
         
         // instantiate subsystems
         try {
@@ -114,6 +114,8 @@ public class Robot extends TimedRobot {
 
         // Add commands to Autonomous Sendable Chooser
 
+        // TODO: Need to create the options for the Autonomous routine...see below
+
         // chooser.addOption("AutoDriveTurn", new AutoDriveTurn(90));
         // chooser.setDefaultOption("Autonomous Command", new AutonomousCommand());
 
@@ -123,7 +125,7 @@ public class Robot extends TimedRobot {
         try {
             // dashboardScheduler.add(shooterSystem);
             // dashboardScheduler.add(loadingSystem);
-            //dashboardScheduler.add(controlPanelSystem);
+            // dashboardScheduler.add(controlPanelSystem);
             // dashboardScheduler.add(climbSystem);
             // dashboardScheduler.add(driveSystem);
             // dashboardScheduler.putValues();
