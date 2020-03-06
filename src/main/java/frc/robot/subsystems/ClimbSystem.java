@@ -39,18 +39,16 @@ public class ClimbSystem extends SubsystemBase { // implements scheduler{
 
         climbMotor = new PIDSparkMax(Climb.CANClimbMotorID);
         climbMotor.setControlType(ControlType.kPosition);
-        climbEncoder = climbMotor.getEncoder();
         addChild("ClimbMotor", climbMotor);
+        
+        climbEncoder = climbMotor.getEncoder();
         addChild("ClimbEncoder", climbEncoder);
-        SmartDashboard.putNumber("climbMotorRate", climbEncoder.getRate());
         
         climberLocked = true;
         SmartDashboard.putBoolean("ClimberLocked", climberLocked);
-        //ratchetLocked = true;
 
         ratchet = new Servo(Climb.PWMRatchetServoID);
         addChild("ClimbRatchet", ratchet);
-
         ratchet.setPosition(Climb.RatchetClosed);
 
         climbMotor.setInverted(true);  
@@ -61,11 +59,8 @@ public class ClimbSystem extends SubsystemBase { // implements scheduler{
     @Override
     public void periodic() {
         SmartDashboard.putBoolean("ClimberLocked", climberLocked);
-        SmartDashboard.putNumber("ClimbMotorRate", climbEncoder.getRate());
-        if(isAtBottom() && climbEncoder.getDistance() != 0) {
-            // if(climbEncoder.getRate() < 0) {
-            //     stop();
-            // }
+        if(isAtBottom() && climbEncoder.getRate() < 0) {
+            stop();
             resetPosition();
         }
     }
