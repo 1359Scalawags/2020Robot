@@ -10,6 +10,7 @@
 
 package frc.robot.commands.climb;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 import frc.robot.Constants.Climb;
@@ -37,6 +38,7 @@ public class ManualClimb extends CommandBase {
     public void execute() {
         //double currentPosition = Robot.climbSystem.getPosition();
         double speed = Robot.oi.getClimbSpeed();
+        SmartDashboard.putNumber("ExpectedClimberPosition", desiredPosition);
         if(Robot.climbSystem.moveTo(desiredPosition + speed)) {
             desiredPosition += speed;
         }

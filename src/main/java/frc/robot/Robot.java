@@ -106,7 +106,7 @@ public class Robot extends TimedRobot {
             System.out.println(">> Subsystems Registered and Default Commands Set.");
         } catch (Exception ex) {
             System.out.println("!! Unable to register subsystems and their default commands !!");
-            // ex.printStackTrace();
+            ex.printStackTrace();
         }
 
 
