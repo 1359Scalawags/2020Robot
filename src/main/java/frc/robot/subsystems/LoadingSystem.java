@@ -23,6 +23,8 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
     * **The CHAMBER ROTATOR rotates the chamber
     */
     private PIDSparkMax chamRotator;
+
+    //TODO: Need to create an encoder for the chamber rotator and add to LiveWindow
     /**
     * **The ballLoadInMotors INTAKE from the bottom of the robot to the uptake
     */
