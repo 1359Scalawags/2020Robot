@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj2.command.button.*;
 import frc.robot.Constants;
+import frc.robot.Constants.Climb;
 import frc.robot.Constants.Shooter;
 import frc.robot.helper.DPadButton;
 //import frc.robot.subsystems.*;
@@ -80,8 +81,7 @@ public class OI {
 
       assistController = new XboxController(RobotMap.AssistController);
       driverController = new XboxController(RobotMap.DriverController);
-
-      //TODO what will happen if the user presses both reject and intake at the same time?
+      
       rejectBallsButton = new DPadButton(driverController, DPadButton.Direction.UP);
       rejectBallsButton.whenHeld(new TurnLoaderToRejectBalls());
       rejectBallsButton.whenReleased(new TurnLoaderOff());
@@ -244,9 +244,8 @@ public class OI {
   }
  
   public double getClimbSpeed() {
-    //TODO: does there need to be a scaler, if not then the range will be [-1, 1]
     if(Math.abs(assistController.getY(Hand.kLeft)) > Constants.controllerDeadZone) {
-        return assistController.getY(Hand.kLeft);
+        return Climb.climbScaler * assistController.getY(Hand.kLeft);
     } else {
       return 0;
     }
