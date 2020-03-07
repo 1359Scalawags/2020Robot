@@ -15,7 +15,7 @@ import com.revrobotics.CANPIDController;
 import frc.robot.Constants;
 import frc.robot.helper.PID_Values;
 
-@Deprecated
+// @Deprecated
 public class CanMotor implements SpeedController, Sendable {
     private CANSparkMax motor;
     private double value;

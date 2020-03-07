@@ -15,7 +15,8 @@ import frc.robot.sendable.PIDSparkMax;
 import frc.robot.sendable.SparkMaxEncoder;
 
 public class CANDriveSystem extends SubsystemBase implements scheduler{  
-  private PIDSparkMax[] leftMotors = new PIDSparkMax[2];
+  private PIDSparkMax[] leftMotors = new PIDSparkMax[2]; 
+  // private CanMotor[] leftMotors = new CanMotor[2];
   private PIDSparkMax[] rightMotors = new PIDSparkMax[2];
   private SparkMaxEncoder[] leftEncoders = new SparkMaxEncoder[2];
   private SparkMaxEncoder[] rightEncoders = new SparkMaxEncoder[2];
@@ -37,6 +38,9 @@ public class CANDriveSystem extends SubsystemBase implements scheduler{
   public CANDriveSystem() {
     leftMotors[0] = new PIDSparkMax(Drive.CANFrontLeftMotorID);
     leftMotors[1] = new PIDSparkMax(Drive.CANBackLeftMotorID);
+    // leftMotors[0] = new CanMotor(Drive.CANFrontLeftMotorID);
+    // leftMotors[1] = new CanMotor(Drive.CANBackLeftMotorID);
+
 
     //leftMotors[1].getMotorController().follow(leftMotors[0].getMotorController());
 

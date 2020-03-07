@@ -11,6 +11,7 @@
 
 package frc.robot.commands.drive;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 //import frc.robot.Robot;
@@ -22,22 +23,24 @@ import frc.robot.Robot;
 public class ManualDrive extends CommandBase {
 
     public ManualDrive() {
-          addRequirements(Robot.driveSystem);
+        addRequirements(Robot.driveSystem);
     }
 
     // Called just before this Command runs the first time
     @Override
     public void initialize() {
-        // Robot.driveSystem.ResetGyro();
+        System.out.println("Manual drive init");
+        Robot.driveSystem.ResetGyro();
     }
 
     // Called repeatedly when this Command is scheduled to run
     @Override
     public void execute() {
-
+        System.out.println("--Manual drive executing--");
         // Robot.oi.getDriverJoystick();
-        Robot.driveSystem.ResetGyro();
-        
+        // Robot.driveSystem.ResetGyro();
+        SmartDashboard.putNumber("Left Y Drive",Robot.oi.DriverLStickY());
+        SmartDashboard.putNumber("Right Y Drive",Robot.oi.DriverRStickY());
         Robot.driveSystem.tankDrive(-Robot.oi.DriverLStickY(), -Robot.oi.DriverRStickY());	
         
         //SmartDashboard.putNumber("Elevator Height",Robot.climbSystem.getclimbSystemHeight());
@@ -57,6 +60,7 @@ public class ManualDrive extends CommandBase {
     // Called once after isFinished returns true
     @Override
     public void end(boolean interrupted) {
+        System.out.println("Manual drive ended");
     }
 
 
