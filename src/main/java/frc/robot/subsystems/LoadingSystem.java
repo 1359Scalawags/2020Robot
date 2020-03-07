@@ -90,6 +90,7 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
         chamRotator.setInverted(true);
 
         chamEncoder = chamRotator.getEncoder();
+        chamEncoder.setPositionConversionFactor(Load.fullChamRot);
         addChild("ChamberEncoder", chamEncoder);
   
         ballLoaderUp = new Talon(Load.TalonUpperBallLoad);

@@ -123,6 +123,7 @@ public final class Constants {
         public static final double loadIn = 0.8;
         public static final double loadUp = 0.8;
         public static final double chamberLoad = 0.8;
+        public static final double fullChamRot = 1.0/221.34;
 
         // public static final int PWMLoadBallUpMotorLeftID = 3;
         // public static double BallLoadUpSpeed = 0.001;
