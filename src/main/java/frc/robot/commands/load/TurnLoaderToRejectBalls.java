@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 //import frc.robot.Constants;
 import frc.robot.Robot;
 //import frc.robot.RobotMap;
+import frc.robot.Constants.Load;
 
 public class TurnLoaderToRejectBalls extends CommandBase{
 
@@ -14,7 +15,7 @@ public class TurnLoaderToRejectBalls extends CommandBase{
 
     @Override
     public void initialize() {
-        Robot.loadingSystem.setLoadInMotors(-1);
+        Robot.loadingSystem.setLoadInMotors(-Load.loadIn);
     }
 
     @Override

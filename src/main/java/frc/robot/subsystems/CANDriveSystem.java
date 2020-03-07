@@ -15,7 +15,8 @@ import frc.robot.sendable.PIDSparkMax;
 import frc.robot.sendable.SparkMaxEncoder;
 
 public class CANDriveSystem extends SubsystemBase implements scheduler{  
-  private PIDSparkMax[] leftMotors = new PIDSparkMax[2];
+  private PIDSparkMax[] leftMotors = new PIDSparkMax[2]; 
+  // private CanMotor[] leftMotors = new CanMotor[2];
   private PIDSparkMax[] rightMotors = new PIDSparkMax[2];
   private SparkMaxEncoder[] leftEncoders = new SparkMaxEncoder[2];
   private SparkMaxEncoder[] rightEncoders = new SparkMaxEncoder[2];
@@ -37,6 +38,9 @@ public class CANDriveSystem extends SubsystemBase implements scheduler{
   public CANDriveSystem() {
     leftMotors[0] = new PIDSparkMax(Drive.CANFrontLeftMotorID);
     leftMotors[1] = new PIDSparkMax(Drive.CANBackLeftMotorID);
+    // leftMotors[0] = new CanMotor(Drive.CANFrontLeftMotorID);
+    // leftMotors[1] = new CanMotor(Drive.CANBackLeftMotorID);
+
 
     //leftMotors[1].getMotorController().follow(leftMotors[0].getMotorController());
 
@@ -49,8 +53,8 @@ public class CANDriveSystem extends SubsystemBase implements scheduler{
     rightEncoders[0] = rightMotors[0].getEncoder();
     rightEncoders[1] = rightMotors[1].getEncoder();
 
-    leftControllerGroup = new SpeedControllerGroup(leftMotors[0], leftMotors[1]);
-    rightControllerGroup = new SpeedControllerGroup(rightMotors[0], rightMotors[1]);
+    leftControllerGroup = new SpeedControllerGroup(leftMotors[0].getMotorController(), leftMotors[1].getMotorController());
+    rightControllerGroup = new SpeedControllerGroup(rightMotors[0].getMotorController(), rightMotors[1].getMotorController());
 
     diffDrive = new DifferentialDrive(rightControllerGroup, leftControllerGroup);
 
@@ -58,9 +62,10 @@ public class CANDriveSystem extends SubsystemBase implements scheduler{
     driveGyro = new ADXRS450_Gyro();
     gyroControl = new PIDController(gyroPids.kP, gyroPids.kI, gyroPids.kD);
 
-
-    // TODO: set pid values...for example left
-    leftMotors[0].setP(Drive.PID_P);
+    leftMotors[0].setPID(Drive.PID_P, Drive.PID_I, Drive.PID_D, Drive.PID_Iz, Drive.PID_Ff);
+    leftMotors[1].setPID(Drive.PID_P, Drive.PID_I, Drive.PID_D, Drive.PID_Iz, Drive.PID_Ff);
+    rightMotors[0].setPID(Drive.PID_P, Drive.PID_I, Drive.PID_D, Drive.PID_Iz, Drive.PID_Ff);
+    rightMotors[1].setPID(Drive.PID_P, Drive.PID_I, Drive.PID_D, Drive.PID_Iz, Drive.PID_Ff);
 
     // leftMotors[0].Encoder().setPositionConversionFactor(Drive.SystemScale);
     

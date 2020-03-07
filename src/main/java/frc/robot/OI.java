@@ -5,14 +5,16 @@ package frc.robot;
 import frc.robot.commands.load.*;
 import frc.robot.commands.shooter.*;
 import frc.robot.commands.climb.*;
-import frc.robot.commands.drive.ManualDrive;
 //import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj2.command.button.*;
 import frc.robot.Constants;
+import frc.robot.Constants.Climb;
+import frc.robot.Constants.Shooter;
 import frc.robot.helper.DPadButton;
 //import frc.robot.subsystems.*;
+import frc.robot.helper.Utilities;
  
  
     /**
@@ -76,13 +78,9 @@ public class OI {
  
     public OI() {
 
-      //TODO lowerfrontloader- 0.5
-      //TODO Shooter rotator- needs to be scaled
-
       assistController = new XboxController(RobotMap.AssistController);
       driverController = new XboxController(RobotMap.DriverController);
-
-      //TODO what will happen if the user presses both reject and intake at the same time?
+      
       rejectBallsButton = new DPadButton(driverController, DPadButton.Direction.UP);
       rejectBallsButton.whenHeld(new TurnLoaderToRejectBalls());
       rejectBallsButton.whenReleased(new TurnLoaderOff());
@@ -247,9 +245,8 @@ public class OI {
   }
  
   public double getClimbSpeed() {
-    //TODO: does there need to be a scaler, if not then the range will be [-1, 1]
     if(Math.abs(assistController.getY(Hand.kLeft)) > Constants.controllerDeadZone) {
-        return assistController.getY(Hand.kLeft);
+        return Climb.climbScaler * assistController.getY(Hand.kLeft);
     } else {
       return 0;
     }
@@ -263,17 +260,17 @@ public class OI {
   //   }
   // }
 
-	public double getAimHorizontalSpeed() {//TODO finalize the joystick for this!!!
+	public double getAimHorizontalSpeed() {
     if(Math.abs(assistController.getX(Hand.kLeft)) > Constants.controllerDeadZone) {
-        return assistController.getX(Hand.kLeft);
+      return Utilities.Clamp(assistController.getX(Hand.kLeft), -Shooter.maxShooterTurnRate, Shooter.maxShooterTurnRate);
     } else {
       return 0;
     }
   }
 
-	public double getAimVerticalSpeed() {//TODO finalize the joystick for this!!!
+	public double getAimVerticalSpeed() {
     if(Math.abs(assistController.getY(Hand.kLeft)) > Constants.controllerDeadZone) {
-        return assistController.getY(Hand.kLeft);
+      return Utilities.Clamp(assistController.getY(Hand.kLeft), -Shooter.maxShooterTurnRate, Shooter.maxShooterTurnRate);
     } else {
       return 0;
     }

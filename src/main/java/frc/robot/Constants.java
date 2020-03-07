@@ -61,6 +61,7 @@ public final class Constants {
         public static final int CANBottomBallMotorID = 3;
         public static final double expectedDist = 0;
         public static final double shotLoadSpeed = 0.5;
+        public static final double shooterSpeedScale = 0.5;
 
         // public static int BallSpeedEncoderAID = 1;
         // public static int BallSpeedEncoderBID = 2;
@@ -97,6 +98,9 @@ public final class Constants {
 
         //Digital I/O
         public static final int MinHeightLimitID = 5;
+
+        //TODO find 
+		public static final double climbScaler =1;
 
         // public static int MaxHeightLimitID = 3;
     }
