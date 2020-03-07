@@ -105,7 +105,7 @@ public class OI {
         
       singleShot = new JoystickButton(assistController, Constants.Abtn);
       singleShot.whenHeld(new SingleShotSequence());
-      singleShot.whenReleased(new StopShooter());
+      // singleShot.whenReleased(new StopShooter());
       // singleShot.whenPressed(new SingleShotSequence());
 
       // driveLeftFaster = new JoystickButton(driverController, Constants.LB);
