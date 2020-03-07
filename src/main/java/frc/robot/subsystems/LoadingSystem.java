@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.Talon;
 import frc.robot.Constants.Load;
 import frc.robot.sendable.PIDSparkMax;
+import frc.robot.sendable.SparkMaxEncoder;
 import frc.robot.interfaces.scheduler;
 
 /**
@@ -23,10 +24,10 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
     * **The CHAMBER ROTATOR rotates the chamber
     */
     private PIDSparkMax chamRotator;
+    private SparkMaxEncoder chamEncoder;
 
-    //TODO: Need to create an encoder for the chamber rotator and add to LiveWindow
     /**
-    * **The ballLoadInMotors INTAKE from the bottom of the robot to the uptake
+    * **The ballLoadInMotors INTAKE from the bottom of the robot to the chamber
     */
     private SpeedControllerGroup ballLoadInMotors;
 
@@ -48,20 +49,7 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
     
     //(value += x) and (value = value + x) are the same
 
-    //TODO: this method should reset the encoder for chamber rotator
-    public boolean isFullRotation() {
-        return (fullRotation.get() == Load.LIMIT_PRESSED);
-    }
 
-    //TODO: use the encoder on the SparkMax to find the current angle
-    //TODO: will likely need to convert encoder values to an angle
-    public void setFullRotation(double rotationAngle) {
-        if (Load.LIMIT_PRESSED){
-            rotationAngle = 0;
-        } else {
-
-        }
-    }
 
     // private int getSensorValue() {
     //     int value = 0;
@@ -98,9 +86,12 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
         addChild("PostShooterSensor", postShooterSensor);
 
         chamRotator = new PIDSparkMax(Load.CANChamRotatorMotorID);
-        addChild("ChamberRotator", chamRotator);
+        addChild("ChamberMotor", chamRotator);
         chamRotator.setInverted(true);
-        
+
+        chamEncoder = chamRotator.getEncoder();
+        addChild("ChamberEncoder", chamEncoder);
+  
         ballLoaderUp = new Talon(Load.TalonUpperBallLoad);
         // addChild("LoadBallUp", ballLoaderUp);
         ballLoaderUp.setInverted(false);
@@ -129,6 +120,21 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
         // indexSensors[4] = new DigitalInput(Load.LoadSensorE);
         // addChild("DigitalInput4", preLoadSensor);
 
+    }
+
+    //TODO: this method should reset the encoder for chamber rotator
+    public boolean isFullRotation() {
+        return (fullRotation.get() == Load.LIMIT_PRESSED);
+    }
+
+    //TODO: use the encoder on the SparkMax to find the current angle
+    //TODO: will likely need to convert encoder values to an angle
+    public void setFullRotation(double rotationAngle) {
+        if (Load.LIMIT_PRESSED){
+            rotationAngle = 0;
+        } else {
+
+        }
     }
 
     /*
