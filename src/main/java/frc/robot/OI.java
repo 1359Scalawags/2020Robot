@@ -5,7 +5,6 @@ package frc.robot;
 import frc.robot.commands.load.*;
 import frc.robot.commands.shooter.*;
 import frc.robot.commands.climb.*;
-import frc.robot.commands.drive.ManualDrive;
 //import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
