@@ -96,14 +96,13 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
         addChild("PostShooterSensor", postShooterSensor);
 
         chamRotator = new PIDSparkMax(Load.CANChamRotatorMotorID);
-        addChild("ChamberRotater", chamRotator);
+        addChild("ChamberRotator", chamRotator);
         chamRotator.setInverted(true);
         
         ballLoaderUp = new Talon(Load.TalonUpperBallLoad);
         addChild("LoadBallUp", ballLoaderUp);
         ballLoaderUp.setInverted(false);
 
-        //TODO: Check that ALL motor IDs are corrected
         ballLoaderInFront = new PIDSparkMax(Load.CANLowerBallLoadFrontID);
         addChild("LowerFrontLoader", ballLoaderInFront);
 
