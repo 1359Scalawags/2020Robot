@@ -49,8 +49,8 @@ public class CANDriveSystem extends SubsystemBase implements scheduler{
     rightEncoders[0] = rightMotors[0].getEncoder();
     rightEncoders[1] = rightMotors[1].getEncoder();
 
-    leftControllerGroup = new SpeedControllerGroup(leftMotors[0], leftMotors[1]);
-    rightControllerGroup = new SpeedControllerGroup(rightMotors[0], rightMotors[1]);
+    leftControllerGroup = new SpeedControllerGroup(leftMotors[0].getMotorController(), leftMotors[1].getMotorController());
+    rightControllerGroup = new SpeedControllerGroup(rightMotors[0].getMotorController(), rightMotors[1].getMotorController());
 
     diffDrive = new DifferentialDrive(rightControllerGroup, leftControllerGroup);
 

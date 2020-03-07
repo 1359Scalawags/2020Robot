@@ -98,6 +98,9 @@ public final class Constants {
         //Digital I/O
         public static final int MinHeightLimitID = 5;
 
+        //TODO find 
+		public static final double climbScaler =1;
+
         // public static int MaxHeightLimitID = 3;
     }
 
