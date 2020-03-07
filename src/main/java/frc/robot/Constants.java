@@ -52,13 +52,13 @@ public final class Constants {
     /**Shooter System*/
 
     public static final class Shooter{
-        public static final int PWMShootRotatorLeftRightID = 6;
-        public static final int PWMShootRotatorUpDownID = 7;
+        public static final int PWMShootRotatorLeftRightID = 7;
+        public static final int PWMShootRotatorUpDownID = 6;
         public static final double maxShooterTurnError = 0;
         //TODO find maxShooterTurnRate
         public static final double maxShooterTurnRate = 1;
-        public static final int CANTopBallMotorID = 3;
-        public static final int CANBottomBallMotorID = 4;
+        public static final int CANTopBallMotorID = 4;
+        public static final int CANBottomBallMotorID = 3;
         public static final double expectedDist = 0;
         public static final double shotLoadSpeed = 0.5;
 
@@ -85,10 +85,11 @@ public final class Constants {
         public static final double RatchetClosed = 0;
         public static final boolean LIMIT_PRESSED = false;
         public static final boolean LIMIT_NOTPRESSED = true;
-        public static final double MAX_CLIMB_POSITION = 178.44;
+        // public static final double MAX_CLIMB_POSITION = 178.44;
+        public static final double MAX_CLIMB_POSITION = 90;//TODO for testing
         public static final double MIN_CLIMB_POSITION = 0;
         public static final double CLIMBER_SCALE_TO_INCHES = 1.0;
-		public static int maxClimbVel = 10;
+		// public static int maxClimbVel = 10;
 
         // public static final int PWMClimberSensor = 9;
         // public static double PotToInches = 35.0;
