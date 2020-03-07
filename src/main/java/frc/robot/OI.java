@@ -221,21 +221,37 @@ public class OI {
     }
   }
  
-  // public double AssistRStickY() {
-  //   if (Math.abs(Robot.oi.assistController.getY(Hand.kRight)) > Constants.controllerDeadZone) {
-  //     return -(Robot.oi.assistController.getY(Hand.kRight) * (.3 * Robot.oi.getMainTriggers() + .7));
-  //   } else {
-  //     return 0;
-  //   }
-  // }
+  public double AssistRStickY() {
+    if (Math.abs(Robot.oi.assistController.getY(Hand.kRight)) > Constants.controllerDeadZone) {
+      return -(Robot.oi.assistController.getY(Hand.kRight) * (.3 * Robot.oi.getMainTriggers() + .7));
+    } else {
+      return 0;
+    }
+  }
  
-  // public double AssistLStickY() {
-  //   if (Math.abs(Robot.oi.assistController.getY(Hand.kLeft)) > Constants.controllerDeadZone) {
-  //     return -(Robot.oi.assistController.getY(Hand.kLeft) * (.3 * Robot.oi.getMainTriggers() + .7));
-  //   } else {
-  //     return 0;
-  //   }
-  // }
+  public double AssistLStickY() {
+    if (Math.abs(Robot.oi.assistController.getY(Hand.kLeft)) > Constants.controllerDeadZone) {
+      return -(Robot.oi.assistController.getY(Hand.kLeft) * (.3 * Robot.oi.getMainTriggers() + .7));
+    } else {
+      return 0;
+    }
+  }
+  
+  public double AssistRStickX() {
+    if (Math.abs(Robot.oi.assistController.getX(Hand.kRight)) > Constants.controllerDeadZone) {
+      return -(Robot.oi.assistController.getX(Hand.kRight) * (.3 * Robot.oi.getMainTriggers() + .7));
+    } else {
+      return 0;
+    }
+  }
+ 
+  public double AssistLStickX() {
+    if (Math.abs(Robot.oi.assistController.getX(Hand.kLeft)) > Constants.controllerDeadZone) {
+      return -(Robot.oi.assistController.getX(Hand.kLeft) * (.3 * Robot.oi.getMainTriggers() + .7));
+    } else {
+      return 0;
+    }
+  }
   
   public double getMainTriggers() {
     return Math.max(driverController.getTriggerAxis(Hand.kLeft), driverController.getTriggerAxis(Hand.kRight));
