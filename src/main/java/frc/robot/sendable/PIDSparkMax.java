@@ -29,6 +29,15 @@ public class PIDSparkMax implements PIDSpeedController {
         this.sparkMax = new CANSparkMax(id, MotorType.kBrushless);
         this.encoder = new SparkMaxEncoder(this.sparkMax.getEncoder());
         this.sparkPID = this.sparkMax.getPIDController();
+        this.sparkMax.restoreFactoryDefaults();
+    }
+
+    public void setPID(double p, double i, double d, double iz, double ff) {
+        sparkPID.setP(p);
+        sparkPID.setI(i);
+        sparkPID.setD(d);
+        sparkPID.setIZone(iz);
+        sparkPID.setFF(ff);
     }
 
     public CANSparkMax getMotorController() {
