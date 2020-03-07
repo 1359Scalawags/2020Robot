@@ -11,8 +11,10 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj2.command.button.*;
 import frc.robot.Constants;
+import frc.robot.Constants.Shooter;
 import frc.robot.helper.DPadButton;
 //import frc.robot.subsystems.*;
+import frc.robot.helper.Utilities;
  
  
     /**
@@ -75,9 +77,6 @@ public class OI {
     // private JoystickButton autoDriveTurnLeft;
  
     public OI() {
-
-      //TODO lowerfrontloader- 0.5
-      //TODO Shooter rotator- needs to be scaled
 
       assistController = new XboxController(RobotMap.AssistController);
       driverController = new XboxController(RobotMap.DriverController);
@@ -263,7 +262,7 @@ public class OI {
 
 	public double getAimHorizontalSpeed() {//TODO finalize the joystick for this!!!
     if(Math.abs(assistController.getX(Hand.kLeft)) > Constants.controllerDeadZone) {
-        return assistController.getX(Hand.kLeft);
+      return Utilities.Clamp(assistController.getX(Hand.kLeft), -Shooter.maxShooterTurnRate, Shooter.maxShooterTurnRate);
     } else {
       return 0;
     }
@@ -271,7 +270,7 @@ public class OI {
 
 	public double getAimVerticalSpeed() {//TODO finalize the joystick for this!!!
     if(Math.abs(assistController.getY(Hand.kLeft)) > Constants.controllerDeadZone) {
-        return assistController.getY(Hand.kLeft);
+      return Utilities.Clamp(assistController.getY(Hand.kLeft), -Shooter.maxShooterTurnRate, Shooter.maxShooterTurnRate);
     } else {
       return 0;
     }
