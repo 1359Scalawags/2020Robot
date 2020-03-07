@@ -58,8 +58,6 @@ public class CANDriveSystem extends SubsystemBase implements scheduler{
     driveGyro = new ADXRS450_Gyro();
     gyroControl = new PIDController(gyroPids.kP, gyroPids.kI, gyroPids.kD);
 
-
-    // TODO: set pid values...for example left
     leftMotors[0].setPID(Drive.PID_P, Drive.PID_I, Drive.PID_D, Drive.PID_Iz, Drive.PID_Ff);
     leftMotors[1].setPID(Drive.PID_P, Drive.PID_I, Drive.PID_D, Drive.PID_Iz, Drive.PID_Ff);
     rightMotors[0].setPID(Drive.PID_P, Drive.PID_I, Drive.PID_D, Drive.PID_Iz, Drive.PID_Ff);

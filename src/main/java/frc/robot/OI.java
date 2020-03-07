@@ -260,7 +260,7 @@ public class OI {
   //   }
   // }
 
-	public double getAimHorizontalSpeed() {//TODO finalize the joystick for this!!!
+	public double getAimHorizontalSpeed() {
     if(Math.abs(assistController.getX(Hand.kLeft)) > Constants.controllerDeadZone) {
       return Utilities.Clamp(assistController.getX(Hand.kLeft), -Shooter.maxShooterTurnRate, Shooter.maxShooterTurnRate);
     } else {
@@ -268,7 +268,7 @@ public class OI {
     }
   }
 
-	public double getAimVerticalSpeed() {//TODO finalize the joystick for this!!!
+	public double getAimVerticalSpeed() {
     if(Math.abs(assistController.getY(Hand.kLeft)) > Constants.controllerDeadZone) {
       return Utilities.Clamp(assistController.getY(Hand.kLeft), -Shooter.maxShooterTurnRate, Shooter.maxShooterTurnRate);
     } else {
