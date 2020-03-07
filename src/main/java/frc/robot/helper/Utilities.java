@@ -16,4 +16,11 @@ public class Utilities {
 		return Math.max(min, Math.min(max, value));
 	}
 
+	public static boolean isCloseTo(double value, double target, double tolerance) {
+		if(Math.abs(value - target) < tolerance ) {
+			return true;
+		}
+		return false;
+	}
+
 }

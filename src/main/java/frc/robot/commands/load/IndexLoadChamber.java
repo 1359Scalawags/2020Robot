@@ -19,7 +19,7 @@ public class IndexLoadChamber extends CommandBase{
     public void initialize() {
         indexerDelay.reset();
         indexerDelay.start();
-        Robot.loadingSystem.rotateChamber(Load.maxChamberSpeed);
+        // Robot.loadingSystem.rotateChamber(Load.maxChamberSpeed);
     }
 
     @Override
