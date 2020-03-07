@@ -60,7 +60,10 @@ public class CANDriveSystem extends SubsystemBase implements scheduler{
 
 
     // TODO: set pid values...for example left
-    leftMotors[0].setP(Drive.PID_P);
+    leftMotors[0].setPID(Drive.PID_P, Drive.PID_I, Drive.PID_D, Drive.PID_Iz, Drive.PID_Ff);
+    leftMotors[1].setPID(Drive.PID_P, Drive.PID_I, Drive.PID_D, Drive.PID_Iz, Drive.PID_Ff);
+    rightMotors[0].setPID(Drive.PID_P, Drive.PID_I, Drive.PID_D, Drive.PID_Iz, Drive.PID_Ff);
+    rightMotors[1].setPID(Drive.PID_P, Drive.PID_I, Drive.PID_D, Drive.PID_Iz, Drive.PID_Ff);
 
     // leftMotors[0].Encoder().setPositionConversionFactor(Drive.SystemScale);
     
