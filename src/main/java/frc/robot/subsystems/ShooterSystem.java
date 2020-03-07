@@ -67,7 +67,7 @@ public class ShooterSystem extends SubsystemBase { //implements scheduler{
 
     //TODO: This speed scale should be a clearly named constant
     public void setShotLoaderSpeed(double loader) {
-        shotLoader.setSpeed(loader * 0.5);
+        shotLoader.setSpeed(loader * Shooter.shooterSpeedScale);
     }
 
     public double getShooterSpeedTop() {
