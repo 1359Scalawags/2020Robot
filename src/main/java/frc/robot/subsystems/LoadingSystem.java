@@ -189,10 +189,12 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
 
     public void updateUpperChamberSlot() {
         //TODO: The ball slot that is aligned to the top will not always be the same index
-        //TODO: Need a good way to see what ball slot is where
+
         ballSlots[postShooterArraySlot] = this.postShooterSensor.get();
     }
-
+    //TODO: Write a function that returns the ball slot that is ready to load
+    //TODO: Write a function that returns the ball slot that is ready to shoot
+    
     public boolean isBallPreloading() {
         return preLoadSensor.get();
     }

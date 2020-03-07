@@ -22,4 +22,9 @@ public class ManualAimShooter extends CommandBase{
         Robot.shooterSystem.rotateVertically(Robot.oi.getAimVerticalSpeed());        
     }
 
+    @Override
+    public boolean isFinished() {
+        return false;
+    }
+
 }

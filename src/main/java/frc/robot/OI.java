@@ -177,9 +177,9 @@ public class OI {
       return autoDriveTurnRight.get();
     }
  
-    public XboxController getAssistJoystick() {
-        return assistController;
-    }
+    // public XboxController getAssistJoystick() {
+    //     return assistController;
+    // }
  
     public int getAssistDPad() {
       return assistController.getPOV();
@@ -221,21 +221,21 @@ public class OI {
     }
   }
  
-  public double AssistRStickY() {
-    if (Math.abs(Robot.oi.assistController.getY(Hand.kRight)) > Constants.controllerDeadZone) {
-      return -(Robot.oi.assistController.getY(Hand.kRight) * (.3 * Robot.oi.getMainTriggers() + .7));
-    } else {
-      return 0;
-    }
-  }
+  // public double AssistRStickY() {
+  //   if (Math.abs(Robot.oi.assistController.getY(Hand.kRight)) > Constants.controllerDeadZone) {
+  //     return -(Robot.oi.assistController.getY(Hand.kRight) * (.3 * Robot.oi.getMainTriggers() + .7));
+  //   } else {
+  //     return 0;
+  //   }
+  // }
  
-  public double AssistLStickY() {
-    if (Math.abs(Robot.oi.assistController.getY(Hand.kLeft)) > Constants.controllerDeadZone) {
-      return -(Robot.oi.assistController.getY(Hand.kLeft) * (.3 * Robot.oi.getMainTriggers() + .7));
-    } else {
-      return 0;
-    }
-  }
+  // public double AssistLStickY() {
+  //   if (Math.abs(Robot.oi.assistController.getY(Hand.kLeft)) > Constants.controllerDeadZone) {
+  //     return -(Robot.oi.assistController.getY(Hand.kLeft) * (.3 * Robot.oi.getMainTriggers() + .7));
+  //   } else {
+  //     return 0;
+  //   }
+  // }
   
   public double getMainTriggers() {
     return Math.max(driverController.getTriggerAxis(Hand.kLeft), driverController.getTriggerAxis(Hand.kRight));
@@ -250,13 +250,13 @@ public class OI {
     }
   }
  
-  public double getRotatorSpeed() {
-    if(Math.abs(assistController.getX(Hand.kRight)) > Constants.controllerDeadZone) {
-        return assistController.getX(Hand.kRight);
-    } else {
-      return 0;
-    }
-  }
+  // public double getRotatorSpeed() {
+  //   if(Math.abs(assistController.getX(Hand.kRight)) > Constants.controllerDeadZone) {
+  //       return assistController.getX(Hand.kRight);
+  //   } else {
+  //     return 0;
+  //   }
+  // }
 
 	public double getAimHorizontalSpeed() {//TODO finalize the joystick for this!!!
     if(Math.abs(assistController.getX(Hand.kLeft)) > Constants.controllerDeadZone) {
@@ -274,9 +274,9 @@ public class OI {
     }
   }
   
-  public XboxController getDriverJoystick() {
-    return driverController;
-  }
+  // public XboxController getDriverJoystick() {
+  //   return driverController;
+  // }
 
   /*// CREATING BUTTONS
     // One type of button is a joystick button which is any button on a joystick.

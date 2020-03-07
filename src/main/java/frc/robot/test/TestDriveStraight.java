@@ -31,7 +31,7 @@ public class TestDriveStraight extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     @Override
     public void execute() {
-        double driveSpeed = Robot.oi.getDriverJoystick().getY();
+        double driveSpeed = Robot.oi.DriverLStickY();
         Robot.driveSystem.arcadeDrive(driveSpeed, 0);
     }
 
