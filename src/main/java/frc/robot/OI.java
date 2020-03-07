@@ -76,6 +76,9 @@ public class OI {
  
     public OI() {
 
+      //TODO lowerfrontloader- 0.5
+      //TODO Shooter rotator- needs to be scaled
+
       assistController = new XboxController(RobotMap.AssistController);
       driverController = new XboxController(RobotMap.DriverController);
 
