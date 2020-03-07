@@ -100,16 +100,17 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
         chamRotator.setInverted(true);
         
         ballLoaderUp = new Talon(Load.TalonUpperBallLoad);
-        addChild("LoadBallUp", ballLoaderUp);
+        // addChild("LoadBallUp", ballLoaderUp);
         ballLoaderUp.setInverted(false);
 
         ballLoaderInFront = new PIDSparkMax(Load.CANLowerBallLoadFrontID);
         addChild("LowerFrontLoader", ballLoaderInFront);
 
         ballLoaderInRear = new Talon(Load.TalonLowerBallLoadRearID);
-        addChild("LowerRearLoader", ballLoaderInRear);
+        // addChild("LowerRearLoader", ballLoaderInRear);
         
         ballLoadInMotors = new SpeedControllerGroup(ballLoaderUp, ballLoaderInRear);
+        addChild("LoadBalls", ballLoadInMotors);
         
         // ballLoaderInA = new Talon(Load.PWMLowerBallLoad);
         // ballLoaderInA.setInverted(false);
