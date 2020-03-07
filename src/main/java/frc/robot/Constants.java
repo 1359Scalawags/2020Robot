@@ -99,7 +99,7 @@ public final class Constants {
         //Digital I/O
         public static final int MinHeightLimitID = 5;
 
-        //TODO find 
+        //TODO find climbScaler 
 		public static final double climbScaler =1;
 
         // public static int MaxHeightLimitID = 3;
@@ -109,8 +109,6 @@ public final class Constants {
     /**Load System*/
 
     public static final class Load{
-        
-        //TODO: Fix ALL motor IDs
         public static final int CANChamRotatorMotorID = 20;
         public static final int SparkLoadShotMotorID = 5;
         public static final int CANLowerBallLoadFrontID = 21;

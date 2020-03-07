@@ -118,16 +118,15 @@ public class ClimbSystem extends SubsystemBase { // implements scheduler{
         climbEncoder.reset();
     }
 
-    //TODO: Remove this function and implement as InitializeClimber command
-    @Deprecated(forRemoval = true)
-    public void initializeSystem() {
-        if(!isAtBottom()) {
-            climbMotor.set(-0.1);
-        } else {
-            stop();
-            resetPosition();
-        }
-    }
+    // @Deprecated(forRemoval = true)
+    // public void initializeSystem() {
+    //     if(!isAtBottom()) {
+    //         climbMotor.set(-0.1);
+    //     } else {
+    //         stop();
+    //         resetPosition();
+    //     }
+    // }
 
     /**
      * Primary method for moving the climber mechanism. 
@@ -173,7 +172,7 @@ public class ClimbSystem extends SubsystemBase { // implements scheduler{
     //     }
     // }
 
-    public void testMotor(double speed){
+    public void setClimbMotor(double speed){
         climbMotor.set(speed);
     }
 
