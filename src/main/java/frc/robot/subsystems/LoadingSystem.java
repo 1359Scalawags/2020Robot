@@ -98,6 +98,10 @@ public class LoadingSystem extends SubsystemBase {
         }
     }
     
+    public double getChamEncoderDistance(){
+        return chamRotator.getEncoder().getDistance();
+    }
+
     public boolean isLoadingChamber() {
         double val = this.ballLoadInMotors.get();
         boolean res = (val != 0d);
