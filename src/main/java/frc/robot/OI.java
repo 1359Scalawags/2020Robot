@@ -52,6 +52,7 @@ public class OI {
     private XboxController assistController;
     private XboxController driverController;
     private DPadButton intakeBallsButton;
+    private DPadButton offBallButton;
     private DPadButton rejectBallsButton;
     private JoystickButton autoDriveForwardButton;
     private JoystickButton autoDriveTurnRight;
@@ -81,14 +82,17 @@ public class OI {
       driverController = new XboxController(RobotMap.DriverController);
       
       rejectBallsButton = new DPadButton(driverController, DPadButton.Direction.UP);
-      rejectBallsButton.whenHeld(new TurnLoaderToRejectBalls());
-      rejectBallsButton.whenReleased(new TurnLoaderOff());
-      // rejectBallsButton.whenPressed(new TurnLoaderToRejectBalls());
+      // rejectBallsButton.whenHeld(new TurnLoaderToRejectBalls());
+      // rejectBallsButton.whenReleased(new TurnLoaderOff());
+      rejectBallsButton.whenPressed(new TurnLoaderToRejectBalls());
  
       intakeBallsButton = new DPadButton(driverController, DPadButton.Direction.DOWN);
-      intakeBallsButton.whenHeld(new TurnLoaderToIntakeBalls());
-      intakeBallsButton.whenReleased(new TurnLoaderOff());
-      // intakeBallsButton.whenPressed(new TurnLoaderToIntakeBalls());
+      // intakeBallsButton.whenHeld(new TurnLoaderToIntakeBalls());
+      // intakeBallsButton.whenReleased(new TurnLoaderOff());
+      intakeBallsButton.whenPressed(new TurnLoaderToIntakeBalls());
+
+      offBallButton = new DPadButton(driverController, DPadButton.Direction.LEFT);
+      offBallButton.whenPressed(new TurnLoaderOff());
  
       unlockClimber = new JoystickButton(assistController, Constants.BACK);
       unlockClimber.whenPressed(new UnlockClimber());

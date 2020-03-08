@@ -40,13 +40,14 @@ public class TurnLoaderToIntakeBalls extends CommandBase{
     @Override
     public boolean isFinished() {
         // TODO: is finished when timer is done
-        //TODO is this correct? I think it should be (timer.get() >= Load.maxtime + start)
-        if(timer.get() - start > Load.currentTime){ 
-            return true;
-        }
-        else{
-            return false;
-        }
+        // if(timer.get()-start > Load.timerMaxTime) {
+        //     return true;
+        // }
+        // else{
+        //     return false;
+        // }
+
+        return false;
     }
 
     @Override

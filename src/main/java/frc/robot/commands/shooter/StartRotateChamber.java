@@ -1,9 +1,12 @@
 package frc.robot.commands.shooter;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
 public class StartRotateChamber extends CommandBase{
+
+    private double current;
 
     public StartRotateChamber(){
         addRequirements(Robot.loadingSystem);
@@ -11,11 +14,13 @@ public class StartRotateChamber extends CommandBase{
 
     @Override
     public void initialize() {
+        current = Robot.loadingSystem.getChamPosition();
     }
 
     @Override
     public void execute() {
-        Robot.loadingSystem.rotateChamberToPosition(1);
+        SmartDashboard.putNumber("key", current+1/5);
+        Robot.loadingSystem.rotateChamberToPosition(current + 1/5);
     }
 
     // Make this return true when this Command no longer needs to run execute()

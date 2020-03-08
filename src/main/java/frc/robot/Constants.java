@@ -139,6 +139,8 @@ public final class Constants {
         public static final int fullRotationLimitID = 8;
         public static final boolean LIMIT_PRESSED = false;
         public static final boolean LIMIT_NOTPRESSED = true;
+        //TODO find maxtime
+		public static final double timerMaxTime = 1;
 
         // public static final int preLoadSensorID = 6;
         // public static final int postShotSensorID = 7;
