@@ -2,8 +2,11 @@ package frc.robot.helper;
 
 public class LoaderBallSlot {
     
+    private double[] indexPositions = {0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9};
+
     private boolean hasBall;
     private double basePosition;
+
 
     public LoaderBallSlot(double basePosition) {
         hasBall = false;

@@ -17,8 +17,6 @@ import frc.robot.sendable.SparkMaxEncoder;
  */
 public class LoadingSystem extends SubsystemBase {
 
-    private double[] indexPositions = {0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9};
-
     // private Talon ballLoaderInA;
     private Talon ballLoaderUp;
     private PIDSparkMax ballLoaderInFront;
@@ -52,25 +50,6 @@ public class LoadingSystem extends SubsystemBase {
     
     //(value += x) and (value = value + x) are the same
 
-
-
-    // private int getSensorValue() {
-    //     int value = 0;
-    //     if(indexSensors[1].get()){
-    //         value += 8;
-    //     }
-    //     if(indexSensors[2].get()){
-    //         value += 4;
-    //     }
-    //     if(indexSensors[3].get()){
-    //         value += 2;
-    //     }
-    //     if(indexSensors[4].get()){
-    //         value += 1;
-    //     }
-    //     return value;
-    // }
-
     public LoadingSystem() {
 
         ballSlots = new boolean[5];
@@ -98,33 +77,16 @@ public class LoadingSystem extends SubsystemBase {
         addChild("ChamberEncoder", chamEncoder);
   
         ballLoaderUp = new Talon(Load.TalonUpperBallLoad);
-        // addChild("LoadBallUp", ballLoaderUp);
         ballLoaderUp.setInverted(false);
 
         ballLoaderInFront = new PIDSparkMax(Load.CANLowerBallLoadFrontID);
         addChild("LowerFrontLoader", ballLoaderInFront);
 
         ballLoaderInRear = new Talon(Load.TalonLowerBallLoadRearID);
-        // addChild("LowerRearLoader", ballLoaderInRear);
         
         ballLoadInMotors = new SpeedControllerGroup(ballLoaderUp, ballLoaderInRear);
         addChild("LoadBalls", ballLoadInMotors);
         
-        // ballLoaderInA = new Talon(Load.PWMLowerBallLoad);
-        // ballLoaderInA.setInverted(false);
-
-        // indexSensors = new DigitalInput[5];
-        // indexSensors[0] = new DigitalInput(Load.LoadSensorA);
-        // addChild("IndexSensor0", preLoadSensor);
-        // indexSensors[1] = new DigitalInput(Load.LoadSensorB);
-        // addChild("IndexSensor1", preLoadSensor);
-        // indexSensors[2] = new DigitalInput(Load.LoadSensorC);
-        // addChild("DigitalInput2", preLoadSensor);
-        // indexSensors[3] = new DigitalInput(Load.LoadSensorD);
-        // addChild("DigitalInput3", preLoadSensor);
-        // indexSensors[4] = new DigitalInput(Load.LoadSensorE);
-        // addChild("DigitalInput4", preLoadSensor);
-
     }
 
     @Override
@@ -136,6 +98,10 @@ public class LoadingSystem extends SubsystemBase {
         }
     }
     
+    public boolean isLoadingChamber() {
+        return (Math.abs(this.ballLoadInMotors.get()) <= 0.0001d);
+    }
+
     public boolean rotateChamberToPosition(double position) {
         if(!isLoadingChamber()) {
             chamRotator.setSetpoint(position);
@@ -220,10 +186,6 @@ public class LoadingSystem extends SubsystemBase {
         this.ballLoadInMotors.set(speed);
         this.ballLoaderInFront.set(speed);
         //TODO: Add a constant scale factor to match PWM and CAN motor speeds
-    }
-
-    public boolean isLoadingChamber() {
-        return (this.ballLoadInMotors.get() != 0);
     }
      
 	// public boolean rotateChamber(double rotatorSpeed) {
