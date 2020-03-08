@@ -61,6 +61,9 @@ public class ShooterSystem extends SubsystemBase { //implements scheduler{
      */
 
     public void setShooterSpeed(double top, double bottom) {
+        //TODO: Implement RPM control...see lines commented
+        // topMotor.setSetpoint(top);
+        // bottomMotor.setSetpoint(bottom);
         topMotor.set(top);
         bottomMotor.set(bottom);
     }
