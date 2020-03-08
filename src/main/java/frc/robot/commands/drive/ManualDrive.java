@@ -29,7 +29,7 @@ public class ManualDrive extends CommandBase {
     // Called just before this Command runs the first time
     @Override
     public void initialize() {
-        System.out.println("Manual drive init");
+        // System.out.println("Manual drive init");
         Robot.driveSystem.ResetGyro();
     }
 
@@ -60,7 +60,7 @@ public class ManualDrive extends CommandBase {
     // Called once after isFinished returns true
     @Override
     public void end(boolean interrupted) {
-        System.out.println("Manual drive ended");
+        // System.out.println("Manual drive ended");
     }
 
 

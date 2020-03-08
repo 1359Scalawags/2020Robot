@@ -40,12 +40,14 @@ public class TurnLoaderToIntakeBalls extends CommandBase{
     @Override
     public boolean isFinished() {
         // TODO: is finished when timer is done
-        if(timer.get() - start > Load.currentTime){ //TODO is this suppost to be a constant 
-            return true;
-        }
-        else{
-            return false;
-        }
+        // if(timer.get()-start > Load.timerMaxTime) {
+        //     return true;
+        // }
+        // else{
+        //     return false;
+        // }
+
+        return false;
     }
 
     @Override

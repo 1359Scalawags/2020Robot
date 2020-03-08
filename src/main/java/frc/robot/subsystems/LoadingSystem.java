@@ -1,24 +1,21 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import com.revrobotics.ControlType;
 
 import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.PWMSparkMax;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.Talon;
 import frc.robot.Constants.Load;
 import frc.robot.helper.Utilities;
 import frc.robot.sendable.PIDSparkMax;
 import frc.robot.sendable.SparkMaxEncoder;
-import frc.robot.interfaces.scheduler;
 
 /**
  *
  */
-public class LoadingSystem extends SubsystemBase implements scheduler{
+public class LoadingSystem extends SubsystemBase {
 
     private double[] indexPositions = {0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9};
 
@@ -274,8 +271,8 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
         ballSlots[0] = tempLast;
     }
 
-    @Override
-    public void updateDash(boolean Override){    
+    // @Override
+    // public void updateDash(boolean Override){    
     //     double chamSpeed = SmartDashboard.getNumber("CANChamberRotatorSpeed", 0);
     //     if(Override){
     //         //double[] pid = SmartDashboard.getNumberArray("ChamberRotatorPID", new double[1]);
@@ -299,10 +296,10 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
     //         if(chamSpeed == chamRotator.get())
     //             SmartDashboard.putNumber("CANChamberRotatorSpeed", chamRotator.get());
     //     }
-    }
+    // }
 
-    @Override
-    public void putValues() {
+    // @Override
+    // public void putValues() {
     //     // SmartDashboard.putNumberArray("ChamberRotatorPID", chamRotator.getPID().toArray());
     //     SmartDashboard.putNumber("CANChamberRotatorSpeed", 0);
     //     SmartDashboard.putNumber("PWMBallLoadChamber", 0);
@@ -348,4 +345,4 @@ public class LoadingSystem extends SubsystemBase implements scheduler{
     //     return indexSensors[0].get();
     // }
 
-}
+// }
