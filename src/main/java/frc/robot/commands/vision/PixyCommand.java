@@ -2,7 +2,6 @@ package frc.robot.commands.vision;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
-import io.github.pseudoresonance.pixy2api.Pixy2CCC.Block;
 
 public class PixyCommand extends CommandBase{
     public PixyCommand() {

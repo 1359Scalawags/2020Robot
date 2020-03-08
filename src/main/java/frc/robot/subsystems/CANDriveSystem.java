@@ -5,12 +5,10 @@ import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.controller.PIDController;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants.Drive;
 //import frc.robot.Robot;
 import frc.robot.helper.*;
 
-import frc.robot.interfaces.scheduler;
 import frc.robot.sendable.PIDSparkMax;
 import frc.robot.sendable.SparkMaxEncoder;
 
