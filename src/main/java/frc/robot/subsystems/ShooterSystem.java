@@ -11,7 +11,7 @@ import frc.robot.sendable.PIDSparkMax;
 /**
  *
  */
-public class ShooterSystem extends SubsystemBase { //implements scheduler{
+public class ShooterSystem extends SubsystemBase {
 
     
     private PIDSparkMax topMotor;

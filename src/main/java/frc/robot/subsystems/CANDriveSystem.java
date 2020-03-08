@@ -14,7 +14,7 @@ import frc.robot.interfaces.scheduler;
 import frc.robot.sendable.PIDSparkMax;
 import frc.robot.sendable.SparkMaxEncoder;
 
-public class CANDriveSystem extends SubsystemBase implements scheduler{  
+public class CANDriveSystem extends SubsystemBase{  
   private PIDSparkMax[] leftMotors = new PIDSparkMax[2]; 
   // private CanMotor[] leftMotors = new CanMotor[2];
   private PIDSparkMax[] rightMotors = new PIDSparkMax[2];
@@ -179,38 +179,38 @@ public double getDistanceRight() {
    
   }
 
-  @Override
-  public void updateDash(boolean Override){
+  // @Override
+  // public void updateDash(boolean Override){
     
-    double rightmotors = SmartDashboard.getNumber("DriveRightMotors", 0);
-    double leftmotors = SmartDashboard.getNumber("DriveLeftMotors", 0);
-    double driveangle = SmartDashboard.getNumber("DriveGyroAngle", 0);
+  //   double rightmotors = SmartDashboard.getNumber("DriveRightMotors", 0);
+  //   double leftmotors = SmartDashboard.getNumber("DriveLeftMotors", 0);
+  //   double driveangle = SmartDashboard.getNumber("DriveGyroAngle", 0);
 
-    if(driveangle != getAngle())
-       SmartDashboard.putNumber("DriveGyroAngle", getAngle());
+  //   if(driveangle != getAngle())
+  //      SmartDashboard.putNumber("DriveGyroAngle", getAngle());
     
-    if(Override){//drive PID, gyro pid
+  //   if(Override){//drive PID, gyro pid
 
-      if(rightControllerGroup.get() != rightmotors)
-        rightControllerGroup.set(rightmotors);
-      if(leftControllerGroup.get() != leftmotors)
-        leftControllerGroup.set(leftmotors);
-    }
-    else{
-      if(rightmotors != rightControllerGroup.get())
-        SmartDashboard.putNumber("DriveRightMotors", rightmotors);
-      if(leftmotors != leftControllerGroup.get())
-        SmartDashboard.putNumber("DriveLeftMotors", leftmotors);
-    }
+  //     if(rightControllerGroup.get() != rightmotors)
+  //       rightControllerGroup.set(rightmotors);
+  //     if(leftControllerGroup.get() != leftmotors)
+  //       leftControllerGroup.set(leftmotors);
+  //   }
+  //   else{
+  //     if(rightmotors != rightControllerGroup.get())
+  //       SmartDashboard.putNumber("DriveRightMotors", rightmotors);
+  //     if(leftmotors != leftControllerGroup.get())
+  //       SmartDashboard.putNumber("DriveLeftMotors", leftmotors);
+  //   }
     
-  }
+  // }
 
-  @Override
-  public void putValues() {
-    SmartDashboard.putNumber("DriveRightMotors", 0);
-    SmartDashboard.putNumber("DriveleftMotors", 0);
-    SmartDashboard.putNumber("DriveGyroAngle", 0);
-  }
+  // @Override
+  // public void putValues() {
+  //   SmartDashboard.putNumber("DriveRightMotors", 0);
+  //   SmartDashboard.putNumber("DriveleftMotors", 0);
+  //   SmartDashboard.putNumber("DriveGyroAngle", 0);
+  // }
 
   //Put methods for controlling this subsystem
   //here. Call these from Co

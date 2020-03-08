@@ -22,7 +22,7 @@ import frc.robot.sendable.SparkMaxEncoder;
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class ClimbSystem extends SubsystemBase { // implements scheduler{
+public class ClimbSystem extends SubsystemBase {
 
     private DigitalInput minHeightLimit;
 

@@ -11,7 +11,6 @@ import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj2.command.button.*;
 import frc.robot.Constants;
 import frc.robot.Constants.Climb;
-import frc.robot.Constants.Load;
 import frc.robot.Constants.Shooter;
 import frc.robot.helper.DPadButton;
 //import frc.robot.subsystems.*;
@@ -62,9 +61,7 @@ public class OI {
     private JoystickButton unlockClimber;
     private JoystickButton lockClimber;
     private JoystickButton singleShot;
-    private JoystickButton driveRightFaster;
-    private JoystickButton driveLeftFaster;
-
+    
     // private JoystickButton speedoButton;
     // private JoystickButton startShooterButton;
     // private JoystickButton stopShooterButton;
@@ -102,8 +99,7 @@ public class OI {
       // manualIndexLoadChamber = new JoystickButton(assistController, Constants.Ybtn);
       // manualIndexLoadChamber.whenPressed(new IndexLoadChamber());
       manualChamberRotate = new JoystickButton(assistController, Constants.Bbtn);//TODO finalize button
-      manualChamberRotate.whenHeld(new ManuleRotateChamber());
-      manualChamberRotate.whenReleased(new StopRotateChamber());
+      manualChamberRotate.whenHeld(new StartRotateChamber());
  
       // manualIndexShootChamber = new JoystickButton(assistController, Constants.Xbtn);
       // manualIndexShootChamber.whenPressed(new IndexShootChamber());

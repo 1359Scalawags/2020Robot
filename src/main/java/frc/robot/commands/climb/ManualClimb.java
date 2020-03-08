@@ -13,9 +13,6 @@ package frc.robot.commands.climb;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
-import frc.robot.Constants.Climb;
-import frc.robot.helper.Utilities;
-import frc.robot.subsystems.ClimbSystem;
 
 /**
  *
