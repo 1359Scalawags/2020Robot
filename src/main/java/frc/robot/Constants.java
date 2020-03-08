@@ -175,7 +175,7 @@ public final class Constants {
     }
 
     /*----------Operator Interface----------*/
-    
+
     public static int Abtn = 1;
     public static int Bbtn = 2;
     public static int Xbtn = 3;

@@ -99,7 +99,11 @@ public class LoadingSystem extends SubsystemBase {
     }
     
     public boolean isLoadingChamber() {
-        return (Math.abs(this.ballLoadInMotors.get()) <= 0.0001d);
+        double val = this.ballLoadInMotors.get();
+        boolean res = (val != 0d);
+
+        return res;
+        // return (Math.abs(val) <= 0.0001d);
     }
 
     public boolean rotateChamberToPosition(double position) {

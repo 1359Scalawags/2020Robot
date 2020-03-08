@@ -13,6 +13,7 @@ public class StopShooter extends CommandBase {
     @Override
     public void initialize() {
        Robot.shooterSystem.setShooterSpeed(0,0);
+       Robot.shooterSystem.setShotLoaderSpeed(0);
     }
 
     @Override

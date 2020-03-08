@@ -64,7 +64,6 @@ public class ShooterSystem extends SubsystemBase {
         bottomMotor.set(bottom);
     }
 
-    //TODO: This speed scale should be a clearly named constant
     public void setShotLoaderSpeed(double loader) {
         shotLoader.setSpeed(loader * Shooter.shooterSpeedScale);
     }
