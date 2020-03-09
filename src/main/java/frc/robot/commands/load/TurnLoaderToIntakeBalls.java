@@ -8,10 +8,7 @@ import frc.robot.Robot;
 import frc.robot.Constants.Load;
 import edu.wpi.first.wpilibj.Timer;
 
-public class TurnLoaderToIntakeBalls extends CommandBase{
-
-    //TODO: will need a timer for when sensor is tripped
-    
+public class TurnLoaderToIntakeBalls extends CommandBase{    
     private double start;
     private Timer timer;
 

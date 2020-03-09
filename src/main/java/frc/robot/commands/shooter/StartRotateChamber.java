@@ -20,7 +20,7 @@ public class StartRotateChamber extends CommandBase{
 
     @Override
     public void execute() {
-        SmartDashboard.putNumber("key", current+1/5);
+        // SmartDashboard.putNumber("key", current+1/5);
         Robot.loadingSystem.rotateChamberToPosition(current + 1/5);
     }
 

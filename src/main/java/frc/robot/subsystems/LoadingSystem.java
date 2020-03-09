@@ -7,6 +7,7 @@ import com.revrobotics.ControlType;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants.Load;
 import frc.robot.helper.Utilities;
 import frc.robot.sendable.PIDSparkMax;
@@ -51,6 +52,7 @@ public class LoadingSystem extends SubsystemBase {
     //(value += x) and (value = value + x) are the same
 
     public LoadingSystem() {
+        SmartDashboard.putBoolean("ChamberLogicOverride", false);
 
         ballSlots = new boolean[5];
         ballSlots[0] = false;
@@ -104,13 +106,14 @@ public class LoadingSystem extends SubsystemBase {
 
     public boolean isLoadingChamber() {
         double val = this.ballLoadInMotors.get();
-        boolean res = (val != 0d);
+        boolean resOverride = SmartDashboard.getBoolean("ChamberLogicOverride", false);
+        boolean res = (val != 0d) || resOverride;
 
         return res;
         // return (Math.abs(val) <= 0.0001d);
     }
 
-    public boolean rotateChamberToPosition(double position) {
+    public boolean rotateChamberToPosition(double position) {// 1.2*current
         if(!isLoadingChamber()) {
             chamRotator.setSetpoint(position);
             return true;
