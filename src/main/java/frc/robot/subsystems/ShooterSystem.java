@@ -65,7 +65,8 @@ public class ShooterSystem extends SubsystemBase {
     }
 
     public void setShotLoaderSpeed(double loader) {
-        shotLoader.setSpeed(loader * Shooter.shooterSpeedScale);
+        // shotLoader.setSpeed(loader * Shooter.shooterSpeedScale);
+        shotLoader.setSpeed(loader);
     }
 
     public double getShooterSpeedTop() {
