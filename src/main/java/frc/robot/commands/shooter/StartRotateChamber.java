@@ -14,14 +14,14 @@ public class StartRotateChamber extends CommandBase{
 
     @Override
     public void initialize() {
-        SmartDashboard.putNumber("init", 0);
+        // SmartDashboard.putNumber("init", 0);
         current = Robot.loadingSystem.getChamPosition();
     }
 
     @Override
     public void execute() {
-        SmartDashboard.putNumber("key", current+1/5);
-        Robot.loadingSystem.rotateChamberToPosition(current + 1/5);
+        // SmartDashboard.putNumber("key", current+1/5);
+        Robot.loadingSystem.rotateChamberToPosition(current + 1/5);//TODO 1/5 needs to ne multplied by conversion ratio!!!
     }
 
     // Make this return true when this Command no longer needs to run execute()
