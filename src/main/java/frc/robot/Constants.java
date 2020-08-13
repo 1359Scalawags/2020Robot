@@ -60,8 +60,8 @@ public final class Constants {
         public static final int CANTopBallMotorID = 4;
         public static final int CANBottomBallMotorID = 3;
         public static final double expectedDist = 0;
-        public static final double shotLoadSpeed = 0.5;
-        public static final double shooterSpeedScale = 0.5;
+        public static final double shotLoadSpeed = 0.8;
+        public static final double shooterSpeedScale = 1;
 
         // public static int BallSpeedEncoderAID = 1;
         // public static int BallSpeedEncoderBID = 2;

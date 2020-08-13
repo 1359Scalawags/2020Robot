@@ -50,8 +50,8 @@ public class ShooterSystem extends SubsystemBase {
         shootRotatorY.setInverted(false);
         
         shotLoader = new Spark(Load.SparkLoadShotMotorID);
+        shotLoader.setInverted(false);
         addChild("ShotLoader", shotLoader);
-        shotLoader.setInverted(true);
     }
     
     /**
@@ -65,7 +65,8 @@ public class ShooterSystem extends SubsystemBase {
     }
 
     public void setShotLoaderSpeed(double loader) {
-        shotLoader.setSpeed(loader * Shooter.shooterSpeedScale);
+        // shotLoader.setSpeed(loader * Shooter.shooterSpeedScale);
+        shotLoader.setSpeed(loader);
     }
 
     public double getShooterSpeedTop() {
