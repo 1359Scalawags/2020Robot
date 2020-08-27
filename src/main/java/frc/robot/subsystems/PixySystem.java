@@ -25,10 +25,12 @@ public class PixySystem extends SubsystemBase {
 
     private final Pixy2 pixy;
 
+    // TODO: Check that the PixyCam is connected to I2C...if not we need to change this
     public PixySystem() {      
         this(new I2CLink());
     }
 
+    // This is the constructor used by the Robot.
     public PixySystem(Link link) {
         pixy = Pixy2.createInstance(link);
         pixy.init();
