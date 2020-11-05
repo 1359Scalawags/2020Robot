@@ -58,11 +58,13 @@ public class OI {
     private JoystickButton autoDriveTurnRight;
     // private JoystickButton manualIndexLoadChamber;
     // private JoystickButton manualIndexShootChamber;
-    private JoystickButton manualChamberRotate;
+    private JoystickButton manualChamberIndexRotate;
     private JoystickButton unlockClimber;
     private JoystickButton lockClimber;
     private JoystickButton singleShot;
     
+    private JoystickButton manualChamberRotate;
+    private JoystickButton manualChamberStop;
     // private JoystickButton speedoButton;
     // private JoystickButton startShooterButton;
     // private JoystickButton stopShooterButton;
@@ -102,9 +104,13 @@ public class OI {
  
       // manualIndexLoadChamber = new JoystickButton(assistController, Constants.Ybtn);
       // manualIndexLoadChamber.whenPressed(new IndexLoadChamber());
-      manualChamberRotate = new JoystickButton(assistController, Constants.Bbtn);//TODO finalize button
-      manualChamberRotate.whenHeld(new StartRotateChamber());
+      manualChamberIndexRotate = new JoystickButton(assistController, Constants.Bbtn);//TODO finalize button
+      manualChamberIndexRotate.whenHeld(new StartRotateChamber());
  
+      manualChamberRotate = new JoystickButton(assistController, Constants.Xbtn);
+      manualChamberRotate.whenPressed(new ManualRotateChamber());
+      manualChamberStop = new JoystickButton(assistController, Constants.Ybtn);
+      manualChamberStop.whenPressed(new ManualStopChamber());
       // manualIndexShootChamber = new JoystickButton(assistController, Constants.Xbtn);
       // manualIndexShootChamber.whenPressed(new IndexShootChamber());
         

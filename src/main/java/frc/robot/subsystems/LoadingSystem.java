@@ -113,6 +113,17 @@ public class LoadingSystem extends SubsystemBase {
         // return (Math.abs(val) <= 0.0001d);
     }
 
+    public boolean startChamberRotate(float speed) {
+        chamRotator.getEncoder().reset();
+        chamRotator.set(speed);
+        return true;
+    }
+
+    public boolean stopChamberRotate() {
+        chamRotator.set(0);
+        return true;
+    }
+
     public boolean rotateChamberToPosition(double position) {// 1.2*current
         if(!isLoadingChamber()) {
             chamRotator.setSetpoint(position);
