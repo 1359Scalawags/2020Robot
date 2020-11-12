@@ -18,7 +18,7 @@ public class ManualRotateChamber extends CommandBase{
 
     @Override
     public void initialize() {
-        Robot.loadingSystem.setLoadInMotors(0.0);
+        Robot.loadingSystem.setLoadInMotors(0.5);
     }
 
     @Override
