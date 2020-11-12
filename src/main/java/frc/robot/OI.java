@@ -105,7 +105,7 @@ public class OI {
       // manualIndexLoadChamber = new JoystickButton(assistController, Constants.Ybtn);
       // manualIndexLoadChamber.whenPressed(new IndexLoadChamber());
       manualChamberIndexRotate = new JoystickButton(assistController, Constants.Bbtn);//TODO finalize button
-      manualChamberIndexRotate.whenHeld(new StartRotateChamber());
+      //manualChamberIndexRotate.whenHeld(new StartRotateChamber());
  
       manualChamberRotate = new JoystickButton(assistController, Constants.Xbtn);
       manualChamberRotate.whenPressed(new ManualRotateChamber());

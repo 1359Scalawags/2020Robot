@@ -91,7 +91,7 @@ public class LoadingSystem extends SubsystemBase {
         
     }
 
-    @Override
+    /*@Override
     public void periodic() {
         if(chamRotator.getEncoder().getDistance() > 0.9) {
             if(isFullRotation()) {
@@ -99,7 +99,7 @@ public class LoadingSystem extends SubsystemBase {
             }
         }
     }
-    
+    */
     public double getChamEncoderDistance(){
         return chamRotator.getEncoder().getDistance();
     }
@@ -124,14 +124,14 @@ public class LoadingSystem extends SubsystemBase {
         return true;
     }
 
-    public boolean rotateChamberToPosition(double position) {// 1.2*current
+    /*public boolean rotateChamberToPosition(double position) {// 1.2*current
         if(!isLoadingChamber()) {
             chamRotator.setSetpoint(position);
             return true;
         }
         return false;
     }
-
+    */
     public boolean isFullRotation() {
         return (fullRotation.get() == Load.LIMIT_PRESSED);
     }
