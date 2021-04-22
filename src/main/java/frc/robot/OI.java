@@ -256,8 +256,8 @@ public class OI {
   }
  
   public double getClimbSpeed() {
-    if(Math.abs(assistController.getY(Hand.kLeft)) > Constants.controllerDeadZone) {
-        return Climb.climbScaler * assistController.getY(Hand.kLeft);
+    if(Math.abs(assistController.getY(Hand.kRight)) > Constants.controllerDeadZone) {
+        return Climb.climbScaler * assistController.getY(Hand.kRight);
     } else {
       return 0;
     }

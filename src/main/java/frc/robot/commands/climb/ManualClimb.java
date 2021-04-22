@@ -37,10 +37,10 @@ public class ManualClimb extends CommandBase {
         //double currentPosition = Robot.climbSystem.getPosition();
         double speed = Robot.oi.getClimbSpeed();
         SmartDashboard.putNumber("ExpectedClimberPosition", desiredPosition);
-        if(Robot.climbSystem.moveTo(desiredPosition + speed)) {
-            desiredPosition += speed;
-        }
-        
+        // if(Robot.climbSystem.moveTo(desiredPosition + speed)) {
+        //     desiredPosition += speed;
+        // }
+        Robot.climbSystem.move(speed);
         
         // if(speed==0)
         //     vel = 0;
