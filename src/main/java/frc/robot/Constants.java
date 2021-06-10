@@ -2,7 +2,7 @@ package frc.robot;
 
 import io.github.pseudoresonance.pixy2api.links.I2CLink;
 import io.github.pseudoresonance.pixy2api.links.Link;
-
+//sup
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
  * constants.  This class should not be used for any other purpose.  All constants should be
@@ -60,7 +60,7 @@ public final class Constants {
         public static final int CANTopBallMotorID = 4;
         public static final int CANBottomBallMotorID = 3;
         public static final double expectedDist = 0;
-        public static final double shotLoadSpeed = 0.5;
+        public static final double shotLoadSpeed = 0.8;
         public static final double shooterSpeedScale = 0.5;
 
         // public static int BallSpeedEncoderAID = 1;
@@ -175,7 +175,7 @@ public final class Constants {
     }
 
     /*----------Operator Interface----------*/
-    
+
     public static int Abtn = 1;
     public static int Bbtn = 2;
     public static int Xbtn = 3;

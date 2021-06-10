@@ -7,20 +7,20 @@ public class SingleShotSequence extends SequentialCommandGroup {
     public SingleShotSequence() {
         addCommands(
             new StartShooter(1,1),
-            new FeedBallToShooter(),
-            new StopShooter()
+            new FeedBallToShooter()
+            // new StopShooter()
         );
     }
     
-    @Override
-    public void initialize() {
+    // @Override
+    // public void initialize() {
 
-    }
+    // }
 
-    @Override
-    public boolean isFinished() {
-        return true;
-    }
+    // @Override
+    // public boolean isFinished() {
+    //     return true;
+    // }
 
     
 }

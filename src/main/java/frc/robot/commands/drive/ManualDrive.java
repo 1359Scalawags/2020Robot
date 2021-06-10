@@ -36,7 +36,7 @@ public class ManualDrive extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     @Override
     public void execute() {
-        System.out.println("--Manual drive executing--");
+        // System.out.println("--Manual drive executing--");
         // Robot.oi.getDriverJoystick();
         // Robot.driveSystem.ResetGyro();
         SmartDashboard.putNumber("Left Y Drive",Robot.oi.DriverLStickY());

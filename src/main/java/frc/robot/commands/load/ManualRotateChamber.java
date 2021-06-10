@@ -10,15 +10,15 @@ import frc.robot.Robot;
 Testing code push
 */
 
-public class TurnLoaderOff extends CommandBase{
+public class ManualRotateChamber extends CommandBase{
 
-    public TurnLoaderOff() {
+    public ManualRotateChamber() {
         addRequirements(Robot.loadingSystem);
     }
 
     @Override
     public void initialize() {
-        Robot.loadingSystem.setLoadInMotors(0.0);
+        Robot.loadingSystem.startChamberRotate(0.5f);
     }
 
     @Override

@@ -7,6 +7,7 @@ import com.revrobotics.ControlType;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants.Load;
 import frc.robot.helper.Utilities;
 import frc.robot.sendable.PIDSparkMax;
@@ -16,8 +17,6 @@ import frc.robot.sendable.SparkMaxEncoder;
  *
  */
 public class LoadingSystem extends SubsystemBase {
-
-    private double[] indexPositions = {0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9};
 
     // private Talon ballLoaderInA;
     private Talon ballLoaderUp;
@@ -52,26 +51,8 @@ public class LoadingSystem extends SubsystemBase {
     
     //(value += x) and (value = value + x) are the same
 
-
-
-    // private int getSensorValue() {
-    //     int value = 0;
-    //     if(indexSensors[1].get()){
-    //         value += 8;
-    //     }
-    //     if(indexSensors[2].get()){
-    //         value += 4;
-    //     }
-    //     if(indexSensors[3].get()){
-    //         value += 2;
-    //     }
-    //     if(indexSensors[4].get()){
-    //         value += 1;
-    //     }
-    //     return value;
-    // }
-
     public LoadingSystem() {
+        SmartDashboard.putBoolean("ChamberLogicOverride", false);
 
         ballSlots = new boolean[5];
         ballSlots[0] = false;
@@ -98,36 +79,19 @@ public class LoadingSystem extends SubsystemBase {
         addChild("ChamberEncoder", chamEncoder);
   
         ballLoaderUp = new Talon(Load.TalonUpperBallLoad);
-        // addChild("LoadBallUp", ballLoaderUp);
         ballLoaderUp.setInverted(false);
 
         ballLoaderInFront = new PIDSparkMax(Load.CANLowerBallLoadFrontID);
         addChild("LowerFrontLoader", ballLoaderInFront);
 
         ballLoaderInRear = new Talon(Load.TalonLowerBallLoadRearID);
-        // addChild("LowerRearLoader", ballLoaderInRear);
         
         ballLoadInMotors = new SpeedControllerGroup(ballLoaderUp, ballLoaderInRear);
         addChild("LoadBalls", ballLoadInMotors);
         
-        // ballLoaderInA = new Talon(Load.PWMLowerBallLoad);
-        // ballLoaderInA.setInverted(false);
-
-        // indexSensors = new DigitalInput[5];
-        // indexSensors[0] = new DigitalInput(Load.LoadSensorA);
-        // addChild("IndexSensor0", preLoadSensor);
-        // indexSensors[1] = new DigitalInput(Load.LoadSensorB);
-        // addChild("IndexSensor1", preLoadSensor);
-        // indexSensors[2] = new DigitalInput(Load.LoadSensorC);
-        // addChild("DigitalInput2", preLoadSensor);
-        // indexSensors[3] = new DigitalInput(Load.LoadSensorD);
-        // addChild("DigitalInput3", preLoadSensor);
-        // indexSensors[4] = new DigitalInput(Load.LoadSensorE);
-        // addChild("DigitalInput4", preLoadSensor);
-
     }
 
-    @Override
+    /*@Override
     public void periodic() {
         if(chamRotator.getEncoder().getDistance() > 0.9) {
             if(isFullRotation()) {
@@ -135,15 +99,39 @@ public class LoadingSystem extends SubsystemBase {
             }
         }
     }
-    
-    public boolean rotateChamberToPosition(double position) {
+    */
+    public double getChamEncoderDistance(){
+        return chamRotator.getEncoder().getDistance();
+    }
+
+    public boolean isLoadingChamber() {
+        double val = this.ballLoadInMotors.get();
+        boolean resOverride = SmartDashboard.getBoolean("ChamberLogicOverride", false);
+        boolean res = (val != 0d) || resOverride;
+
+        return res;
+        // return (Math.abs(val) <= 0.0001d);
+    }
+
+    public boolean startChamberRotate(float speed) {
+        chamRotator.getEncoder().reset();
+        chamRotator.set(speed);
+        return true;
+    }
+
+    public boolean stopChamberRotate() {
+        chamRotator.set(0);
+        return true;
+    }
+
+    /*public boolean rotateChamberToPosition(double position) {// 1.2*current
         if(!isLoadingChamber()) {
             chamRotator.setSetpoint(position);
             return true;
         }
         return false;
     }
-
+    */
     public boolean isFullRotation() {
         return (fullRotation.get() == Load.LIMIT_PRESSED);
     }
@@ -220,10 +208,6 @@ public class LoadingSystem extends SubsystemBase {
         this.ballLoadInMotors.set(speed);
         this.ballLoaderInFront.set(speed);
         //TODO: Add a constant scale factor to match PWM and CAN motor speeds
-    }
-
-    public boolean isLoadingChamber() {
-        return (this.ballLoadInMotors.get() != 0);
     }
      
 	// public boolean rotateChamber(double rotatorSpeed) {

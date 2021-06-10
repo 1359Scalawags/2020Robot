@@ -147,30 +147,30 @@ public class ClimbSystem extends SubsystemBase {
         return false;
     }
 
-    // /**
-    //  * 
-    //  * @param speed Positive numbers elevate...negative numbers climb.
-    //  */
-    // @Deprecated(forRemoval = true)
-    // public void move(double speed) {
-    //     if (climberLocked) {
-    //         climbMotor.set(0);
-    //     } else {
-    //         if (speed > 0) {
-    //             if (!isAtTop() && !isRatchetLocked()) {
-    //                 climbMotor.set(speed);
-    //             } else {
-    //                 climbMotor.set(0);
-    //             }
-    //         } else {
-    //             if (minHeightLimit.get() == Climb.LIMIT_NOTPRESSED) {
-    //                 climbMotor.set(speed);
-    //             } else {
-    //                 climbMotor.set(0);
-    //             }
-    //         }
-    //     }
-    // }
+    /**
+     * 
+     * @param speed Positive numbers elevate...negative numbers climb.
+     */
+    
+    public void move(double speed) {
+        if (climberLocked) {
+            climbMotor.set(0);
+        } else {
+            if (speed > 0) {
+                if (!isAtTop() && !isRatchetLocked()) {
+                    climbMotor.set(speed);
+                } else {
+                    climbMotor.set(0);
+                 }
+             } else {
+                 if (minHeightLimit.get() == Climb.LIMIT_NOTPRESSED) {
+                     climbMotor.set(speed);
+                 } else {
+                     climbMotor.set(0);
+                 }
+             }
+         }
+     }
 
     public void setClimbMotor(double speed){
         climbMotor.set(speed);
