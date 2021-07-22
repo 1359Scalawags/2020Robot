@@ -37,7 +37,7 @@ public final class Constants {
         public static final double gyrokIz =0.1;
         public static final double gyrokFf =0.1;
         public static final double SystemScale =.01;
-        public static final double baseDriveSpeed = .30;
+        public static final double baseDriveSpeed = .40;
         // public static final double fullDriveSpeed = 8;
         // public static int DriveLeftEncoderA = 6;
         // public static int DriveLeftEncoderB = 7;
