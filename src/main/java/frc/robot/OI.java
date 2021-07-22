@@ -221,7 +221,7 @@ public class OI {
     
   public double DriverLStickY() {
     if (Math.abs(Robot.oi.driverController.getY(Hand.kLeft)) > Constants.controllerDeadZone) {
-      return -(Robot.oi.driverController.getY(Hand.kLeft) * (.2 * Robot.oi.getMainTriggers() + .50));
+      return -(Robot.oi.driverController.getY(Hand.kLeft) * (.2 * Robot.oi.getMainTriggers() + Constants.Drive.baseDriveSpeed));
     } else {
       return 0;
     }
@@ -229,7 +229,7 @@ public class OI {
  
   public double DriverRStickY() {
     if (Math.abs(Robot.oi.driverController.getY(Hand.kRight)) > Constants.controllerDeadZone) {
-      return -(Robot.oi.driverController.getY(Hand.kRight) * (.2 * Robot.oi.getMainTriggers() + .50));
+      return -(Robot.oi.driverController.getY(Hand.kRight) * (.2 * Robot.oi.getMainTriggers() + Constants.Drive.baseDriveSpeed));
     } else {
       return 0;
     }
