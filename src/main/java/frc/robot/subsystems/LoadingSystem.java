@@ -85,9 +85,12 @@ public class LoadingSystem extends SubsystemBase {
         addChild("LowerFrontLoader", ballLoaderInFront);
 
         ballLoaderInRear = new Talon(Load.TalonLowerBallLoadRearID);
+
         
         ballLoadInMotors = new SpeedControllerGroup(ballLoaderUp, ballLoaderInRear);
+        ballLoadInMotors.getInverted();
         addChild("LoadBalls", ballLoadInMotors);
+        
         
     }
 
