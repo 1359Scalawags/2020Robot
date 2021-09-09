@@ -134,6 +134,8 @@ public final class Constants {
 
         //Digital I/O
 
+        public static final int loadChamberSensor = 1;
+        public static final int shootChamberSensor = 2;
         public static final int preLoadSensor = 6;
         public static final int postShootSensor = 7;
         public static final int fullRotationLimitID = 8;
