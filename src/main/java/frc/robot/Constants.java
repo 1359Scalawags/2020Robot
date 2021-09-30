@@ -143,6 +143,8 @@ public final class Constants {
         public static final boolean LIMIT_NOTPRESSED = true;
         public static final boolean OBSTRUCTED = false;
         public static final boolean UNOBSTRUCTED = true;
+        public static final boolean IS_ALIGNED = false;
+        public static final boolean IS_NOT_ALIGNED = true;
 
         //TODO find maxtime
 		public static final double timerMaxTime = 1;

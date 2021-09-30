@@ -10,9 +10,9 @@ import frc.robot.Robot;
 Testing code push
 */
 
-public class ManualRotateChamber extends CommandBase{
+public class RotateToFirePosition extends CommandBase{
 
-    public ManualRotateChamber() {
+    public RotateToFirePosition() {
         addRequirements(Robot.loadingSystem);
     }
 

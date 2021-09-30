@@ -34,8 +34,8 @@ public class LoadingSystem extends SubsystemBase {
     */
     private SpeedControllerGroup ballLoadInMotors;
 
-    private DigitalInput postShooterSensor;
-    private int postShooterArraySlot = 3;
+    private DigitalInput postShooterSensor; //
+    //private int postShooterArraySlot = 3;
     private DigitalInput preLoadSensor;
     private DigitalInput loadChamberSensor;
     private DigitalInput shootChamberSensor;
@@ -105,16 +105,28 @@ public class LoadingSystem extends SubsystemBase {
         
     }
 
-    /*@Override
-    public void periodic() {
-        if(chamRotator.getEncoder().getDistance() > 0.9) {
-            if(isFullRotation()) {
-                chamRotator.getEncoder().reset();
-            }
-        }
+    public boolean startChamberRotate(float speed) {
+        chamRotator.getEncoder().reset();
+        chamRotator.set(speed);
+        return true;
     }
-    */
+
+    public boolean stopChamberRotate() {
+        chamRotator.set(0);
+        return true;
+    }
+
+    public void setLoadInMotors(double speed) {
+        this.ballLoadInMotors.set(speed);
+        this.ballLoaderInFront.set(speed);
+        //TODO: Add a constant scale factor to match PWM and CAN motor speeds
+    }
+
     public double getChamEncoderDistance(){
+        return chamRotator.getEncoder().getDistance();
+    }
+
+    public double getChamPosition() {
         return chamRotator.getEncoder().getDistance();
     }
 
@@ -127,17 +139,6 @@ public class LoadingSystem extends SubsystemBase {
         // return (Math.abs(val) <= 0.0001d);
     }
 
-    public boolean startChamberRotate(float speed) {
-        chamRotator.getEncoder().reset();
-        chamRotator.set(speed);
-        return true;
-    }
-
-    public boolean stopChamberRotate() {
-        chamRotator.set(0);
-        return true;
-    }
-
     public boolean isPostShooterSensorBlocked() {
         return (postShooterSensor.get() == Constants.Load.OBSTRUCTED);
     }
@@ -146,20 +147,8 @@ public class LoadingSystem extends SubsystemBase {
         return (preLoadSensor.get() == Constants.Load.OBSTRUCTED);
     }
 
-    /*public boolean rotateChamberToPosition(double position) {// 1.2*current
-        if(!isLoadingChamber()) {
-            chamRotator.setSetpoint(position);
-            return true;
-        }
-        return false;
-    }
-    */
     public boolean isFullRotation() {
         return (fullRotation.get() == Load.LIMIT_PRESSED);
-    }
-
-    public double getChamPosition() {
-        return chamRotator.getEncoder().getDistance();
     }
 
     /**
@@ -177,7 +166,6 @@ public class LoadingSystem extends SubsystemBase {
         return false;
     }
 
-
     /**
     * **Lines up the index to allow loading
     */
@@ -192,6 +180,45 @@ public class LoadingSystem extends SubsystemBase {
         }
         return false;
     }
+
+    public boolean isRotating() {
+        return (chamRotator.get() != 0);
+    }
+
+     
+
+
+
+/*
+ * OLD CODE BELOW THIS LINE
+ *
+*/
+    /*@Override
+    public void periodic() {
+        if(chamRotator.getEncoder().getDistance() > 0.9) {
+            if(isFullRotation()) {
+                chamRotator.getEncoder().reset();
+            }
+        }
+    }
+    */
+
+    /*public boolean rotateChamberToPosition(double position) {// 1.2*current
+        if(!isLoadingChamber()) {
+            chamRotator.setSetpoint(position);
+            return true;
+        }
+        return false;
+    }
+    */
+
+    // public boolean rotateChamber(double rotatorSpeed) {
+    //     if(!isLoadingChamber()) {
+    //         chamRotator.set(rotatorSpeed*Load.maxChamberSpeed); 
+    //         return true;
+    //     }
+    //     return false;
+    // }
 
     // public void setFullRotation(double rotationAngle) {
     //     if (Load.LIMIT_PRESSED){
@@ -226,56 +253,37 @@ public class LoadingSystem extends SubsystemBase {
     }
     */
 
-    public void setLoadInMotors(double speed) {
-        this.ballLoadInMotors.set(speed);
-        this.ballLoaderInFront.set(speed);
-        //TODO: Add a constant scale factor to match PWM and CAN motor speeds
-    }
-     
-	// public boolean rotateChamber(double rotatorSpeed) {
-    //     if(!isLoadingChamber()) {
-    //         chamRotator.set(rotatorSpeed*Load.maxChamberSpeed); 
-    //         return true;
-    //     }
-    //     return false;
+    // //TODO: Should also have a getBallSlot(int) method so you can get a specific slots contents
+    // public boolean[] getBallSlots(){
+    //     return new boolean[] {
+    //         ballSlots[0], 
+    //         ballSlots[1], 
+    //         ballSlots[2], 
+    //         ballSlots[3], 
+    //         ballSlots[4]
+    //     };
     // }
 
+    // public void updateUpperChamberSlot() {
+    //     //TODO: The ball slot that is aligned to the top will not always be the same index
 
-    public boolean isRotating() {
-        return (chamRotator.get() != 0);
-    }
-
-    //TODO: Should also have a getBallSlot(int) method so you can get a specific slots contents
-    public boolean[] getBallSlots(){
-        return new boolean[] {
-            ballSlots[0], 
-            ballSlots[1], 
-            ballSlots[2], 
-            ballSlots[3], 
-            ballSlots[4]
-        };
-    }
-
-    public void updateUpperChamberSlot() {
-        //TODO: The ball slot that is aligned to the top will not always be the same index
-
-        ballSlots[postShooterArraySlot] = this.postShooterSensor.get();
-    }
+    //     ballSlots[postShooterArraySlot] = this.postShooterSensor.get();
+    // }
     //TODO: Write a function that returns the ball slot that is ready to load
     //TODO: Write a function that returns the ball slot that is ready to shoot
     
-    public boolean isBallPreloading() {
-        return preLoadSensor.get();
-    }
+    // public boolean isBallPreloading() {
+    //     return preLoadSensor.get();
+    // }
     
-    public void advanceBallSlots() {
-        boolean tempLast = ballSlots[4];
-        ballSlots[4] = ballSlots[3];
-        ballSlots[3] = ballSlots[2];
-        ballSlots[2] = ballSlots[1];
-        ballSlots[1] = ballSlots[0];
-        ballSlots[0] = tempLast;
-    }
+    // public void advanceBallSlots() {
+    //     boolean tempLast = ballSlots[4];
+    //     ballSlots[4] = ballSlots[3];
+    //     ballSlots[3] = ballSlots[2];
+    //     ballSlots[2] = ballSlots[1];
+    //     ballSlots[1] = ballSlots[0];
+    //     ballSlots[0] = tempLast;
+    // }
 
     // @Override
     // public void updateDash(boolean Override){    
