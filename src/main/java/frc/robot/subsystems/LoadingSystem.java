@@ -36,6 +36,8 @@ public class LoadingSystem extends SubsystemBase {
     private DigitalInput postShooterSensor;
     private int postShooterArraySlot = 3;
     private DigitalInput preLoadSensor;
+    private DigitalInput loadChamberSensor;
+    private DigitalInput shootChamberSensor;
 
     /**
     * **The BALL SLOTS are on the inside of the chamber
@@ -66,8 +68,15 @@ public class LoadingSystem extends SubsystemBase {
 
         preLoadSensor = new DigitalInput(Load.preLoadSensor);
         addChild("PreLoadSensor", preLoadSensor);
+
         postShooterSensor = new DigitalInput(Load.postShootSensor);
         addChild("PostShooterSensor", postShooterSensor);
+
+        loadChamberSensor = new DigitalInput(Load.loadChamberSensor);
+        addChild("loadChamberSensor", loadChamberSensor);
+
+        shootChamberSensor = new DigitalInput(Load.shootChamberSensor);
+        addChild("shootChamberSensor", shootChamberSensor);
 
         chamRotator = new PIDSparkMax(Load.CANChamRotatorMotorID);
         chamRotator.setControlType(ControlType.kPosition);
@@ -85,9 +94,12 @@ public class LoadingSystem extends SubsystemBase {
         addChild("LowerFrontLoader", ballLoaderInFront);
 
         ballLoaderInRear = new Talon(Load.TalonLowerBallLoadRearID);
+
         
         ballLoadInMotors = new SpeedControllerGroup(ballLoaderUp, ballLoaderInRear);
+        ballLoadInMotors.getInverted();
         addChild("LoadBalls", ballLoadInMotors);
+        
         
     }
 
