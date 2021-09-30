@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.Constants;
 import frc.robot.Constants.Load;
 import frc.robot.helper.Utilities;
 import frc.robot.sendable.PIDSparkMax;
@@ -72,6 +73,7 @@ public class LoadingSystem extends SubsystemBase {
         postShooterSensor = new DigitalInput(Load.postShootSensor);
         addChild("PostShooterSensor", postShooterSensor);
 
+
         loadChamberSensor = new DigitalInput(Load.loadChamberSensor);
         addChild("loadChamberSensor", loadChamberSensor);
 
@@ -134,6 +136,14 @@ public class LoadingSystem extends SubsystemBase {
     public boolean stopChamberRotate() {
         chamRotator.set(0);
         return true;
+    }
+
+    public boolean isPostShooterSensorBlocked() {
+        return (postShooterSensor.get() == Constants.Load.OBSTRUCTED);
+    }
+
+    public boolean isPreLoadSensorBlocked() {
+        return (preLoadSensor.get() == Constants.Load.OBSTRUCTED);
     }
 
     /*public boolean rotateChamberToPosition(double position) {// 1.2*current

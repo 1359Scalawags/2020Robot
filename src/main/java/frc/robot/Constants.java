@@ -141,6 +141,9 @@ public final class Constants {
         public static final int fullRotationLimitID = 8;
         public static final boolean LIMIT_PRESSED = false;
         public static final boolean LIMIT_NOTPRESSED = true;
+        public static final boolean OBSTRUCTED = false;
+        public static final boolean UNOBSTRUCTED = true;
+
         //TODO find maxtime
 		public static final double timerMaxTime = 1;
 
