@@ -19,35 +19,39 @@ import frc.robot.sendable.SparkMaxEncoder;
  */
 public class LoadingSystem extends SubsystemBase {
 
+    /**
+     * Member fields
+     */
+
     // private Talon ballLoaderInA;
     private Talon ballLoaderUp;
     private PIDSparkMax ballLoaderInFront;
     private Talon ballLoaderInRear;
-    /**
-    * **The CHAMBER ROTATOR rotates the chamber
-    */
+
+    // The CHAMBER ROTATOR rotates the chamber
     private PIDSparkMax chamRotator;
     private SparkMaxEncoder chamEncoder;
 
-    /**
-    * **The ballLoadInMotors INTAKE from the bottom of the robot to the chamber
-    */
+ 
+    // The ballLoadInMotors INTAKE from the bottom of the robot to the chamber
     private SpeedControllerGroup ballLoadInMotors;
 
     private DigitalInput postShooterSensor; //
-    //private int postShooterArraySlot = 3;
+    // private int postShooterArraySlot = 3;
     private DigitalInput preLoadSensor;
-    private DigitalInput loadChamberSensor;
+
+    //private DigitalInput loadChamberSensor; //doesn't exist yet
     private DigitalInput shootChamberSensor;
 
-    /**
-    * **The BALL SLOTS are on the inside of the chamber
-    */
+    // index sensors
+    private DigitalInput indexSensorShoot;
+    private DigitalInput indexSensorLoad;
+
+    // The BALL SLOTS are on the inside of the chamber
     private boolean ballSlots[];
 
-    /**
-     * Index sensors show position of chamber rotation.
-     */
+
+    // Index sensors show position of chamber rotation.
     // private DigitalInput[] indexSensors;
 
     private DigitalInput fullRotation;
@@ -73,12 +77,17 @@ public class LoadingSystem extends SubsystemBase {
         postShooterSensor = new DigitalInput(Load.postShootSensor);
         addChild("PostShooterSensor", postShooterSensor);
 
-
-        loadChamberSensor = new DigitalInput(Load.loadChamberSensor);
-        addChild("loadChamberSensor", loadChamberSensor);
+        //loadChamberSensor = new DigitalInput(Load.loadChamberSensor);
+        //addChild("loadChamberSensor", loadChamberSensor);
 
         shootChamberSensor = new DigitalInput(Load.shootChamberSensor);
         addChild("shootChamberSensor", shootChamberSensor);
+
+        indexSensorLoad = new DigitalInput(Load.indexSensorLoad);
+        addChild("indexSensorLoad", indexSensorLoad);
+
+        indexSensorShoot = new DigitalInput(Load.indexSensorShoot);
+        addChild("indexSensorShoot", indexSensorShoot);
 
         chamRotator = new PIDSparkMax(Load.CANChamRotatorMotorID);
         chamRotator.setControlType(ControlType.kPosition);
@@ -97,13 +106,14 @@ public class LoadingSystem extends SubsystemBase {
 
         ballLoaderInRear = new Talon(Load.TalonLowerBallLoadRearID);
 
-        
         ballLoadInMotors = new SpeedControllerGroup(ballLoaderUp, ballLoaderInRear);
         ballLoadInMotors.getInverted();
-        addChild("LoadBalls", ballLoadInMotors);
-        
-        
+        addChild("LoadBalls", ballLoadInMotors);     
     }
+
+/**************************
+ * Chamber Rotation Methods
+ *************************/
 
     public boolean startChamberRotate(float speed) {
         chamRotator.getEncoder().reset();
@@ -116,12 +126,6 @@ public class LoadingSystem extends SubsystemBase {
         return true;
     }
 
-    public void setLoadInMotors(double speed) {
-        this.ballLoadInMotors.set(speed);
-        this.ballLoaderInFront.set(speed);
-        //TODO: Add a constant scale factor to match PWM and CAN motor speeds
-    }
-
     public double getChamEncoderDistance(){
         return chamRotator.getEncoder().getDistance();
     }
@@ -129,7 +133,7 @@ public class LoadingSystem extends SubsystemBase {
     public double getChamPosition() {
         return chamRotator.getEncoder().getDistance();
     }
-
+    
     public boolean isLoadingChamber() {
         double val = this.ballLoadInMotors.get();
         boolean resOverride = SmartDashboard.getBoolean("ChamberLogicOverride", false);
@@ -137,6 +141,35 @@ public class LoadingSystem extends SubsystemBase {
 
         return res;
         // return (Math.abs(val) <= 0.0001d);
+    }
+
+    public boolean isShootSlotLoaded() {
+        if(this.shootChamberSensor.get() == Constants.Load.OBSTRUCTED) {
+            return false;
+        }
+        return false;
+    }
+
+    public boolean isShootSlotAligned() {
+        return (this.indexSensorShoot.get() == Load.IS_ALIGNED);
+    }
+
+    public boolean isLoadSlotAligned() {
+        return (this.indexSensorLoad.get() == Load.IS_ALIGNED);
+    }
+
+/***********************
+ * BALL LOADING METHODS
+ **********************/
+
+    public void setLoadInMotors(double speed) {
+        this.ballLoadInMotors.set(speed);
+        this.ballLoaderInFront.set(speed);
+        //TODO: Add a constant scale factor to match PWM and CAN motor speeds
+    }
+
+    public boolean isBallPreloading() {
+        return preLoadSensor.get();
     }
 
     public boolean isPostShooterSensorBlocked() {
@@ -185,7 +218,25 @@ public class LoadingSystem extends SubsystemBase {
         return (chamRotator.get() != 0);
     }
 
-     
+    //TODO: Should also have a getBallSlot(int) method so you can get a specific slots contents
+    public boolean[] getBallSlots(){
+        return new boolean[] {
+            ballSlots[0], 
+            ballSlots[1], 
+            ballSlots[2], 
+            ballSlots[3], 
+            ballSlots[4]
+        };
+    }
+
+    public void advanceBallSlots() {
+        boolean tempLast = ballSlots[4];
+        ballSlots[4] = ballSlots[3];
+        ballSlots[3] = ballSlots[2];
+        ballSlots[2] = ballSlots[1];
+        ballSlots[1] = ballSlots[0];
+        ballSlots[0] = tempLast;
+    }   
 
 
 
@@ -253,16 +304,6 @@ public class LoadingSystem extends SubsystemBase {
     }
     */
 
-    // //TODO: Should also have a getBallSlot(int) method so you can get a specific slots contents
-    // public boolean[] getBallSlots(){
-    //     return new boolean[] {
-    //         ballSlots[0], 
-    //         ballSlots[1], 
-    //         ballSlots[2], 
-    //         ballSlots[3], 
-    //         ballSlots[4]
-    //     };
-    // }
 
     // public void updateUpperChamberSlot() {
     //     //TODO: The ball slot that is aligned to the top will not always be the same index
@@ -272,18 +313,7 @@ public class LoadingSystem extends SubsystemBase {
     //TODO: Write a function that returns the ball slot that is ready to load
     //TODO: Write a function that returns the ball slot that is ready to shoot
     
-    // public boolean isBallPreloading() {
-    //     return preLoadSensor.get();
-    // }
-    
-    // public void advanceBallSlots() {
-    //     boolean tempLast = ballSlots[4];
-    //     ballSlots[4] = ballSlots[3];
-    //     ballSlots[3] = ballSlots[2];
-    //     ballSlots[2] = ballSlots[1];
-    //     ballSlots[1] = ballSlots[0];
-    //     ballSlots[0] = tempLast;
-    // }
+
 
     // @Override
     // public void updateDash(boolean Override){    

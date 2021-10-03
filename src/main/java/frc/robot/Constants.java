@@ -114,14 +114,14 @@ public final class Constants {
         public static final int CANLowerBallLoadFrontID = 21;
         public static final int TalonLowerBallLoadRearID = 1;
         public static final int TalonUpperBallLoad = 2;
-        public static final double maxChamberSpeed = 1;
-        public static final double indextimer = 0.1;
-        public static final double MaxIndexTime = 3;
-        public static final double shooterLoaderduration = 1;
-        public static final double loadIn = 0.8;
-        public static final double loadUp = 0.8;
-        public static final double chamberLoad = 0.8;
-        public static final double fullChamRot = 1.0/221.34;
+        public static final float maxChamberSpeed = 1.0f;
+        public static final float indextimer = 0.1f;
+        public static final float MaxIndexTime = 3f;
+        public static final float shooterLoaderduration = 1f;
+        public static final float loadIn = 0.8f;
+        public static final float loadUp = 0.8f;
+        public static final float chamberLoad = 0.8f;
+        public static final float fullChamRot = 1.0f/221.34f;
 
         // public static final int PWMLoadBallUpMotorLeftID = 3;
         // public static double BallLoadUpSpeed = 0.001;
@@ -136,6 +136,8 @@ public final class Constants {
 
         public static final int loadChamberSensor = 1;
         public static final int shootChamberSensor = 2;
+        public static final int indexSensorLoad = 3; // need to check this
+        public static final int indexSensorShoot = 4; // need to check this
         public static final int preLoadSensor = 6;
         public static final int postShootSensor = 7;
         public static final int fullRotationLimitID = 8;
