@@ -54,6 +54,9 @@ public class OI {
     private DPadButton intakeBallsButton;
     private DPadButton offBallButton;
     private DPadButton rejectBallsButton;
+    private DPadButton alignLoadChamber;
+    private DPadButton alignShootChamber;
+
     private JoystickButton autoDriveForwardButton;
     private JoystickButton autoDriveTurnRight;
     // private JoystickButton manualIndexLoadChamber;
@@ -95,7 +98,10 @@ public class OI {
 
       offBallButton = new DPadButton(driverController, DPadButton.Direction.LEFT);
       offBallButton.whenPressed(new TurnLoaderOff());
- 
+
+      alignLoadChamber = new DPadButton(assistController, DPadButton.Direction.DOWN);
+      alignLoadChamber.whenPressed(new IndexLoadChamber());
+
       unlockClimber = new JoystickButton(assistController, Constants.BACK);
       unlockClimber.whenPressed(new UnlockClimber());
 
