@@ -282,7 +282,7 @@ public class OI {
 
 	public double getAimHorizontalSpeed() {
     if(Math.abs(assistController.getX(Hand.kLeft)) > Constants.controllerDeadZone) {
-      return Utilities.Clamp(assistController.getX(Hand.kLeft), -Shooter.maxShooterTurnRate, Shooter.maxShooterTurnRate);
+      return Utilities.Clamp(assistController.getX(Hand.kLeft) * Shooter.maxShooterAltitudeRate, -Shooter.maxShooterAltitudeRate, Shooter.maxShooterAltitudeRate);
     } else {
       return 0;
     }
@@ -290,7 +290,7 @@ public class OI {
 
 	public double getAimVerticalSpeed() {
     if(Math.abs(assistController.getY(Hand.kLeft)) > Constants.controllerDeadZone) {
-      return Utilities.Clamp(assistController.getY(Hand.kLeft), -Shooter.maxShooterTurnRate, Shooter.maxShooterTurnRate);
+      return Utilities.Clamp(assistController.getY(Hand.kLeft) * Shooter.maxShooterAzimuthRate, -Shooter.maxShooterAzimuthRate, Shooter.maxShooterAzimuthRate);
     } else {
       return 0;
     }

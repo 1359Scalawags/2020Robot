@@ -21,7 +21,7 @@ public class AutoAimShooter extends CommandBase{
     // Called repeatedly when this Command is scheduled to run
     @Override
     public void execute() {
-        rotate(Shooter.maxShooterTurnRate, Robot.kNetwork.getAngles());
+        rotate(Shooter.maxShooterAltitudeRate, Robot.kNetwork.getAngles());
 
         double distance = Robot.kNetwork.getDist();
         double error = Shooter.expectedDist - distance;//0, 100
