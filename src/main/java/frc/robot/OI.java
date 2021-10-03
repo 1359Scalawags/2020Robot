@@ -100,7 +100,10 @@ public class OI {
       offBallButton.whenPressed(new TurnLoaderOff());
 
       alignLoadChamber = new DPadButton(assistController, DPadButton.Direction.DOWN);
-      alignLoadChamber.whenPressed(new IndexLoadChamber());
+      alignLoadChamber.whenPressed(new IndexChamberToLoad());
+
+      alignShootChamber = new DPadButton(assistController, DPadButton.Direction.UP);
+      alignShootChamber.whenPressed(new IndexChamberToShoot());
 
       unlockClimber = new JoystickButton(assistController, Constants.BACK);
       unlockClimber.whenPressed(new UnlockClimber());
