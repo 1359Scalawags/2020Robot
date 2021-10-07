@@ -26,6 +26,7 @@ import frc.robot.commands.drive.*;
 import frc.robot.commands.shooter.*;
 import frc.robot.commands.vision.PixyCommand;
 import frc.robot.commands.climb.*;
+import frc.robot.Constants.Drive;
 import frc.robot.Constants.Vision;
 import frc.robot.test.TestClimberMotor;
 import frc.robot.test.TestNetwork;
@@ -159,7 +160,8 @@ public class Robot extends TimedRobot {
 
     @Override
     public void autonomousInit() {
-        autonomousCommand = chooser.getSelected();
+        //autonomousCommand = chooser.getSelected();
+        autonomousCommand = new AutoDriveForward(Drive.AutoDriveDistance);
         // schedule the autonomous command (example)
         if (autonomousCommand != null) autonomousCommand.schedule();
     }
