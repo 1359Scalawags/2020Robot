@@ -25,7 +25,7 @@ public class AutoDriveForward extends CommandBase {
     private double target;
     private double distance;
 
-    public AutoDriveForward(int distance) {
+    public AutoDriveForward(double distance) {
         addRequirements(Robot.driveSystem);
         this.distance = distance;
     }

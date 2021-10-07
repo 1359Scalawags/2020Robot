@@ -14,6 +14,7 @@ package frc.robot.commands.autonomous;
 //import frc.robot.Robot;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.drive.AutoDriveTurn;
+import frc.robot.Constants.Drive;
 //import sun.misc.Signal;
 import frc.robot.commands.drive.AutoDriveForward;
 import frc.robot.commands.shooter.SingleShotSequence;
@@ -32,37 +33,37 @@ public class AutonomousCommand extends SequentialCommandGroup {
     }
 
     public AutonomousCommand(AutoMoveOptions moveOption) {
+        addCommands(new AutoDriveForward(Drive.AutoDriveDistance));
+        // switch(moveOption){
+        //     case ForwardTurnAndShoot:
+        //         addCommands(
+        //             new AutoDriveForward(1),
+        //             new AutoDriveTurn(90),
+        //             new AutoAimShooter(),
+        //             new SingleShotSequence()
+        //         );
+        //     break;
 
-        switch(moveOption){
-            case ForwardTurnAndShoot:
-                addCommands(
-                    new AutoDriveForward(1),
-                    new AutoDriveTurn(90),
-                    new AutoAimShooter(),
-                    new SingleShotSequence()
-                );
-            break;
-
-            case ReversTurnforwardTurnAndShoot:
-                addCommands(
-                    new AutoDriveForward(-1),
-                    new AutoDriveTurn(-90),
-                    new AutoDriveForward(1),
-                    new AutoDriveTurn(-90),
-                    new AutoAimShooter(),
-                    new SingleShotSequence()
-                );
-            break;
+        //     case ReversTurnforwardTurnAndShoot:
+        //         addCommands(
+        //             new AutoDriveForward(-1),
+        //             new AutoDriveTurn(-90),
+        //             new AutoDriveForward(1),
+        //             new AutoDriveTurn(-90),
+        //             new AutoAimShooter(),
+        //             new SingleShotSequence()
+        //         );
+        //     break;
             
-            case TurnForwardAndShoot:
-                addCommands(
-                    new AutoDriveTurn(180),
-                    new AutoDriveForward(1),
-                    new AutoAimShooter(),
-                    new SingleShotSequence()
-                );
-            break;
-        }
+        //     case TurnForwardAndShoot:
+        //         addCommands(
+        //             new AutoDriveTurn(180),
+        //             new AutoDriveForward(1),
+        //             new AutoAimShooter(),
+        //             new SingleShotSequence()
+        //         );
+        //     break;
+        // }
             
        
     }

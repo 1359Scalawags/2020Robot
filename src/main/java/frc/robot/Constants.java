@@ -31,6 +31,7 @@ public final class Constants {
         public static final double maxTurnRate = 0.75;
         public static final double maxRightTurnRate = 0.75;
         public static final double AutoTurnAngleThreshold = 0.5;
+        public static final double AutoDriveDistance = 1.0;
         public static final double gyrokP =0.1;
         public static final double gyrokI =0.1;
         public static final double gyrokD =0.1;
