@@ -59,9 +59,6 @@ public class OI {
 
     private JoystickButton autoDriveForwardButton;
     private JoystickButton autoDriveTurnRight;
-    // private JoystickButton manualIndexLoadChamber;
-    // private JoystickButton manualIndexShootChamber;
-    private JoystickButton manualChamberIndexRotate;
     private JoystickButton unlockClimber;
     private JoystickButton lockClimber;
     private JoystickButton singleShot;
@@ -111,17 +108,10 @@ public class OI {
       lockClimber = new JoystickButton(assistController, Constants.START);
       lockClimber.whenPressed(new LockRatchet());
  
-      // manualIndexLoadChamber = new JoystickButton(assistController, Constants.Ybtn);
-      // manualIndexLoadChamber.whenPressed(new IndexLoadChamber());
-      manualChamberIndexRotate = new JoystickButton(assistController, Constants.Bbtn);//TODO finalize button
-      //manualChamberIndexRotate.whenHeld(new StartRotateChamber());
- 
       manualChamberRotate = new JoystickButton(assistController, Constants.Xbtn);
       manualChamberRotate.whenPressed(new ManualRotateChamber());
       manualChamberStop = new JoystickButton(assistController, Constants.Ybtn);
       manualChamberStop.whenPressed(new ManualStopChamber());
-      // manualIndexShootChamber = new JoystickButton(assistController, Constants.Xbtn);
-      // manualIndexShootChamber.whenPressed(new IndexShootChamber());
         
       singleShot = new JoystickButton(assistController, Constants.Abtn);
       singleShot.whenHeld(new SingleShotSequence());
