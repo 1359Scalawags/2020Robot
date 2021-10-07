@@ -118,16 +118,6 @@ public class ClimbSystem extends SubsystemBase {
         climbEncoder.reset();
     }
 
-    // @Deprecated(forRemoval = true)
-    // public void initializeSystem() {
-    //     if(!isAtBottom()) {
-    //         climbMotor.set(-0.1);
-    //     } else {
-    //         stop();
-    //         resetPosition();
-    //     }
-    // }
-
     /**
      * Primary method for moving the climber mechanism. 
      * @param position The desired elevation in inches
