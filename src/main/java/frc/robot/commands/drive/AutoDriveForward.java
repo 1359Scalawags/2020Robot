@@ -15,6 +15,9 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 //import frc.robot.Robot;
 import frc.robot.Robot;
 import frc.robot.Constants.Drive;
+
+//TODO: may need this import to fix this command: import java.lang.Math;
+
 /**
  *
  */
@@ -47,6 +50,7 @@ public class AutoDriveForward extends CommandBase {
     // Make this return true when this Command no longer needs to run execute()
     @Override
     public boolean isFinished() {
+        // TODO: this should be somethign more like this: if( Math.abs(current - start) ?= distance) {
         if(current - start >= distance) {
             return true;
         } else {
