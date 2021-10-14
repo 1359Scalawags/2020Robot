@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj2.command.button.*;
 import frc.robot.Constants;
 import frc.robot.Constants.Climb;
+import frc.robot.Constants.Drive;
 import frc.robot.Constants.Shooter;
 import frc.robot.helper.DPadButton;
 //import frc.robot.subsystems.*;
@@ -220,7 +221,7 @@ public class OI {
     
   public double DriverLStickY() {
     if (Math.abs(Robot.oi.driverController.getY(Hand.kLeft)) > Constants.controllerDeadZone) {
-      return -(Robot.oi.driverController.getY(Hand.kLeft) * (.2 * Robot.oi.getMainTriggers() + Constants.Drive.baseDriveSpeed));
+      return -(Robot.oi.driverController.getY(Hand.kLeft) * (Drive.fastDriveBoost * Robot.oi.getMainTriggers() + Constants.Drive.baseDriveSpeed));
     } else {
       return 0;
     }
@@ -228,7 +229,7 @@ public class OI {
  
   public double DriverRStickY() {
     if (Math.abs(Robot.oi.driverController.getY(Hand.kRight)) > Constants.controllerDeadZone) {
-      return -(Robot.oi.driverController.getY(Hand.kRight) * (.2 * Robot.oi.getMainTriggers() + Constants.Drive.baseDriveSpeed));
+      return -(Robot.oi.driverController.getY(Hand.kRight) * (Drive.fastDriveBoost* Robot.oi.getMainTriggers() + Constants.Drive.baseDriveSpeed));
     } else {
       return 0;
     }

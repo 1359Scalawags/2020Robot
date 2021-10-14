@@ -28,17 +28,19 @@ public final class Constants {
         public static final double PID_Iz = 0;
         public static final double PID_Ff = 0;
         public static final double StraightSpeed = -0.7;
+        public static final double AutoStraightSpeed = -0.5;
         public static final double maxTurnRate = 0.75;
         public static final double maxRightTurnRate = 0.75;
         public static final double AutoTurnAngleThreshold = 0.5;
-        public static final double AutoDriveDistance = 1.0;
+        public static final double AutoDriveDistance = 0.5;
         public static final double gyrokP =0.1;
         public static final double gyrokI =0.1;
         public static final double gyrokD =0.1;
         public static final double gyrokIz =0.1;
         public static final double gyrokFf =0.1;
         public static final double SystemScale =.01;
-        public static final double baseDriveSpeed = .40;
+        public static final double baseDriveSpeed = 0.40;
+        public static final double fastDriveBoost = 0.2;
         // public static final double fullDriveSpeed = 8;
         // public static int DriveLeftEncoderA = 6;
         // public static int DriveLeftEncoderB = 7;
@@ -63,7 +65,7 @@ public final class Constants {
         public static final int CANBottomBallMotorID = 3;
         public static final double expectedDist = 0;
         public static final double shotLoadSpeed = 0.8;
-        public static final double shooterSpeedScale = 0.25;
+        public static final double shooterSpeedScale = 0.85;
         public static final double aimAltitudeSpeed = 0.5;
         public static final float shooterMinimumTime = 1.0f;
 
@@ -125,6 +127,7 @@ public final class Constants {
         public static final float loadIn = 0.8f;
         public static final float loadUp = 0.8f;
         public static final float chamberLoad = 0.8f;
+        public static final float chamberRotateSpeed = 0.2f;
         public static final float fullChamRot = 1.0f/221.34f;
 
         // public static final int PWMLoadBallUpMotorLeftID = 3;

@@ -33,7 +33,9 @@ public class AutonomousCommand extends SequentialCommandGroup {
     }
 
     public AutonomousCommand(AutoMoveOptions moveOption) {
-        addCommands(new AutoDriveForward(Drive.AutoDriveDistance));
+        addCommands(new AutoDriveForward(Drive.AutoDriveDistance),
+            new AutoDriveTurn(10),
+            new AutoDriveTurn(-10));
         // switch(moveOption){
         //     case ForwardTurnAndShoot:
         //         addCommands(
@@ -69,3 +71,4 @@ public class AutonomousCommand extends SequentialCommandGroup {
     }
 
 }
+0

@@ -41,13 +41,13 @@ public class AutoDriveForward extends CommandBase {
     @Override
     public void execute() {
         current = Robot.driveSystem.getAverageDistance();
-        Robot.driveSystem.driveForward(Drive.StraightSpeed, target);
+        Robot.driveSystem.driveForward(Drive.AutoStraightSpeed, target);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     @Override
     public boolean isFinished() {
-        if(current - start >= distance) {
+        if(Math.abs(current - start) >= distance) {
             return true;
         } else {
             return false;

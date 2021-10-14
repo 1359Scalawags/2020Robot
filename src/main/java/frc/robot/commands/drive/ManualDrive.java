@@ -41,7 +41,7 @@ public class ManualDrive extends CommandBase {
         // Robot.driveSystem.ResetGyro();
         SmartDashboard.putNumber("Left Y Drive",Robot.oi.DriverLStickY());
         SmartDashboard.putNumber("Right Y Drive",Robot.oi.DriverRStickY());
-        Robot.driveSystem.tankDrive(-Robot.oi.DriverLStickY(), -Robot.oi.DriverRStickY());	
+        Robot.driveSystem.tankDrive(Robot.oi.DriverLStickY(), Robot.oi.DriverRStickY());	
         
         //SmartDashboard.putNumber("Elevator Height",Robot.climbSystem.getclimbSystemHeight());
 		// SmartDashboard.putNumber("Gyro", Robot.canDriveSystem.getAngle());

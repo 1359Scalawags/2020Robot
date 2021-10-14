@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 //import frc.robot.Constants;
 import frc.robot.Robot;
 //import frc.robot.RobotMap;
+import frc.robot.Constants.Load;
 
 /*
 Testing code push
@@ -18,7 +19,7 @@ public class ManualRotateChamber extends CommandBase{
 
     @Override
     public void initialize() {
-        Robot.loadingSystem.startChamberRotate(0.5f);
+        Robot.loadingSystem.startChamberRotate(Load.chamberRotateSpeed);
     }
 
     @Override

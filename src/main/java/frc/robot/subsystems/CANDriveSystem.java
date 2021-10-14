@@ -54,6 +54,9 @@ public class CANDriveSystem extends SubsystemBase{
     leftControllerGroup = new SpeedControllerGroup(leftMotors[0].getMotorController(), leftMotors[1].getMotorController());
     rightControllerGroup = new SpeedControllerGroup(rightMotors[0].getMotorController(), rightMotors[1].getMotorController());
 
+    leftControllerGroup.setInverted(true);
+    rightControllerGroup.setInverted(true);
+    
     diffDrive = new DifferentialDrive(rightControllerGroup, leftControllerGroup);
 
     gyroPids = new PID_Values(Drive.gyrokP, Drive.gyrokI, Drive.gyrokD, Drive.gyrokIz, Drive.gyrokFf);
