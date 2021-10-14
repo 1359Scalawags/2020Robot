@@ -119,8 +119,8 @@ public class Robot extends TimedRobot {
 
         chooser.setDefaultOption("Move Forward", new AutonomousCommand(AutoMoveOptions.MoveForward));
         chooser.addOption("Forward Turn & Shoot", new AutonomousCommand(AutoMoveOptions.ForwardTurnAndShoot));
-        
-        // TODO: Add the other options
+        chooser.addOption("Reverse Turn forward Turn & Shoot", new AutonomousCommand(AutoMoveOptions.ReversTurnforwardTurnAndShoot));
+        chooser.addOption("Turn Forward & Shoot", new AutonomousCommand(AutoMoveOptions.TurnForwardAndShoot));
 
         // SmartDashboard.putData("Auto mode", chooser);
 
