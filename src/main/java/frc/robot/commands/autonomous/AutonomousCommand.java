@@ -26,49 +26,51 @@ import frc.robot.commands.shooter.AutoAimShooter;
 public class AutonomousCommand extends SequentialCommandGroup {
 
     public enum AutoMoveOptions{
-
+        MoveForward,
         ForwardTurnAndShoot,
         ReversTurnforwardTurnAndShoot,
-        TurnForwardAndShoot
+        TurnForwardAndShoot  
     }
 
     public AutonomousCommand(AutoMoveOptions moveOption) {
-        addCommands(new AutoDriveForward(Drive.AutoDriveDistance),
-            new AutoDriveTurn(10),
-            new AutoDriveTurn(-10));
-        // switch(moveOption){
-        //     case ForwardTurnAndShoot:
-        //         addCommands(
-        //             new AutoDriveForward(1),
-        //             new AutoDriveTurn(90),
-        //             new AutoAimShooter(),
-        //             new SingleShotSequence()
-        //         );
-        //     break;
+        switch(moveOption){
+            case ForwardTurnAndShoot:
+                addCommands(
+                    new AutoDriveForward(1),
+                    new AutoDriveTurn(90),
+                    new AutoAimShooter(),
+                    new SingleShotSequence()
+                );
+                break;
 
-        //     case ReversTurnforwardTurnAndShoot:
-        //         addCommands(
-        //             new AutoDriveForward(-1),
-        //             new AutoDriveTurn(-90),
-        //             new AutoDriveForward(1),
-        //             new AutoDriveTurn(-90),
-        //             new AutoAimShooter(),
-        //             new SingleShotSequence()
-        //         );
-        //     break;
+            case ReversTurnforwardTurnAndShoot:
+                addCommands(
+                    new AutoDriveForward(-1),
+                    new AutoDriveTurn(-90),
+                    new AutoDriveForward(1),
+                    new AutoDriveTurn(-90),
+                    new AutoAimShooter(),
+                    new SingleShotSequence()
+                );
+                break;
             
-        //     case TurnForwardAndShoot:
-        //         addCommands(
-        //             new AutoDriveTurn(180),
-        //             new AutoDriveForward(1),
-        //             new AutoAimShooter(),
-        //             new SingleShotSequence()
-        //         );
-        //     break;
-        // }
+            case TurnForwardAndShoot:
+                addCommands(
+                    new AutoDriveTurn(180),
+                    new AutoDriveForward(1),
+                    new AutoAimShooter(),
+                    new SingleShotSequence()
+                );
+                break;
+            default:
+                addCommands(
+                    new AutoDriveForward(Drive.AutoDriveDistance),
+                    new AutoDriveTurn(10),
+                    new AutoDriveTurn(-10)
+                );
+        }
             
        
     }
 
 }
-0

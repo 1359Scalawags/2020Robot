@@ -25,11 +25,13 @@ import frc.robot.commands.drive.*;
 //import frc.robot.commands.load.IndexLoadChamber;
 import frc.robot.commands.shooter.*;
 import frc.robot.commands.vision.PixyCommand;
+import frc.robot.commands.autonomous.AutonomousCommand.AutoMoveOptions;
 import frc.robot.commands.climb.*;
 import frc.robot.Constants.Drive;
 import frc.robot.Constants.Vision;
 import frc.robot.test.TestClimberMotor;
 import frc.robot.test.TestNetwork;
+import frc.robot.commands.autonomous.*;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -115,10 +117,10 @@ public class Robot extends TimedRobot {
 
         // Add commands to Autonomous Sendable Chooser
 
-        // TODO: Need to create the options for the Autonomous routine...see below
-
-        // chooser.addOption("AutoDriveTurn", new AutoDriveTurn(90));
-        // chooser.setDefaultOption("Autonomous Command", new AutonomousCommand());
+        chooser.setDefaultOption("Move Forward", new AutonomousCommand(AutoMoveOptions.MoveForward));
+        chooser.addOption("Forward Turn & Shoot", new AutonomousCommand(AutoMoveOptions.ForwardTurnAndShoot));
+        
+        // TODO: Add the other options
 
         // SmartDashboard.putData("Auto mode", chooser);
 
@@ -160,8 +162,8 @@ public class Robot extends TimedRobot {
 
     @Override
     public void autonomousInit() {
-        //autonomousCommand = chooser.getSelected();
-        autonomousCommand = new AutoDriveForward(Drive.AutoDriveDistance);
+        autonomousCommand = chooser.getSelected();
+        // autonomousCommand = new AutoDriveForward(Drive.AutoDriveDistance);
         // schedule the autonomous command (example)
         if (autonomousCommand != null) autonomousCommand.schedule();
     }
