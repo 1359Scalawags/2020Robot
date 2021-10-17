@@ -54,7 +54,7 @@ public class LoadingSystem extends SubsystemBase {
     // Index sensors show position of chamber rotation.
     // private DigitalInput[] indexSensors;
 
-    private DigitalInput fullRotation;
+    //private DigitalInput fullRotation;
     
     //(value += x) and (value = value + x) are the same
 
@@ -68,8 +68,8 @@ public class LoadingSystem extends SubsystemBase {
         ballSlots[3] = false;
         ballSlots[4] = false;
 
-        fullRotation = new DigitalInput(Load.fullRotationLimitID);
-        addChild("FullRotationLimit", fullRotation);
+        // fullRotation = new DigitalInput(Load.fullRotationLimitID);
+        // addChild("FullRotationLimit", fullRotation);
 
         preLoadSensor = new DigitalInput(Load.preLoadSensor);
         addChild("PreLoadSensor", preLoadSensor);
@@ -181,9 +181,9 @@ public class LoadingSystem extends SubsystemBase {
         return (preLoadSensor.get() == Constants.Load.OBSTRUCTED);
     }
 
-    public boolean isFullRotation() {
-        return (fullRotation.get() == Load.LIMIT_PRESSED);
-    }
+    // public boolean isFullRotation() {
+    //     return (fullRotation.get() == Load.LIMIT_PRESSED);
+    // }
 
     /**
     * **Lines up the index to allow shooting
