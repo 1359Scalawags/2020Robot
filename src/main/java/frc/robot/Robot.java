@@ -166,6 +166,7 @@ public class Robot extends TimedRobot {
         // autonomousCommand = new AutoDriveForward(Drive.AutoDriveDistance);
         // schedule the autonomous command (example)
         if (autonomousCommand != null) autonomousCommand.schedule();
+        else System.out.println("!! Unable to schedule Autonomous command !!");  
     }
 
     /**

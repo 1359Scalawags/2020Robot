@@ -31,7 +31,7 @@ public class AutoDriveTurn extends CommandBase {
         addRequirements(Robot.driveSystem);
         //right is positive, left is negative
         targetangle = angle;
-        currentangle = Robot.driveSystem.getAngle();
+
     }
 
     // Called just before this Command runs the first time
@@ -41,6 +41,8 @@ public class AutoDriveTurn extends CommandBase {
         //get current angle
         //Robot.driveSystem.ResetGyro();
         //currentangle = Robot.driveSystem.getAngle();
+        currentangle = Robot.driveSystem.getAngle();
+        System.out.println("Robot Current Angle: " + currentangle);
     }
 
     // Called repeatedly when this Command is scheduled to run
