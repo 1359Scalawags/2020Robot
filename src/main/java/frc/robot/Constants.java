@@ -143,8 +143,8 @@ public final class Constants {
 
         public static final int loadChamberSensor = 1;
         public static final int shootChamberSensor = 2;
-        public static final int indexSensorLoad = 8; // need to check this
-        public static final int indexSensorShoot = 9; // need to check this
+        public static final int indexSensorLoad = 8; 
+        public static final int indexSensorShoot = 9; 
         public static final int preLoadSensor = 6;
         public static final int postShootSensor = 7;
         //public static final int fullRotationLimitID = 8;
