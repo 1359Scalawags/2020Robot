@@ -97,7 +97,7 @@ public class CANDriveSystem extends SubsystemBase{
   }
 
   public double getDistanceLeft() {
-    return leftEncoders[0].getDistance();
+    return leftEncoders[0].getDistance(); //is one of these reversed values
 }
 
 public double getDistanceRight() {
