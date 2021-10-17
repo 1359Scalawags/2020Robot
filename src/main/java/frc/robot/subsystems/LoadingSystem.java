@@ -100,6 +100,7 @@ public class LoadingSystem extends SubsystemBase {
   
         ballLoaderUp = new Talon(Load.TalonUpperBallLoad);
         ballLoaderUp.setInverted(false);
+        addChild("UpperBallLoader",ballLoaderUp);
 
         ballLoaderInFront = new PIDSparkMax(Load.CANLowerBallLoadFrontID);
         addChild("LowerFrontLoader", ballLoaderInFront);

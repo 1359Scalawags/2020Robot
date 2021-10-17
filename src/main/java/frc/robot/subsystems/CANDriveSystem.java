@@ -44,12 +44,14 @@ public class CANDriveSystem extends SubsystemBase{
 
     leftEncoders[0] = leftMotors[0].getEncoder();
     leftEncoders[1] = leftMotors[1].getEncoder();
+    addChild("Left Encoder",leftEncoders[0]);
 
     rightMotors[0] = new PIDSparkMax(Drive.CANFrontRightMotorID);
     rightMotors[1] = new PIDSparkMax(Drive.CANBackRightMotorID);
 
     rightEncoders[0] = rightMotors[0].getEncoder();
     rightEncoders[1] = rightMotors[1].getEncoder();
+    addChild("Right Encoder",rightEncoders[0]);
 
     leftControllerGroup = new SpeedControllerGroup(leftMotors[0].getMotorController(), leftMotors[1].getMotorController());
     rightControllerGroup = new SpeedControllerGroup(rightMotors[0].getMotorController(), rightMotors[1].getMotorController());
@@ -58,9 +60,11 @@ public class CANDriveSystem extends SubsystemBase{
     rightControllerGroup.setInverted(true);
     
     diffDrive = new DifferentialDrive(rightControllerGroup, leftControllerGroup);
+    addChild("Differential Drive", diffDrive);
 
     gyroPids = new PID_Values(Drive.gyrokP, Drive.gyrokI, Drive.gyrokD, Drive.gyrokIz, Drive.gyrokFf);
     driveGyro = new ADXRS450_Gyro();
+    addChild("Gyro", driveGyro);
     gyroControl = new PIDController(gyroPids.kP, gyroPids.kI, gyroPids.kD);
 
     leftMotors[0].setPID(Drive.PID_P, Drive.PID_I, Drive.PID_D, Drive.PID_Iz, Drive.PID_Ff);
