@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import com.revrobotics.ControlType;
 
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.Talon;
@@ -18,6 +19,9 @@ import frc.robot.sendable.SparkMaxEncoder;
  *
  */
 public class LoadingSystem extends SubsystemBase {
+
+
+
 
     /**
      * Member fields
@@ -44,8 +48,9 @@ public class LoadingSystem extends SubsystemBase {
     private DigitalInput shootChamberSensor;
 
     // index sensors
-    private DigitalInput indexSensorShoot;
-    private DigitalInput indexSensorLoad;
+    private AnalogInput indexSensorShoot;
+    private AnalogInput indexSensorLoad;
+    
 
     // The BALL SLOTS are on the inside of the chamber
     private boolean ballSlots[];
@@ -83,11 +88,12 @@ public class LoadingSystem extends SubsystemBase {
         shootChamberSensor = new DigitalInput(Load.shootChamberSensor);
         addChild("shootChamberSensor", shootChamberSensor);
 
-        indexSensorLoad = new DigitalInput(Load.indexSensorLoad);
+        indexSensorLoad = new AnalogInput(Load.indexSensorLoad);
         addChild("indexSensorLoad", indexSensorLoad);
 
-        indexSensorShoot = new DigitalInput(Load.indexSensorShoot);
+        indexSensorShoot = new AnalogInput(Load.indexSensorShoot);
         addChild("indexSensorShoot", indexSensorShoot);
+
 
         chamRotator = new PIDSparkMax(Load.CANChamRotatorMotorID);
         chamRotator.setControlType(ControlType.kPosition);
@@ -152,11 +158,17 @@ public class LoadingSystem extends SubsystemBase {
     }
 
     public boolean isShootSlotAligned() {
-        return (this.indexSensorShoot.get() == Load.IS_ALIGNED);
+        if(this.indexSensorShoot.getAverageVoltage() > Load.opticalSensorCutoffValue) {
+            return true;
+        } 
+        return false;
     }
 
     public boolean isLoadSlotAligned() {
-        return (this.indexSensorLoad.get() == Load.IS_ALIGNED);
+        if(this.indexSensorLoad.getAverageVoltage() > Load.opticalSensorCutoffValue) {
+            return true;
+        }
+        return false;
     }
 
 /***********************
